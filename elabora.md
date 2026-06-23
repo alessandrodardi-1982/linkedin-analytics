@@ -177,3 +177,23 @@ Stampa un riepilogo a schermo:
 - ✅ Dashboard generata: output\dashboard.html
 - 📊 Periodo: [start] → [end]
 - 👁 Impressioni: [N] | 👤 Utenti raggiunti: [N] | 👥 Follower: [N]
+
+---
+
+## PASSO 8 — Pubblica su GitHub Pages
+
+Esegui questi comandi in sequenza dalla cartella del progetto:
+
+```
+git add output/dashboard.html
+git commit -m "Dashboard aggiornata — [data elaborazione]"
+git push
+```
+
+Dove [data elaborazione] è la data odierna in formato YYYY-MM-DD.
+
+Dopo il push comunica:
+- ✅ Dashboard pubblicata online
+- 🔗 https://alessandrodardi-1982.github.io/linkedin-analytics/
+
+Se il push fallisce per errori di autenticazione o connessione: avvisa l'utente e suggerisci di eseguire manualmente i tre comandi da CMD.
