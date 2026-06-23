@@ -152,7 +152,17 @@ Questa è la sezione più importante. Incrociare i dati XLSX con `linkedin_post_
 - Ci sono post programmati ma non pubblicati nel periodo analizzato?
 - Ci sono scostamenti tra le performance dichiarate nel piano e quelle reali nell'XLSX?
 
-**5. Azioni consigliate**
+**5. Visibilità verso HR e Risorse Umane — obiettivo prioritario**
+Questo è un obiettivo esplicito: aumentare la percentuale di HR/Risorse Umane tra chi visualizza il profilo e i contenuti. Attualmente è al 2% nelle qualifiche — un segnale che i contenuti non stanno raggiungendo chi assume.
+
+Ad ogni elaborazione:
+- Riporta la percentuale attuale di "Risorse umane" nelle qualifiche dei DATI DEMOGRAFICI
+- Confrontala con le elaborazioni precedenti nello storico (trend in crescita o stagnante?)
+- Valuta quali post del periodo hanno generato più impressioni e se il loro contenuto è appetibile per un HR (es. soft skill, percorso professionale, capacità di coordinamento, risultati misurabili)
+- Segnala se negli ultimi post mancano elementi chiave per attrarre HR: numeri concreti, impatto sul team, gestione di persone/fornitori, parole chiave cercate dai recruiter (es. "coordinamento", "team", "budget", "KPI", "responsabilità")
+- Suggerisci 2-3 angolazioni di contenuto specifiche per il prossimo post, pensate per intercettare HR e recruiter nel settore operations/digital transformation
+
+**6. Azioni consigliate**
 - Massimo 5 azioni specifiche e concrete, basate solo su quello che emerge dai dati
 - Esempio corretto: "Il post dell'8/6 (domenica 22:01) ha comunque generato 1.152 impressioni — valuta se il contenuto biografico funziona indipendentemente dall'orario"
 - Esempio sbagliato: "Pubblica contenuti di qualità" (generico, inutile)
