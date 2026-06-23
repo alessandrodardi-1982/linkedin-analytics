@@ -1,39 +1,97 @@
 [
   {
     "data_elaborazione": "2026-06-23",
-    "periodo_start": "2026-06-17",
+    "periodo_start": "2026-03-26",
     "periodo_end": "2026-06-23",
-    "impressioni_totali": 795,
-    "utenti_raggiunti": 327,
+    "impressioni_totali": 2512,
+    "utenti_raggiunti": 695,
     "follower_totali": 435,
-    "nuovi_follower_periodo": 8,
-    "tasso_engagement": 2.77,
+    "nuovi_follower_periodo": 54,
+    "tasso_engagement": 3.22,
     "andamento_giornaliero": [
+      {"data": "2026-06-08", "impressioni": 167, "interazioni": 13},
+      {"data": "2026-06-09", "impressioni": 496, "interazioni": 18},
+      {"data": "2026-06-10", "impressioni": 444, "interazioni": 16},
+      {"data": "2026-06-11", "impressioni": 121, "interazioni": 1},
+      {"data": "2026-06-12", "impressioni": 47, "interazioni": 1},
+      {"data": "2026-06-13", "impressioni": 29, "interazioni": 0},
+      {"data": "2026-06-14", "impressioni": 29, "interazioni": 0},
+      {"data": "2026-06-15", "impressioni": 48, "interazioni": 0},
+      {"data": "2026-06-16", "impressioni": 324, "interazioni": 10},
       {"data": "2026-06-17", "impressioni": 137, "interazioni": 1},
       {"data": "2026-06-18", "impressioni": 325, "interazioni": 13},
       {"data": "2026-06-19", "impressioni": 97, "interazioni": 1},
       {"data": "2026-06-20", "impressioni": 41, "interazioni": 0},
       {"data": "2026-06-21", "impressioni": 24, "interazioni": 1},
       {"data": "2026-06-22", "impressioni": 150, "interazioni": 6},
-      {"data": "2026-06-23", "impressioni": 21, "interazioni": 0}
+      {"data": "2026-06-23", "impressioni": 33, "interazioni": 0}
     ],
     "follower_giornalieri": [
+      {"data": "2026-04-23", "nuovi": 1},
+      {"data": "2026-04-24", "nuovi": 1},
+      {"data": "2026-04-27", "nuovi": 1},
+      {"data": "2026-04-30", "nuovi": 1},
+      {"data": "2026-05-05", "nuovi": 4},
+      {"data": "2026-05-06", "nuovi": 1},
+      {"data": "2026-05-07", "nuovi": 1},
+      {"data": "2026-05-11", "nuovi": 2},
+      {"data": "2026-05-12", "nuovi": 1},
+      {"data": "2026-05-13", "nuovi": 1},
+      {"data": "2026-05-15", "nuovi": 1},
+      {"data": "2026-05-16", "nuovi": 1},
+      {"data": "2026-05-20", "nuovi": 1},
+      {"data": "2026-05-22", "nuovi": 2},
+      {"data": "2026-05-25", "nuovi": 2},
+      {"data": "2026-05-26", "nuovi": 3},
+      {"data": "2026-05-28", "nuovi": 2},
+      {"data": "2026-05-29", "nuovi": 2},
+      {"data": "2026-05-30", "nuovi": 1},
+      {"data": "2026-06-03", "nuovi": 3},
+      {"data": "2026-06-07", "nuovi": 1},
+      {"data": "2026-06-09", "nuovi": 3},
+      {"data": "2026-06-10", "nuovi": 1},
+      {"data": "2026-06-11", "nuovi": 1},
+      {"data": "2026-06-12", "nuovi": 2},
+      {"data": "2026-06-13", "nuovi": 1},
+      {"data": "2026-06-15", "nuovi": 2},
+      {"data": "2026-06-16", "nuovi": 3},
       {"data": "2026-06-17", "nuovi": 3},
       {"data": "2026-06-18", "nuovi": 2},
       {"data": "2026-06-19", "nuovi": 2},
-      {"data": "2026-06-20", "nuovi": 0},
-      {"data": "2026-06-21", "nuovi": 0},
-      {"data": "2026-06-22", "nuovi": 1},
-      {"data": "2026-06-23", "nuovi": 0}
+      {"data": "2026-06-22", "nuovi": 1}
     ],
     "post": [
       {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+        "data": "2026-06-08",
+        "titolo_breve": "Profilo ibrido ops+digital",
+        "tipo": "A",
+        "interazioni": 38,
+        "impressioni": 1153
+      },
+      {
         "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
         "data": "2026-06-18",
-        "titolo_breve": "TalentGarden / DigitalRestart / PwC area",
+        "titolo_breve": "TalentGarden / PwC Digital Trends",
         "tipo": "A",
         "interazioni": 16,
-        "impressioni": 404
+        "impressioni": 405
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
+        "data": "2026-06-10",
+        "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)",
+        "tipo": "B",
+        "interazioni": 14,
+        "impressioni": 399
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
+        "data": "2026-06-16",
+        "titolo_breve": "Digital Transformation + Operations",
+        "tipo": "A",
+        "interazioni": 8,
+        "impressioni": 348
       },
       {
         "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
@@ -41,31 +99,7 @@
         "titolo_breve": "ML Manutenzione Predittiva",
         "tipo": "B",
         "interazioni": 5,
-        "impressioni": 150
-      },
-      {
-        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
-        "data": "2026-06-08",
-        "titolo_breve": "Profilo ibrido ops+digital",
-        "tipo": "A",
-        "interazioni": 0,
-        "impressioni": 109
-      },
-      {
-        "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
-        "data": "2026-06-16",
-        "titolo_breve": "Digital Transformation + Operations",
-        "tipo": "A",
-        "interazioni": 1,
-        "impressioni": 105
-      },
-      {
-        "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
-        "data": "2026-06-10",
-        "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)",
-        "tipo": "B",
-        "interazioni": 0,
-        "impressioni": 27
+        "impressioni": 160
       }
     ],
     "demografici": {
