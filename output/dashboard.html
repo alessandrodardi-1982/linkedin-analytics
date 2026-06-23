@@ -48,7 +48,7 @@
   .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
   header { padding: 32px 24px 24px; text-align: center; border-bottom: 1px solid var(--border); }
   header h1 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: .03em; }
-  header .subtitle { color: var(--text2); margin-top: 6px; font-size: 13px; }
+  header .subtitle { color: var(--text2); margin-top: 6px; font-size: 15px; }
   header .subtitle span { color: var(--accent); font-weight: 600; }
 
   .section { margin-bottom: 32px; }
@@ -164,6 +164,12 @@
     Storico completo: <span>26 marzo 2026 &rarr; 23 giugno 2026</span> &nbsp;&middot;&nbsp;
     Aggiornato il <span>23 giugno 2026</span>
   </p>
+  <p style="max-width:640px; margin:16px auto 0; font-size:15px; color:var(--text2); line-height:1.7;">
+    I contenuti pubblicati seguono una <span style="color:var(--accent);font-weight:600;">strategia editoriale studiata</span>. 
+    <span style="color:var(--accent);font-weight:600;">Post A</span> e 
+    <span style="color:#a78bfa;font-weight:600;">Post B</span> non sono etichette casuali: 
+    sono due leve distinte, ognuna con un ruolo preciso nel percorso verso un obiettivo professionale definito.
+  </p>
 </header>
 
 <div class="container">
@@ -229,10 +235,12 @@
       <div class="chart-card">
         <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Settori</div>
         <div class="bar-list" id="demoSettori"></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
       </div>
       <div class="chart-card">
         <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Localita</div>
         <div class="bar-list" id="demoLocalita"></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
       </div>
     </div>
     <div class="chart-grid">
@@ -243,6 +251,7 @@
       <div class="chart-card">
         <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Dimensioni azienda</div>
         <div class="bar-list" id="demoDimensioni"></div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
       </div>
     </div>
   </div>
@@ -395,7 +404,7 @@ const demografici = {
   anzianita:[
     {nome:"Senior",pct:39},{nome:"Livello base",pct:25},
     {nome:"Amministratore",pct:10},{nome:"Direttore",pct:8},
-    {nome:"Proprietario",pct:4},{nome:"CXO",pct:3}
+    {nome:"Proprietario",pct:4},{nome:"C-Level (CEO, CFO, CTO...)",pct:3}
   ],
   dimensioni:[
     {nome:"1.001-5.000",pct:15},{nome:"11-50",pct:13},{nome:"51-200",pct:12},
@@ -550,7 +559,7 @@ function renderDemografici() {
     options: {
       responsive:true,
       plugins:{
-        legend:{position:'right',labels:{color:'#9090b0',font:{size:12},padding:6,boxWidth:12,boxHeight:12,generateLabels:function(chart){return Chart.defaults.plugins.legend.labels.generateLabels(chart).map(function(l){l.text=l.text;return l;})}}},
+        legend:{position:'right',labels:{color:'#9090b0',font:{size:12},padding:6,boxWidth:12,boxHeight:12}},
         tooltip:{backgroundColor:'#16213e',borderColor:'#2a2a45',borderWidth:1}
       }
     }
