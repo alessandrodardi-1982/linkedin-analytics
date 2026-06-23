@@ -152,13 +152,16 @@
     <button class="filter-btn active" onclick="setFilter('type','tutti',this)">Tutti</button>
     <button class="filter-btn" onclick="setFilter('type','A',this)">Post A</button>
     <button class="filter-btn" onclick="setFilter('type','B',this)">Post B</button>
+    <div style="margin-left:auto; font-size:12px; color:rgba(255,255,255,0.6); font-weight:500;">
+      Periodo visualizzato: <span id="periodoAttivo" style="color:#fff; font-weight:700;"></span>
+    </div>
   </div>
 </div>
 
 <header>
   <h1>LinkedIn Analytics — Alessandro Dardi</h1>
   <p class="subtitle">
-    Periodo: <span>26 marzo 2026 &rarr; 23 giugno 2026</span> &nbsp;&middot;&nbsp;
+    Storico completo: <span>26 marzo 2026 &rarr; 23 giugno 2026</span> &nbsp;&middot;&nbsp;
     Aggiornato il <span>23 giugno 2026</span>
   </p>
 </header>
@@ -589,6 +592,20 @@ function renderStorico(days) {
   });
 }
 
+function aggiornaPeriodoAttivo(days) {
+  const fine = new Date("2026-06-23");
+  const fineStr = fine.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
+  let testo;
+  if (!days) {
+    testo = '26 mar 2026 → ' + fineStr;
+  } else {
+    const inizio = getStartDate(days);
+    const inizioStr = inizio.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
+    testo = inizioStr + ' → ' + fineStr;
+  }
+  document.getElementById('periodoAttivo').textContent = testo;
+}
+
 function setFilter(key, val, btn) {
   if (key === 'period') {
     activePeriod = val;
@@ -603,6 +620,7 @@ function setFilter(key, val, btn) {
 }
 
 function renderAll() {
+  aggiornaPeriodoAttivo(activePeriod);
   renderKPI(activePeriod, activeType);
   renderAndamento(activePeriod);
   renderPosts(activePeriod, activeType);
