@@ -2,656 +2,485 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LinkedIn Analytics — Alessandro Dardi</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #14142a;
-    --bg2: #1c1c36;
-    --bg3: #16213e;
-    --card: #21213a;
-    --border: #2a2a45;
-    --accent: #4f8ef7;
-    --accent2: #7c4dff;
-    --green: #00c9a7;
-    --orange: #ff9800;
-    --red: #f44336;
-    --text: #e0e0f0;
-    --text2: #9090b0;
-    --post-a: #4f8ef7;
-    --post-b: #7c4dff;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.5; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0e17;color:#e2e8f0;font-family:'Segoe UI',system-ui,sans-serif;font-size:14px}
+a{color:#7c5cbf;text-decoration:none}
+h2{font-size:1.15rem;font-weight:600;color:#e2e8f0;margin-bottom:12px}
+h3{font-size:.95rem;font-weight:600;color:#a0aec0;margin-bottom:8px}
 
-  #filterBar {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(15,15,26,0.97);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-    padding: 10px 24px;
-    display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
-  }
-  .filter-group { display: flex; align-items: center; gap: 8px; }
-  .filter-label { color: #ffffff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; white-space: nowrap; }
-  .filter-btn {
-    background: transparent; border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.85);
-    padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 12px;
-    transition: all .2s;
-  }
-  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
-  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .filter-btn.active-b { background: var(--post-b); border-color: var(--post-b); color: #fff; }
+/* FILTER BAR */
+#filterbar{position:sticky;top:0;z-index:100;background:#0f0e17cc;backdrop-filter:blur(8px);border-bottom:1px solid #2d2d4e;padding:10px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+#filterbar label{font-size:.75rem;color:#718096;text-transform:uppercase;letter-spacing:.05em}
+.filter-group{display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{background:#1a1a2e;border:1px solid #2d2d4e;color:#a0aec0;border-radius:6px;padding:5px 12px;font-size:.78rem;cursor:pointer;transition:all .15s}
+.filter-btn:hover{border-color:#7c5cbf;color:#e2e8f0}
+.filter-btn.active{background:#7c5cbf;border-color:#7c5cbf;color:#fff;font-weight:600}
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-  header { padding: 32px 24px 24px; text-align: center; border-bottom: 1px solid var(--border); }
-  header h1 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: .03em; }
-  header .subtitle { color: var(--text2); margin-top: 6px; font-size: 15px; }
-  header .subtitle span { color: var(--accent); font-weight: 600; }
+/* LAYOUT */
+.container{max-width:1300px;margin:0 auto;padding:24px}
+header{padding:24px 0 16px}
+header h1{font-size:1.5rem;font-weight:700;color:#fff}
+header p{color:#718096;font-size:.85rem;margin-top:4px}
 
-  .section { margin-bottom: 32px; }
-  .section-title {
-    font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em;
-    color: var(--text2); margin-bottom: 16px; padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
+/* KPI CARDS */
+.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+@media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+.kpi-card{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:10px;padding:16px 18px}
+.kpi-card .label{font-size:.72rem;color:#718096;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.kpi-card .value{font-size:1.6rem;font-weight:700;color:#fff}
+.kpi-card .sub{font-size:.72rem;color:#718096;margin-top:4px}
+.kpi-card.accent .value{color:#7c5cbf}
+.kpi-card.cyan .value{color:#00b4d8}
+.kpi-card.green .value{color:#48bb78}
+.kpi-card.orange .value{color:#ed8936}
 
-  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-  .kpi-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 18px 16px; position: relative; overflow: hidden;
-  }
-  .kpi-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: var(--accent-color, var(--accent));
-  }
-  .kpi-icon { font-size: 20px; margin-bottom: 8px; }
-  .kpi-value { font-size: 28px; font-weight: 700; color: #fff; line-height: 1; }
-  .kpi-label { color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: .05em; margin-top: 6px; }
-  .kpi-sub { color: var(--text2); font-size: 11px; margin-top: 4px; }
+/* SECTIONS */
+.section{background:#1a1a2e;border:1px solid #2d2d4e;border-radius:10px;padding:20px;margin-bottom:20px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+@media(max-width:800px){.two-col{grid-template-columns:1fr}}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:20px}
+@media(max-width:900px){.three-col{grid-template-columns:1fr}}
 
-  .chart-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px;
-  }
-  .chart-card canvas { max-height: 280px; }
-  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 700px) { .chart-grid { grid-template-columns: 1fr; } }
+/* CHART CONTAINERS */
+.chart-wrap{position:relative;height:240px}
+.chart-wrap-sm{position:relative;height:180px}
 
-  .post-list { display: flex; flex-direction: column; gap: 10px; }
-  .post-item {
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
-    padding: 14px 16px; display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 12px; align-items: center;
-  }
-  .post-badge {
-    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 12px;
-    background: var(--post-a); color: #fff; white-space: nowrap;
-  }
-  .post-badge.B { background: var(--post-b); }
-  .post-info { min-width: 0; }
-  .post-title { font-weight: 600; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .post-meta { color: var(--text2); font-size: 11px; margin-top: 2px; }
-  .post-bar-wrap { width: 100%; background: var(--bg); border-radius: 4px; height: 4px; margin-top: 6px; }
-  .post-bar { height: 4px; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
-  .post-stats { text-align: right; white-space: nowrap; }
-  .post-stat-main { font-size: 18px; font-weight: 700; color: #fff; line-height: 1; }
-  .post-stat-label { font-size: 10px; color: var(--text2); margin-top: 2px; }
-  .post-stat-int { font-size: 11px; color: var(--green); margin-top: 4px; }
+/* POST LIST */
+.post-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #2d2d4e}
+.post-item:last-child{border-bottom:none}
+.post-rank{width:28px;height:28px;border-radius:50%;background:#2d2d4e;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:#a0aec0;flex-shrink:0}
+.post-info{flex:1;min-width:0}
+.post-title{font-weight:600;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.85rem}
+.post-meta{font-size:.72rem;color:#718096;margin-top:2px}
+.post-bar-wrap{width:120px;flex-shrink:0}
+.post-bar-bg{background:#2d2d4e;border-radius:4px;height:6px;margin-top:4px}
+.post-bar-fill{height:6px;border-radius:4px;background:#7c5cbf}
+.post-nums{display:flex;gap:12px;font-size:.78rem}
+.post-nums span{color:#a0aec0}
+.post-nums strong{color:#e2e8f0}
+.badge-a{background:#7c5cbf22;color:#7c5cbf;border:1px solid #7c5cbf44;border-radius:4px;padding:1px 6px;font-size:.68rem;font-weight:700}
+.badge-b{background:#00b4d822;color:#00b4d8;border:1px solid #00b4d844;border-radius:4px;padding:1px 6px;font-size:.68rem;font-weight:700}
 
-  .demo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-  @media (max-width: 700px) { .demo-row { grid-template-columns: 1fr; } }
-  .bar-list { display: flex; flex-direction: column; gap: 8px; }
-  .bar-label-row { display: flex; justify-content: space-between; margin-bottom: 3px; font-size: 12px; }
-  .bar-label-row span:last-child { color: var(--accent); font-weight: 600; }
-  .bar-bg { background: var(--bg); border-radius: 4px; height: 6px; }
-  .bar-fill { height: 6px; border-radius: 4px; }
+/* DEMO BARS */
+.demo-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.demo-label{width:160px;font-size:.78rem;color:#a0aec0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.demo-bar-bg{flex:1;background:#2d2d4e;border-radius:4px;height:8px}
+.demo-bar-fill{height:8px;border-radius:4px;background:#7c5cbf}
+.demo-pct{width:36px;text-align:right;font-size:.78rem;color:#718096}
 
-  .analisi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 700px) { .analisi-grid { grid-template-columns: 1fr; } }
-  .analisi-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
-  }
-  .analisi-card h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 10px; }
-  .analisi-card p, .analisi-card li { font-size: 13px; color: var(--text); line-height: 1.6; }
-  .analisi-card ul { padding-left: 16px; }
-  .analisi-card li { margin-bottom: 6px; }
-  .highlight { color: var(--green); font-weight: 600; }
-  .warn { color: var(--orange); font-weight: 600; }
-  .analisi-full {
-    grid-column: 1 / -1;
-    background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px;
-  }
-  .analisi-full h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 12px; }
-  .azione {
-    display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border);
-  }
-  .azione:last-child { border-bottom: none; }
-  .azione-num { font-size: 22px; font-weight: 800; color: #ffffff; line-height: 1; flex-shrink: 0; }
-  .azione-text { font-size: 13px; line-height: 1.6; }
-  .azione-text strong { color: var(--accent); }
+/* ANALISI */
+.analisi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:800px){.analisi-grid{grid-template-columns:1fr}}
+.analisi-card{background:#12122a;border:1px solid #2d2d4e;border-radius:8px;padding:16px}
+.analisi-card h3{color:#7c5cbf;font-size:.85rem;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.analisi-card p,.analisi-card li{font-size:.82rem;color:#a0aec0;line-height:1.55}
+.analisi-card li{margin-left:16px;margin-bottom:4px}
+.analisi-card strong{color:#e2e8f0}
+.highlight{background:#7c5cbf22;border-left:3px solid #7c5cbf;padding:8px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:.82rem;color:#e2e8f0}
+.alert{background:#ed893622;border-left:3px solid #ed8936;padding:8px 12px;border-radius:0 6px 6px 0;margin:8px 0;font-size:.82rem;color:#fed7aa}
+.action-list{list-style:none;padding:0}
+.action-list li{padding:8px 0;border-bottom:1px solid #2d2d4e;font-size:.82rem;color:#a0aec0;display:flex;gap:8px}
+.action-list li:last-child{border-bottom:none}
+.action-list li::before{content:"→";color:#7c5cbf;font-weight:700;flex-shrink:0}
+.storico-badge{display:inline-flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.sbadge{background:#2d2d4e;border-radius:6px;padding:4px 10px;font-size:.75rem;color:#a0aec0}
+.sbadge strong{color:#e2e8f0}
+
+footer{text-align:center;padding:24px;color:#4a5568;font-size:.75rem;border-top:1px solid #2d2d4e;margin-top:8px}
 </style>
 </head>
 <body>
 
-<div id="filterBar">
-  <div class="filter-group">
-    <span class="filter-label">Periodo</span>
-    <button class="filter-btn" onclick="setFilter('period',7,this)">7 giorni</button>
-    <button class="filter-btn" onclick="setFilter('period',14,this)">14 giorni</button>
-    <button class="filter-btn" onclick="setFilter('period',28,this)">28 giorni</button>
-    <button class="filter-btn active" onclick="setFilter('period',90,this)">90 giorni</button>
-    <button class="filter-btn" onclick="setFilter('period',365,this)">365 giorni</button>
-    <button class="filter-btn" onclick="setFilter('period',0,this)">Tutto</button>
+<!-- FILTER BAR -->
+<div id="filterbar">
+  <label>Periodo</label>
+  <div class="filter-group" id="periodFilter">
+    <button class="filter-btn" data-days="7">7 giorni</button>
+    <button class="filter-btn" data-days="14">14 giorni</button>
+    <button class="filter-btn" data-days="28">28 giorni</button>
+    <button class="filter-btn" data-days="90">90 giorni</button>
+    <button class="filter-btn" data-days="365">365 giorni</button>
+    <button class="filter-btn active" data-days="all">Tutto lo storico</button>
   </div>
-  <div class="filter-group">
-    <span class="filter-label">Tipo post</span>
-    <button class="filter-btn active" onclick="setFilter('type','tutti',this)">Tutti</button>
-    <button class="filter-btn" onclick="setFilter('type','A',this)">Post A</button>
-    <button class="filter-btn" onclick="setFilter('type','B',this)">Post B</button>
-    <div style="margin-left:auto; font-size:12px; color:rgba(255,255,255,0.6); font-weight:500;">
-      Periodo visualizzato: <span id="periodoAttivo" style="color:#fff; font-weight:700;"></span>
-    </div>
+  <label style="margin-left:16px">Tipo post</label>
+  <div class="filter-group" id="tipoFilter">
+    <button class="filter-btn active" data-tipo="all">Tutti</button>
+    <button class="filter-btn" data-tipo="A">Solo Post A</button>
+    <button class="filter-btn" data-tipo="B">Solo Post B</button>
   </div>
 </div>
 
-<header>
-  <h1>LinkedIn Analytics — Alessandro Dardi</h1>
-  <p class="subtitle">
-    Storico completo: <span>26 marzo 2026 &rarr; 23 giugno 2026</span> &nbsp;&middot;&nbsp;
-    Aggiornato il <span>23 giugno 2026</span>
-  </p>
-  <p style="max-width:640px; margin:16px auto 0; font-size:15px; color:var(--text2); line-height:1.7;">
-    I contenuti pubblicati seguono una <span style="color:var(--accent);font-weight:600;">strategia editoriale studiata</span>. 
-    <span style="color:var(--accent);font-weight:600;">Post A</span> e 
-    <span style="color:#a78bfa;font-weight:600;">Post B</span> non sono etichette casuali: 
-    sono due leve distinte, ognuna con un ruolo preciso nel percorso verso un obiettivo professionale definito.
-  </p>
-</header>
-
 <div class="container">
+  <header>
+    <h1>LinkedIn Analytics — Alessandro Dardi</h1>
+    <p id="headerSub">Periodo: 8 giu 2026 → 1 lug 2026 &nbsp;·&nbsp; Aggiornato al 01/07/2026</p>
+  </header>
 
+  <!-- KPI -->
+  <div class="kpi-grid">
+    <div class="kpi-card accent"><div class="label">Impressioni</div><div class="value" id="kpiImpr">—</div><div class="sub">nel periodo</div></div>
+    <div class="kpi-card cyan"><div class="label">Utenti raggiunti</div><div class="value" id="kpiUtenti">150</div><div class="sub">ultimo export</div></div>
+    <div class="kpi-card green"><div class="label">Follower totali</div><div class="value" id="kpiFollower">439</div><div class="sub">al 01/07/2026</div></div>
+    <div class="kpi-card"><div class="label">Post con interazioni</div><div class="value" id="kpiPost">—</div><div class="sub">nel periodo</div></div>
+    <div class="kpi-card orange"><div class="label">Tasso engagement</div><div class="value" id="kpiEng">—</div><div class="sub">int/imp × 100</div></div>
+  </div>
+
+  <!-- DAILY TREND -->
   <div class="section">
-    <div class="section-title">KPI del periodo</div>
-    <div class="kpi-grid">
-      <div class="kpi-card" style="--accent-color:#4f8ef7">
-        <div class="kpi-icon">&#128065;</div>
-        <div class="kpi-value" id="kpiImpressioni">2.512</div>
-        <div class="kpi-label">Impressioni</div>
-        <div class="kpi-sub" id="kpiImpressioniSub">periodo completo</div>
+    <h2>Andamento giornaliero</h2>
+    <div class="chart-wrap"><canvas id="chartDaily"></canvas></div>
+  </div>
+
+  <div class="two-col">
+    <!-- POST PRINCIPALI -->
+    <div class="section">
+      <h2>Post principali</h2>
+      <div id="postList"></div>
+    </div>
+
+    <!-- FOLLOWER -->
+    <div class="section">
+      <h2>Nuovi follower</h2>
+      <div style="margin-bottom:12px;display:flex;gap:16px">
+        <div><span style="font-size:1.4rem;font-weight:700;color:#48bb78">439</span><span style="color:#718096;font-size:.78rem;margin-left:6px">totali al 01/07</span></div>
+        <div><span style="font-size:1.4rem;font-weight:700;color:#7c5cbf" id="kpiNewFoll">—</span><span style="color:#718096;font-size:.78rem;margin-left:6px">nel periodo</span></div>
       </div>
-      <div class="kpi-card" style="--accent-color:#00c9a7">
-        <div class="kpi-icon">&#128100;</div>
-        <div class="kpi-value">695</div>
-        <div class="kpi-label">Utenti raggiunti</div>
-        <div class="kpi-sub">periodo completo</div>
-      </div>
-      <div class="kpi-card" style="--accent-color:#7c4dff">
-        <div class="kpi-icon">&#128101;</div>
-        <div class="kpi-value">435</div>
-        <div class="kpi-label">Follower totali</div>
-        <div class="kpi-sub">al 23/06/2026</div>
-      </div>
-      <div class="kpi-card" style="--accent-color:#ff9800">
-        <div class="kpi-icon">&#128221;</div>
-        <div class="kpi-value" id="kpiPost">5</div>
-        <div class="kpi-label">Post con interazioni</div>
-        <div class="kpi-sub" id="kpiPostSub">nel periodo</div>
-      </div>
-      <div class="kpi-card" style="--accent-color:#f44336">
-        <div class="kpi-icon">&#128172;</div>
-        <div class="kpi-value" id="kpiEngagement">3.22%</div>
-        <div class="kpi-label">Tasso engagement</div>
-        <div class="kpi-sub">interazioni / impressioni</div>
-      </div>
+      <div class="chart-wrap-sm"><canvas id="chartFollower"></canvas></div>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">Andamento giornaliero</div>
-    <div class="chart-card">
-      <canvas id="chartAndamento"></canvas>
+  <!-- DEMOGRAFICI -->
+  <div class="three-col">
+    <div class="section">
+      <h2>Settori</h2>
+      <div id="demoSettori"></div>
+    </div>
+    <div class="section">
+      <h2>Localita</h2>
+      <div id="demoLocalita"></div>
+    </div>
+    <div class="section">
+      <h2>Anzianita</h2>
+      <div class="chart-wrap-sm"><canvas id="chartAnzianita"></canvas></div>
     </div>
   </div>
 
+  <!-- STORICO EVOLUZIONE -->
   <div class="section">
-    <div class="section-title">Post principali</div>
-    <div class="post-list" id="postList"></div>
+    <h2>Storico — Evoluzione nel tempo</h2>
+    <div class="storico-badge" id="storicoBadges"></div>
+    <div class="chart-wrap"><canvas id="chartStorico"></canvas></div>
   </div>
 
+  <!-- ANALISI STRATEGICA -->
   <div class="section">
-    <div class="section-title">Crescita follower</div>
-    <div class="chart-card">
-      <canvas id="chartFollower"></canvas>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Dati demografici</div>
-    <div class="demo-row">
-      <div class="chart-card">
-        <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Settori</div>
-        <div class="bar-list" id="demoSettori"></div>
-        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
-      </div>
-      <div class="chart-card">
-        <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Localita</div>
-        <div class="bar-list" id="demoLocalita"></div>
-        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
-      </div>
-    </div>
-    <div class="chart-grid">
-      <div class="chart-card">
-        <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Anzianita follower</div>
-        <canvas id="chartAnzianita"></canvas>
-      </div>
-      <div class="chart-card">
-        <div style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Dimensioni azienda</div>
-        <div class="bar-list" id="demoDimensioni"></div>
-        <div style="margin-top:12px;font-size:11px;color:var(--text2);font-style:italic;">LinkedIn mostra solo le categorie principali: la somma non arriva a 100% perché le voci minori non vengono esposte.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Evoluzione storica</div>
-    <div class="chart-card">
-      <canvas id="chartStorico"></canvas>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Analisi strategica &mdash; Dati reali vs Piano editoriale</div>
+    <h2>Analisi Strategica — Dati Reali vs Piano Editoriale</h2>
     <div class="analisi-grid">
 
       <div class="analisi-card">
-        <h4>1. Performance A vs B</h4>
-        <p>
-          <span class="highlight">Post A (articolo/dato esterno)</span>: media <strong>635 impressioni</strong> e <strong>20,7 interazioni</strong> per post (3 post).<br><br>
-          <span class="warn">Post B (portfolio/progetto)</span>: media <strong>280 impressioni</strong> e <strong>9,5 interazioni</strong> per post (2 post).<br><br>
-          Post A genera <strong>2,3&times; piu impressioni</strong> e <strong>2,2&times; piu interazioni</strong>. Scarto netto, non marginale.
-        </p>
+        <h3>&#9658; 1. Performance per tipo di post</h3>
+        <div class="highlight"><strong>Post A (articolo/dato esterno): 700 imp media, 21 int media</strong></div>
+        <div class="highlight" style="background:#00b4d822;border-color:#00b4d8"><strong>Post B (portfolio/progetto): 356 imp media, 11 int media</strong></div>
+        <p>I Post A generano il <strong>+97% in più di impressioni</strong> rispetto ai Post B. Il profilo ibrido (8/6, Post A narrativo) con 1.267 imp stimati cumulate è di gran lunga il post più efficace. Il ML Manutenzione (Post B) ha una coda lunga — 131 imp aggiuntive nella settimana 23-1/7, segno di contenuto tecnico solido ma a diffusione lenta.</p>
       </div>
 
       <div class="analisi-card">
-        <h4>2. Orari e impatto</h4>
-        <p>
-          Il post dell'<strong>8/6 (domenica 22:01)</strong> e il top performer assoluto: <span class="highlight">1.153 impressioni</span>, 38 interazioni. Fuori regola, risultato migliore del periodo.<br><br>
-          Il <strong>10/6 (martedi 15:53)</strong>, fuori dalla finestra 08:00-09:30, ha comunque generato 399 impressioni. I dati non dimostrano che l'orario sia la variabile critica: il contenuto pesa di piu.
-        </p>
+        <h3>&#9658; 2. Rispetto degli orari e impatto</h3>
+        <p>Il post dell'<strong>8/6 (domenica 22:01)</strong> ha prodotto 1.267 imp cumulate — il massimo assoluto, pur con orario pessimo. Questo non invalida la regola mar/gio 08:00-09:30 ma indica che il <strong>formato autobiografico/narrativo è così forte da compensare il timing sbagliato</strong>.</p>
+        <div class="alert">Il 10/6 (martedì 15:53, fuori finestra) ha prodotto solo 420 imp — conferma che l'orario conta per i Post B/portfolio ma meno per i contenuti ad alto impatto emotivo.</div>
+        <p>Dati insufficienti per validare statisticamente il martedì/giovedì mattina: solo 1-2 post nell'orario corretto.</p>
       </div>
 
       <div class="analisi-card">
-        <h4>3. Contenuto che funziona</h4>
-        <ul>
-          <li><span class="highlight">Autobiografico/identitario</span>: 1.153 imp. &mdash; netto distacco</li>
-          <li>Report di settore (PwC/TalentGarden): 405 imp.</li>
-          <li>Portfolio tecnico (n8n/Tableau): 399 imp.</li>
-          <li><span class="warn">ML/predittivo (troppo tecnico)</span>: 160 imp.</li>
+        <h3>&#9658; 3. Contenuto che funziona</h3>
+        <p>Ranking per impressioni cumulate:</p>
+        <ol style="margin-left:16px;margin-top:8px">
+          <li style="margin-bottom:4px;color:#e2e8f0"><strong>Narrativo autobiografico</strong> — "8 anni ops+digital" → 1.267 imp</li>
+          <li style="margin-bottom:4px;color:#a0aec0">Dati di mercato commentati — PwC/TalentGarden → 463 imp</li>
+          <li style="margin-bottom:4px;color:#a0aec0">Strumenti digitali portfolio — n8n/Tableau/AI → 420 imp</li>
+          <li style="margin-bottom:4px;color:#a0aec0">Digital Transformation ops → 370 imp</li>
+          <li style="margin-bottom:4px;color:#718096">ML tecnico → 291 imp (ma coda lunga)</li>
+        </ol>
+        <p style="margin-top:8px">Correlazione follower: picco +3 il 9/6 (giorno dopo Profilo ibrido) e +3 il 16/6 (post ops). Il contenuto personale/ops attira più follower del contenuto tecnico puro.</p>
+      </div>
+
+      <div class="analisi-card">
+        <h3>&#9658; 4. Gap tra piano e realtà</h3>
+        <div class="alert">3 post programmati non pubblicati: <strong>24/6 Post A, 25/6 Post B (ML follow-up), 30/6 Post A (Polimi)</strong>. La settimana 23/6-1/7 è quasi ferma: 350 imp totali vs 2.512 del periodo precedente (-86%).</div>
+        <p>Il post del <strong>23/6 Look4ward/AI adoption</strong> (segnato "Pubblicato oggi" nel piano) non appare nel POST PRINCIPALI del nuovo XLSX — le sue impressioni iniziali probabilmente rientrano nell'export precedente (chiuso il 23/6). Da verificare nel prossimo export.</p>
+        <p style="margin-top:6px">Nessuno scostamento significativo tra performance dichiarate nel piano e dati reali: il piano riportava 994 imp per il profilo ibrido (8/6), l'XLSX conferma &gt;1.000.</p>
+      </div>
+
+      <div class="analisi-card" style="grid-column:1/-1">
+        <h3>&#9658; 5. Visibilita verso HR — obiettivo prioritario</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <p><strong>Qualifica "Risorse umane":</strong> <span style="color:#ed8936;font-size:1.1rem;font-weight:700">2%</span> — invariata (anche elaborazione precedente: 2%). <strong>Zero progresso in 2 elaborazioni consecutive.</strong></p>
+            <p style="margin-top:8px">"Settore Servizi risorse umane": salito da 6% a 7% (+1 pp) — marginal e probabilmente casuale. "Selezione e ricerca di personale" è scomparso dalla top-10 settori → segnale negativo.</p>
+            <p style="margin-top:8px">I post del periodo hanno elementi tecnici (ML, PwC, n8n) ma <strong>nessuna "people language"</strong> che un HR cerca: team, coordinamento, budget, responsabilità, KPI, persone gestite.</p>
+          </div>
+          <div>
+            <p style="font-weight:600;color:#e2e8f0;margin-bottom:8px">3 angolazioni per il prossimo post A/B pensate per HR:</p>
+            <ol style="margin-left:16px">
+              <li style="margin-bottom:8px;color:#a0aec0"><strong style="color:#e2e8f0">"Ho coordinato un team di X persone in un progetto di digital transformation"</strong> — keyword: coordinamento, interfunzionale, team, deliverable</li>
+              <li style="margin-bottom:8px;color:#a0aec0"><strong style="color:#e2e8f0">"Come ho costruito e gestito KPI operativi per un reparto di 20 persone"</strong> — keyword: KPI, performance, budget, responsabilita, risultati misurabili</li>
+              <li style="color:#a0aec0"><strong style="color:#e2e8f0">"Cosa serve davvero a un'azienda manifatturiera in un Operations Manager nel 2026"</strong> — angolazione recruiter, lista competenze hard+soft, citazione mercato lavoro</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="analisi-card" style="grid-column:1/-1">
+        <h3>&#9658; 6. Azioni consigliate</h3>
+        <ul class="action-list">
+          <li><strong>Pubblica entro giovedi 3/7 il Post B ML follow-up</strong> (previsto 25/6, saltato). Il ML Manutenzione e ancora caldo con 131 imp nell'ultima settimana — un follow-up ora cattura la coda di chi l'ha visto ma non ha interagito.</li>
+          <li><strong>Prossimo Post A: replica il formato narrativo autobiografico dell'8/6</strong> ("8 anni ops+digital") ma con angolazione HR-esplicita — inserisci numeri concreti: team coordinati, budget gestiti, KPI costruiti. E il primo post A che puo spostare la qualifica HR oltre il 2%.</li>
+          <li><strong>Verifica il post Look4ward (23/6)</strong> nel prossimo export XLSX: non appare nel POST PRINCIPALI attuale, possibile gap di tracciamento. Se ha effettivamente raggiunto 0 imp, rivaluta il contenuto.</li>
+          <li><strong>Settimana senza post = -86% volume</strong> (350 vs 2.512 imp). La pausa editoriale di fine giugno ha azzerato il momentum. Rientra nel calendario con pubblicazione garantita mar 7/7 (Post A) e gio 9/7 (Post B) come da piano.</li>
+          <li><strong>Anzianita "Senior" stabile al 40%, C-Level al 3%</strong>: il profilo attrae middle management — coerente con ops. Per attrarre anche HR (che in genere e posizione "Senior" o "Direttore"), il contenuto va bene; e il topic che deve cambiare verso "people management".</li>
         </ul>
-        <p style="margin-top:10px;">
-          Il contenuto che parla di te supera sia le ricerche di settore sia i progetti tecnici. Correlazione follower: +3 il giorno del 9/6 (rimbalzo post 8/6).
-        </p>
-      </div>
-
-      <div class="analisi-card">
-        <h4>4. Gap piano vs realta</h4>
-        <ul>
-          <li>Piano: PwC il <strong>17/6</strong> &rarr; XLSX registra <strong>18/6</strong> (offset LinkedIn normale)</li>
-          <li>Piano: ML il <strong>19/6</strong> &rarr; XLSX registra <strong>22/6</strong> (domenica, fuori regola)</li>
-          <li>Post <strong>16/6</strong> presente nell'XLSX ma <strong>assente dal piano</strong></li>
-          <li>Post <strong>23/6</strong> (Look4ward) nel piano, non ancora nei POST PRINCIPALI XLSX &mdash; dati non consolidati</li>
-          <li>Performance piano 8/6: 994 imp. &rarr; XLSX aggiornato: <span class="highlight">1.153</span> (+16%)</li>
-        </ul>
-      </div>
-
-      <div class="analisi-full">
-        <h4>5. Azioni consigliate</h4>
-        <div class="azione">
-          <div class="azione-num">01</div>
-          <div class="azione-text">
-            <strong>Raddoppia sui contenuti autobiografici/identitari.</strong> Il post dell'8/6 (domenica 22:01, fuori regola) ha generato 1.153 impressioni &mdash; il doppio del secondo classificato. L'angolazione "chi sono e cosa so fare" batte sia i report di settore sia i portfolio tecnici. Prossimo Post A: metti in primo piano la tua storia, non il dato esterno.
-          </div>
-        </div>
-        <div class="azione">
-          <div class="azione-num">02</div>
-          <div class="azione-text">
-            <strong>Rivaluta il peso dell'orario rispetto al contenuto.</strong> Nessuno dei post pubblicati nella finestra 08:00-09:30 ha superato i risultati di post pubblicati fuori orario. Con 5 post il campione e limitato, ma la regola dell'orario non e ancora confermata dai tuoi dati &mdash; non usarla come variabile principale nelle decisioni di contenuto.
-          </div>
-        </div>
-        <div class="azione">
-          <div class="azione-num">03</div>
-          <div class="azione-text">
-            <strong>Post B: cambia angolazione tecnica.</strong> ML Manutenzione (22/6): 160 impressioni contro 399 degli strumenti digitali (10/6). Il problema non e il portfolio, e il livello di astrazione: "Random Forest su 261 macchinari" non parla al tuo pubblico (Senior + Livello base, IT/consulenza). Traduci in impatto operativo concreto, non in metodo statistico.
-          </div>
-        </div>
-        <div class="azione">
-          <div class="azione-num">04</div>
-          <div class="azione-text">
-            <strong>Sincronizza il piano con le date effettive di pubblicazione.</strong> Il post del 19/6 risulta pubblicato il 22/6 nell'XLSX; il post del 16/6 non compare nel piano. Se il piano non riflette la realta, il confronto piano/dati perde utilita operativa. Aggiorna le date ogni settimana subito dopo la pubblicazione.
-          </div>
-        </div>
-        <div class="azione">
-          <div class="azione-num">05</div>
-          <div class="azione-text">
-            <strong>Presidia il manifatturiero con contenuto accessibile.</strong> Il tuo pubblico include fabbricazione macchinari (4%) e il piano prevede Polimi/Industria 4.0 il 30/6. Usa dati di impatto su PMI italiane, non statistiche globali. Aggiungi #ManutenzioneIndustriale e #Industria40 per rafforzare il reach su quel segmento.
-          </div>
-        </div>
       </div>
 
     </div>
   </div>
-
 </div>
 
+<footer>LinkedIn Analytics Dashboard &copy; 2026 Alessandro Dardi &nbsp;·&nbsp; Generato il 01/07/2026</footer>
+
 <script>
-const andamentoCompleto = [
-  {data:"2026-06-08",impressioni:167,interazioni:13},
-  {data:"2026-06-09",impressioni:496,interazioni:18},
-  {data:"2026-06-10",impressioni:444,interazioni:16},
-  {data:"2026-06-11",impressioni:121,interazioni:1},
-  {data:"2026-06-12",impressioni:47,interazioni:1},
-  {data:"2026-06-13",impressioni:29,interazioni:0},
-  {data:"2026-06-14",impressioni:29,interazioni:0},
-  {data:"2026-06-15",impressioni:48,interazioni:0},
-  {data:"2026-06-16",impressioni:324,interazioni:10},
-  {data:"2026-06-17",impressioni:137,interazioni:1},
-  {data:"2026-06-18",impressioni:325,interazioni:13},
-  {data:"2026-06-19",impressioni:97,interazioni:1},
-  {data:"2026-06-20",impressioni:41,interazioni:0},
-  {data:"2026-06-21",impressioni:24,interazioni:1},
-  {data:"2026-06-22",impressioni:150,interazioni:6},
-  {data:"2026-06-23",impressioni:33,interazioni:0}
-];
+const STORICO = [{"data_elaborazione": "2026-06-23", "periodo_start": "2026-03-26", "periodo_end": "2026-06-23", "impressioni_totali": 2512, "utenti_raggiunti": 695, "follower_totali": 435, "nuovi_follower_periodo": 54, "tasso_engagement": 3.22, "andamento_giornaliero": [{"data": "2026-06-08", "impressioni": 167, "interazioni": 13}, {"data": "2026-06-09", "impressioni": 496, "interazioni": 18}, {"data": "2026-06-10", "impressioni": 444, "interazioni": 16}, {"data": "2026-06-11", "impressioni": 121, "interazioni": 1}, {"data": "2026-06-12", "impressioni": 47, "interazioni": 1}, {"data": "2026-06-13", "impressioni": 29, "interazioni": 0}, {"data": "2026-06-14", "impressioni": 29, "interazioni": 0}, {"data": "2026-06-15", "impressioni": 48, "interazioni": 0}, {"data": "2026-06-16", "impressioni": 324, "interazioni": 10}, {"data": "2026-06-17", "impressioni": 137, "interazioni": 1}, {"data": "2026-06-18", "impressioni": 325, "interazioni": 13}, {"data": "2026-06-19", "impressioni": 97, "interazioni": 1}, {"data": "2026-06-20", "impressioni": 41, "interazioni": 0}, {"data": "2026-06-21", "impressioni": 24, "interazioni": 1}, {"data": "2026-06-22", "impressioni": 150, "interazioni": 6}, {"data": "2026-06-23", "impressioni": 33, "interazioni": 0}], "follower_giornalieri": [{"data": "2026-04-23", "nuovi": 1}, {"data": "2026-04-24", "nuovi": 1}, {"data": "2026-04-27", "nuovi": 1}, {"data": "2026-04-30", "nuovi": 1}, {"data": "2026-05-05", "nuovi": 4}, {"data": "2026-05-06", "nuovi": 1}, {"data": "2026-05-07", "nuovi": 1}, {"data": "2026-05-11", "nuovi": 2}, {"data": "2026-05-12", "nuovi": 1}, {"data": "2026-05-13", "nuovi": 1}, {"data": "2026-05-15", "nuovi": 1}, {"data": "2026-05-16", "nuovi": 1}, {"data": "2026-05-20", "nuovi": 1}, {"data": "2026-05-22", "nuovi": 2}, {"data": "2026-05-25", "nuovi": 2}, {"data": "2026-05-26", "nuovi": 3}, {"data": "2026-05-28", "nuovi": 2}, {"data": "2026-05-29", "nuovi": 2}, {"data": "2026-05-30", "nuovi": 1}, {"data": "2026-06-03", "nuovi": 3}, {"data": "2026-06-07", "nuovi": 1}, {"data": "2026-06-09", "nuovi": 3}, {"data": "2026-06-10", "nuovi": 1}, {"data": "2026-06-11", "nuovi": 1}, {"data": "2026-06-12", "nuovi": 2}, {"data": "2026-06-13", "nuovi": 1}, {"data": "2026-06-15", "nuovi": 2}, {"data": "2026-06-16", "nuovi": 3}, {"data": "2026-06-17", "nuovi": 3}, {"data": "2026-06-18", "nuovi": 2}, {"data": "2026-06-19", "nuovi": 2}, {"data": "2026-06-22", "nuovi": 1}], "post": [{"url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", "data": "2026-06-08", "titolo_breve": "Profilo ibrido ops+digital", "tipo": "A", "interazioni": 38, "impressioni": 1153}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", "data": "2026-06-18", "titolo_breve": "TalentGarden / PwC Digital Trends", "tipo": "A", "interazioni": 16, "impressioni": 405}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", "data": "2026-06-10", "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)", "tipo": "B", "interazioni": 14, "impressioni": 399}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", "data": "2026-06-16", "titolo_breve": "Digital Transformation + Operations", "tipo": "A", "interazioni": 8, "impressioni": 348}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", "data": "2026-06-22", "titolo_breve": "ML Manutenzione Predittiva", "tipo": "B", "interazioni": 5, "impressioni": 160}], "demografici": {"aziende": [{"nome": "GrandVision Italy", "percentuale": 2}, {"nome": "Gruppo Hera", "percentuale": 2}], "localita": [{"nome": "Bologna", "percentuale": 33}, {"nome": "Milano", "percentuale": 10}, {"nome": "Ferrara", "percentuale": 9}, {"nome": "Ravenna", "percentuale": 6}, {"nome": "Torino", "percentuale": 3}, {"nome": "Modena", "percentuale": 3}, {"nome": "Bari", "percentuale": 3}, {"nome": "Roma", "percentuale": 3}, {"nome": "Rimini", "percentuale": 2}], "dimensioni_azienda": [{"nome": "1.001-5.000 dipendenti", "percentuale": 15}, {"nome": "11-50 dipendenti", "percentuale": 13}, {"nome": "51-200 dipendenti", "percentuale": 12}, {"nome": "2-10 dipendenti", "percentuale": 10}, {"nome": "10.001+ dipendenti", "percentuale": 9}, {"nome": "201-500 dipendenti", "percentuale": 8}, {"nome": "501-1.000 dipendenti", "percentuale": 7}, {"nome": "5.001-10.000 dipendenti", "percentuale": 7}], "anzianita": [{"nome": "Senior", "percentuale": 39}, {"nome": "Livello base", "percentuale": 25}, {"nome": "Amministratore", "percentuale": 10}, {"nome": "Direttore", "percentuale": 8}, {"nome": "Proprietario", "percentuale": 4}, {"nome": "CXO", "percentuale": 3}], "settori": [{"nome": "Servizi IT e consulenza IT", "percentuale": 7}, {"nome": "Consulenza e servizi aziendali", "percentuale": 7}, {"nome": "Vendita al dettaglio", "percentuale": 7}, {"nome": "Servizi risorse umane", "percentuale": 6}, {"nome": "Servizi finanziari", "percentuale": 4}, {"nome": "Fabbricazione di macchinari industriali", "percentuale": 4}, {"nome": "Servizi pubblicitari", "percentuale": 3}, {"nome": "Trasporti, logistica, supply chain", "percentuale": 2}, {"nome": "Sviluppo di software", "percentuale": 2}, {"nome": "Selezione e ricerca di personale", "percentuale": 2}], "qualifiche": [{"nome": "Risorse umane", "percentuale": 2}, {"nome": "Project Manager", "percentuale": 2}, {"nome": "Fondatore", "percentuale": 2}, {"nome": "Proprietario", "percentuale": 2}, {"nome": "Amministratore delegato", "percentuale": 2}, {"nome": "Responsabile di negozio", "percentuale": 1}]}}, {"data_elaborazione": "2026-07-01", "periodo_start": "2026-06-23", "periodo_end": "2026-07-01", "impressioni_totali": 350, "utenti_raggiunti": 150, "follower_totali": 439, "nuovi_follower_periodo": 4, "tasso_engagement": 1.14, "andamento_giornaliero": [{"data": "2026-06-23", "impressioni": 80, "interazioni": 1}, {"data": "2026-06-24", "impressioni": 40, "interazioni": 0}, {"data": "2026-06-25", "impressioni": 64, "interazioni": 2}, {"data": "2026-06-26", "impressioni": 39, "interazioni": 0}, {"data": "2026-06-27", "impressioni": 18, "interazioni": 0}, {"data": "2026-06-28", "impressioni": 29, "interazioni": 1}, {"data": "2026-06-29", "impressioni": 35, "interazioni": 0}, {"data": "2026-06-30", "impressioni": 32, "interazioni": 0}, {"data": "2026-07-01", "impressioni": 13, "interazioni": 0}], "follower_giornalieri": [{"data": "2026-06-23", "nuovi": 0}, {"data": "2026-06-24", "nuovi": 1}, {"data": "2026-06-25", "nuovi": 1}, {"data": "2026-06-26", "nuovi": 2}, {"data": "2026-06-27", "nuovi": 0}, {"data": "2026-06-28", "nuovi": 0}, {"data": "2026-06-29", "nuovi": 0}, {"data": "2026-06-30", "nuovi": 0}, {"data": "2026-07-01", "nuovi": 0}], "post": [{"url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", "data": "2026-06-22", "titolo_breve": "ML Manutenzione Predittiva", "tipo": "B", "interazioni": 1, "impressioni": 131}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", "data": "2026-06-08", "titolo_breve": "Profilo ibrido ops+digital", "tipo": "A", "interazioni": 1, "impressioni": 114}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", "data": "2026-06-18", "titolo_breve": "TalentGarden / PwC Digital Trends", "tipo": "A", "interazioni": 1, "impressioni": 58}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", "data": "2026-06-16", "titolo_breve": "Digital Transformation + Operations", "tipo": "A", "interazioni": 0, "impressioni": 22}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", "data": "2026-06-10", "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)", "tipo": "B", "interazioni": 1, "impressioni": 21}], "demografici": {"aziende": [{"nome": "GrandVision Italy", "percentuale": 2}, {"nome": "Gruppo Hera", "percentuale": 2}], "localita": [{"nome": "Bologna", "percentuale": 33}, {"nome": "Milano", "percentuale": 10}, {"nome": "Ferrara", "percentuale": 9}, {"nome": "Ravenna", "percentuale": 6}, {"nome": "Torino", "percentuale": 3}, {"nome": "Modena", "percentuale": 3}, {"nome": "Bari", "percentuale": 3}, {"nome": "Roma", "percentuale": 3}, {"nome": "Rimini", "percentuale": 2}], "dimensioni_azienda": [{"nome": "1.001-5.000 dipendenti", "percentuale": 15}, {"nome": "11-50 dipendenti", "percentuale": 13}, {"nome": "51-200 dipendenti", "percentuale": 12}, {"nome": "2-10 dipendenti", "percentuale": 10}, {"nome": "10.001+ dipendenti", "percentuale": 9}, {"nome": "201-500 dipendenti", "percentuale": 8}, {"nome": "501-1.000 dipendenti", "percentuale": 7}, {"nome": "5.001-10.000 dipendenti", "percentuale": 7}], "anzianita": [{"nome": "Senior", "percentuale": 40}, {"nome": "Livello base", "percentuale": 24}, {"nome": "Amministratore", "percentuale": 10}, {"nome": "Direttore", "percentuale": 8}, {"nome": "Proprietario", "percentuale": 4}, {"nome": "C-Level", "percentuale": 3}], "qualifiche": [{"nome": "Risorse umane", "percentuale": 2}, {"nome": "Project Manager", "percentuale": 2}, {"nome": "Fondatore", "percentuale": 2}, {"nome": "Proprietario", "percentuale": 2}, {"nome": "Amministratore delegato", "percentuale": 2}, {"nome": "Responsabile di negozio", "percentuale": 1}], "settori": [{"nome": "Consulenza e servizi aziendali", "percentuale": 7}, {"nome": "Servizi IT e consulenza IT", "percentuale": 7}, {"nome": "Vendita al dettaglio", "percentuale": 7}, {"nome": "Servizi risorse umane", "percentuale": 7}, {"nome": "Servizi finanziari", "percentuale": 3}, {"nome": "Fabbricazione di macchinari industriali", "percentuale": 3}, {"nome": "Servizi pubblicitari", "percentuale": 3}, {"nome": "Trasporti, logistica, supply chain e stoccaggio", "percentuale": 2}, {"nome": "Sviluppo di software", "percentuale": 2}, {"nome": "Servizi benessere e fitness", "percentuale": 2}]}}];
+const OGGI = "2026-07-01";
 
-const followerCompleto = [
-  {data:"2026-04-23",nuovi:1},{data:"2026-04-24",nuovi:1},{data:"2026-04-27",nuovi:1},{data:"2026-04-30",nuovi:1},
-  {data:"2026-05-05",nuovi:4},{data:"2026-05-06",nuovi:1},{data:"2026-05-07",nuovi:1},
-  {data:"2026-05-11",nuovi:2},{data:"2026-05-12",nuovi:1},{data:"2026-05-13",nuovi:1},
-  {data:"2026-05-15",nuovi:1},{data:"2026-05-16",nuovi:1},{data:"2026-05-20",nuovi:1},
-  {data:"2026-05-22",nuovi:2},{data:"2026-05-25",nuovi:2},{data:"2026-05-26",nuovi:3},
-  {data:"2026-05-28",nuovi:2},{data:"2026-05-29",nuovi:2},{data:"2026-05-30",nuovi:1},
-  {data:"2026-06-03",nuovi:3},{data:"2026-06-07",nuovi:1},
-  {data:"2026-06-09",nuovi:3},{data:"2026-06-10",nuovi:1},{data:"2026-06-11",nuovi:1},
-  {data:"2026-06-12",nuovi:2},{data:"2026-06-13",nuovi:1},{data:"2026-06-15",nuovi:2},
-  {data:"2026-06-16",nuovi:3},{data:"2026-06-17",nuovi:3},{data:"2026-06-18",nuovi:2},
-  {data:"2026-06-19",nuovi:2},{data:"2026-06-22",nuovi:1}
-];
-
-const postsCompleti = [
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",data:"2026-06-08",titolo:"Profilo ibrido ops+digital",tipo:"A",interazioni:38,impressioni:1153},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",data:"2026-06-18",titolo:"TalentGarden / PwC Digital Trends",tipo:"A",interazioni:16,impressioni:405},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",data:"2026-06-10",titolo:"Strumenti digitali (n8n/Tableau/AI)",tipo:"B",interazioni:14,impressioni:399},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",data:"2026-06-16",titolo:"Digital Transformation + Operations",tipo:"A",interazioni:8,impressioni:348},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",data:"2026-06-22",titolo:"ML Manutenzione Predittiva",tipo:"B",interazioni:5,impressioni:160}
-];
-
-const demografici = {
-  settori:[
-    {nome:"Servizi IT e consulenza IT",pct:7},{nome:"Consulenza e servizi aziendali",pct:7},
-    {nome:"Vendita al dettaglio",pct:7},{nome:"Servizi risorse umane",pct:6},
-    {nome:"Servizi finanziari",pct:4},{nome:"Fabbricazione macchinari",pct:4},
-    {nome:"Servizi pubblicitari",pct:3},{nome:"Trasporti/Logistica",pct:2}
-  ],
-  localita:[
-    {nome:"Bologna",pct:33},{nome:"Milano",pct:10},{nome:"Ferrara",pct:9},
-    {nome:"Ravenna",pct:6},{nome:"Torino",pct:3},{nome:"Modena",pct:3},
-    {nome:"Bari",pct:3},{nome:"Roma",pct:3},{nome:"Rimini",pct:2}
-  ],
-  anzianita:[
-    {nome:"Senior",pct:39},{nome:"Livello base",pct:25},
-    {nome:"Amministratore",pct:10},{nome:"Direttore",pct:8},
-    {nome:"Proprietario",pct:4},{nome:"C-Level (CEO, CFO, CTO...)",pct:3}
-  ],
-  dimensioni:[
-    {nome:"1.001-5.000",pct:15},{nome:"11-50",pct:13},{nome:"51-200",pct:12},
-    {nome:"2-10",pct:10},{nome:"10.001+",pct:9},{nome:"201-500",pct:8},
-    {nome:"501-1.000",pct:7},{nome:"5.001-10.000",pct:7}
-  ]
-};
-
-let activePeriod = 90;
-let activeType = 'tutti';
-let chartAndamento, chartFollower, chartAnzianita, chartStorico;
-
-function fmtDate(s) {
-  const d = new Date(s);
-  return d.toLocaleDateString('it-IT',{day:'2-digit',month:'short'});
+// --- MERGE UTILITIES ---
+function getMergedDaily() {
+  const m = {};
+  STORICO.forEach(e => (e.andamento_giornaliero||[]).forEach(d => { m[d.data] = d; }));
+  return Object.values(m).sort((a,b) => a.data < b.data ? -1 : 1);
+}
+function getMergedFollower() {
+  const m = {};
+  STORICO.forEach(e => (e.follower_giornalieri||[]).forEach(d => { m[d.data] = d; }));
+  return Object.values(m).sort((a,b) => a.data < b.data ? -1 : 1);
+}
+function getMergedPosts() {
+  const m = {};
+  STORICO.forEach(e => (e.post||[]).forEach(p => {
+    if (!m[p.url]) m[p.url] = {...p, impressioni: 0, interazioni: 0};
+    m[p.url].impressioni += p.impressioni;
+    m[p.url].interazioni += p.interazioni;
+    m[p.url].titolo_breve = p.titolo_breve;
+    m[p.url].tipo = p.tipo;
+    m[p.url].data = p.data;
+  }));
+  return Object.values(m).sort((a,b) => b.impressioni - a.impressioni);
 }
 
-function getStartDate(days) {
-  if (!days) return null;
-  const end = new Date("2026-06-23");
-  return new Date(end.getTime() - (days-1)*86400000);
+// --- DATE FILTER ---
+function cutoffDate(days) {
+  if (days === 'all') return null;
+  const d = new Date(OGGI);
+  d.setDate(d.getDate() - parseInt(days) + 1);
+  return d.toISOString().split('T')[0];
+}
+function filterByDate(arr, days, key='data') {
+  const c = cutoffDate(days);
+  if (!c) return arr;
+  return arr.filter(d => d[key] >= c);
 }
 
-function filterByPeriod(arr, dateKey, days) {
-  const start = getStartDate(days);
-  if (!start) return arr;
-  return arr.filter(d => new Date(d[dateKey]) >= start);
-}
+// --- STATE ---
+let currentDays = 'all', currentTipo = 'all';
+let chartDaily, chartFollower, chartAnzianita, chartStorico;
 
-function renderKPI(days, type) {
-  const filtered = filterByPeriod(andamentoCompleto, 'data', days);
-  const filteredPosts = postsCompleti.filter(p => {
-    const inPeriod = !days || new Date(p.data) >= getStartDate(days);
-    const inType = type === 'tutti' || p.tipo === type;
-    return inPeriod && inType;
-  });
-  const totImp = filtered.reduce((s,d)=>s+d.impressioni,0);
-  const totInt = filtered.reduce((s,d)=>s+d.interazioni,0);
-  const eng = totImp > 0 ? (totInt/totImp*100).toFixed(2) : '0.00';
-  document.getElementById('kpiImpressioni').textContent = totImp.toLocaleString('it-IT');
-  document.getElementById('kpiImpressioniSub').textContent = days ? 'ultimi '+days+' giorni' : 'tutto il periodo';
-  document.getElementById('kpiPost').textContent = filteredPosts.length;
-  document.getElementById('kpiPostSub').textContent = type !== 'tutti' ? 'Post '+type : 'nel periodo';
-  document.getElementById('kpiEngagement').textContent = eng + '%';
-}
-
-function renderAndamento(days) {
-  const data = filterByPeriod(andamentoCompleto, 'data', days);
-  const ctx = document.getElementById('chartAndamento').getContext('2d');
-  if (chartAndamento) chartAndamento.destroy();
-  chartAndamento = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: data.map(d => fmtDate(d.data)),
-      datasets: [
-        {label:'Impressioni',data:data.map(d=>d.impressioni),backgroundColor:'rgba(79,142,247,0.5)',borderColor:'#4f8ef7',borderWidth:1,borderRadius:4,yAxisID:'y'},
-        {label:'Interazioni',data:data.map(d=>d.interazioni),type:'line',borderColor:'#00c9a7',backgroundColor:'rgba(0,201,167,0.15)',borderWidth:2,pointRadius:4,pointBackgroundColor:'#00c9a7',tension:0.3,fill:true,yAxisID:'y1'}
-      ]
-    },
-    options: {
-      responsive:true,
-      interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{labels:{color:'#9090b0',font:{size:12}}},
-        tooltip:{backgroundColor:'#16213e',borderColor:'#2a2a45',borderWidth:1}
-      },
-      scales:{
-        x:{ticks:{color:'#9090b0',maxRotation:45},grid:{color:'rgba(42,42,69,0.5)'}},
-        y:{type:'linear',position:'left',ticks:{color:'#9090b0'},grid:{color:'rgba(42,42,69,0.5)'},title:{display:true,text:'Impressioni',color:'#9090b0',font:{size:11}}},
-        y1:{type:'linear',position:'right',ticks:{color:'#00c9a7'},grid:{display:false},title:{display:true,text:'Interazioni',color:'#00c9a7',font:{size:11}}}
-      }
-    }
-  });
-}
-
-function renderPosts(days, type) {
-  const maxImp = Math.max(...postsCompleti.map(p=>p.impressioni));
-  let filtered = postsCompleti.filter(p => {
-    const inPeriod = !days || new Date(p.data) >= getStartDate(days);
-    const inType = type === 'tutti' || p.tipo === type;
-    return inPeriod && inType;
-  }).slice(0,5);
-  const container = document.getElementById('postList');
-  if (!filtered.length) {
-    container.innerHTML = '<p style="color:var(--text2);padding:16px;">Nessun post nel periodo/tipo selezionato.</p>';
-    return;
-  }
-  container.innerHTML = filtered.map(p => {
-    const pct = Math.round(p.impressioni/maxImp*100);
-    const dataFmt = new Date(p.data).toLocaleDateString('it-IT',{day:'2-digit',month:'2-digit',year:'numeric'});
-    return '<div class="post-item">'+
-      '<div><div class="post-badge '+p.tipo+'">'+(p.tipo==='A'?'Post A':'Post B')+'</div></div>'+
-      '<div class="post-info">'+
-        '<div class="post-title"><a href="'+p.url+'" target="_blank" style="color:inherit;text-decoration:none;">'+p.titolo+'</a></div>'+
-        '<div class="post-meta">'+dataFmt+'</div>'+
-        '<div class="post-bar-wrap"><div class="post-bar" style="width:'+pct+'%"></div></div>'+
-      '</div>'+
-      '<div class="post-stats">'+
-        '<div class="post-stat-main">'+p.impressioni.toLocaleString('it-IT')+'</div>'+
-        '<div class="post-stat-label">impressioni</div>'+
-        '<div class="post-stat-int">+'+p.interazioni+' interazioni</div>'+
-      '</div>'+
-    '</div>';
-  }).join('');
-}
-
-function renderFollower(days) {
-  const data = filterByPeriod(followerCompleto, 'data', days);
-  const ctx = document.getElementById('chartFollower').getContext('2d');
-  if (chartFollower) chartFollower.destroy();
-  chartFollower = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: data.map(d => fmtDate(d.data)),
-      datasets: [{label:'Nuovi follower',data:data.map(d=>d.nuovi),backgroundColor:'rgba(124,77,255,0.6)',borderColor:'#7c4dff',borderWidth:1,borderRadius:4}]
-    },
-    options: {
-      responsive:true,
-      plugins:{
-        legend:{labels:{color:'#9090b0',font:{size:12}}},
-        tooltip:{backgroundColor:'#16213e',borderColor:'#2a2a45',borderWidth:1}
-      },
-      scales:{
-        x:{ticks:{color:'#9090b0',maxRotation:45},grid:{color:'rgba(42,42,69,0.5)'}},
-        y:{ticks:{color:'#9090b0',stepSize:1},grid:{color:'rgba(42,42,69,0.5)'}}
-      }
-    }
-  });
-}
-
-function renderDemografici() {
-  function makeBarList(items, id, grad) {
-    document.getElementById(id).innerHTML = items.map(i =>
-      '<div class="bar-item">'+
-        '<div class="bar-label-row"><span>'+i.nome+'</span><span>'+i.pct+'%</span></div>'+
-        '<div class="bar-bg"><div class="bar-fill" style="width:'+Math.min(i.pct*2.5,100)+'%;background:'+grad+'"></div></div>'+
-      '</div>'
-    ).join('');
-  }
-  makeBarList(demografici.settori,'demoSettori','linear-gradient(90deg,#4f8ef7,#7c4dff)');
-  makeBarList(demografici.localita,'demoLocalita','linear-gradient(90deg,#00c9a7,#4f8ef7)');
-  makeBarList(demografici.dimensioni,'demoDimensioni','linear-gradient(90deg,#ff9800,#f44336)');
-
-  const ctx = document.getElementById('chartAnzianita').getContext('2d');
-  if (chartAnzianita) chartAnzianita.destroy();
-  chartAnzianita = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: demografici.anzianita.map(a=>a.nome),
-      datasets: [{data:demografici.anzianita.map(a=>a.pct),backgroundColor:['#4f8ef7','#7c4dff','#00c9a7','#ff9800','#f44336','#e91e63'],borderColor:'#1e1e32',borderWidth:2}]
-    },
-    options: {
-      responsive:true,
-      plugins:{
-        legend:{position:'right',labels:{color:'#9090b0',font:{size:12},padding:6,boxWidth:12,boxHeight:12}},
-        tooltip:{backgroundColor:'#16213e',borderColor:'#2a2a45',borderWidth:1}
-      }
-    }
-  });
-}
-
-function renderStorico(days) {
-  const data = filterByPeriod(andamentoCompleto, 'data', days);
-  const follFilt = filterByPeriod(followerCompleto, 'data', days);
-  const follMap = {};
-  follFilt.forEach(f => { follMap[f.data] = f.nuovi; });
-  let cum = 381;
-  const follCum = data.map(d => { cum += (follMap[d.data]||0); return cum; });
-
-  const ctx = document.getElementById('chartStorico').getContext('2d');
-  if (chartStorico) chartStorico.destroy();
-  chartStorico = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: data.map(d => fmtDate(d.data)),
-      datasets: [
-        {label:'Impressioni',data:data.map(d=>d.impressioni),borderColor:'#4f8ef7',backgroundColor:'rgba(79,142,247,0.1)',borderWidth:2,pointRadius:3,tension:0.3,fill:true,yAxisID:'y'},
-        {label:'Follower (cumulativo)',data:follCum,borderColor:'#FFD600',backgroundColor:'rgba(255,214,0,0.05)',borderWidth:2,pointRadius:2,tension:0.3,fill:false,yAxisID:'y1'}
-      ]
-    },
-    options: {
-      responsive:true,
-      interaction:{mode:'index',intersect:false},
-      plugins:{
-        legend:{labels:{color:'#9090b0',font:{size:12}}},
-        tooltip:{backgroundColor:'#16213e',borderColor:'#2a2a45',borderWidth:1}
-      },
-      scales:{
-        x:{ticks:{color:'#9090b0',maxRotation:45},grid:{color:'rgba(42,42,69,0.5)'}},
-        y:{position:'left',ticks:{color:'#4f8ef7'},grid:{color:'rgba(42,42,69,0.5)'},title:{display:true,text:'Impressioni',color:'#4f8ef7',font:{size:11}}},
-        y1:{position:'right',ticks:{color:'#FFD600'},grid:{display:false},title:{display:true,text:'Follower',color:'#FFD600',font:{size:11}}}
-      }
-    }
-  });
-}
-
-function aggiornaPeriodoAttivo(days) {
-  const fine = new Date("2026-06-23");
-  const fineStr = fine.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
-  let testo;
-  if (!days) {
-    testo = '26 mar 2026 → ' + fineStr;
-  } else {
-    const inizio = getStartDate(days);
-    const inizioStr = inizio.toLocaleDateString('it-IT', {day:'2-digit', month:'short', year:'numeric'});
-    testo = inizioStr + ' → ' + fineStr;
-  }
-  document.getElementById('periodoAttivo').textContent = testo;
-}
-
-function setFilter(key, val, btn) {
-  if (key === 'period') {
-    activePeriod = val;
-    document.querySelectorAll('.filter-group:first-child .filter-btn').forEach(b => { b.classList.remove('active'); b.classList.remove('active-b'); });
-  } else {
-    activeType = val;
-    document.querySelectorAll('.filter-group:last-child .filter-btn').forEach(b => { b.classList.remove('active'); b.classList.remove('active-b'); });
-  }
-  if (activeType === 'B') btn.classList.add('active-b');
-  else btn.classList.add('active');
-  renderAll();
-}
-
+// --- RENDER ---
 function renderAll() {
-  aggiornaPeriodoAttivo(activePeriod);
-  renderKPI(activePeriod, activeType);
-  renderAndamento(activePeriod);
-  renderPosts(activePeriod, activeType);
-  renderFollower(activePeriod);
-  renderStorico(activePeriod);
+  const allDaily = getMergedDaily();
+  const allFollower = getMergedFollower();
+  const allPosts = getMergedPosts();
+  const latestEntry = STORICO[STORICO.length - 1];
+  const demog = latestEntry.demografici;
+
+  const daily = filterByDate(allDaily, currentDays);
+  const follower = filterByDate(allFollower, currentDays);
+  const posts = allPosts.filter(p => currentTipo === 'all' || p.tipo === currentTipo);
+  const filteredPosts = filterByDate(posts, currentDays, 'data');
+
+  // KPI
+  const totalImpr = daily.reduce((s,d) => s+d.impressioni, 0);
+  const totalInt  = daily.reduce((s,d) => s+d.interazioni, 0);
+  const eng = totalImpr > 0 ? (totalInt/totalImpr*100).toFixed(2) : '0.00';
+  const postsWithInt = filteredPosts.filter(p => p.interazioni > 0).length || posts.filter(p=>p.interazioni>0).length;
+  document.getElementById('kpiImpr').textContent = totalImpr.toLocaleString('it-IT');
+  document.getElementById('kpiEng').textContent = eng + '%';
+  document.getElementById('kpiPost').textContent = postsWithInt;
+  const newFoll = follower.reduce((s,d) => s+d.nuovi, 0);
+  document.getElementById('kpiNewFoll').textContent = '+' + newFoll;
+
+  // Header subtitle
+  if (daily.length > 0) {
+    const fmt = s => s.split('-').reverse().join('/');
+    document.getElementById('headerSub').textContent =
+      `Periodo visualizzato: ${fmt(daily[0].data)} → ${fmt(daily[daily.length-1].data)}  ·  Aggiornato al 01/07/2026`;
+  }
+
+  // DAILY CHART
+  if (chartDaily) chartDaily.destroy();
+  chartDaily = new Chart(document.getElementById('chartDaily'), {
+    data: {
+      labels: daily.map(d => d.data.slice(5).replace('-','/')),
+      datasets: [
+        {type:'bar', label:'Impressioni', data: daily.map(d=>d.impressioni),
+         backgroundColor:'#7c5cbf55', borderColor:'#7c5cbf', borderWidth:1, yAxisID:'y'},
+        {type:'line', label:'Interazioni', data: daily.map(d=>d.interazioni),
+         borderColor:'#00b4d8', backgroundColor:'transparent', tension:.35,
+         pointRadius:3, pointBackgroundColor:'#00b4d8', yAxisID:'y2'}
+      ]
+    },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{labels:{color:'#a0aec0',font:{size:11}}},
+               tooltip:{backgroundColor:'#1a1a2e',borderColor:'#2d2d4e',borderWidth:1,titleColor:'#e2e8f0',bodyColor:'#a0aec0'}},
+      scales:{
+        x:{ticks:{color:'#718096',font:{size:10},maxRotation:45},grid:{color:'#2d2d4e22'}},
+        y:{ticks:{color:'#718096',font:{size:10}},grid:{color:'#2d2d4e55'},title:{display:true,text:'Impressioni',color:'#718096',font:{size:10}}},
+        y2:{position:'right',ticks:{color:'#718096',font:{size:10}},grid:{drawOnChartArea:false},title:{display:true,text:'Interazioni',color:'#718096',font:{size:10}}}
+      }
+    }
+  });
+
+  // POST LIST
+  const topPosts = posts.slice(0,5);
+  const maxImp = topPosts[0]?.impressioni || 1;
+  const labels = ['A','B','C','D','E'];
+  document.getElementById('postList').innerHTML = topPosts.map((p,i) => `
+    <div class="post-item">
+      <div class="post-rank">${labels[i]}</div>
+      <div class="post-info">
+        <div class="post-title"><a href="${p.url}" target="_blank">${p.titolo_breve}</a></div>
+        <div class="post-meta">${p.data.split('-').reverse().join('/')} &nbsp;<span class="badge-${p.tipo}">Post ${p.tipo}</span></div>
+        <div class="post-bar-bg"><div class="post-bar-fill" style="width:${Math.round(p.impressioni/maxImp*100)}%"></div></div>
+      </div>
+      <div class="post-nums">
+        <span><strong>${p.impressioni.toLocaleString('it-IT')}</strong> imp</span>
+        <span><strong>${p.interazioni}</strong> int</span>
+      </div>
+    </div>`).join('');
+
+  // FOLLOWER CHART
+  if (chartFollower) chartFollower.destroy();
+  chartFollower = new Chart(document.getElementById('chartFollower'), {
+    type:'bar',
+    data:{
+      labels: follower.map(d=>d.data.slice(5).replace('-','/')),
+      datasets:[{label:'Nuovi follower', data:follower.map(d=>d.nuovi),
+        backgroundColor:'#48bb7866', borderColor:'#48bb78', borderWidth:1}]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#1a1a2e',borderColor:'#2d2d4e',borderWidth:1,titleColor:'#e2e8f0',bodyColor:'#a0aec0'}},
+      scales:{x:{ticks:{color:'#718096',font:{size:9},maxRotation:45},grid:{color:'#2d2d4e22'}},
+              y:{ticks:{color:'#718096',font:{size:10},stepSize:1},grid:{color:'#2d2d4e55'}}}
+    }
+  });
+
+  // DEMOGRAFICI - SETTORI
+  document.getElementById('demoSettori').innerHTML = (demog.settori||[]).map(s=>`
+    <div class="demo-row">
+      <div class="demo-label" title="${s.nome}">${s.nome}</div>
+      <div class="demo-bar-bg"><div class="demo-bar-fill" style="width:${Math.min(s.percentuale*4,100)}%"></div></div>
+      <div class="demo-pct">${s.percentuale}%</div>
+    </div>`).join('');
+
+  // DEMOGRAFICI - LOCALITA
+  document.getElementById('demoLocalita').innerHTML = (demog.localita||[]).map(s=>`
+    <div class="demo-row">
+      <div class="demo-label">${s.nome}</div>
+      <div class="demo-bar-bg"><div class="demo-bar-fill" style="width:${Math.min(s.percentuale*2.5,100)}%;background:#00b4d8"></div></div>
+      <div class="demo-pct">${s.percentuale}%</div>
+    </div>`).join('');
+
+  // DEMOGRAFICI - ANZIANITA (doughnut)
+  if (chartAnzianita) chartAnzianita.destroy();
+  const anz = demog.anzianita || [];
+  chartAnzianita = new Chart(document.getElementById('chartAnzianita'), {
+    type:'doughnut',
+    data:{
+      labels: anz.map(a=>a.nome),
+      datasets:[{data:anz.map(a=>a.percentuale),
+        backgroundColor:['#7c5cbf','#00b4d8','#48bb78','#ed8936','#fc8181','#4fd1c5'],
+        borderWidth:0}]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,cutout:'60%',
+      plugins:{legend:{position:'right',labels:{color:'#a0aec0',font:{size:10},boxWidth:10}},
+               tooltip:{backgroundColor:'#1a1a2e',borderColor:'#2d2d4e',borderWidth:1,titleColor:'#e2e8f0',bodyColor:'#a0aec0'}}
+    }
+  });
+
+  // STORICO BADGES
+  document.getElementById('storicoBadges').innerHTML = STORICO.map(e=>`
+    <div class="sbadge">${e.periodo_start} → ${e.periodo_end}: <strong>${e.impressioni_totali.toLocaleString('it-IT')} imp</strong> · <strong>${e.follower_totali} follower</strong></div>
+  `).join('');
+
+  // STORICO CHART (full daily evolution, no filter)
+  if (chartStorico) chartStorico.destroy();
+  const allD = getMergedDaily();
+  const postDates = {};
+  getMergedPosts().forEach(p => { postDates[p.data] = p.titolo_breve; });
+  chartStorico = new Chart(document.getElementById('chartStorico'), {
+    data:{
+      labels: allD.map(d=>d.data.slice(5).replace('-','/')),
+      datasets:[
+        {type:'line', label:'Impressioni giornaliere', data:allD.map(d=>d.impressioni),
+         borderColor:'#7c5cbf', backgroundColor:'#7c5cbf22', fill:true, tension:.35, pointRadius:2, yAxisID:'y'},
+        {type:'line', label:'Interazioni', data:allD.map(d=>d.interazioni),
+         borderColor:'#00b4d8', backgroundColor:'transparent', tension:.35, pointRadius:2, yAxisID:'y2'}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{labels:{color:'#a0aec0',font:{size:11}}},
+        tooltip:{backgroundColor:'#1a1a2e',borderColor:'#2d2d4e',borderWidth:1,titleColor:'#e2e8f0',bodyColor:'#a0aec0',
+          callbacks:{afterTitle: ctx => {
+            const lbl = allD[ctx[0].dataIndex]?.data;
+            return postDates[lbl] ? '📌 Post: ' + postDates[lbl] : '';
+          }}}
+      },
+      scales:{
+        x:{ticks:{color:'#718096',font:{size:10},maxRotation:45},grid:{color:'#2d2d4e22'}},
+        y:{ticks:{color:'#718096',font:{size:10}},grid:{color:'#2d2d4e55'},title:{display:true,text:'Impressioni',color:'#718096'}},
+        y2:{position:'right',ticks:{color:'#718096',font:{size:10}},grid:{drawOnChartArea:false},title:{display:true,text:'Interazioni',color:'#718096'}}
+      }
+    }
+  });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  renderDemografici();
+// --- FILTER EVENTS ---
+document.getElementById('periodFilter').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('#periodFilter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentDays = btn.dataset.days;
   renderAll();
 });
-</script>
-<footer style="
-  text-align:center;
-  padding:28px 24px;
-  border-top:1px solid var(--border);
-  color:var(--text2);
-  font-size:14px;
-  letter-spacing:.03em;
-">
-  &copy; 2026 Alessandro Dardi &nbsp;&middot;&nbsp; Tutti i diritti riservati
-</footer>
+document.getElementById('tipoFilter').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  document.querySelectorAll('#tipoFilter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentTipo = btn.dataset.tipo;
+  renderAll();
+});
 
+renderAll();
+</script>
 </body>
 </html>
