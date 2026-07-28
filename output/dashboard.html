@@ -7,13 +7,15 @@
 <style>
 :root{--bg:#0f0e17;--card:#1a1a2e;--inner:#16213e;--red:#e94560;--purple:#7b2d8b;--teal:#00b4d8;--green:#4caf50;--orange:#ff9800;--text:#eaeaea;--muted:#8892a4;--border:#2a2a4a}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;font-size:14px;padding-top:115px}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;font-size:14px;padding-top:118px}
 #filterBar{position:fixed;top:0;left:0;right:0;z-index:100;background:#0a0914;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .fg{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
 .fg span{color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;min-width:52px}
 .fb{background:transparent;border:1px solid var(--border);color:var(--muted);padding:4px 11px;border-radius:20px;cursor:pointer;font-size:11px;transition:all .15s}
 .fb:hover{border-color:var(--teal);color:var(--teal)}
 .fb.on{background:var(--teal);border-color:var(--teal);color:#0f0e17;font-weight:700}
+#searchBox{background:var(--inner);border:1px solid var(--border);color:var(--text);padding:5px 11px;border-radius:20px;font-size:11px;min-width:200px}
+#searchBox:focus{outline:none;border-color:var(--teal)}
 .ctr{max-width:1380px;margin:0 auto;padding:16px}
 header{background:linear-gradient(135deg,#1a1a2e 0%,#0f3460 100%);padding:26px 20px 20px;text-align:center;border-bottom:2px solid var(--red)}
 header h1{font-size:24px;font-weight:800;color:#fff;letter-spacing:1px}
@@ -31,9 +33,7 @@ header .sub{color:var(--muted);margin-top:5px;font-size:12px}
 .cwsm{position:relative;height:190px}
 .pi{background:var(--inner);border-radius:8px;padding:11px 13px;margin-bottom:7px}
 .ph{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px}
-.pbadge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700}
-.ba{background:#0d2a35;color:var(--teal);border:1px solid var(--teal)}
-.bb{background:#2d0d3a;color:#c084fc;border:1px solid #c084fc}
+.pbadge{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700;background:#0d2a35;color:var(--teal);border:1px solid var(--teal)}
 .pdate{font-size:11px;color:var(--muted)}
 .ptit{font-size:13px;color:var(--text);font-weight:500;margin-bottom:5px}
 .pbar-bg{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
@@ -67,6 +67,10 @@ header .sub{color:var(--muted);margin-top:5px;font-size:12px}
 .leg{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;justify-content:center}
 .li{display:flex;align-items:center;gap:3px;font-size:10px;color:var(--muted)}
 .ld{width:9px;height:9px;border-radius:50%}
+.stbl{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+.stbl th{text-align:left;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.4px;padding:7px 8px;border-bottom:1px solid var(--border)}
+.stbl td{padding:8px;border-bottom:1px solid var(--border);color:var(--text)}
+.stbl tr:last-child td{border-bottom:none}
 footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-top:10px;border-top:1px solid var(--border)}
 </style>
 </head>
@@ -76,16 +80,15 @@ footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-t
   <div class="fg">
     <span>Periodo</span>
     <button class="fb" data-p="7" onclick="sf('p',this)">7 giorni</button>
+    <button class="fb" data-p="14" onclick="sf('p',this)">14 giorni</button>
     <button class="fb on" data-p="28" onclick="sf('p',this)">28 giorni</button>
     <button class="fb" data-p="90" onclick="sf('p',this)">90 giorni</button>
     <button class="fb" data-p="365" onclick="sf('p',this)">365 giorni</button>
     <button class="fb" data-p="tutto" onclick="sf('p',this)">Tutto lo storico</button>
   </div>
   <div class="fg">
-    <span>Post</span>
-    <button class="fb on" data-t="tutti" onclick="sf('t',this)">Tutti</button>
-    <button class="fb" data-t="A" onclick="sf('t',this)">Solo A</button>
-    <button class="fb" data-t="B" onclick="sf('t',this)">Solo B</button>
+    <span>Cerca</span>
+    <input id="searchBox" type="text" placeholder="Parola chiave nei titoli dei post…" oninput="onSearch(this.value)">
   </div>
 </div>
 
@@ -100,8 +103,8 @@ footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-t
 <div class="kgrid">
   <div class="kcard"><div class="kl">Impressioni</div><div class="kv" id="kImp">—</div><div class="ks">periodo filtrato</div></div>
   <div class="kcard b"><div class="kl">Utenti raggiunti</div><div class="kv" id="kUtenti">—</div><div class="ks">stima periodo</div></div>
-  <div class="kcard p"><div class="kl">Follower totali</div><div class="kv">444</div><div class="ks">al 20/07/2026</div></div>
-  <div class="kcard g"><div class="kl">Nuovi follower</div><div class="kv" id="kFol">—</div><div class="ks">periodo filtrato</div></div>
+  <div class="kcard p"><div class="kl">Follower totali</div><div class="kv">448</div><div class="ks">al 28/07/2026</div></div>
+  <div class="kcard g"><div class="kl">Post attivi con interazioni</div><div class="kv" id="kPostAttivi">—</div><div class="ks">periodo filtrato</div></div>
   <div class="kcard o"><div class="kl">Engagement rate</div><div class="kv" id="kEng">—</div><div class="ks">int / imp × 100</div></div>
 </div>
 
@@ -118,14 +121,14 @@ footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-t
 <div class="sec">
   <div class="stit">Follower</div>
   <div style="text-align:center;margin-bottom:10px">
-    <span style="font-size:11px;color:var(--muted)">Totale: </span><span style="font-size:22px;font-weight:800;color:var(--teal)">444</span>
+    <span style="font-size:11px;color:var(--muted)">Totale: </span><span style="font-size:22px;font-weight:800;color:var(--teal)">448</span>
     <span style="font-size:11px;color:var(--muted);margin-left:14px">Nuovi nel periodo: </span><span style="font-size:22px;font-weight:800;color:var(--green)" id="totFol">—</span>
   </div>
   <div class="cwsm"><canvas id="fChart"></canvas></div>
 </div>
 
 <div class="sec">
-  <div class="stit">Dati demografici — aggiornamento 20/07/2026</div>
+  <div class="stit">Dati demografici — aggiornamento 28/07/2026</div>
   <div class="dgrid">
     <div>
       <div class="dh">Settori principali</div>
@@ -146,114 +149,111 @@ footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-t
 <div class="sec">
   <div class="stit">Evoluzione storica</div>
   <div class="scards" id="scards"></div>
-  <div style="height:270px"><canvas id="sChart"></canvas></div>
+  <div style="height:280px"><canvas id="sChart"></canvas></div>
+  <p style="font-size:10px;color:var(--muted);margin-top:8px;text-align:center">Linea rossa: impressioni giornaliere (asse sx) · Linea verde: follower cumulati (asse dx) · Barre arancioni: giorni di pubblicazione post</p>
 </div>
 
 <div class="sec">
-  <div class="stit">Analisi strategica — Dati reali vs Piano editoriale</div>
+  <div class="stit">Analisi strategica — Dati reali per singolo post (periodo 21/07–28/07/2026)</div>
 
   <div class="ab">
-    <h3>1. Performance per tipo di post (A vs B)</h3>
-    <p>Nel periodo 2/7–20/7 sono stati pubblicati <span class="hi">3 post, tutti di tipo A</span>. Nessun Post B dal 22 giugno.</p>
-    <ul>
-      <li><b>15/7 — Costo energia Italia vs Europa (+23%):</b> <span class="hi">151 imp</span>, 4 interazioni (2.6% eng) — top performer del periodo</li>
-      <li><b>17/7 — 51% aziende AI cerca profili ibridi:</b> <span class="hi">108 imp</span>, 4 interazioni (3.7% eng)</li>
-      <li><b>20/7 — PMI 76% non userà AI:</b> 30 imp, 4 interazioni — <span class="wa">post fresco, da monitorare fino al 22/7</span></li>
-    </ul>
-    <p>Il Post B più recente (ML Manutenzione, 22/6) genera ancora <span class="hi">91 imp residue</span> in questo periodo — il contenuto progettuale ha lunga durata. Nel periodo di picco (giugno) i Post B "Strumenti digitali" (399 imp) e "Master Digital Restart" (405 imp) hanno superato qualsiasi post di luglio. <span class="wa">Un mese senza Post B è un rischio per la credibilità operativa.</span></p>
+    <h3>1. Analisi dettagliata dei post pubblicati nel periodo</h3>
+    <p><b>22/7 (mercoledì, 11:00) — "AI Strategy per le PMI"</b> — <span class="hi">109 imp</span>, 4 interazioni (3.67% eng). Pubblicato in fascia, giorno di uscita da solo genera 103 delle 109 impressioni totali — ottimo allineamento pubblicazione/traffico. Terzo post consecutivo sul filone AI+PMI in 10 giorni (dopo 17/7 e 20/7): rischio di saturazione tematica, anche se il dato non lo conferma ancora.</p>
+    <p><b>24/7 (venerdì, 11:00) — "Intelligenza Artificiale e PMI: strategia"</b> — 108 imp, <span class="hi">6 interazioni (5.56% eng)</span> — miglior tasso di interazione del periodo. Stesso filone tematico del post di due giorni prima, eppure genera l'engagement più alto: il pubblico non è saturo del tema, reagisce a variazioni di framing/hook. Venerdì confermato giorno solido per l'engagement.</p>
+    <p><b>27/7 (lunedì, 11:00) — "AI e PMI: trasformazione digitale"</b> — <span class="hi">140 imp</span>, 6 interazioni (4.29% eng), <span class="go">156 impressioni nel solo giorno di pubblicazione</span> — il picco assoluto del periodo, superiore anche al 22/7 e al 24/7. Terzo post consecutivo sul tema AI/PMI in 6 giorni, ma il migliore per reach: nessun segnale di affaticamento del pattern.</p>
+    <p style="color:var(--muted);font-size:11px"><i>Nota: questi 3 post non sono documentati in linkedin_post_schedule.md (calendario fermo al 20/7) — l'analisi del contenuto si basa solo su dati quantitativi e slug URL, non sul testo integrale.</i></p>
   </div>
 
   <div class="ab">
-    <h3>2. Rispetto degli orari e impatto</h3>
-    <p>Tutti e 3 i post di luglio rispettano la cadenza <span class="hi">lun/mer/ven ore 11:00</span>: 15/7 (mer ✓), 17/7 (ven ✓), 20/7 (lun ✓). Nessuna violazione di orario nel periodo.</p>
-    <p>L'impatto è evidente nel grafico giornaliero: il 15/7 ha generato 105 imp nel giorno stesso (picco assoluto del periodo), il 17/7 ha generato 84 imp. I giorni senza post oscillano tra 4 e 40 imp di traffico residuo.</p>
-    <p>Confronto con 8/6 (domenica 22:01, fuori regola): ha accumulato <span class="go">1.153 imp totali</span> nel suo periodo di picco. L'anomalia di orario non l'ha penalizzato — ma si trattava di contenuto autobiografico ad alto impatto emozionale. L'eccezione non fa la regola.</p>
+    <h3>2. Schema riassuntivo comparativo</h3>
+    <table class="stbl">
+      <tr><th>Data</th><th>Titolo</th><th>Impressioni</th><th>Interazioni</th><th>Engagement %</th><th>Note</th></tr>
+      <tr><td>27/07</td><td>AI e PMI: trasformazione digitale</td><td>140</td><td>6</td><td>4.29%</td><td class="go">Più impressioni del periodo</td></tr>
+      <tr><td>22/07</td><td>AI Strategy per le PMI</td><td>109</td><td>4</td><td>3.67%</td><td>—</td></tr>
+      <tr><td>24/07</td><td>Intelligenza Artificiale e PMI: strategia</td><td>108</td><td>6</td><td class="hi">5.56%</td><td class="hi">Engagement % più alto</td></tr>
+    </table>
+    <p>Il post con più impressioni (27/7) <b>non coincide</b> con quello a engagement più alto (24/7) — pattern ricorrente anche nei periodi precedenti. Nessun post fuori dalla fascia lun/mer/ven 11:00 in questo periodo: nessuna anomalia di orario da segnalare.</p>
   </div>
 
   <div class="ab">
-    <h3>3. Contenuto che funziona</h3>
-    <p>Il formato vincente in luglio: <span class="hi">"dato numerico sorprendente + fonte autorevole italiana/europea + implicazione per le operations"</span>. Il costo energia (+23%, Eurostat) è primo con 151 imp; AI e profili ibridi (Polimi) è secondo con 108 imp.</p>
-    <p>Pattern da rafforzare: fonti italiane autorevoli (Polimi, Eurostat su dati Italia) generano più reach dei contenuti autobiografici puri nel breve periodo. I Post B tecnico-progettuali hanno invece la miglior longevità (ML manutenzione ancora visibile dopo quasi un mese).</p>
-    <p>Gap nel mix: nessun post su logistica, supply chain o gestione team negli ultimi 45 giorni — argomenti probabilmente inesplorati nel tuo feed attuale.</p>
+    <h3>3. Rispetto degli orari e impatto</h3>
+    <p>Tutti e 3 i post del periodo rispettano la cadenza <span class="hi">lun/mer/ven ore 11:00</span>: 22/7 (mer ✓), 24/7 (ven ✓), 27/7 (lun ✓). Sesto post consecutivo in fascia dal 15/7 — nessuna eccezione da valutare in questo periodo.</p>
+    <p>Dato interessante: il lunedì (27/7) ha generato il picco giornaliero più alto delle ultime due settimane (156 imp), superando sia il mercoledì (103) che il venerdì (81 il 24/7, ma sommato a giorni successivi arriva comunque sotto il lunedì). Vale la pena osservare se il lunedì mattina sia sistematicamente il giorno più forte nei prossimi cicli.</p>
+    <p>Conferma anche il fenomeno già osservato in passato: il post del <b>20/7</b> ("PMI 76%") ha accumulato <span class="wa">153 impressioni aggiuntive proprio in questo periodo</span> (21-28/7), contro le sole 30 registrate nella settimana di pubblicazione — le impressioni continuano a crescere per giorni dopo l'uscita, quindi giudicare un post nei primi 1-2 giorni porta a sottostimarne la portata reale.</p>
   </div>
 
   <div class="ab">
-    <h3>4. Gap tra piano e realtà</h3>
-    <p>Post pianificati nel periodo vs pubblicati:</p>
-    <ul>
-      <li><span class="go">15/7 Costo energia (mer 11:00)</span>: pubblicato ✓</li>
-      <li><span class="go">17/7 AI scalers Polimi (ven 11:00)</span>: pubblicato ✓</li>
-      <li><span class="go">20/7 PMI 76% (lun 11:00)</span>: pubblicato ✓</li>
-    </ul>
-    <p>Piano rispettato al 100%. Nessun post saltato.</p>
-    <p>Scostamento: il piano luglio non prevede Post B. Dal 22/6 nessun contenuto progettuale. <span class="wa">Assenza di Post B per un mese intero: rischio di percepire il profilo come "commentatore di dati di mercato" anziché "operations manager con risultati concreti".</span></p>
-    <p>Performance storiche nel piano (al 16/6): "profilo ibrido" dichiarava 994 imp vs 1.153 imp nel dato storico — discrepanza accettabile (LinkedIn aggrega impression ancora in corso al momento del report manuale).</p>
+    <h3>4. Contenuto che funziona</h3>
+    <p>Guardando l'intero storico (11 post unici, dati cumulativi): il post autobiografico dell'<b>8/6</b> ("8 anni di esperienza") resta di gran lunga il migliore di sempre con <span class="go">1.352 impressioni cumulate</span> — quasi 2,5 volte il secondo classificato (Master Digital Restart, 529 imp). Nessun post successivo, incluso il filone AI/PMI degli ultimi 45 giorni, si avvicina a quel risultato.</p>
+    <p>Negli ultimi 6 post consecutivi (dal 15/7) il formato è sempre lo stesso: <b>dato di mercato/AI + fonte + implicazione per le PMI/operations</b>. Funziona per il reach immediato ma non ha ancora prodotto un risultato paragonabile al post personale di giugno.</p>
+    <p>Correlazione con i follower: il periodo del post autobiografico (23/6, prima elaborazione) ha portato <span class="hi">+54 follower</span>; gli ultimi tre periodi, dominati da contenuti di mercato/dati, hanno portato solo <span class="wa">+4, +5, +4</span> follower rispettivamente. Il contenuto personale/esperienziale converte meglio in follower rispetto al commento di dati esterni, anche quando questi ultimi generano buone impressioni.</p>
   </div>
 
   <div class="ab">
-    <h3>5. Visibilità verso HR — Obiettivo prioritario</h3>
+    <h3>5. Gap tra piano e realtà</h3>
+    <p><span class="wa">Il piano editoriale non è aggiornato:</span> linkedin_post_schedule.md riporta "Aggiornato al 20 luglio 2026" e il calendario si ferma al post del 20/7. I tre post pubblicati in questo periodo (22/7, 24/7, 27/7) <b>non sono documentati</b> — né argomento, né fonte, né stato. Anche la tabella "Performance pubblicati" è ferma al 16/6, quindi non riporta nessun dato reale degli ultimi 6 settimane.</p>
+    <p>Poiché il piano non elenca post programmati oltre il 20/7, non si può verificare se questi 3 post fossero "previsti" o improvvisati — il file ha di fatto smesso di funzionare come strumento di incrocio piano/realtà da un mese.</p>
+  </div>
+
+  <div class="ab">
+    <h3>6. Visibilità verso HR e Risorse Umane — obiettivo prioritario</h3>
     <div class="hralert">
-      <h4>⚠ HR / Risorse umane: 2% — Terza rilevazione consecutiva invariata</h4>
-      <p>Elab. 23/06: 2% · Elab. 01/07: 2% · Elab. 20/07: 2% — trend piatto, nessun progresso in 6 settimane</p>
+      <h4>⚠ HR / Risorse umane: 2% — Quarta rilevazione consecutiva invariata</h4>
+      <p>Elab. 23/06: 2% · Elab. 01/07: 2% · Elab. 20/07: 2% · Elab. 28/07: 2% — trend piatto, nessun progresso in oltre 5 settimane</p>
     </div>
-    <p>I 3 post di luglio (energia, AI scalers, PMI) posizionano Alessandro come <span class="wa">"analista di dati di mercato"</span>, non come "operations manager con risultati dimostrabili". Nessuno dei tre contiene: team, budget, KPI personali, coordinamento, riduzione costi — parole chiave che un HR cerca attivamente.</p>
-    <p>Il post del 17/7 (51% aziende cerca profili ibridi) poteva intercettare HR, ma è scritto nella prospettiva del ricercatore di dati, non del candidato che risponde a quella domanda di mercato.</p>
+    <p>Segnale ancora più critico dal nuovo foglio "Dati demografici dei contenuti" (introdotto in questo export, misura chi <i>visualizza</i> i post, non solo chi segue il profilo): <span class="wa">"Risorse umane" non compare nemmeno nella top-9 delle qualifiche</span> di chi guarda i contenuti (compaiono invece Responsabile vendite 3%, Project Manager 2%, Account manager 2%). Chi segue il profilo include HR al 2%, ma chi vede attivamente i contenuti pubblicati sembra includerne ancora meno — il problema non è solo di follower-base, è di targeting dei contenuti stessi.</p>
+    <p>I 3 post di questo periodo (AI Strategy PMI, IA e PMI, AI e trasformazione digitale) sono orientati a chi valuta strategie di adozione AI (CAIO, decision maker tech/PMI) — non contengono, per quanto risulta dagli slug, elementi da "candidato assumibile": nessun riferimento a team, coordinamento, budget, KPI personali o risultati misurabili in prima persona.</p>
     <p><b>Angolazioni consigliate per i prossimi post (orientate HR):</b></p>
     <ul>
-      <li><b>Post B:</b> "Ho coordinato un team di [N] persone per implementare [progetto ML/digital]. Risultato: downtime -X%, risparmio Y€." Parole chiave esplicite: coordinamento, team interfunzionale, fornitori, KPI, responsabilità.</li>
-      <li><b>Post A:</b> Ribaltare i dati Polimi del 17/7 in chiave candidato: "Il mercato cerca profili ibridi — ecco cosa significa nella pratica, con i numeri del mio percorso." Link al portfolio nel commento.</li>
-      <li><b>Post B:</b> "3 KPI che monitoravo ogni settimana come operations manager" — formato lista breve, impatto immediato, leggibile da un HR senza contesto tecnico.</li>
+      <li>Contenuto progettuale con numeri: "Ho coordinato [attività] con un team di [N] persone — risultato: [KPI misurabile]." Parole chiave esplicite: coordinamento, team interfunzionale, fornitori, responsabilità, budget.</li>
+      <li>Ribaltare in chiave "candidato" uno dei dati AI/PMI già trattati: il mercato cerca profili ibridi — cosa significa concretamente nel tuo percorso, con numeri verificabili (anni, progetti, risultati).</li>
+      <li>Formato lista breve orientato a chi legge senza contesto tecnico: "3 KPI che monitoravo ogni settimana come operations manager" — leggibile e immediato per un recruiter.</li>
     </ul>
   </div>
 
   <div class="ab">
-    <h3>6. Azioni consigliate</h3>
+    <h3>7. Azioni consigliate</h3>
     <ul>
-      <li><b>Monitora il 20/7 (PMI 76%) fino al 22/7:</b> 30 imp al momento dell'export è troppo poco per valutarlo. Se non supera 80 imp entro mercoledì, il topic PMI ha perso spinta rispetto ai post energia e AI scalers.</li>
-      <li><b>Replica il formato del 15/7:</b> "dato europeo sorprendente + implicazione operativa + fonte autorevole" è il miglior performer del periodo. Candidati: costi logistici UE, produttività per addetto, gap digitale manifattura Italia vs Germania.</li>
-      <li><b>Inserisci 1 Post B entro agosto:</b> la coda del ML manutenzione (91 imp in questo periodo) dimostra ottima longevità per i contenuti progettuali. Il prossimo Post B deve avere numeri concreti (team size, risparmio, timeline) per essere credibile verso HR.</li>
-      <li><b>HR al 2% per 3 elaborazioni:</b> il problema non è la frequenza ma il posizionamento. Almeno 1 post al mese deve contenere esplicitamente: "coordinamento", "budget", "team", "responsabilità", "KPI", "riduzione costi".</li>
-      <li><b>Cadenza senza gap:</b> 2/7–14/7 (senza post) = 17.6 imp/giorno. 15/7–20/7 (con post) = 67.4 imp/giorno — 3.8× in più. La cadenza lun/mer/ven è il moltiplicatore più efficace disponibile.</li>
+      <li><b>Non giudicare un post nei primi 2 giorni:</b> il post del 20/7 ha fatto 30 imp nella sua settimana e altre 153 nella settimana successiva — la vera portata si vede dopo 7-10 giorni, non al momento dell'export.</li>
+      <li><b>Il lunedì 27/7 ha generato il picco più alto del periodo (156 imp):</b> se il pattern si conferma nei prossimi cicli, vale la pena dare al lunedì più peso editoriale rispetto a mercoledì/venerdì.</li>
+      <li><b>Aggiorna linkedin_post_schedule.md:</b> i 3 post più recenti (22/7, 24/7, 27/7) non sono documentati — argomento, fonte e stato mancanti. Senza questo aggiornamento il file smette di essere utile per l'incrocio dati.</li>
+      <li><b>HR fermo al 2% da 4 rilevazioni, e assente nella top-9 di "chi visualizza i contenuti":</b> pianifica almeno 1 post nelle prossime 2 uscite con focus esplicito su coordinamento/team/KPI/risultati misurabili.</li>
+      <li><b>Nessun contenuto personale/progettuale da 5 settimane</b> (ultimo: ML Manutenzione, 22/6): il post più performante di sempre resta quello autobiografico (1.352 imp, +54 follower nel suo periodo). Alternare il formato "dato di mercato" con contenuti diretti/personali può ridurre l'affaticamento tematico e testare l'effetto sui follower.</li>
     </ul>
   </div>
 
 </div><!-- end ctr -->
 
-<footer>&copy; 2026 Alessandro Dardi · Dashboard aggiornata il 20/07/2026 · Fonte: LinkedIn Analytics</footer>
+<footer>&copy; 2026 Alessandro Dardi · Dashboard aggiornata il 28/07/2026 · Fonte: LinkedIn Analytics</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 const ST=[
-  {de:"2026-06-23",ps:"2026-06-08",pe:"2026-06-23",imp:2512,ut:695,ft:435,nf:54,eng:3.22,
-   ag:[{d:"2026-06-08",i:167,x:13},{d:"2026-06-09",i:496,x:18},{d:"2026-06-10",i:444,x:16},{d:"2026-06-11",i:121,x:1},{d:"2026-06-12",i:47,x:1},{d:"2026-06-13",i:29,x:0},{d:"2026-06-14",i:29,x:0},{d:"2026-06-15",i:48,x:0},{d:"2026-06-16",i:324,x:10},{d:"2026-06-17",i:137,x:1},{d:"2026-06-18",i:325,x:13},{d:"2026-06-19",i:97,x:1},{d:"2026-06-20",i:41,x:0},{d:"2026-06-21",i:24,x:1},{d:"2026-06-22",i:150,x:6},{d:"2026-06-23",i:33,x:0}],
-   fg:[{d:"2026-04-23",n:1},{d:"2026-04-24",n:1},{d:"2026-04-27",n:1},{d:"2026-04-30",n:1},{d:"2026-05-05",n:4},{d:"2026-05-06",n:1},{d:"2026-05-07",n:1},{d:"2026-05-11",n:2},{d:"2026-05-12",n:1},{d:"2026-05-13",n:1},{d:"2026-05-15",n:1},{d:"2026-05-16",n:1},{d:"2026-05-20",n:1},{d:"2026-05-22",n:2},{d:"2026-05-25",n:2},{d:"2026-05-26",n:3},{d:"2026-05-28",n:2},{d:"2026-05-29",n:2},{d:"2026-05-30",n:1},{d:"2026-06-03",n:3},{d:"2026-06-07",n:1},{d:"2026-06-09",n:3},{d:"2026-06-10",n:1},{d:"2026-06-11",n:1},{d:"2026-06-12",n:2},{d:"2026-06-13",n:1},{d:"2026-06-15",n:2},{d:"2026-06-16",n:3},{d:"2026-06-17",n:3},{d:"2026-06-18",n:2},{d:"2026-06-19",n:2},{d:"2026-06-22",n:1}]},
-  {de:"2026-07-01",ps:"2026-06-23",pe:"2026-07-01",imp:350,ut:150,ft:439,nf:4,eng:1.14,
-   ag:[{d:"2026-06-23",i:80,x:1},{d:"2026-06-24",i:40,x:0},{d:"2026-06-25",i:64,x:2},{d:"2026-06-26",i:39,x:0},{d:"2026-06-27",i:18,x:0},{d:"2026-06-28",i:29,x:1},{d:"2026-06-29",i:35,x:0},{d:"2026-06-30",i:32,x:0},{d:"2026-07-01",i:13,x:0}],
-   fg:[{d:"2026-06-23",n:0},{d:"2026-06-24",n:1},{d:"2026-06-25",n:1},{d:"2026-06-26",n:2},{d:"2026-06-27",n:0},{d:"2026-06-28",n:0},{d:"2026-06-29",n:0},{d:"2026-06-30",n:0},{d:"2026-07-01",n:0}]},
-  {de:"2026-07-20",ps:"2026-07-02",pe:"2026-07-20",imp:566,ut:155,ft:444,nf:5,eng:2.83,
-   ag:[{d:"2026-07-02",i:32,x:0},{d:"2026-07-03",i:14,x:0},{d:"2026-07-04",i:16,x:0},{d:"2026-07-05",i:12,x:2},{d:"2026-07-06",i:20,x:0},{d:"2026-07-07",i:16,x:0},{d:"2026-07-08",i:40,x:0},{d:"2026-07-09",i:33,x:0},{d:"2026-07-10",i:16,x:0},{d:"2026-07-11",i:7,x:0},{d:"2026-07-12",i:4,x:0},{d:"2026-07-13",i:5,x:0},{d:"2026-07-14",i:14,x:0},{d:"2026-07-15",i:105,x:4},{d:"2026-07-16",i:65,x:2},{d:"2026-07-17",i:84,x:2},{d:"2026-07-18",i:42,x:2},{d:"2026-07-19",i:6,x:0},{d:"2026-07-20",i:35,x:4}],
-   fg:[{d:"2026-07-02",n:0},{d:"2026-07-03",n:0},{d:"2026-07-04",n:0},{d:"2026-07-05",n:0},{d:"2026-07-06",n:0},{d:"2026-07-07",n:0},{d:"2026-07-08",n:0},{d:"2026-07-09",n:2},{d:"2026-07-10",n:0},{d:"2026-07-11",n:0},{d:"2026-07-12",n:0},{d:"2026-07-13",n:1},{d:"2026-07-14",n:2},{d:"2026-07-15",n:0},{d:"2026-07-16",n:0},{d:"2026-07-17",n:0},{d:"2026-07-18",n:0},{d:"2026-07-19",n:0},{d:"2026-07-20",n:0}]}
+  {de:"2026-06-23",ps:"2026-03-26",pe:"2026-06-23",imp:2557,ut:695,ft:435,nf:54,eng:3.21,ag:[{d:"2026-06-08",i:167,x:13},{d:"2026-06-09",i:495,x:18},{d:"2026-06-10",i:444,x:16},{d:"2026-06-11",i:121,x:1},{d:"2026-06-12",i:47,x:1},{d:"2026-06-13",i:29,x:0},{d:"2026-06-14",i:29,x:0},{d:"2026-06-15",i:49,x:0},{d:"2026-06-16",i:321,x:10},{d:"2026-06-17",i:138,x:1},{d:"2026-06-18",i:325,x:13},{d:"2026-06-19",i:97,x:1},{d:"2026-06-20",i:41,x:0},{d:"2026-06-21",i:24,x:1},{d:"2026-06-22",i:150,x:6},{d:"2026-06-23",i:80,x:1}],fg:[{d:"2026-04-23",n:1},{d:"2026-04-24",n:1},{d:"2026-04-27",n:1},{d:"2026-04-30",n:1},{d:"2026-05-05",n:4},{d:"2026-05-06",n:1},{d:"2026-05-07",n:1},{d:"2026-05-11",n:2},{d:"2026-05-12",n:1},{d:"2026-05-13",n:1},{d:"2026-05-15",n:1},{d:"2026-05-16",n:1},{d:"2026-05-20",n:1},{d:"2026-05-22",n:2},{d:"2026-05-25",n:2},{d:"2026-05-26",n:3},{d:"2026-05-28",n:2},{d:"2026-05-29",n:2},{d:"2026-05-30",n:1},{d:"2026-06-03",n:3},{d:"2026-06-07",n:1},{d:"2026-06-09",n:3},{d:"2026-06-10",n:1},{d:"2026-06-11",n:1},{d:"2026-06-12",n:2},{d:"2026-06-13",n:1},{d:"2026-06-15",n:2},{d:"2026-06-16",n:3},{d:"2026-06-17",n:3},{d:"2026-06-18",n:2},{d:"2026-06-19",n:2},{d:"2026-06-22",n:1}]},
+  {de:"2026-07-01",ps:"2026-06-23",pe:"2026-07-01",imp:375,ut:150,ft:439,nf:4,eng:1.33,ag:[{d:"2026-06-23",i:80,x:1},{d:"2026-06-24",i:40,x:0},{d:"2026-06-25",i:64,x:2},{d:"2026-06-26",i:39,x:0},{d:"2026-06-27",i:18,x:0},{d:"2026-06-28",i:29,x:1},{d:"2026-06-29",i:35,x:0},{d:"2026-06-30",i:32,x:0},{d:"2026-07-01",i:38,x:1}],fg:[{d:"2026-06-23",n:0},{d:"2026-06-24",n:1},{d:"2026-06-25",n:1},{d:"2026-06-26",n:2},{d:"2026-06-27",n:0},{d:"2026-06-28",n:0},{d:"2026-06-29",n:0},{d:"2026-06-30",n:0},{d:"2026-07-01",n:0}]},
+  {de:"2026-07-20",ps:"2026-07-02",pe:"2026-07-20",imp:682,ut:155,ft:444,nf:5,eng:3.08,ag:[{d:"2026-07-02",i:32,x:0},{d:"2026-07-03",i:14,x:0},{d:"2026-07-04",i:16,x:0},{d:"2026-07-05",i:12,x:2},{d:"2026-07-06",i:20,x:0},{d:"2026-07-07",i:16,x:0},{d:"2026-07-08",i:40,x:0},{d:"2026-07-09",i:33,x:0},{d:"2026-07-10",i:16,x:0},{d:"2026-07-11",i:7,x:0},{d:"2026-07-12",i:4,x:0},{d:"2026-07-13",i:5,x:0},{d:"2026-07-14",i:14,x:0},{d:"2026-07-15",i:105,x:4},{d:"2026-07-16",i:65,x:2},{d:"2026-07-17",i:84,x:2},{d:"2026-07-18",i:42,x:2},{d:"2026-07-19",i:6,x:0},{d:"2026-07-20",i:151,x:9}],fg:[{d:"2026-07-02",n:0},{d:"2026-07-03",n:0},{d:"2026-07-04",n:0},{d:"2026-07-05",n:0},{d:"2026-07-06",n:0},{d:"2026-07-07",n:0},{d:"2026-07-08",n:0},{d:"2026-07-09",n:2},{d:"2026-07-10",n:0},{d:"2026-07-11",n:0},{d:"2026-07-12",n:0},{d:"2026-07-13",n:1},{d:"2026-07-14",n:2},{d:"2026-07-15",n:0},{d:"2026-07-16",n:0},{d:"2026-07-17",n:0},{d:"2026-07-18",n:0},{d:"2026-07-19",n:0},{d:"2026-07-20",n:0}]},
+  {de:"2026-07-28",ps:"2026-07-21",pe:"2026-07-28",imp:451,ut:95,ft:448,nf:4,eng:3.55,ag:[{d:"2026-07-21",i:31,x:0},{d:"2026-07-22",i:103,x:4},{d:"2026-07-23",i:26,x:0},{d:"2026-07-24",i:81,x:6},{d:"2026-07-25",i:20,x:0},{d:"2026-07-26",i:14,x:0},{d:"2026-07-27",i:156,x:5},{d:"2026-07-28",i:20,x:1}],fg:[{d:"2026-07-21",n:0},{d:"2026-07-22",n:0},{d:"2026-07-23",n:2},{d:"2026-07-24",n:1},{d:"2026-07-25",n:0},{d:"2026-07-26",n:0},{d:"2026-07-27",n:1},{d:"2026-07-28",n:0}]}
 ];
 
 const POSTS=[
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",d:"2026-06-08",t:"Profilo ibrido ops+digital",tp:"A",imp:1153,int:38},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",d:"2026-06-18",t:"Master Digital Restart (TalentGarden)",tp:"B",imp:405,int:16},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",d:"2026-06-10",t:"Strumenti digitali (n8n / Tableau / AI)",tp:"B",imp:399,int:14},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",d:"2026-06-16",t:"PwC Digital Trends 2026 — 89% manager senza risultati",tp:"A",imp:348,int:8},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",d:"2026-06-22",t:"ML Manutenzione Predittiva (Random Forest / Python)",tp:"B",imp:160,int:5},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",d:"2026-07-15",t:"Costo energia industriale Italia vs Europa (+23%)",tp:"A",imp:151,int:4},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",d:"2026-07-17",t:"51% aziende italiane AI: profili ibridi richiesti (Polimi)",tp:"A",imp:108,int:4},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",d:"2026-07-20",t:"PMI: 76% non userà AI nei prossimi anni (Polimi)",tp:"A",imp:30,int:4}
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",d:"2026-06-08",t:"Profilo ibrido ops+digital",imp:1352,int:40},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",d:"2026-06-18",t:"Master Digital Restart (TalentGarden)",imp:529,int:21},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",d:"2026-06-10",t:"Strumenti digitali (n8n/Tableau/AI)",imp:437,int:15},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",d:"2026-06-16",t:"PwC Digital Trends 2026 (89% manager)",imp:407,int:8},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",d:"2026-06-22",t:"ML Manutenzione Predittiva",imp:364,int:6},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",d:"2026-07-20",t:"PMI: 76% non useranno AI nei prossimi anni",imp:183,int:7},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",d:"2026-07-15",t:"Costo energia industriale Italia vs Europa (+23%)",imp:170,int:4},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",d:"2026-07-27",t:"AI e PMI: trasformazione digitale (non documentato nel piano)",imp:140,int:6},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",d:"2026-07-17",t:"51% aziende italiane AI: profili ibridi richiesti",imp:129,int:6},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",d:"2026-07-22",t:"AI Strategy per le PMI (non documentato nel piano)",imp:109,int:4},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",d:"2026-07-24",t:"Intelligenza Artificiale e PMI: strategia (non documentato nel piano)",imp:108,int:6}
 ];
 
-const DEMO={
-  settori:[{n:"Consulenza e servizi aziendali",p:7},{n:"Servizi IT e consulenza IT",p:7},{n:"Vendita al dettaglio",p:7},{n:"Servizi risorse umane",p:7},{n:"Servizi finanziari",p:3},{n:"Fabbricazione macchinari industriali",p:3},{n:"Servizi pubblicitari",p:3},{n:"Trasporti e logistica",p:2},{n:"Selezione personale",p:2},{n:"Sviluppo di software",p:2}],
-  localita:[{n:"Bologna",p:33},{n:"Ferrara",p:9},{n:"Milano",p:9},{n:"Ravenna",p:6},{n:"Torino",p:3},{n:"Roma",p:3},{n:"Modena",p:3},{n:"Bari",p:3},{n:"Rimini",p:2}],
-  anzianita:[{n:"Senior",p:40},{n:"Livello base",p:24},{n:"Amministratore",p:10},{n:"Direttore",p:8},{n:"Proprietario",p:4},{n:"CXO",p:2}],
-  qualifiche:[{n:"Risorse umane",p:2},{n:"Project Manager",p:2},{n:"Fondatore",p:2},{n:"Amministratore delegato",p:2},{n:"Proprietario",p:2},{n:"Resp. di negozio",p:1}]
-};
+const DEMO={settori:[{n:"Servizi IT e consulenza IT",p:7},{n:"Servizi risorse umane",p:7},{n:"Consulenza e servizi aziendali",p:7},{n:"Vendita al dettaglio",p:7},{n:"Servizi finanziari",p:3},{n:"Fabbricazione di macchinari industriali",p:3},{n:"Servizi pubblicitari",p:3},{n:"Trasporti, logistica, supply chain e stoccaggio",p:2},{n:"Selezione e ricerca di personale",p:2},{n:"Sviluppo di software",p:2}],localita:[{n:"Bologna",p:33},{n:"Ferrara",p:9},{n:"Milano",p:9},{n:"Ravenna",p:6},{n:"Torino",p:3},{n:"Bari",p:3},{n:"Roma",p:3},{n:"Modena",p:3},{n:"Rimini",p:2}],anzianita:[{n:"Senior",p:40},{n:"Livello base",p:24},{n:"Amministratore",p:10},{n:"Direttore",p:8},{n:"Proprietario",p:4},{n:"C-Level",p:2}],qualifiche:[{n:"Risorse umane",p:2},{n:"Project Manager",p:2},{n:"Fondatore",p:2},{n:"Amministratore delegato",p:2},{n:"Proprietario",p:2},{n:"Addetto alla selezione del personale",p:1},{n:"Responsabile di negozio",p:1},{n:"Account manager",p:1}]};
 
-// build merged timelines (later entry overwrites same date)
+const FOLCUM=[{d:"2026-04-23",n:382},{d:"2026-04-24",n:383},{d:"2026-04-27",n:384},{d:"2026-04-30",n:385},{d:"2026-05-05",n:389},{d:"2026-05-06",n:390},{d:"2026-05-07",n:391},{d:"2026-05-11",n:393},{d:"2026-05-12",n:394},{d:"2026-05-13",n:395},{d:"2026-05-15",n:396},{d:"2026-05-16",n:397},{d:"2026-05-20",n:398},{d:"2026-05-22",n:400},{d:"2026-05-25",n:402},{d:"2026-05-26",n:405},{d:"2026-05-28",n:407},{d:"2026-05-29",n:409},{d:"2026-05-30",n:410},{d:"2026-06-03",n:413},{d:"2026-06-07",n:414},{d:"2026-06-09",n:417},{d:"2026-06-10",n:418},{d:"2026-06-11",n:419},{d:"2026-06-12",n:421},{d:"2026-06-13",n:422},{d:"2026-06-15",n:424},{d:"2026-06-16",n:427},{d:"2026-06-17",n:430},{d:"2026-06-18",n:432},{d:"2026-06-19",n:434},{d:"2026-06-22",n:435},{d:"2026-06-23",n:435},{d:"2026-06-24",n:436},{d:"2026-06-25",n:437},{d:"2026-06-26",n:439},{d:"2026-06-27",n:439},{d:"2026-06-28",n:439},{d:"2026-06-29",n:439},{d:"2026-06-30",n:439},{d:"2026-07-01",n:439},{d:"2026-07-02",n:439},{d:"2026-07-03",n:439},{d:"2026-07-04",n:439},{d:"2026-07-05",n:439},{d:"2026-07-06",n:439},{d:"2026-07-07",n:439},{d:"2026-07-08",n:439},{d:"2026-07-09",n:441},{d:"2026-07-10",n:441},{d:"2026-07-11",n:441},{d:"2026-07-12",n:441},{d:"2026-07-13",n:442},{d:"2026-07-14",n:444},{d:"2026-07-15",n:444},{d:"2026-07-16",n:444},{d:"2026-07-17",n:444},{d:"2026-07-18",n:444},{d:"2026-07-19",n:444},{d:"2026-07-20",n:444},{d:"2026-07-21",n:444},{d:"2026-07-22",n:444},{d:"2026-07-23",n:446},{d:"2026-07-24",n:447},{d:"2026-07-25",n:447},{d:"2026-07-26",n:447},{d:"2026-07-27",n:448},{d:"2026-07-28",n:448}];
+
+// build merged timeline (later entry overwrites same date)
 function buildTL(){
   const im={},fl={};
   ST.forEach(s=>{
@@ -265,8 +265,8 @@ function buildTL(){
   return{daily,fol};
 }
 const TL=buildTL();
-const TODAY=new Date('2026-07-20');
-let F={p:'28',t:'tutti'};
+const TODAY=new Date('2026-07-28');
+let F={p:'28',q:''};
 
 function cutoff(p){
   if(p==='tutto')return new Date('2000-01-01');
@@ -330,20 +330,31 @@ function drawStorico(){
   const postDates=new Set(POSTS.map(p=>p.d));
   const labels=TL.daily.map(d=>fd(d.d));
   const imp=TL.daily.map(d=>d.i);
-  const pr=TL.daily.map(d=>postDates.has(d.d)?6:0);
-  const pc=TL.daily.map(d=>postDates.has(d.d)?'#ff9800':'transparent');
+  const folMap=Object.fromEntries(FOLCUM.map(f=>[f.d,f.n]));
+  let lastFol=null;
+  const fol=TL.daily.map(d=>{if(folMap[d.d]!==undefined)lastFol=folMap[d.d];return lastFol;});
+  const marker=TL.daily.map(d=>postDates.has(d.d)?Math.max(...imp):0);
   const titoli=Object.fromEntries(POSTS.map(p=>[p.d,p.t]));
   cS=new Chart(document.getElementById('sChart'),{
-    type:'line',
-    data:{labels,datasets:[{label:'Impressioni',data:imp,borderColor:'#e94560',backgroundColor:'rgba(233,69,96,.08)',tension:.3,pointRadius:pr,pointBackgroundColor:pc,pointBorderColor:pc,fill:true}]},
+    data:{labels,datasets:[
+      {type:'bar',label:'Pubblicazione post',data:marker,backgroundColor:'rgba(255,152,0,.18)',barPercentage:1,categoryPercentage:1,yAxisID:'y',order:3},
+      {type:'line',label:'Impressioni',data:imp,borderColor:'#e94560',backgroundColor:'rgba(233,69,96,.08)',tension:.3,pointRadius:d=>postDates.has(TL.daily[d.dataIndex]?.d)?4:0,pointBackgroundColor:'#ff9800',fill:true,yAxisID:'y',order:1},
+      {type:'line',label:'Follower (cumulati)',data:fol,borderColor:'#4caf50',backgroundColor:'transparent',tension:.2,pointRadius:0,borderWidth:2,yAxisID:'y2',order:2}
+    ]},
     options:{responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{labels:{color:'#8892a4',font:{size:11}}},
-        tooltip:{callbacks:{label:c=>{const iso=TL.daily[c.dataIndex]?.d;const t=titoli[iso];return t?[`${c.parsed.y} imp`,`📌 ${t}`]:`${c.parsed.y} imp`;}}}
+        legend:{labels:{color:'#8892a4',font:{size:11},filter:l=>l.text!=='Pubblicazione post'}},
+        tooltip:{callbacks:{label:c=>{
+          if(c.dataset.label==='Pubblicazione post')return null;
+          const iso=TL.daily[c.dataIndex]?.d;const t=titoli[iso];
+          if(c.dataset.label==='Impressioni')return t?[`${c.parsed.y} imp`,`📌 ${t}`]:`${c.parsed.y} imp`;
+          return `${c.parsed.y} follower`;
+        }}}
       },
       scales:{
         x:{ticks:{color:'#8892a4',font:{size:9},maxTicksLimit:22},grid:{color:'rgba(255,255,255,.04)'}},
-        y:{ticks:{color:'#8892a4',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'}}
+        y:{position:'left',ticks:{color:'#8892a4',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'},title:{display:true,text:'Impressioni',color:'#e94560',font:{size:10}}},
+        y2:{position:'right',ticks:{color:'#8892a4',font:{size:10}},grid:{drawOnChartArea:false},title:{display:true,text:'Follower',color:'#4caf50',font:{size:10}}}
       }}
   });
 }
@@ -358,10 +369,11 @@ function renderStorico(){
 }
 
 function renderPosts(posts){
+  const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   const sorted=[...posts].sort((a,b)=>b.imp-a.imp).slice(0,5);
   const mx=sorted[0]?.imp||1;
   document.getElementById('postCount').textContent=`— top ${sorted.length} su ${posts.length} nel periodo`;
-  document.getElementById('postList').innerHTML=sorted.length?sorted.map(p=>`<div class="pi"><div class="ph"><span class="pbadge b${p.tp}">Post ${p.tp}</span><span class="pdate">${p.d.split('-').reverse().join('/')}</span><a href="${p.url}" target="_blank" class="plink">↗ LinkedIn</a></div><div class="ptit">${p.t}</div><div class="br" style="margin:5px 0 0"><div class="pbar-bg" style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div class="pbar-fg" style="height:100%;background:var(--red);border-radius:3px;width:${(p.imp/mx*100).toFixed(1)}%"></div></div></div><div class="pnums"><span><b>${p.imp.toLocaleString('it-IT')}</b> imp</span><span><b>${p.int}</b> int</span><span><b>${p.imp>0?((p.int/p.imp)*100).toFixed(2):0}%</b> eng</span></div></div>`).join(''):'<p style="color:var(--muted);text-align:center;padding:16px">Nessun post nel periodo selezionato</p>';
+  document.getElementById('postList').innerHTML=sorted.length?sorted.map((p,i)=>`<div class="pi"><div class="ph"><span class="pbadge">Post ${letters[i]}</span><span class="pdate">${p.d.split('-').reverse().join('/')}</span><a href="${p.url}" target="_blank" class="plink">↗ LinkedIn</a></div><div class="ptit">${p.t}</div><div class="br" style="margin:5px 0 0"><div class="pbar-bg" style="flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden"><div class="pbar-fg" style="height:100%;background:var(--red);border-radius:3px;width:${(p.imp/mx*100).toFixed(1)}%"></div></div></div><div class="pnums"><span><b>${p.imp.toLocaleString('it-IT')}</b> imp</span><span><b>${p.int}</b> int</span><span><b>${p.imp>0?((p.int/p.imp)*100).toFixed(2):0}%</b> eng</span></div></div>`).join(''):'<p style="color:var(--muted);text-align:center;padding:16px">Nessun post nel periodo/ricerca selezionati</p>';
 }
 
 function updateKPI(daily,fol,posts){
@@ -369,28 +381,29 @@ function updateKPI(daily,fol,posts){
   const totX=daily.reduce((a,d)=>a+d.x,0);
   const totF=fol.reduce((a,d)=>a+d.n,0);
   const eng=totI>0?((totX/totI)*100).toFixed(2):0;
-  const estU=Math.round(totI*0.274);
+  const estU=Math.round(totI*0.21);
+  const attivi=posts.filter(p=>p.int>0).length;
   document.getElementById('kImp').textContent=totI.toLocaleString('it-IT');
   document.getElementById('kUtenti').textContent=estU.toLocaleString('it-IT');
   document.getElementById('kFol').textContent=totF;
+  document.getElementById('kPostAttivi').textContent=attivi;
   document.getElementById('kEng').textContent=eng+'%';
   document.getElementById('totFol').textContent=totF;
 }
 
 function updateLabel(p){
-  if(p==='tutto'){document.getElementById('periodLabel').textContent='Tutto lo storico — 08/06/2026 → 20/07/2026';return;}
+  if(p==='tutto'){document.getElementById('periodLabel').textContent='Tutto lo storico — 08/06/2026 → 28/07/2026';return;}
   const c=cutoff(p);
-  document.getElementById('periodLabel').textContent=`Ultimi ${p} giorni — ${c.toLocaleDateString('it-IT')} → 20/07/2026`;
+  document.getElementById('periodLabel').textContent=`Ultimi ${p} giorni — ${c.toLocaleDateString('it-IT')} → 28/07/2026`;
 }
 
 function update(){
-  const{p,t}=F;
+  const{p,q}=F;
   const daily=filterD(TL.daily,p);
   const fol=filterD(TL.fol,p);
   let posts=POSTS;
   if(p!=='tutto') posts=posts.filter(x=>new Date(x.d)>=cutoff(p));
-  if(t==='A') posts=posts.filter(x=>x.tp==='A');
-  if(t==='B') posts=posts.filter(x=>x.tp==='B');
+  if(q) posts=posts.filter(x=>x.t.toLowerCase().includes(q.toLowerCase()));
   updateKPI(daily,fol,posts);
   drawTrend(daily);
   drawFollower(fol);
@@ -399,12 +412,12 @@ function update(){
 }
 
 function sf(key,btn){
-  const v=btn.getAttribute('data-'+(key==='p'?'p':'t'));
-  F[key]=v;
-  document.querySelectorAll(key==='p'?'.fb[data-p]':'.fb[data-t]').forEach(b=>b.classList.remove('on'));
+  F[key]=btn.getAttribute('data-p');
+  document.querySelectorAll('.fb[data-p]').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   update();
 }
+function onSearch(v){F.q=v;update();}
 
 document.addEventListener('DOMContentLoaded',()=>{
   renderBars('dSett',DEMO.settori,'#7b2d8b');
