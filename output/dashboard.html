@@ -90,6 +90,9 @@ footer{text-align:center;padding:18px;color:var(--muted);font-size:11px;margin-t
     <span>Cerca</span>
     <input id="searchBox" type="text" placeholder="Parola chiave nei titoli dei post…" oninput="onSearch(this.value)">
   </div>
+  <div class="fg">
+    <button class="fb" id="resetBtn" onclick="resetFilters()">✕ Elimina filtri</button>
+  </div>
 </div>
 
 <header>
@@ -418,6 +421,14 @@ function sf(key,btn){
   update();
 }
 function onSearch(v){F.q=v;update();}
+
+function resetFilters(){
+  F={p:'28',q:''};
+  document.getElementById('searchBox').value='';
+  document.querySelectorAll('.fb[data-p]').forEach(b=>b.classList.remove('on'));
+  document.querySelector('.fb[data-p="28"]').classList.add('on');
+  update();
+}
 
 document.addEventListener('DOMContentLoaded',()=>{
   renderBars('dSett',DEMO.settori,'#7b2d8b');
