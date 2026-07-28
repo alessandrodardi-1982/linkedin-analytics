@@ -336,6 +336,7 @@ function drawStorico(){
   const marker=TL.daily.map(d=>postDates.has(d.d)?Math.max(...imp):0);
   const titoli=Object.fromEntries(POSTS.map(p=>[p.d,p.t]));
   cS=new Chart(document.getElementById('sChart'),{
+    type:'line',
     data:{labels,datasets:[
       {type:'bar',label:'Pubblicazione post',data:marker,backgroundColor:'rgba(255,152,0,.18)',barPercentage:1,categoryPercentage:1,yAxisID:'y',order:3},
       {type:'line',label:'Impressioni',data:imp,borderColor:'#e94560',backgroundColor:'rgba(233,69,96,.08)',tension:.3,pointRadius:d=>postDates.has(TL.daily[d.dataIndex]?.d)?4:0,pointBackgroundColor:'#ff9800',fill:true,yAxisID:'y',order:1},
@@ -385,7 +386,6 @@ function updateKPI(daily,fol,posts){
   const attivi=posts.filter(p=>p.int>0).length;
   document.getElementById('kImp').textContent=totI.toLocaleString('it-IT');
   document.getElementById('kUtenti').textContent=estU.toLocaleString('it-IT');
-  document.getElementById('kFol').textContent=totF;
   document.getElementById('kPostAttivi').textContent=attivi;
   document.getElementById('kEng').textContent=eng+'%';
   document.getElementById('totFol').textContent=totF;
