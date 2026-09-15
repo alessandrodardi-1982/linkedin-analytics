@@ -3,62 +3,222 @@
     "data_elaborazione": "2026-06-23",
     "periodo_start": "2026-03-26",
     "periodo_end": "2026-06-23",
-    "impressioni_totali": 2512,
+    "impressioni_totali": 2557,
     "utenti_raggiunti": 695,
     "follower_totali": 435,
     "nuovi_follower_periodo": 54,
-    "tasso_engagement": 3.22,
+    "tasso_engagement": 3.21,
     "andamento_giornaliero": [
-      { "data": "2026-06-08", "impressioni": 167, "interazioni": 13 },
-      { "data": "2026-06-09", "impressioni": 496, "interazioni": 18 },
-      { "data": "2026-06-10", "impressioni": 444, "interazioni": 16 },
-      { "data": "2026-06-11", "impressioni": 121, "interazioni": 1 },
-      { "data": "2026-06-12", "impressioni": 47, "interazioni": 1 },
-      { "data": "2026-06-13", "impressioni": 29, "interazioni": 0 },
-      { "data": "2026-06-14", "impressioni": 29, "interazioni": 0 },
-      { "data": "2026-06-15", "impressioni": 48, "interazioni": 0 },
-      { "data": "2026-06-16", "impressioni": 324, "interazioni": 10 },
-      { "data": "2026-06-17", "impressioni": 137, "interazioni": 1 },
-      { "data": "2026-06-18", "impressioni": 325, "interazioni": 13 },
-      { "data": "2026-06-19", "impressioni": 97, "interazioni": 1 },
-      { "data": "2026-06-20", "impressioni": 41, "interazioni": 0 },
-      { "data": "2026-06-21", "impressioni": 24, "interazioni": 1 },
-      { "data": "2026-06-22", "impressioni": 150, "interazioni": 6 },
-      { "data": "2026-06-23", "impressioni": 33, "interazioni": 0 }
+      {
+        "data": "2026-06-08",
+        "impressioni": 167,
+        "interazioni": 13
+      },
+      {
+        "data": "2026-06-09",
+        "impressioni": 495,
+        "interazioni": 18
+      },
+      {
+        "data": "2026-06-10",
+        "impressioni": 444,
+        "interazioni": 16
+      },
+      {
+        "data": "2026-06-11",
+        "impressioni": 121,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-12",
+        "impressioni": 47,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-13",
+        "impressioni": 29,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-14",
+        "impressioni": 29,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-15",
+        "impressioni": 49,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-16",
+        "impressioni": 321,
+        "interazioni": 10
+      },
+      {
+        "data": "2026-06-17",
+        "impressioni": 138,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-18",
+        "impressioni": 325,
+        "interazioni": 13
+      },
+      {
+        "data": "2026-06-19",
+        "impressioni": 97,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-20",
+        "impressioni": 41,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-21",
+        "impressioni": 24,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-22",
+        "impressioni": 150,
+        "interazioni": 6
+      },
+      {
+        "data": "2026-06-23",
+        "impressioni": 80,
+        "interazioni": 1
+      }
     ],
     "follower_giornalieri": [
-      { "data": "2026-04-23", "nuovi": 1 },
-      { "data": "2026-04-24", "nuovi": 1 },
-      { "data": "2026-04-27", "nuovi": 1 },
-      { "data": "2026-04-30", "nuovi": 1 },
-      { "data": "2026-05-05", "nuovi": 4 },
-      { "data": "2026-05-06", "nuovi": 1 },
-      { "data": "2026-05-07", "nuovi": 1 },
-      { "data": "2026-05-11", "nuovi": 2 },
-      { "data": "2026-05-12", "nuovi": 1 },
-      { "data": "2026-05-13", "nuovi": 1 },
-      { "data": "2026-05-15", "nuovi": 1 },
-      { "data": "2026-05-16", "nuovi": 1 },
-      { "data": "2026-05-20", "nuovi": 1 },
-      { "data": "2026-05-22", "nuovi": 2 },
-      { "data": "2026-05-25", "nuovi": 2 },
-      { "data": "2026-05-26", "nuovi": 3 },
-      { "data": "2026-05-28", "nuovi": 2 },
-      { "data": "2026-05-29", "nuovi": 2 },
-      { "data": "2026-05-30", "nuovi": 1 },
-      { "data": "2026-06-03", "nuovi": 3 },
-      { "data": "2026-06-07", "nuovi": 1 },
-      { "data": "2026-06-09", "nuovi": 3 },
-      { "data": "2026-06-10", "nuovi": 1 },
-      { "data": "2026-06-11", "nuovi": 1 },
-      { "data": "2026-06-12", "nuovi": 2 },
-      { "data": "2026-06-13", "nuovi": 1 },
-      { "data": "2026-06-15", "nuovi": 2 },
-      { "data": "2026-06-16", "nuovi": 3 },
-      { "data": "2026-06-17", "nuovi": 3 },
-      { "data": "2026-06-18", "nuovi": 2 },
-      { "data": "2026-06-19", "nuovi": 2 },
-      { "data": "2026-06-22", "nuovi": 1 }
+      {
+        "data": "2026-04-23",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-04-24",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-04-27",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-04-30",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-05",
+        "nuovi": 4
+      },
+      {
+        "data": "2026-05-06",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-07",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-11",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-05-12",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-13",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-15",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-16",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-20",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-05-22",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-05-25",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-05-26",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-05-28",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-05-29",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-05-30",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-03",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-06-07",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-09",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-06-10",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-11",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-12",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-06-13",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-15",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-06-16",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-06-17",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-06-18",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-06-19",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-06-22",
+        "nuovi": 1
+      }
     ],
     "post": [
       {
@@ -104,57 +264,180 @@
     ],
     "demografici": {
       "aziende": [
-        { "nome": "GrandVision Italy", "percentuale": 2 },
-        { "nome": "Gruppo Hera", "percentuale": 2 }
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 2
+        },
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        }
       ],
       "localita": [
-        { "nome": "Bologna", "percentuale": 33 },
-        { "nome": "Milano", "percentuale": 10 },
-        { "nome": "Ferrara", "percentuale": 9 },
-        { "nome": "Ravenna", "percentuale": 6 },
-        { "nome": "Torino", "percentuale": 3 },
-        { "nome": "Modena", "percentuale": 3 },
-        { "nome": "Bari", "percentuale": 3 },
-        { "nome": "Roma", "percentuale": 3 },
-        { "nome": "Rimini", "percentuale": 2 }
+        {
+          "nome": "Bologna",
+          "percentuale": 33
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 10
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
       ],
       "dimensioni_azienda": [
-        { "nome": "1.001-5.000 dipendenti", "percentuale": 15 },
-        { "nome": "11-50 dipendenti", "percentuale": 13 },
-        { "nome": "51-200 dipendenti", "percentuale": 12 },
-        { "nome": "2-10 dipendenti", "percentuale": 10 },
-        { "nome": "10.001+ dipendenti", "percentuale": 9 },
-        { "nome": "201-500 dipendenti", "percentuale": 8 },
-        { "nome": "501-1.000 dipendenti", "percentuale": 7 },
-        { "nome": "5.001-10.000 dipendenti", "percentuale": 7 }
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 13
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        }
       ],
       "anzianita": [
-        { "nome": "Senior", "percentuale": 39 },
-        { "nome": "Livello base", "percentuale": 25 },
-        { "nome": "Amministratore", "percentuale": 10 },
-        { "nome": "Direttore", "percentuale": 8 },
-        { "nome": "Proprietario", "percentuale": 4 },
-        { "nome": "CXO", "percentuale": 3 }
+        {
+          "nome": "Senior",
+          "percentuale": 39
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 25
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 3
+        }
       ],
       "settori": [
-        { "nome": "Servizi IT e consulenza IT", "percentuale": 7 },
-        { "nome": "Consulenza e servizi aziendali", "percentuale": 7 },
-        { "nome": "Vendita al dettaglio", "percentuale": 7 },
-        { "nome": "Servizi risorse umane", "percentuale": 6 },
-        { "nome": "Servizi finanziari", "percentuale": 4 },
-        { "nome": "Fabbricazione di macchinari industriali", "percentuale": 4 },
-        { "nome": "Servizi pubblicitari", "percentuale": 3 },
-        { "nome": "Trasporti, logistica, supply chain", "percentuale": 2 },
-        { "nome": "Sviluppo di software", "percentuale": 2 },
-        { "nome": "Selezione e ricerca di personale", "percentuale": 2 }
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 7
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 6
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 4
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 4
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        }
       ],
       "qualifiche": [
-        { "nome": "Risorse umane", "percentuale": 2 },
-        { "nome": "Project Manager", "percentuale": 2 },
-        { "nome": "Fondatore", "percentuale": 2 },
-        { "nome": "Proprietario", "percentuale": 2 },
-        { "nome": "Amministratore delegato", "percentuale": 2 },
-        { "nome": "Responsabile di negozio", "percentuale": 1 }
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        }
       ]
     }
   },
@@ -162,32 +445,95 @@
     "data_elaborazione": "2026-07-01",
     "periodo_start": "2026-06-23",
     "periodo_end": "2026-07-01",
-    "impressioni_totali": 350,
+    "impressioni_totali": 375,
     "utenti_raggiunti": 150,
     "follower_totali": 439,
     "nuovi_follower_periodo": 4,
-    "tasso_engagement": 1.14,
+    "tasso_engagement": 1.33,
     "andamento_giornaliero": [
-      { "data": "2026-06-23", "impressioni": 80, "interazioni": 1 },
-      { "data": "2026-06-24", "impressioni": 40, "interazioni": 0 },
-      { "data": "2026-06-25", "impressioni": 64, "interazioni": 2 },
-      { "data": "2026-06-26", "impressioni": 39, "interazioni": 0 },
-      { "data": "2026-06-27", "impressioni": 18, "interazioni": 0 },
-      { "data": "2026-06-28", "impressioni": 29, "interazioni": 1 },
-      { "data": "2026-06-29", "impressioni": 35, "interazioni": 0 },
-      { "data": "2026-06-30", "impressioni": 32, "interazioni": 0 },
-      { "data": "2026-07-01", "impressioni": 13, "interazioni": 0 }
+      {
+        "data": "2026-06-23",
+        "impressioni": 80,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-24",
+        "impressioni": 40,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-25",
+        "impressioni": 64,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-06-26",
+        "impressioni": 39,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-27",
+        "impressioni": 18,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-28",
+        "impressioni": 29,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-06-29",
+        "impressioni": 35,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-06-30",
+        "impressioni": 32,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-01",
+        "impressioni": 38,
+        "interazioni": 1
+      }
     ],
     "follower_giornalieri": [
-      { "data": "2026-06-23", "nuovi": 0 },
-      { "data": "2026-06-24", "nuovi": 1 },
-      { "data": "2026-06-25", "nuovi": 1 },
-      { "data": "2026-06-26", "nuovi": 2 },
-      { "data": "2026-06-27", "nuovi": 0 },
-      { "data": "2026-06-28", "nuovi": 0 },
-      { "data": "2026-06-29", "nuovi": 0 },
-      { "data": "2026-06-30", "nuovi": 0 },
-      { "data": "2026-07-01", "nuovi": 0 }
+      {
+        "data": "2026-06-23",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-06-24",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-25",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-06-26",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-06-27",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-06-28",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-06-29",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-06-30",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-01",
+        "nuovi": 0
+      }
     ],
     "post": [
       {
@@ -233,57 +579,180 @@
     ],
     "demografici": {
       "aziende": [
-        { "nome": "GrandVision Italy", "percentuale": 2 },
-        { "nome": "Gruppo Hera", "percentuale": 2 }
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 2
+        },
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        }
       ],
       "localita": [
-        { "nome": "Bologna", "percentuale": 33 },
-        { "nome": "Milano", "percentuale": 10 },
-        { "nome": "Ferrara", "percentuale": 9 },
-        { "nome": "Ravenna", "percentuale": 6 },
-        { "nome": "Torino", "percentuale": 3 },
-        { "nome": "Modena", "percentuale": 3 },
-        { "nome": "Bari", "percentuale": 3 },
-        { "nome": "Roma", "percentuale": 3 },
-        { "nome": "Rimini", "percentuale": 2 }
+        {
+          "nome": "Bologna",
+          "percentuale": 33
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 10
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
       ],
       "dimensioni_azienda": [
-        { "nome": "1.001-5.000 dipendenti", "percentuale": 15 },
-        { "nome": "11-50 dipendenti", "percentuale": 13 },
-        { "nome": "51-200 dipendenti", "percentuale": 12 },
-        { "nome": "2-10 dipendenti", "percentuale": 10 },
-        { "nome": "10.001+ dipendenti", "percentuale": 9 },
-        { "nome": "201-500 dipendenti", "percentuale": 8 },
-        { "nome": "501-1.000 dipendenti", "percentuale": 7 },
-        { "nome": "5.001-10.000 dipendenti", "percentuale": 7 }
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 13
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        }
       ],
       "anzianita": [
-        { "nome": "Senior", "percentuale": 40 },
-        { "nome": "Livello base", "percentuale": 24 },
-        { "nome": "Amministratore", "percentuale": 10 },
-        { "nome": "Direttore", "percentuale": 8 },
-        { "nome": "Proprietario", "percentuale": 4 },
-        { "nome": "C-Level", "percentuale": 3 }
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 24
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "C-Level",
+          "percentuale": 3
+        }
       ],
       "settori": [
-        { "nome": "Consulenza e servizi aziendali", "percentuale": 7 },
-        { "nome": "Servizi IT e consulenza IT", "percentuale": 7 },
-        { "nome": "Vendita al dettaglio", "percentuale": 7 },
-        { "nome": "Servizi risorse umane", "percentuale": 7 },
-        { "nome": "Servizi finanziari", "percentuale": 3 },
-        { "nome": "Fabbricazione di macchinari industriali", "percentuale": 3 },
-        { "nome": "Servizi pubblicitari", "percentuale": 3 },
-        { "nome": "Trasporti, logistica, supply chain e stoccaggio", "percentuale": 2 },
-        { "nome": "Sviluppo di software", "percentuale": 2 },
-        { "nome": "Servizi benessere e fitness", "percentuale": 2 }
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        },
+        {
+          "nome": "Servizi benessere e fitness",
+          "percentuale": 2
+        }
       ],
       "qualifiche": [
-        { "nome": "Risorse umane", "percentuale": 2 },
-        { "nome": "Project Manager", "percentuale": 2 },
-        { "nome": "Fondatore", "percentuale": 2 },
-        { "nome": "Proprietario", "percentuale": 2 },
-        { "nome": "Amministratore delegato", "percentuale": 2 },
-        { "nome": "Responsabile di negozio", "percentuale": 1 }
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        }
       ]
     }
   },
@@ -291,52 +760,185 @@
     "data_elaborazione": "2026-07-20",
     "periodo_start": "2026-07-02",
     "periodo_end": "2026-07-20",
-    "impressioni_totali": 566,
+    "impressioni_totali": 682,
     "utenti_raggiunti": 155,
     "follower_totali": 444,
     "nuovi_follower_periodo": 5,
-    "tasso_engagement": 2.83,
+    "tasso_engagement": 3.08,
     "andamento_giornaliero": [
-      { "data": "2026-07-02", "impressioni": 32, "interazioni": 0 },
-      { "data": "2026-07-03", "impressioni": 14, "interazioni": 0 },
-      { "data": "2026-07-04", "impressioni": 16, "interazioni": 0 },
-      { "data": "2026-07-05", "impressioni": 12, "interazioni": 2 },
-      { "data": "2026-07-06", "impressioni": 20, "interazioni": 0 },
-      { "data": "2026-07-07", "impressioni": 16, "interazioni": 0 },
-      { "data": "2026-07-08", "impressioni": 40, "interazioni": 0 },
-      { "data": "2026-07-09", "impressioni": 33, "interazioni": 0 },
-      { "data": "2026-07-10", "impressioni": 16, "interazioni": 0 },
-      { "data": "2026-07-11", "impressioni": 7, "interazioni": 0 },
-      { "data": "2026-07-12", "impressioni": 4, "interazioni": 0 },
-      { "data": "2026-07-13", "impressioni": 5, "interazioni": 0 },
-      { "data": "2026-07-14", "impressioni": 14, "interazioni": 0 },
-      { "data": "2026-07-15", "impressioni": 105, "interazioni": 4 },
-      { "data": "2026-07-16", "impressioni": 65, "interazioni": 2 },
-      { "data": "2026-07-17", "impressioni": 84, "interazioni": 2 },
-      { "data": "2026-07-18", "impressioni": 42, "interazioni": 2 },
-      { "data": "2026-07-19", "impressioni": 6, "interazioni": 0 },
-      { "data": "2026-07-20", "impressioni": 35, "interazioni": 4 }
+      {
+        "data": "2026-07-02",
+        "impressioni": 32,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-03",
+        "impressioni": 14,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-04",
+        "impressioni": 16,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-05",
+        "impressioni": 12,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-07-06",
+        "impressioni": 20,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-07",
+        "impressioni": 16,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-08",
+        "impressioni": 40,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-09",
+        "impressioni": 33,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-10",
+        "impressioni": 16,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-11",
+        "impressioni": 7,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-12",
+        "impressioni": 4,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-13",
+        "impressioni": 5,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-14",
+        "impressioni": 14,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-15",
+        "impressioni": 105,
+        "interazioni": 4
+      },
+      {
+        "data": "2026-07-16",
+        "impressioni": 65,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-07-17",
+        "impressioni": 84,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-07-18",
+        "impressioni": 42,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-07-19",
+        "impressioni": 6,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-20",
+        "impressioni": 151,
+        "interazioni": 9
+      }
     ],
     "follower_giornalieri": [
-      { "data": "2026-07-02", "nuovi": 0 },
-      { "data": "2026-07-03", "nuovi": 0 },
-      { "data": "2026-07-04", "nuovi": 0 },
-      { "data": "2026-07-05", "nuovi": 0 },
-      { "data": "2026-07-06", "nuovi": 0 },
-      { "data": "2026-07-07", "nuovi": 0 },
-      { "data": "2026-07-08", "nuovi": 0 },
-      { "data": "2026-07-09", "nuovi": 2 },
-      { "data": "2026-07-10", "nuovi": 0 },
-      { "data": "2026-07-11", "nuovi": 0 },
-      { "data": "2026-07-12", "nuovi": 0 },
-      { "data": "2026-07-13", "nuovi": 1 },
-      { "data": "2026-07-14", "nuovi": 2 },
-      { "data": "2026-07-15", "nuovi": 0 },
-      { "data": "2026-07-16", "nuovi": 0 },
-      { "data": "2026-07-17", "nuovi": 0 },
-      { "data": "2026-07-18", "nuovi": 0 },
-      { "data": "2026-07-19", "nuovi": 0 },
-      { "data": "2026-07-20", "nuovi": 0 }
+      {
+        "data": "2026-07-02",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-03",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-04",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-05",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-06",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-07",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-08",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-09",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-07-10",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-11",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-12",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-13",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-07-14",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-07-15",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-16",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-17",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-18",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-19",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-20",
+        "nuovi": 0
+      }
     ],
     "post": [
       {
@@ -406,57 +1008,2216 @@
     ],
     "demografici": {
       "aziende": [
-        { "nome": "GrandVision Italy", "percentuale": 2 },
-        { "nome": "Gruppo Hera", "percentuale": 2 }
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 2
+        },
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        }
       ],
       "localita": [
-        { "nome": "Bologna", "percentuale": 33 },
-        { "nome": "Ferrara", "percentuale": 9 },
-        { "nome": "Milano", "percentuale": 9 },
-        { "nome": "Ravenna", "percentuale": 6 },
-        { "nome": "Torino", "percentuale": 3 },
-        { "nome": "Roma", "percentuale": 3 },
-        { "nome": "Modena", "percentuale": 3 },
-        { "nome": "Bari", "percentuale": 3 },
-        { "nome": "Rimini", "percentuale": 2 }
+        {
+          "nome": "Bologna",
+          "percentuale": 33
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
       ],
       "dimensioni_azienda": [
-        { "nome": "1.001-5.000 dipendenti", "percentuale": 16 },
-        { "nome": "11-50 dipendenti", "percentuale": 14 },
-        { "nome": "51-200 dipendenti", "percentuale": 12 },
-        { "nome": "2-10 dipendenti", "percentuale": 10 },
-        { "nome": "10.001+ dipendenti", "percentuale": 9 },
-        { "nome": "201-500 dipendenti", "percentuale": 8 },
-        { "nome": "5.001-10.000 dipendenti", "percentuale": 7 },
-        { "nome": "501-1.000 dipendenti", "percentuale": 7 }
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 16
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        }
       ],
       "anzianita": [
-        { "nome": "Senior", "percentuale": 40 },
-        { "nome": "Livello base", "percentuale": 24 },
-        { "nome": "Amministratore", "percentuale": 10 },
-        { "nome": "Direttore", "percentuale": 8 },
-        { "nome": "Proprietario", "percentuale": 4 },
-        { "nome": "CXO", "percentuale": 2 }
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 24
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 2
+        }
       ],
       "settori": [
-        { "nome": "Consulenza e servizi aziendali", "percentuale": 7 },
-        { "nome": "Servizi IT e consulenza IT", "percentuale": 7 },
-        { "nome": "Vendita al dettaglio", "percentuale": 7 },
-        { "nome": "Servizi risorse umane", "percentuale": 7 },
-        { "nome": "Servizi finanziari", "percentuale": 3 },
-        { "nome": "Fabbricazione di macchinari industriali", "percentuale": 3 },
-        { "nome": "Servizi pubblicitari", "percentuale": 3 },
-        { "nome": "Trasporti, logistica, supply chain e stoccaggio", "percentuale": 2 },
-        { "nome": "Selezione e ricerca di personale", "percentuale": 2 },
-        { "nome": "Sviluppo di software", "percentuale": 2 }
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        }
       ],
       "qualifiche": [
-        { "nome": "Risorse umane", "percentuale": 2 },
-        { "nome": "Project Manager", "percentuale": 2 },
-        { "nome": "Fondatore", "percentuale": 2 },
-        { "nome": "Amministratore delegato", "percentuale": 2 },
-        { "nome": "Proprietario", "percentuale": 2 },
-        { "nome": "Responsabile di negozio", "percentuale": 1 }
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        }
+      ]
+    }
+  },
+  {
+    "data_elaborazione": "2026-07-28",
+    "periodo_start": "2026-07-21",
+    "periodo_end": "2026-07-28",
+    "impressioni_totali": 451,
+    "utenti_raggiunti": 95,
+    "utenti_raggiunti_nota": "Stima proporzionale: l'export copriva l'intero anno (837 utenti raggiunti / 3985 impressioni = 21%), non il solo periodo 21-28/7. Stima = impressioni del periodo x 21%.",
+    "follower_totali": 448,
+    "nuovi_follower_periodo": 4,
+    "tasso_engagement": 3.55,
+    "andamento_giornaliero": [
+      {
+        "data": "2026-07-21",
+        "impressioni": 31,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-22",
+        "impressioni": 103,
+        "interazioni": 4
+      },
+      {
+        "data": "2026-07-23",
+        "impressioni": 26,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-24",
+        "impressioni": 81,
+        "interazioni": 6
+      },
+      {
+        "data": "2026-07-25",
+        "impressioni": 20,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-26",
+        "impressioni": 14,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-27",
+        "impressioni": 156,
+        "interazioni": 5
+      },
+      {
+        "data": "2026-07-28",
+        "impressioni": 20,
+        "interazioni": 1
+      }
+    ],
+    "follower_giornalieri": [
+      {
+        "data": "2026-07-21",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-22",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-23",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-07-24",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-07-25",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-26",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-07-27",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-07-28",
+        "nuovi": 0
+      }
+    ],
+    "post": [
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
+        "data": "2026-07-20",
+        "titolo_breve": "PMI: 76% non useranno AI nei prossimi anni",
+        "interazioni": 3,
+        "impressioni": 153
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
+        "data": "2026-07-27",
+        "titolo_breve": "AI e PMI: trasformazione digitale (non documentato nel piano)",
+        "interazioni": 6,
+        "impressioni": 140
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
+        "data": "2026-07-22",
+        "titolo_breve": "AI Strategy per le PMI (non documentato nel piano)",
+        "interazioni": 4,
+        "impressioni": 109
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
+        "data": "2026-07-24",
+        "titolo_breve": "Intelligenza Artificiale e PMI: strategia (non documentato nel piano)",
+        "interazioni": 6,
+        "impressioni": 108
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
+        "data": "2026-07-17",
+        "titolo_breve": "51% aziende italiane AI: profili ibridi richiesti",
+        "interazioni": 2,
+        "impressioni": 21
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
+        "data": "2026-07-15",
+        "titolo_breve": "Costo energia industriale Italia vs Europa (+23%)",
+        "interazioni": 0,
+        "impressioni": 19
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+        "data": "2026-06-08",
+        "titolo_breve": "Profilo ibrido ops+digital",
+        "interazioni": 1,
+        "impressioni": 18
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
+        "data": "2026-06-18",
+        "titolo_breve": "Master Digital Restart (TalentGarden)",
+        "interazioni": 0,
+        "impressioni": 7
+      }
+    ],
+    "demografici": {
+      "aziende": [
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 2
+        },
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Bologna",
+          "percentuale": 33
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 3
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 24
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "C-Level",
+          "percentuale": 2
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 7
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 2
+        },
+        {
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": 1
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 1
+        }
+      ]
+    },
+    "demografici_contenuti": {
+      "aziende": [
+        {
+          "nome": "Saint-Gobain Italia",
+          "percentuale": 2
+        },
+        {
+          "nome": "TIM",
+          "percentuale": 1
+        },
+        {
+          "nome": "One Bill",
+          "percentuale": 1
+        },
+        {
+          "nome": "CINECA",
+          "percentuale": 1
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Bologna",
+          "percentuale": 20
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 18
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 5
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 4
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 4
+        },
+        {
+          "nome": "Pescara",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 5
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 33
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 29
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 15
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "C-Level",
+          "percentuale": 3
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 3
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 6
+        },
+        {
+          "nome": "Telecomunicazioni",
+          "percentuale": 5
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 4
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 4
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 4
+        },
+        {
+          "nome": "Edilizia",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di apparecchi elettrici",
+          "percentuale": 3
+        },
+        {
+          "nome": "Industria manifatturiera",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 3
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 1
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Co-fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Software Engineer",
+          "percentuale": 1
+        },
+        {
+          "nome": "Business Development",
+          "percentuale": 1
+        },
+        {
+          "nome": "Vendite",
+          "percentuale": 1
+        }
+      ]
+    }
+  },
+  {
+    "data_elaborazione": "2026-08-24",
+    "periodo_start": "2026-07-29",
+    "periodo_end": "2026-08-24",
+    "impressioni_totali": 1100,
+    "utenti_raggiunti": 211,
+    "utenti_raggiunti_nota": "Stima proporzionale: l'export copriva 29/7/2025-24/8/2026 (984 utenti raggiunti / 5122 impressioni = 19.2%), non il solo periodo 29/7-24/8/2026. Stima = impressioni del periodo x 19.2%.",
+    "follower_totali": 467,
+    "nuovi_follower_periodo": 19,
+    "tasso_engagement": 2.91,
+    "andamento_giornaliero": [
+      {
+        "data": "2026-07-29",
+        "impressioni": 54,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-30",
+        "impressioni": 17,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-07-31",
+        "impressioni": 104,
+        "interazioni": 3
+      },
+      {
+        "data": "2026-08-01",
+        "impressioni": 18,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-02",
+        "impressioni": 18,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-03",
+        "impressioni": 298,
+        "interazioni": 11
+      },
+      {
+        "data": "2026-08-04",
+        "impressioni": 64,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-08-05",
+        "impressioni": 84,
+        "interazioni": 5
+      },
+      {
+        "data": "2026-08-06",
+        "impressioni": 31,
+        "interazioni": 5
+      },
+      {
+        "data": "2026-08-07",
+        "impressioni": 68,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-08-08",
+        "impressioni": 23,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-08-09",
+        "impressioni": 12,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-10",
+        "impressioni": 74,
+        "interazioni": 3
+      },
+      {
+        "data": "2026-08-11",
+        "impressioni": 11,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-12",
+        "impressioni": 40,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-13",
+        "impressioni": 5,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-14",
+        "impressioni": 54,
+        "interazioni": 2
+      },
+      {
+        "data": "2026-08-15",
+        "impressioni": 23,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-16",
+        "impressioni": 16,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-17",
+        "impressioni": 8,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-18",
+        "impressioni": 14,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-19",
+        "impressioni": 24,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-20",
+        "impressioni": 10,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-21",
+        "impressioni": 11,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-22",
+        "impressioni": 8,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-23",
+        "impressioni": 4,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-24",
+        "impressioni": 7,
+        "interazioni": 0
+      }
+    ],
+    "follower_giornalieri": [
+      {
+        "data": "2026-07-29",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-07-30",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-07-31",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-01",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-02",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-08-03",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-04",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-08-05",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-06",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-07",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-08",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-09",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-10",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-11",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-12",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-13",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-14",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-15",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-16",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-08-17",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-18",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-19",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-20",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-21",
+        "nuovi": 3
+      },
+      {
+        "data": "2026-08-22",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-23",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-24",
+        "nuovi": 0
+      }
+    ],
+    "post": [
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+        "data": "2026-06-08",
+        "titolo_breve": "Profilo ibrido ops+digital",
+        "interazioni": 40,
+        "impressioni": 1374
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
+        "data": "2026-06-10",
+        "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)",
+        "interazioni": 15,
+        "impressioni": 442
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
+        "data": "2026-06-16",
+        "titolo_breve": "PwC Digital Trends 2026 (89% manager)",
+        "interazioni": 8,
+        "impressioni": 407
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
+        "data": "2026-06-18",
+        "titolo_breve": "Master Digital Restart (TalentGarden)",
+        "interazioni": 21,
+        "impressioni": 530
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
+        "data": "2026-06-22",
+        "titolo_breve": "ML Manutenzione Predittiva",
+        "interazioni": 6,
+        "impressioni": 367
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
+        "data": "2026-07-15",
+        "titolo_breve": "Costo energia industriale Italia vs Europa (+23%)",
+        "interazioni": 4,
+        "impressioni": 179
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
+        "data": "2026-07-17",
+        "titolo_breve": "51% aziende italiane AI: profili ibridi richiesti",
+        "interazioni": 6,
+        "impressioni": 136
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
+        "data": "2026-07-20",
+        "titolo_breve": "PMI: 76% non useranno AI nei prossimi anni",
+        "interazioni": 9,
+        "impressioni": 200
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
+        "data": "2026-07-22",
+        "titolo_breve": "AI Strategy per le PMI (non documentato nel piano)",
+        "interazioni": 4,
+        "impressioni": 129
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
+        "data": "2026-07-24",
+        "titolo_breve": "Intelligenza Artificiale e PMI: strategia (non documentato nel piano)",
+        "interazioni": 6,
+        "impressioni": 137
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
+        "data": "2026-07-27",
+        "titolo_breve": "AI e PMI: trasformazione digitale (non documentato nel piano)",
+        "interazioni": 7,
+        "impressioni": 218
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
+        "data": "2026-07-31",
+        "titolo_breve": "Intelligenza Artificiale e PMI: AI Strategy (non documentato nel piano)",
+        "interazioni": 3,
+        "impressioni": 141
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
+        "data": "2026-08-03",
+        "titolo_breve": "AI Strategy e HR: trasformazione digitale (non documentato nel piano)",
+        "interazioni": 16,
+        "impressioni": 399
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
+        "data": "2026-08-05",
+        "titolo_breve": "AI Strategy per le PMI: digital transformation (non documentato nel piano)",
+        "interazioni": 5,
+        "impressioni": 95
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
+        "data": "2026-08-07",
+        "titolo_breve": "AI Strategy e PMI: digital transformation (non documentato nel piano)",
+        "interazioni": 1,
+        "impressioni": 78
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
+        "data": "2026-08-10",
+        "titolo_breve": "AI Strategy, digital transformation e PMI (non documentato nel piano)",
+        "interazioni": 3,
+        "impressioni": 94
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
+        "data": "2026-08-12",
+        "titolo_breve": "AI Strategy nella Pubblica Amministrazione (non documentato nel piano)",
+        "interazioni": 1,
+        "impressioni": 62
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
+        "data": "2026-08-14",
+        "titolo_breve": "AI Strategy in ambito MedTech/Healthcare (non documentato nel piano)",
+        "interazioni": 1,
+        "impressioni": 72
+      }
+    ],
+    "demografici": {
+      "aziende": [
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        },
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 1
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Bologna",
+          "percentuale": 32
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 16
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 23
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 3
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 8
+        },
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 1
+        }
+      ]
+    },
+    "demografici_contenuti": {
+      "aziende": [
+        {
+          "nome": "Saint-Gobain Italia",
+          "percentuale": 1
+        },
+        {
+          "nome": "TIM",
+          "percentuale": 1
+        },
+        {
+          "nome": "Dyson",
+          "percentuale": 1
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Milano",
+          "percentuale": 19
+        },
+        {
+          "nome": "Bologna",
+          "percentuale": 18
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 6
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 5
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 5
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 4
+        },
+        {
+          "nome": "Pescara",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 13
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 6
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 33
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 30
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 15
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 3
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 2
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 6
+        },
+        {
+          "nome": "Telecomunicazioni",
+          "percentuale": 5
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 4
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 4
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Edilizia",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Industria manifatturiera",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 3
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 1
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Co-fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Business Development",
+          "percentuale": 1
+        }
+      ]
+    }
+  },
+  {
+    "data_elaborazione": "2026-09-15",
+    "periodo_start": "2026-08-25",
+    "periodo_end": "2026-09-15",
+    "impressioni_totali": 340,
+    "utenti_raggiunti": 64,
+    "utenti_raggiunti_nota": "Stima proporzionale: l'export copriva 12/8/2025 - 15/9/2026 (1032 utenti raggiunti / 5474 impressioni = 18.9%), non il solo periodo 25/08–15/09. Stima = impressioni del periodo x 18.9%.",
+    "follower_totali": 473,
+    "nuovi_follower_periodo": 6,
+    "tasso_engagement": 2.06,
+    "andamento_giornaliero": [
+      {
+        "data": "2026-08-25",
+        "impressioni": 24,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-26",
+        "impressioni": 5,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-27",
+        "impressioni": 12,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-28",
+        "impressioni": 10,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-29",
+        "impressioni": 6,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-30",
+        "impressioni": 7,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-08-31",
+        "impressioni": 16,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-01",
+        "impressioni": 9,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-02",
+        "impressioni": 8,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-03",
+        "impressioni": 6,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-04",
+        "impressioni": 4,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-05",
+        "impressioni": 1,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-06",
+        "impressioni": 7,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-09-07",
+        "impressioni": 13,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-08",
+        "impressioni": 77,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-09",
+        "impressioni": 18,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-10",
+        "impressioni": 5,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-11",
+        "impressioni": 34,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-12",
+        "impressioni": 1,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-13",
+        "impressioni": 0,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-14",
+        "impressioni": 77,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-15",
+        "impressioni": 0,
+        "interazioni": 6
+      }
+    ],
+    "follower_giornalieri": [
+      {
+        "data": "2026-08-25",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-26",
+        "nuovi": 2
+      },
+      {
+        "data": "2026-08-27",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-28",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-08-29",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-30",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-08-31",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-01",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-09-02",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-03",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-04",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-05",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-06",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-07",
+        "nuovi": 1
+      },
+      {
+        "data": "2026-09-08",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-09",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-10",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-11",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-12",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-13",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-14",
+        "nuovi": 0
+      },
+      {
+        "data": "2026-09-15",
+        "nuovi": 0
+      }
+    ],
+    "post": [
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+        "data": "2026-06-08",
+        "titolo_breve": "Profilo ibrido ops+digital",
+        "interazioni": 40,
+        "impressioni": 1530
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
+        "data": "2026-06-18",
+        "titolo_breve": "Master Digital Restart (TalentGarden)",
+        "interazioni": 21,
+        "impressioni": 531
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
+        "data": "2026-06-10",
+        "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)",
+        "interazioni": 15,
+        "impressioni": 444
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
+        "data": "2026-08-03",
+        "titolo_breve": "AI Strategy e HR: trasformazione digitale (non documentato nel piano)",
+        "interazioni": 16,
+        "impressioni": 427
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
+        "data": "2026-06-16",
+        "titolo_breve": "PwC Digital Trends 2026 (89% manager)",
+        "interazioni": 8,
+        "impressioni": 413
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
+        "data": "2026-06-22",
+        "titolo_breve": "ML Manutenzione Predittiva",
+        "interazioni": 6,
+        "impressioni": 371
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
+        "data": "2026-07-27",
+        "titolo_breve": "AI e PMI: trasformazione digitale (non documentato nel piano)",
+        "interazioni": 7,
+        "impressioni": 220
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
+        "data": "2026-07-20",
+        "titolo_breve": "PMI: 76% non useranno AI nei prossimi anni",
+        "interazioni": 9,
+        "impressioni": 202
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
+        "data": "2026-07-15",
+        "titolo_breve": "Costo energia industriale Italia vs Europa (+23%)",
+        "interazioni": 4,
+        "impressioni": 181
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
+        "data": "2026-07-31",
+        "titolo_breve": "Intelligenza Artificiale e PMI: AI Strategy (non documentato nel piano)",
+        "interazioni": 3,
+        "impressioni": 147
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
+        "data": "2026-07-24",
+        "titolo_breve": "Intelligenza Artificiale e PMI: strategia (non documentato nel piano)",
+        "interazioni": 6,
+        "impressioni": 139
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
+        "data": "2026-07-17",
+        "titolo_breve": "51% aziende italiane AI: profili ibridi richiesti",
+        "interazioni": 6,
+        "impressioni": 138
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
+        "data": "2026-08-14",
+        "titolo_breve": "AI Strategy in ambito MedTech/Healthcare (non documentato nel piano)",
+        "interazioni": 2,
+        "impressioni": 134
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
+        "data": "2026-07-22",
+        "titolo_breve": "AI Strategy per le PMI (non documentato nel piano)",
+        "interazioni": 4,
+        "impressioni": 131
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
+        "data": "2026-08-12",
+        "titolo_breve": "AI Strategy nella Pubblica Amministrazione (non documentato nel piano)",
+        "interazioni": 1,
+        "impressioni": 110
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
+        "data": "2026-08-10",
+        "titolo_breve": "AI Strategy, digital transformation e PMI (non documentato nel piano)",
+        "interazioni": 3,
+        "impressioni": 104
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
+        "data": "2026-08-05",
+        "titolo_breve": "AI Strategy per le PMI: digital transformation (non documentato nel piano)",
+        "interazioni": 5,
+        "impressioni": 100
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
+        "data": "2026-08-07",
+        "titolo_breve": "AI Strategy e PMI: digital transformation (non documentato nel piano)",
+        "interazioni": 1,
+        "impressioni": 89
+      }
+    ],
+    "demografici": {
+      "aziende": [
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        },
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 1
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Bologna",
+          "percentuale": 33
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 2
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 16
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 7
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 24
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 10
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 1
+        },
+        {
+          "nome": "Responsabile risorse umane",
+          "percentuale": 1
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 1
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 8
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Produzione di macchinari",
+          "percentuale": 2
+        }
+      ]
+    },
+    "demografici_contenuti": {
+      "aziende": [
+        {
+          "nome": "Saint-Gobain Italia",
+          "percentuale": 1
+        },
+        {
+          "nome": "TIM",
+          "percentuale": 1
+        },
+        {
+          "nome": "Dyson",
+          "percentuale": 1
+        },
+        {
+          "nome": "Opera Navarra SpA",
+          "percentuale": 0
+        },
+        {
+          "nome": "CINECA",
+          "percentuale": 0
+        },
+        {
+          "nome": "One Team Group",
+          "percentuale": 0
+        },
+        {
+          "nome": "One Bill",
+          "percentuale": 0
+        },
+        {
+          "nome": "Applied - innovation makers",
+          "percentuale": 0
+        },
+        {
+          "nome": "CT PACK",
+          "percentuale": 0
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Milano",
+          "percentuale": 20
+        },
+        {
+          "nome": "Bologna",
+          "percentuale": 17
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 6
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 5
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 4
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 4
+        },
+        {
+          "nome": "Pescara",
+          "percentuale": 2
+        },
+        {
+          "nome": "Bergamo",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 13
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 6
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 34
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 30
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 14
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 3
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 3
+        },
+        {
+          "nome": "Vicepresidente",
+          "percentuale": 0
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 3
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 1
+        },
+        {
+          "nome": "Vendite",
+          "percentuale": 1
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 1
+        },
+        {
+          "nome": "Software Engineer",
+          "percentuale": 1
+        },
+        {
+          "nome": "Venditore",
+          "percentuale": 1
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 6
+        },
+        {
+          "nome": "Telecomunicazioni",
+          "percentuale": 6
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 4
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 4
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di apparecchi elettrici, materiali elettrici e componenti elettronici",
+          "percentuale": 3
+        },
+        {
+          "nome": "Industria manifatturiera",
+          "percentuale": 2
+        },
+        {
+          "nome": "Edilizia",
+          "percentuale": 2
+        }
       ]
     }
   }
