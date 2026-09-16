@@ -241,7 +241,7 @@ footer { text-align: center; color: var(--text3); padding: 32px; font-size: 12px
     <div class="post-list" id="postList"></div>
   </div>
 
-  <div class="two-col section">
+  <div class="two-col section" style="align-items:start">
     <div>
       <h2>Follower</h2>
       <div class="follower-total">
@@ -255,16 +255,16 @@ footer { text-align: center; color: var(--text3); padding: 32px; font-size: 12px
     </div>
     <div>
       <h2>Demografici</h2>
-      <div class="chart-card" style="margin-bottom:16px">
+      <div class="chart-card" style="padding:16px">
         <div class="chart-title">Anzianità follower</div>
-        <div class="chart-wrap" style="height:200px"><canvas id="chartAnzianita"></canvas></div>
+        <div class="chart-wrap" style="height:220px"><canvas id="chartAnzianita"></canvas></div>
       </div>
     </div>
   </div>
 
   <div class="section">
     <h2>Settori principali (audience)</h2>
-    <div class="two-col">
+    <div class="two-col" style="align-items:start">
       <div class="chart-card" id="settoriCard"></div>
       <div class="chart-card" id="localitaCard"></div>
     </div>
@@ -445,6 +445,12 @@ function fmtDate(iso) {
   return `${d}/${m}/${y}`;
 }
 
+function fmtLabel(iso) {
+  if (!iso) return '';
+  const parts = iso.split('-');
+  return parts[2] + '/' + parts[1];
+}
+
 function fmtN(n) {
   if (n >= 1000) return (n/1000).toFixed(1).replace('.0','') + 'k';
   return n.toString();
@@ -460,7 +466,7 @@ const lastEntry = STORICO[STORICO.length - 1];
 let chartG = null, chartF = null;
 
 function buildChartGiornaliero(giorni) {
-  const labels = giorni.map(d => d.data.slice(5)); // MM-DD
+  const labels = giorni.map(d => fmtLabel(d.data));
   const imp = giorni.map(d => d.impressioni);
   const inter = giorni.map(d => d.interazioni);
 
@@ -509,7 +515,7 @@ function buildChartGiornaliero(giorni) {
 }
 
 function buildChartFollower(follower) {
-  const labels = follower.map(d => d.data.slice(5));
+  const labels = follower.map(d => fmtLabel(d.data));
   const nuovi = follower.map(d => d.nuovi);
   const ctx = document.getElementById('chartFollower').getContext('2d');
   if (chartF) chartF.destroy();
@@ -592,11 +598,11 @@ function buildChartStorico() {
   const annuale = STORICO.find(e => e.periodo_start === '2025-09-17' && e.periodo_end === '2026-09-16');
   if (!annuale) return;
   const giorni = (annuale.andamento_giornaliero || []);
-  const labels = giorni.map(d => d.data.slice(5));
+  const labels = giorni.map(d => fmtLabel(d.data));
   const imp = giorni.map(d => d.impressioni);
 
   // Marcatori post
-  const postDates = new Set((annuale.post || []).map(p => p.data?.slice(5)));
+  const postDates = new Set((annuale.post || []).map(p => fmtLabel(p.data || '')));
   const annotations = {};
 
   new Chart(ctx, {
