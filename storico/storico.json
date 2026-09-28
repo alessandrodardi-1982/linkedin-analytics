@@ -4899,8 +4899,8 @@
       },
       {
         "data": "2026-09-24",
-        "impressioni": 17,
-        "interazioni": 0
+        "impressioni": 67,
+        "interazioni": 3
       }
     ],
     "follower_giornalieri": [
@@ -5745,6 +5745,483 @@
         {
           "nome": "Industria manifatturiera",
           "percentuale": 2
+        }
+      ]
+    }
+  },
+  {
+    "data_elaborazione": "2026-09-28",
+    "periodo_start": "2026-09-25",
+    "periodo_end": "2026-09-28",
+    "impressioni_totali": 471,
+    "utenti_raggiunti": 200,
+    "follower_totali": 476,
+    "nuovi_follower_periodo": 1,
+    "tasso_engagement": 1.49,
+    "andamento_giornaliero": [
+      {
+        "data": "2026-09-25",
+        "impressioni": 42,
+        "interazioni": 1
+      },
+      {
+        "data": "2026-09-26",
+        "impressioni": 79,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-27",
+        "impressioni": 54,
+        "interazioni": 0
+      },
+      {
+        "data": "2026-09-28",
+        "impressioni": 296,
+        "interazioni": 6
+      }
+    ],
+    "follower_giornalieri": [
+      {
+        "data": "2026-09-26",
+        "nuovi": 1
+      }
+    ],
+    "post": [
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA",
+        "data": "2026-09-28",
+        "titolo_breve": "8 tecnici, un CRM che non parlava con il gestionale",
+        "interazioni": 6,
+        "impressioni": 249
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+        "data": "2026-06-08",
+        "titolo_breve": "Profilo ibrido ops+digital",
+        "interazioni": 40,
+        "impressioni": 1551
+      },
+      {
+        "url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv",
+        "data": "2026-09-15",
+        "titolo_breve": "HR & talent acquisition: AI nella digital transformation",
+        "interazioni": 17,
+        "impressioni": 1094
+      }
+    ],
+    "demografici": {
+      "aziende": [
+        {
+          "nome": "Gruppo Hera",
+          "percentuale": 2
+        },
+        {
+          "nome": "GrandVision Italy",
+          "percentuale": 1
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Bologna",
+          "percentuale": 32
+        },
+        {
+          "nome": "Milano",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 9
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 6
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 4
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 3
+        },
+        {
+          "nome": "Rimini",
+          "percentuale": 2
+        },
+        {
+          "nome": "Firenze",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 16
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 12
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 10
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 9
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 6
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 40
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 23
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 11
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 4
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 3
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 8
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 8
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 7
+        },
+        {
+          "nome": "Servizi finanziari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 2
+        },
+        {
+          "nome": "Selezione e ricerca di personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Sviluppo di software",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Fondatore",
+          "percentuale": 2
+        },
+        {
+          "nome": "Risorse umane",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 2
+        },
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 2
+        },
+        {
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": 2
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 1
+        },
+        {
+          "nome": "Responsabile risorse umane",
+          "percentuale": 1
+        },
+        {
+          "nome": "Responsabile di negozio",
+          "percentuale": 1
+        }
+      ]
+    },
+    "demografici_contenuti": {
+      "aziende": [
+        {
+          "nome": "Dyson",
+          "percentuale": 1
+        },
+        {
+          "nome": "Saint-Gobain Italia",
+          "percentuale": 1
+        },
+        {
+          "nome": "TIM",
+          "percentuale": 1
+        },
+        {
+          "nome": "CINECA",
+          "percentuale": 0
+        },
+        {
+          "nome": "EY",
+          "percentuale": 0
+        },
+        {
+          "nome": "Alfio Bardolla Training Group",
+          "percentuale": 0
+        },
+        {
+          "nome": "One Bill",
+          "percentuale": 0
+        },
+        {
+          "nome": "Opera Navarra SpA",
+          "percentuale": 0
+        },
+        {
+          "nome": "NIER Ingegneria S.p.a.",
+          "percentuale": 0
+        }
+      ],
+      "localita": [
+        {
+          "nome": "Milano",
+          "percentuale": 20
+        },
+        {
+          "nome": "Bologna",
+          "percentuale": 16
+        },
+        {
+          "nome": "Torino",
+          "percentuale": 6
+        },
+        {
+          "nome": "Bari",
+          "percentuale": 6
+        },
+        {
+          "nome": "Roma",
+          "percentuale": 4
+        },
+        {
+          "nome": "Ferrara",
+          "percentuale": 4
+        },
+        {
+          "nome": "Ravenna",
+          "percentuale": 4
+        },
+        {
+          "nome": "Pescara",
+          "percentuale": 3
+        },
+        {
+          "nome": "Modena",
+          "percentuale": 2
+        }
+      ],
+      "dimensioni_azienda": [
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": 16
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": 15
+        },
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": 14
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": 8
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": 7
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": 5
+        }
+      ],
+      "anzianita": [
+        {
+          "nome": "Senior",
+          "percentuale": 34
+        },
+        {
+          "nome": "Livello base",
+          "percentuale": 30
+        },
+        {
+          "nome": "Amministratore",
+          "percentuale": 14
+        },
+        {
+          "nome": "Direttore",
+          "percentuale": 8
+        },
+        {
+          "nome": "Proprietario",
+          "percentuale": 3
+        },
+        {
+          "nome": "CXO",
+          "percentuale": 3
+        },
+        {
+          "nome": "Vicepresidente",
+          "percentuale": 1
+        }
+      ],
+      "settori": [
+        {
+          "nome": "Servizi IT e consulenza IT",
+          "percentuale": 9
+        },
+        {
+          "nome": "Consulenza e servizi aziendali",
+          "percentuale": 7
+        },
+        {
+          "nome": "Telecomunicazioni",
+          "percentuale": 5
+        },
+        {
+          "nome": "Servizi risorse umane",
+          "percentuale": 5
+        },
+        {
+          "nome": "Fabbricazione di macchinari industriali",
+          "percentuale": 3
+        },
+        {
+          "nome": "Vendita al dettaglio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
+          "percentuale": 3
+        },
+        {
+          "nome": "Fabbricazione di apparecchi elettrici, materiali elettrici e componenti elettronici",
+          "percentuale": 2
+        },
+        {
+          "nome": "Servizi pubblicitari",
+          "percentuale": 2
+        },
+        {
+          "nome": "Industria manifatturiera",
+          "percentuale": 2
+        }
+      ],
+      "qualifiche": [
+        {
+          "nome": "Responsabile vendite",
+          "percentuale": 2
+        },
+        {
+          "nome": "Account manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Project Manager",
+          "percentuale": 2
+        },
+        {
+          "nome": "Fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Amministratore delegato",
+          "percentuale": 1
+        },
+        {
+          "nome": "Vendite",
+          "percentuale": 1
+        },
+        {
+          "nome": "Co-fondatore",
+          "percentuale": 1
+        },
+        {
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": 1
+        },
+        {
+          "nome": "Software Engineer",
+          "percentuale": 1
         }
       ]
     }

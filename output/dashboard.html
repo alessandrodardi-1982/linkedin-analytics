@@ -3,765 +3,1069 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkedIn Analytics — Alessandro Dardi</title>
+<title>LinkedIn Analytics</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 :root {
   --bg: #0f0f1a;
-  --bg2: #1a1a2e;
-  --bg3: #16213e;
-  --card: #1e1e3a;
-  --card2: #252545;
-  --border: #2d2d5a;
+  --card: #16213e;
+  --card2: #1a2744;
   --accent: #4f46e5;
-  --accent2: #7c3aed;
-  --accent3: #06b6d4;
+  --accent2: #6366f1;
+  --cyan: #06b6d4;
+  --text1: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: #1e3a5f;
   --green: #10b981;
   --yellow: #f59e0b;
   --red: #ef4444;
-  --text: #e2e8f0;
-  --text2: #94a3b8;
-  --text3: #64748b;
-  --radius: 12px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
-a { color: var(--accent3); text-decoration: none; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text1); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+a { color: var(--accent2); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.sticky-bar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(15,15,26,0.97);
-  backdrop-filter: blur(12px);
+.header {
+  background: linear-gradient(135deg, #0d1b3e 0%, #1a1a40 100%);
   border-bottom: 1px solid var(--border);
-  padding: 10px 24px;
-  display: flex; flex-wrap: wrap; gap: 12px; align-items: center;
+  padding: 24px 32px;
 }
-.filter-group { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-.filter-label { color: var(--text3); font-size: 12px; margin-right: 4px; }
-.filter-btn {
-  background: var(--card); border: 1px solid var(--border); color: var(--text2);
-  padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: all .2s;
+.header h1 { font-size: 24px; font-weight: 700; color: #fff; }
+.header .sub { color: var(--text2); margin-top: 4px; font-size: 13px; }
+
+.filter-bar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.filter-btn:hover { border-color: var(--accent); color: var(--text); }
-.filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.filter-bar .label { color: var(--text3); font-size: 12px; white-space: nowrap; }
+.btn-filter {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+.btn-filter:hover { border-color: var(--accent); color: var(--text1); }
+.btn-filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .search-box {
-  background: var(--card); border: 1px solid var(--border); color: var(--text);
-  padding: 5px 14px; border-radius: 20px; font-size: 13px; width: 200px; outline: none;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text1);
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  outline: none;
+  width: 160px;
 }
-.search-box:focus { border-color: var(--accent3); }
+.search-box:focus { border-color: var(--accent); }
 .search-box::placeholder { color: var(--text3); }
-
-header {
-  background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
-  padding: 40px 24px 32px;
-  border-bottom: 1px solid var(--border);
-  text-align: center;
+.btn-reset {
+  background: transparent;
+  border: 1px solid var(--text3);
+  color: var(--text3);
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 4px;
 }
-header h1 { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #818cf8, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-header p { color: var(--text2); margin-top: 8px; font-size: 14px; }
+.btn-reset:hover { border-color: var(--text2); color: var(--text2); }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-.section { margin-bottom: 40px; }
-.section h2 { font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--text); border-left: 3px solid var(--accent); padding-left: 10px; }
+.main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+.section { margin-bottom: 32px; }
+.section h2 { font-size: 16px; font-weight: 600; color: var(--text1); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
 .kpi-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 20px 16px; text-align: center;
-  transition: border-color .2s, transform .2s;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
 }
-.kpi-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.kpi-label { color: var(--text2); font-size: 12px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
-.kpi-value { font-size: 28px; font-weight: 700; color: var(--accent3); }
-.kpi-sub { color: var(--text3); font-size: 11px; margin-top: 4px; }
+.kpi-card .kpi-label { color: var(--text2); font-size: 12px; margin-bottom: 8px; }
+.kpi-card .kpi-value { font-size: 28px; font-weight: 700; color: #fff; }
+.kpi-card .kpi-sub { color: var(--text3); font-size: 11px; margin-top: 4px; }
+.kpi-card.accent { border-left: 3px solid var(--accent); }
+.kpi-card.cyan { border-left: 3px solid var(--cyan); }
+.kpi-card.green { border-left: 3px solid var(--green); }
 
 .chart-card {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 20px; box-shadow: var(--shadow);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
 }
-.chart-title { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text2); }
-.chart-wrap { position: relative; height: 280px; }
+.chart-title { font-size: 13px; color: var(--text2); margin-bottom: 16px; font-weight: 500; }
+.chart-wrap { position: relative; }
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
 
 .post-list { display: flex; flex-direction: column; gap: 10px; }
 .post-item {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 14px 16px; transition: border-color .2s;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
 }
-.post-item:hover { border-color: var(--accent); }
-.post-item.hidden { display: none; }
-.post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-.post-lettera {
-  background: var(--accent2); color: #fff; width: 28px; height: 28px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0;
-}
-.post-titolo { font-weight: 600; font-size: 13px; }
-.post-data { color: var(--text3); font-size: 11px; margin-left: auto; white-space: nowrap; }
-.post-bar-wrap { margin-bottom: 4px; }
-.post-bar-bg { background: var(--bg3); border-radius: 4px; height: 6px; overflow: hidden; }
-.post-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--accent3)); }
-.post-stats { display: flex; gap: 16px; font-size: 12px; color: var(--text2); }
-.post-stats span { display: flex; gap: 4px; align-items: center; }
-.eng-high { color: var(--green); font-weight: 600; }
-.eng-mid { color: var(--yellow); }
-.eng-low { color: var(--text3); }
+.post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.post-label { font-weight: 600; color: var(--accent2); font-size: 13px; }
+.post-meta { color: var(--text2); font-size: 12px; }
+.post-title { color: var(--text1); font-size: 13px; margin-bottom: 8px; }
+.post-bar-wrap { background: var(--card2); border-radius: 4px; height: 6px; }
+.post-bar { background: var(--accent); border-radius: 4px; height: 6px; transition: width 0.3s; }
+.post-stats { display: flex; gap: 16px; margin-top: 6px; font-size: 11px; color: var(--text3); }
+.post-stats span { color: var(--text2); }
 
-.dem-bar-item { margin-bottom: 10px; }
-.dem-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 4px; }
-.dem-bar-bg { background: var(--bg3); border-radius: 4px; height: 8px; overflow: hidden; }
-.dem-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
-.dem-bar-fill.green { background: linear-gradient(90deg, var(--green), var(--accent3)); }
+.bar-chart-h { display: flex; flex-direction: column; gap: 8px; }
+.bar-h-row { display: flex; align-items: center; gap: 8px; }
+.bar-h-label { font-size: 11px; color: var(--text2); width: 180px; flex-shrink: 0; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-h-track { flex: 1; background: var(--card2); border-radius: 4px; height: 16px; position: relative; }
+.bar-h-fill { height: 16px; border-radius: 4px; transition: width 0.4s; }
+.bar-h-val { font-size: 11px; color: var(--text3); min-width: 30px; text-align: right; }
 
-.follower-total {
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  border-radius: var(--radius); padding: 20px; text-align: center;
-  margin-bottom: 16px;
-}
-.follower-total .num { font-size: 48px; font-weight: 700; color: #fff; }
-.follower-total .label { color: rgba(255,255,255,.75); font-size: 14px; }
+.storico-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.storico-table th { color: var(--text3); font-weight: 500; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+.storico-table td { padding: 8px 12px; border-bottom: 1px solid rgba(30,58,95,0.4); color: var(--text2); }
+.storico-table tr:last-child td { border-bottom: none; }
+.storico-table tr:hover td { background: rgba(79,70,229,0.05); }
+.storico-table .val { color: var(--text1); font-weight: 500; }
 
-.storico-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.storico-entry {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 14px;
+.analisi-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
 }
-.storico-entry .periodo { font-size: 12px; color: var(--text3); margin-bottom: 6px; }
-.storico-entry .imp { font-size: 22px; font-weight: 700; color: var(--accent3); }
-.storico-entry .sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
+.analisi-card h3 { font-size: 14px; font-weight: 600; color: var(--accent2); margin-bottom: 12px; margin-top: 20px; }
+.analisi-card h3:first-child { margin-top: 0; }
+.analisi-card p { color: var(--text2); font-size: 13px; margin-bottom: 8px; line-height: 1.7; }
+.analisi-card ul { color: var(--text2); font-size: 13px; padding-left: 20px; }
+.analisi-card li { margin-bottom: 6px; line-height: 1.7; }
+.analisi-card .highlight { color: var(--text1); font-weight: 500; }
+.analisi-card .tag { background: rgba(79,70,229,0.2); color: var(--accent2); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.analisi-card .tag-green { background: rgba(16,185,129,0.2); color: var(--green); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.analisi-card .tag-yellow { background: rgba(245,158,11,0.2); color: var(--yellow); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+.post-analysis-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+.post-analysis-table th { color: var(--text3); font-weight: 500; padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+.post-analysis-table td { padding: 6px 10px; border-bottom: 1px solid rgba(30,58,95,0.4); color: var(--text2); }
+.post-analysis-table td:first-child { white-space: nowrap; }
 
-/* Analisi strategica */
-.analisi-section { color: var(--text); }
-.analisi-section h3 {
-  font-size: 16px; font-weight: 600; margin: 28px 0 14px;
-  color: var(--accent3); border-bottom: 1px solid var(--border); padding-bottom: 8px;
-}
-.post-analisi {
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 16px; margin-bottom: 12px;
-}
-.post-analisi.anomalia { border-color: var(--yellow); background: rgba(245,158,11,0.06); }
-.pa-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
-.pa-lettera {
-  background: var(--accent); color: #fff; width: 28px; height: 28px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0;
-}
-.pa-lettera.anomalia { background: var(--yellow); color: #000; }
-.pa-data { color: var(--text3); font-size: 12px; }
-.pa-kpi { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; font-size: 13px; }
-.pa-kpi span { background: var(--bg3); padding: 3px 10px; border-radius: 20px; color: var(--text2); }
-.eng-badge { background: rgba(79,70,229,0.2) !important; color: var(--accent3) !important; font-weight: 600; }
-.eng-badge.anomalia-badge { background: rgba(245,158,11,0.15) !important; color: var(--yellow) !important; }
-.analisi-section p { margin-bottom: 10px; color: var(--text); line-height: 1.7; }
-.tabella-wrapper { overflow-x: auto; }
-table.comparativo {
-  width: 100%; border-collapse: collapse; font-size: 13px;
-  background: var(--card); border-radius: var(--radius); overflow: hidden;
-}
-table.comparativo th { background: var(--bg3); padding: 10px 12px; text-align: left; color: var(--text2); font-size: 11px; text-transform: uppercase; }
-table.comparativo td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
-table.comparativo tr.top1 { background: rgba(79,70,229,0.1); }
-table.comparativo tr.anomalia-row { background: rgba(245,158,11,0.08); color: var(--yellow); }
-.evidenza { background: rgba(6,182,212,0.08); border-left: 3px solid var(--accent3); padding: 12px; border-radius: 0 8px 8px 0; margin: 12px 0; color: var(--text); }
-.hr-box {
-  background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.3);
-  border-radius: var(--radius); padding: 18px; margin-top: 12px;
-}
-.hr-box p { margin-bottom: 10px; }
-.hr-box ul { padding-left: 20px; }
-.hr-box li { margin-bottom: 8px; }
-ol.azioni { counter-reset: azioni-counter; list-style: none; }
-ol.azioni li {
-  counter-increment: azioni-counter; position: relative;
-  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 14px 16px 14px 50px; margin-bottom: 10px;
-}
-ol.azioni li::before {
-  content: counter(azioni-counter);
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  background: var(--accent); color: #fff; width: 24px; height: 24px;
-  border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
-}
+.donut-wrap { display: flex; align-items: center; gap: 16px; }
+.donut-legend { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+.donut-leg-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text2); }
+.donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-footer { text-align: center; color: var(--text3); padding: 32px; font-size: 12px; border-top: 1px solid var(--border); }
+.azioni-list { counter-reset: azione; }
+.azione-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: var(--card2);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--accent);
+}
+.azione-num { background: var(--accent); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.azione-text { color: var(--text2); font-size: 13px; line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .main { padding: 16px; }
+  .header { padding: 16px; }
+  .filter-bar { padding: 10px 16px; }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .bar-h-label { width: 100px; }
+}
 </style>
 </head>
 <body>
 
-<div class="sticky-bar">
-  <div class="filter-group">
-    <span class="filter-label">Periodo:</span>
-    <button class="filter-btn" data-days="7">7 giorni</button>
-    <button class="filter-btn" data-days="14">14 giorni</button>
-    <button class="filter-btn" data-days="28">28 giorni</button>
-    <button class="filter-btn" data-days="90">90 giorni</button>
-    <button class="filter-btn" data-days="365">365 giorni</button>
-    <button class="filter-btn active" data-days="0">Tutto</button>
-  </div>
-  <div class="filter-group">
-    <span class="filter-label">🔍</span>
-    <input class="search-box" type="text" id="searchBox" placeholder="Cerca post...">
+<div class="header">
+  <h1>LinkedIn Analytics — Alessandro Dardi</h1>
+  <div class="sub">Periodo: 29/09/2025 – 28/09/2026 &nbsp;|&nbsp; Aggiornato: 28/09/2026</div>
+</div>
+
+<div class="filter-bar">
+  <span class="label">Periodo:</span>
+  <button class="btn-filter" data-days="7">7g</button>
+  <button class="btn-filter" data-days="14">14g</button>
+  <button class="btn-filter" data-days="28">28g</button>
+  <button class="btn-filter" data-days="90">90g</button>
+  <button class="btn-filter" data-days="365">365g</button>
+  <button class="btn-filter active" data-days="all">Tutto</button>
+  <span class="label" style="margin-left:8px">Cerca post:</span>
+  <input type="text" class="search-box" id="searchBox" placeholder="es. AI, HR, manutenzione...">
+  <button class="btn-reset" id="resetBtn">✕ Elimina filtri</button>
+</div>
+
+<div class="main">
+
+<!-- KPI -->
+<div class="section">
+  <h2>KPI — Riepilogo periodo</h2>
+  <div class="kpi-grid">
+    <div class="kpi-card accent">
+      <div class="kpi-label">👁 Impressioni</div>
+      <div class="kpi-value" id="kpiImpressions">6.893</div>
+      <div class="kpi-sub">Periodo selezionato</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">👤 Utenti raggiunti</div>
+      <div class="kpi-value" id="kpiReach">1.416</div>
+      <div class="kpi-sub">Periodo selezionato</div>
+    </div>
+    <div class="kpi-card cyan">
+      <div class="kpi-label">👥 Follower</div>
+      <div class="kpi-value">476</div>
+      <div class="kpi-sub">Totale al 28/09/2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">📝 Post attivi</div>
+      <div class="kpi-value" id="kpiPosts">20</div>
+      <div class="kpi-sub">Con interazioni</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">💬 Engagement</div>
+      <div class="kpi-value" id="kpiEngagement">2.74%</div>
+      <div class="kpi-sub">Int / Impressioni × 100</div>
+    </div>
   </div>
 </div>
 
-<header>
-  <h1>LinkedIn Analytics — Alessandro Dardi</h1>
-  <p id="headerSub">Caricamento...</p>
-</header>
-
-<div class="container">
-
-  <div class="section">
-    <h2>KPI del periodo</h2>
-    <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-label">Impressioni totali</div><div class="kpi-value" id="kpiImp">—</div><div class="kpi-sub" id="kpiImpSub"></div></div>
-      <div class="kpi-card"><div class="kpi-label">Utenti raggiunti</div><div class="kpi-value" id="kpiUtenti">—</div></div>
-      <div class="kpi-card"><div class="kpi-label">Follower totali</div><div class="kpi-value" id="kpiFollower">—</div></div>
-      <div class="kpi-card"><div class="kpi-label">Post attivi</div><div class="kpi-value" id="kpiPost">—</div></div>
-      <div class="kpi-card"><div class="kpi-label">Tasso engagement</div><div class="kpi-value" id="kpiEng">—</div></div>
+<!-- Andamento giornaliero -->
+<div class="section">
+  <h2>Andamento giornaliero</h2>
+  <div class="chart-card">
+    <div class="chart-title">Impressioni (barre) e Interazioni (linea)</div>
+    <div class="chart-wrap" style="height:280px">
+      <canvas id="chartGiornaliero" role="img" aria-label="Andamento giornaliero impressioni e interazioni"></canvas>
     </div>
   </div>
+</div>
 
-  <div class="section">
-    <h2>Andamento giornaliero</h2>
-    <div class="chart-card">
-      <div class="chart-title">Impressioni (barre) + Interazioni (linea)</div>
-      <div class="chart-wrap"><canvas id="chartGiornaliero"></canvas></div>
-    </div>
-  </div>
+<!-- Post principali -->
+<div class="section">
+  <h2>Post principali</h2>
+  <div class="post-list" id="postList"></div>
+</div>
 
-  <div class="section">
-    <h2>Post principali</h2>
-    <div class="post-list" id="postList"></div>
-  </div>
-
-  <div class="two-col section" style="align-items:start">
+<!-- Follower + Demografici -->
+<div class="section">
+  <div class="two-col">
     <div>
       <h2>Follower</h2>
-      <div class="follower-total">
-        <div class="num" id="follTotale">473</div>
-        <div class="label">follower totali al 16/9/2026</div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-title">Nuovi follower giornalieri</div>
-        <div class="chart-wrap"><canvas id="chartFollower"></canvas></div>
+      <div class="chart-card" style="height:340px">
+        <div class="chart-title">Nuovi follower giornalieri &nbsp;|&nbsp; <span style="color:#fff;font-weight:600">476</span> totali</div>
+        <div class="chart-wrap" style="height:260px">
+          <canvas id="chartFollower" role="img" aria-label="Nuovi follower giornalieri"></canvas>
+        </div>
       </div>
     </div>
     <div>
-      <h2>Demografici</h2>
-      <div class="chart-card" style="padding:16px">
-        <div class="chart-title">Anzianità follower</div>
-        <div class="chart-wrap" style="height:220px"><canvas id="chartAnzianita"></canvas></div>
+      <h2>Dati demografici</h2>
+      <div class="chart-card" style="height:340px;overflow-y:auto">
+        <div class="chart-title">Settori principali (contenuti)</div>
+        <div class="bar-chart-h" id="settoriChart" style="margin-bottom:16px"></div>
+        <div class="chart-title" style="margin-top:8px">Anzianità follower</div>
+        <div class="donut-wrap">
+          <div style="width:120px;height:120px;flex-shrink:0">
+            <canvas id="chartAnzianita"></canvas>
+          </div>
+          <div class="donut-legend" id="anzianitaLegend"></div>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="section">
-    <h2>Settori principali (audience)</h2>
-    <div class="two-col" style="align-items:start">
-      <div class="chart-card" id="settoriCard"></div>
-      <div class="chart-card" id="localitaCard"></div>
+<!-- Località -->
+<div class="section">
+  <div class="two-col">
+    <div class="chart-card">
+      <div class="chart-title">Località audience</div>
+      <div class="bar-chart-h" id="localitaChart"></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Località contenuti</div>
+      <div class="bar-chart-h" id="localitaContenutiChart"></div>
     </div>
   </div>
+</div>
 
-  <div class="section">
-    <h2>Storico elaborazioni</h2>
-    <div class="storico-grid" id="storicoGrid"></div>
-    <div class="chart-card" style="margin-top:20px">
-      <div class="chart-title">Evoluzione impressioni nel tempo (storico completo)</div>
-      <div class="chart-wrap"><canvas id="chartStorico"></canvas></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2>Analisi strategica — Dati reali per singolo post</h2>
-
-<div class="analisi-section">
-
-  <h3>1. Analisi per post</h3>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">A</span> <strong>Profilo ibrido ops+digital</strong> <span class="pa-data">8 giu 2026, lunedì</span></div>
-    <div class="pa-kpi"><span>1.547 imp</span><span>40 inter</span><span class="eng-badge">Eng 2.59%</span></div>
-    <p>Post autobiografico: "8 anni di esperienza in operations industriale". Il miglior risultato assoluto dell'anno — 1.547 impressioni, quasi il doppio del secondo classificato. La voce in prima persona con dato numerico preciso ("8 anni") funziona come hook forte. Pubblicato di lunedì, fascia di picco LinkedIn B2B. È esattamente il tipo di contenuto che gli HR cercano: numeri, settore specifico, profilo distintivo. Impressioni ancora in lento incremento anche a distanza di 3 mesi dalla pubblicazione (+15 rispetto all'elaborazione del 16/9).</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">B</span> <strong>HR &amp; talent acquisition: AI nella digital transformation</strong> <span class="pa-data">15 set 2026, martedì</span></div>
-    <div class="pa-kpi"><span>833 imp</span><span>13 inter</span><span class="eng-badge">Eng 1.56%</span></div>
-    <p>Post pubblicato 9 giorni fa: già al secondo posto assoluto del periodo annuale. Crescita esplosiva: +298 impressioni (+56%) rispetto all'elaborazione del 16/9 (era a 535). Il topic — HR, talent acquisition, AI nella digital transformation — ha chiaramente intercettato un pubblico attivo. L'engagement% (1.56%) è sotto la media del profilo, ma il volume assoluto di impressioni in così poco tempo segnala un ottimo posizionamento algoritmico. Da monitorare nei prossimi 7-14 giorni: potrebbe ancora crescere.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">C</span> <strong>Master Digital Restart (TalentGarden + Intesa Sanpaolo)</strong> <span class="pa-data">18 giu 2026, giovedì</span></div>
-    <div class="pa-kpi"><span>532 imp</span><span>21 inter</span><span class="eng-badge anomalia-badge">Eng 3.95%</span></div>
-    <p>Terzo per impressioni, secondo per interazioni assolute (21), primo per engagement% (3.95%). Il contenuto cita fonti istituzionali (TalentGarden, Intesa Sanpaolo): credibilità e probabile resharing da alumni. Il giovedì si conferma giorno efficace (TalentGarden post + post PwC entrambi di giovedì). La combinazione brand noto + percorso formativo personale + hashtag coerenti funziona bene.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">D</span> <strong>Strumenti digitali (n8n / Tableau / AI)</strong> <span class="pa-data">10 giu 2026, mercoledì</span></div>
-    <div class="pa-kpi"><span>444 imp</span><span>15 inter</span><span class="eng-badge">Eng 3.38%</span></div>
-    <p>Contenuto pratico su tool specifici (n8n, Tableau, AI). L'indicazione di strumenti concreti genera interesse da chi li usa e da chi vuole imparare. Engagement 3.38% sopra media. Mercoledì funziona bene per contenuti tecnici e operativi. Il formato "ogni obiettivo ha lo strumento giusto" è un angolo narrativo chiaro e replicabile.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">E</span> <strong>AI Strategy e HR: trasformazione digitale</strong> <span class="pa-data">3 ago 2026, lunedì</span></div>
-    <div class="pa-kpi"><span>427 imp</span><span>16 inter</span><span class="eng-badge">Eng 3.75%</span></div>
-    <p>Post con topic AI + HR, pubblicato il primo lunedì di agosto — periodo estivo con meno concorrenza nel feed. 427 impressioni e 3.75% di engagement: il terzo engagement% più alto nel periodo. Il tema AI applicata alle Risorse Umane è direttamente rilevante per l'obiettivo di visibilità verso recruiter. Da notare che il post "HR & talent acquisition" del 15/9 ha ripreso lo stesso angolo tematico con risultati ancora migliori.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">F</span> <strong>PwC Digital Trends 2026 — 89% dei manager</strong> <span class="pa-data">16 giu 2026, martedì</span></div>
-    <div class="pa-kpi"><span>410 imp</span><span>8 inter</span><span class="eng-badge">Eng 1.95%</span></div>
-    <p>Post con dato esterno citato (ricerca PwC, "89% dei manager"). Le fonti di autorevolezza esterna (istituti, consulenze globali) generano impressioni buone. Engagement% nella media. Martedì si dimostra giorno solido. Il pattern di citare dati di ricerche note è replicabile e credibile per un profilo operations + digital.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">G</span> <strong>ML e Manutenzione Predittiva</strong> <span class="pa-data">22 giu 2026, lunedì</span></div>
-    <div class="pa-kpi"><span>372 imp</span><span>6 inter</span><span class="eng-badge">Eng 1.61%</span></div>
-    <p>Contenuto tecnico-operativo su machine learning applicato alla manutenzione industriale. Tema di nicchia (operations + ML): bassa interazione ma buon volume di impressioni. Probabile interesse da parte di ingegneri e profili manifatturieri. Engagement% sotto media: il topic attira visualizzazioni ma non genera commenti o like da una community ampia.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">H</span> <strong>AI e PMI: trasformazione digitale (PQU1)</strong> <span class="pa-data">27 lug 2026, lunedì</span></div>
-    <div class="pa-kpi"><span>220 imp</span><span>7 inter</span><span class="eng-badge">Eng 3.18%</span></div>
-    <p>Uno dei 9 post di luglio sul tema AI + PMI. Engagement% (3.18%) nella parte alta. Il lunedì funziona. Il periodo luglio ha mostrato un picco di pubblicazioni (9 post in un mese) ma con impressioni medie inferiori rispetto a giugno — segnale che il feed è saturo quando si pubblica ogni 3-4 giorni sullo stesso macro-tema (AI + PMI).</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">I</span> <strong>PMI: 76% non userà AI nei prossimi anni</strong> <span class="pa-data">20 lug 2026, lunedì</span></div>
-    <div class="pa-kpi"><span>202 imp</span><span>9 inter</span><span class="eng-badge anomalia-badge">Eng 4.46%</span></div>
-    <p>Engagement% più alto in assoluto del periodo (4.46%) con solo 202 impressioni. Il dato-shock "76% delle PMI non useranno AI" genera reazione emotiva e commenti. È un angolo contro-intuitivo che funziona bene per l'interazione, ma genera poche impressioni totali — l'algoritmo non ha distribuito ampiamente, probabilmente per la bassa visibilità iniziale. Il format "dato provocatorio + riflessione" è un template da testare con un hook più forte.</p>
-  </div>
-
-  <div class="post-analisi">
-    <div class="pa-header"><span class="pa-lettera">J</span> <strong>Costo energia industriale Italia vs Europa (+23%)</strong> <span class="pa-data">15 lug 2026, mercoledì</span></div>
-    <div class="pa-kpi"><span>181 imp</span><span>4 inter</span><span class="eng-badge">Eng 2.21%</span></div>
-    <p>Post con dato comparativo internazionale (+23%). Il tema energetico/industriale è rilevante per operations manager, ma probabilmente non abbastanza a fuoco per il pubblico HR che si vuole intercettare. Engagement nella media. Mercoledì solido. Da notare: "psC5" nella URL suggerisce che il post è di argomento più vicino all'analisi energetica che alla strategia digitale.</p>
-  </div>
-
-  <h3>2. Schema comparativo</h3>
-  <div class="tabella-wrapper">
-    <table class="comparativo">
-      <tr><th>Data</th><th>Post</th><th>Imp</th><th>Int</th><th>Eng%</th><th>Note</th></tr>
-      <tr class="top1"><td>08/06</td><td>Profilo ops+digital</td><td>1.547</td><td>40</td><td>2.59%</td><td>🏆 Migliori impressioni</td></tr>
-      <tr><td>15/09</td><td>HR &amp; talent acquisition</td><td>833</td><td>13</td><td>1.56%</td><td>⬆️ +56% in 8 giorni</td></tr>
-      <tr><td>18/06</td><td>Master Digital Restart</td><td>532</td><td>21</td><td>3.95%</td><td>Massimo engagement%</td></tr>
-      <tr><td>10/06</td><td>Strumenti digitali</td><td>444</td><td>15</td><td>3.38%</td><td></td></tr>
-      <tr><td>03/08</td><td>AI Strategy + HR</td><td>427</td><td>16</td><td>3.75%</td><td></td></tr>
-      <tr><td>16/06</td><td>PwC Digital Trends</td><td>410</td><td>8</td><td>1.95%</td><td></td></tr>
-      <tr><td>22/06</td><td>ML Manutenzione</td><td>372</td><td>6</td><td>1.61%</td><td></td></tr>
-      <tr><td>27/07</td><td>AI e PMI (PQU1)</td><td>220</td><td>7</td><td>3.18%</td><td></td></tr>
-      <tr><td>20/07</td><td>PMI 76% no AI</td><td>202</td><td>9</td><td class="eng-high">4.46%</td><td>🏆 Max eng%</td></tr>
-      <tr><td>15/07</td><td>Energia +23%</td><td>181</td><td>4</td><td>2.21%</td><td></td></tr>
-      <tr><td>14/08</td><td>AI MedTech</td><td>177</td><td>2</td><td>1.13%</td><td></td></tr>
-      <tr><td>31/07</td><td>IA PMI AI Strategy</td><td>147</td><td>3</td><td>2.04%</td><td></td></tr>
-      <tr><td>24/07</td><td>IA PMI strategia</td><td>139</td><td>6</td><td>4.32%</td><td></td></tr>
-      <tr><td>17/07</td><td>51% aziende italiane AI</td><td>138</td><td>6</td><td>4.35%</td><td></td></tr>
-      <tr><td>22/07</td><td>AI Strategy PMI</td><td>131</td><td>4</td><td>3.05%</td><td></td></tr>
-      <tr><td>12/08</td><td>AI Pubblica Amm.</td><td>112</td><td>1</td><td>0.89%</td><td class="eng-low">⚠️ Basso eng%</td></tr>
-      <tr><td>10/08</td><td>AI Strategy PMI</td><td>104</td><td>3</td><td>2.88%</td><td></td></tr>
-      <tr><td>05/08</td><td>AI PMI digital transf.</td><td>100</td><td>5</td><td>5.00%</td><td class="eng-high">Eng% alto</td></tr>
-      <tr class="anomalia-row"><td>07/08</td><td>AI PMI digital (A21H)</td><td>93</td><td>1</td><td>1.08%</td><td>⚠️ Min impressioni</td></tr>
+<!-- Storico elaborazioni -->
+<div class="section">
+  <h2>Storico elaborazioni</h2>
+  <div class="chart-card">
+    <table class="storico-table">
+      <thead>
+        <tr>
+          <th>Data elaborazione</th>
+          <th>Periodo</th>
+          <th>Impressioni</th>
+          <th>Utenti raggiunti</th>
+          <th>Follower</th>
+          <th>Nuovi follower</th>
+          <th>Engagement %</th>
+        </tr>
+      </thead>
+      <tbody id="storicoBody"></tbody>
     </table>
   </div>
+</div>
 
-  <div class="evidenza">
-    <strong>Post più impressioni:</strong> 8/6/2026 — "Profilo ibrido ops+digital" (1.547 imp). <br>
-    <strong>Post engagement% più alto:</strong> 5/8/2026 — AI PMI digital transformation (5.00%), seguito da 20/7 (4.46%) e 24/7 (4.32%). <br>
-    <strong>Post anomalo positivo:</strong> 15/9/2026 — HR &amp; talent acquisition, solo 9 giorni dopo la pubblicazione è già al 2° posto assoluto. <br>
-    <strong>Post anomalo negativo:</strong> 7/8/2026 — 93 impressioni con 1 interazione. Stessa finestra temporale degli altri post di agosto ma risultato peggiore.
+<!-- Grafico storico -->
+<div class="section">
+  <h2>Evoluzione storica — Impressioni e Follower</h2>
+  <div class="chart-card">
+    <div class="chart-title">Andamento nel tempo</div>
+    <div class="chart-wrap" style="height:260px">
+      <canvas id="chartStorico" role="img" aria-label="Evoluzione storica"></canvas>
+    </div>
   </div>
+</div>
 
-  <h3>3. Pattern di giorni e orari</h3>
-  <p>Analisi dei 19 post del periodo:</p>
-  <ul style="padding-left:20px;margin-bottom:12px;color:var(--text2)">
-    <li><strong>Lunedì (L):</strong> 8 post — "Profilo ops+digital" (1.547), "AI e PMI" (220), "PMI 76% no AI" (202), "AI e PMI PQU1" (220), "AI Strategy HR" (427), "ML Manutenzione" (372), "AI PMI jxXm" (131), "AI PMI A21H" (93). Media ~402 imp. Il lunedì è chiaramente il giorno più usato e genera i volumi più alti in assoluto.</li>
-    <li><strong>Martedì:</strong> 3 post — "HR &amp; talent acquisition" (833), "PwC Digital Trends" (410), "Master Digital Restart" (532). Media ~592 imp. Risultati eccellenti: tutti e tre sopra la media del profilo.</li>
-    <li><strong>Mercoledì:</strong> 3 post — "Strumenti digitali" (444), "Energia +23%" (181), "AI PMI digital 1ERL" (100). Media ~241 imp. Eterogeneo: il contenuto pratico funziona, il contenuto AI-generico meno.</li>
-    <li><strong>Giovedì:</strong> 2 post — "TalentGarden" (532), "AI caio PMI GeV9" (138). Giovedì funziona per contenuti con brand citati.</li>
-    <li><strong>Domenica:</strong> 1 post — "AI Strategy HR Mw5b" (427). Sorprendentemente buono per un giorno non-standard.</li>
-    <li><strong>Venerdì/Sabato:</strong> post distribuiti negli altri giorni con risultati variabili.</li>
-  </ul>
-  <p><strong>Sintesi:</strong> lunedì e martedì sono i giorni con la media più alta. Il martedì mostra tutti e tre i post sopra la media. Il giovedì funziona con contenuti che citano istituzioni. Evitare di pubblicare post AI-generici a metà agosto: impressioni dimezzate rispetto a giugno-luglio.</p>
+<!-- Crescita cumulativa -->
+<div class="section">
+  <h2>Crescita cumulativa impressioni</h2>
+  <div class="chart-card">
+    <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <span>Andamento cumulativo — aggregato per settimana</span>
+      <span style="display:flex;gap:16px;font-size:12px;color:var(--text2);">
+        <span style="display:flex;align-items:center;gap:5px;">
+          <span style="width:18px;height:2px;background:#4f46e5;display:inline-block;border-radius:2px;"></span>
+          Impressioni cumulative
+        </span>
+        <span style="display:flex;align-items:center;gap:5px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#06b6d4;display:inline-block;"></span>
+          Post pubblicato
+        </span>
+      </span>
+    </div>
+    <div class="chart-wrap" style="height:300px">
+      <canvas id="chartCumulativo" role="img" aria-label="Grafico cumulativo delle impressioni LinkedIn, aggregato per settimana.">Crescita cumulativa impressioni LinkedIn.</canvas>
+    </div>
+  </div>
+</div>
 
-  <h3>4. Contenuto che funziona</h3>
-  <p><strong>Argomento più efficace per impressioni:</strong> il contenuto autobiografico/professionale diretto ("8 anni di esperienza") supera di gran lunga qualsiasi contenuto AI + PMI. La storia personale con numeri concreti genera il volume assoluto più alto.</p>
-  <p><strong>Angolazione secondaria più efficace:</strong> HR + talent acquisition + AI (post del 15/9: 833 imp in 9 giorni). Il topic è esplicitamente rivolto al mondo HR, che è esattamente il pubblico obiettivo. Questo post ha già superato tutti i post di luglio pur essendo freschissimo.</p>
-  <p><strong>Correlazione follower:</strong> i periodi con più nuovi follower (giugno: +29, agosto: +19) coincidono con pubblicazioni di alta qualità. Il calo follower di settembre (solo +5 tra il 16 e 24/9 dopo la pubblicazione del post) è anomalo e potrebbe indicare che la rete raggiunta dal post 15/9 non si è ancora convertita in follow.</p>
+<!-- Analisi strategica -->
+<div class="section">
+  <h2>Analisi strategica</h2>
+  <div class="analisi-card">
 
-  <h3>5. Visibilità verso HR — obiettivo prioritario</h3>
-  <div class="hr-box">
-    <p><strong>Situazione attuale:</strong> "Risorse umane" è al 2% nelle qualifiche audience e all'1% nelle qualifiche dei contenuti. Rispetto alle elaborazioni precedenti (giugno-agosto: sempre 2% audience) il dato è stabile ma non cresce. Serve un segnale diverso.</p>
-    <p><strong>Trend:</strong> la percentuale HR audience è costante al 2% da 5 elaborazioni consecutive. Il settore "Servizi risorse umane" nelle audience è all'8% (stabile), tra i più rappresentati. La base c'è, ma non sta aumentando.</p>
-    <p><strong>Segnale positivo:</strong> il post "HR &amp; talent acquisition: AI nella digital transformation" del 15/9 è già il secondo per impressioni dell'anno. Questo significa che il topic ha rotto la bolla: è stato distribuito a un pubblico più ampio rispetto ai post AI + PMI che giravano nello stesso cluster.</p>
+    <h3>Analisi dettagliata post del periodo recente (15/09 – 28/09/2026)</h3>
+
+    <p><span class="highlight">Post A — HR &amp; talent acquisition: AI nella digital transformation</span> (15/09/2026, lunedì)<br>
+    1.094 impressioni &nbsp;|&nbsp; 17 interazioni &nbsp;|&nbsp; engagement 1,55% &nbsp;|&nbsp; <span class="tag-green">Migliore engagement recente</span><br>
+    Post pubblicato lunedì mattina su un tema HR esplicito. Il fatto di citare direttamente "talent acquisition" e "AI nella selezione" ha attirato attenzione da HR e recruiter. È il secondo post per impressioni totali dello storico. La copertura è rimasta alta per 48 ore dopo la pubblicazione (133 imp il 16/09, 66 il 17/09), segnale che l'algoritmo lo ha spinto alla rete di secondo grado.</p>
+
+    <p><span class="highlight">Post B — 8 tecnici, un CRM che non parlava con il gestionale</span> (28/09/2026, domenica)<br>
+    249 impressioni &nbsp;|&nbsp; 6 interazioni &nbsp;|&nbsp; engagement 2,41% &nbsp;|&nbsp; <span class="tag-yellow">Primo giorno di vita</span><br>
+    Case study concreto con numeri reali (8 tecnici, problema specifico, integrazione CRM-ERP). Pubblicato domenica sera — avvio lento atteso, ma le 249 impressioni nel solo primo giorno indicano una buona distribuzione iniziale. Il formato narrativo "problema → soluzione → risultato" è quello che ha già funzionato per il post del 08/06 (1.551 imp cumulativi). Da monitorare nei prossimi 3-5 giorni.</p>
+
+    <table class="post-analysis-table">
+      <thead>
+        <tr><th>Data</th><th>Titolo</th><th>Impressioni</th><th>Interazioni</th><th>Eng %</th><th>Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>15/09/2026</td><td>HR &amp; talent acquisition: AI</td><td class="val">1.094</td><td>17</td><td>1,55%</td><td>Lun mattina — picco rapido</td></tr>
+        <tr><td>28/09/2026</td><td>8 tecnici, CRM vs gestionale</td><td class="val">249</td><td>6</td><td>2,41%</td><td>Dom sera — in crescita</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Visibilità HR/Risorse Umane — obiettivo prioritario</h3>
+
+    <p>La quota <span class="highlight">"Risorse umane"</span> nelle qualifiche dell'audience è stabile al <span class="highlight">2%</span> da giugno 2026. Nelle elaborazioni precedenti (giugno, luglio, agosto, settembre) il valore non è mai variato: è un plateau. I motivi sono due:</p>
     <ul>
-      <li><strong>Manca ancora:</strong> numeri sull'impatto che hai avuto su team e persone (es. "ho coordinato un team di X persone", "ho gestito la formazione su Y dipendenti"). Gli HR cercano evidenza di leadership, non solo di expertise tecnica.</li>
-      <li><strong>Manca ancora:</strong> riferimento esplicito a responsabilità HR-adjacent (gestione fornitori, onboarding, sviluppo competenze team). Anche una sola riga in un post tecnico può alzare la pertinenza per un recruiter HR.</li>
-      <li><strong>Prossima pubblicazione suggerita per HR:</strong>
-        <ol style="padding-left:20px;margin-top:8px">
-          <li>Post su un progetto dove hai sviluppato le competenze di un team ("Come ho portato il mio team da zero a padronanza di [tool] in X settimane") — parola chiave: "formazione", "team", "competenze digitali".</li>
-          <li>Post su un caso di selezione/valutazione di un collaboratore: cosa cerchi in un Operations Manager junior, le domande che fai in un colloquio, cosa non trova nei CV. Direttamente nelle ricerche HR.</li>
-          <li>Post su coordinamento interfunzionale: "Ho gestito un progetto con Operations, IT e HR: cosa ho imparato sulla comunicazione tra funzioni". Questo intercetta sia HR che Operations Director.</li>
-        </ol>
-      </li>
+      <li>Il profilo è ancora percepito come prevalentemente "operations/digital", non come candidato da seguire per decisioni HR</li>
+      <li>Solo 2 post su 20 citano esplicitamente HR o talent acquisition: la frequenza è troppo bassa per costruire un'associazione duratura nell'algoritmo</li>
     </ul>
+    <p>Il post del 15/09 ha dimostrato che parlare direttamente di HR funziona (1.094 imp). La lezione: il contenuto HR non va scritto <em>per</em> HR ma deve contenere le parole chiave che un recruiter usa nel suo feed ("talent acquisition", "selezione", "onboarding", "HR tech").</p>
+
+    <h3>Pattern di giorni e orari di pubblicazione</h3>
+    <ul>
+      <li><span class="highlight">Lunedì:</span> migliore slot confermato. Il post del 15/09 (lunedì) = 1.094 imp picco in 24h. Il post del 03/08 (lunedì) = 298 imp il primo giorno</li>
+      <li><span class="highlight">Domenica sera:</span> avvio lento ma coda lunga. Il post del 08/06 (domenica) ha avuto 167 imp il primo giorno ma è arrivato a 1.551 cumulativi nel tempo</li>
+      <li><span class="highlight">Fascia 8-10 e 20-22:</span> i post con miglior distribuzione nelle prime ore sembrano essere quelli pubblicati nelle fasce lavorative del lunedì o tardo serale</li>
+      <li>Post di giovedì e venerdì (es. luglio-agosto) hanno avuto performance nella media bassa (100-160 imp): da evitare per contenuti ad alto impatto</li>
+    </ul>
+
+    <h3>Contenuto che funziona</h3>
+    <ul>
+      <li><span class="tag-green">Narrativo personale</span>: "ho 8 anni di esperienza..." (1.551 imp), "8 tecnici e un CRM..." (249 imp primo giorno e in crescita). La prima persona con un problema concreto batte qualsiasi statistica esterna</li>
+      <li><span class="tag-green">HR esplicito</span>: il post del 15/09 (1.094 imp) ha citato direttamente talent acquisition — unico post con quella angolazione nel periodo</li>
+      <li><span class="tag">AI applicata</span>: i post su AI Strategy (03/08: 427 imp) superano quelli puramente informativi. Funziona quando c'è una storia reale, non quando è solo divulgazione</li>
+      <li><span style="color:var(--red)">Non funziona:</span> serie di post concettuali su AI+PMI di luglio-agosto (100-140 imp ciascuno). Troppa frequenza su uno stesso tema senza angolo personale satura l'audience</li>
+    </ul>
+
+    <h3>Azioni consigliate</h3>
+    <div class="azioni-list">
+      <div class="azione-item">
+        <div class="azione-num">1</div>
+        <div class="azione-text"><strong>Attiva il post CRM nei commenti.</strong> Il post del 28/09 ha 249 imp nel primo giorno e 2,41% engagement: è sopra la media. Rispondi nei commenti nelle prossime 24 ore per mantenere l'algoritmo attivo — un'interazione extra nelle prime 48h può raddoppiare la copertura.</div>
+      </div>
+      <div class="azione-item">
+        <div class="azione-num">2</div>
+        <div class="azione-text"><strong>Secondo post biografico entro 2 settimane.</strong> Il formato "esperienza diretta + problema + risultato" è quello con il tasso di successo più alto (2 post su 2 hanno superato 1.000 imp cumulativi). Angolazione suggerita: "da responsabile manutenzione a digital transformation: 3 errori che rifarei".</div>
+      </div>
+      <div class="azione-item">
+        <div class="azione-num">3</div>
+        <div class="azione-text"><strong>Pubblica di lunedì mattina (8:00-9:30).</strong> I dati mostrano un picco di distribuzione il lunedì. Sposta le prossime 3 pubblicazioni al lunedì e confronta il dato di impressioni nelle prime 24h con il tuo storico domenicale.</div>
+      </div>
+      <div class="azione-item">
+        <div class="azione-num">4</div>
+        <div class="azione-text"><strong>Prossimo post HR: aggiungi KPI concreti.</strong> La quota "Risorse umane" è ferma al 2% da 4 mesi. Il post del 15/09 ha avuto 17 interazioni ma non ha spostato i demografici. Motivo probabile: manca la prova di impatto (es. "ho ridotto il time-to-hire del 30% integrando AI nel processo di selezione")</div>
+      </div>
+      <div class="azione-item">
+        <div class="azione-num">5</div>
+        <div class="azione-text"><strong>Pausa sulla serie AI+PMI teorica.</strong> Luglio-agosto: 8 post consecutivi su AI e PMI con performance tra 93 e 202 imp. La media è sotto i 150 imp. Un post ogni 3 settimane su quel tema è sufficiente — inserisci varianti su operations, coordinamento team, gestione fornitori per ampliare l'audience.</div>
+      </div>
+    </div>
+
   </div>
-
-  <h3>6. Azioni consigliate</h3>
-  <ol class="azioni">
-    <li><strong>Monitora il post "HR &amp; talent acquisition" (15/9) per altri 7 giorni.</strong> È già a 833 impressioni dopo 9 giorni — se continua a crescere (come il post "Profilo" che cresce ancora dopo 3 mesi), ha il potenziale di diventare il secondo contenuto più performante del profilo. Non pubblicare un post simile finché non rallenta.</li>
-    <li><strong>Ripeti il format del post A (Profilo ops+digital) con aggiornamento.</strong> Il post più performante in assoluto (1.547 imp) è autobiografico. Un "1 anno dopo" o una variante con nuovi numeri/risultati sfrutterebbe lo stesso pattern: storia personale + dato concreto + profilo ibrido. Puoi pubblicarlo a ottobre.</li>
-    <li><strong>Pubblica un post su leadership e sviluppo team entro 2 settimane.</strong> È il contenuto che manca per aumentare la visibilità HR (obiettivo prioritario). Usa parole chiave esplicite: "team", "formazione", "competenze", "coordinamento". Pianifica lunedì o martedì.</li>
-    <li><strong>Evita il cluster "AI + PMI generico" per il prossimo mese.</strong> A luglio hai pubblicato 9 post sullo stesso tema con impressioni medie in calo. Il segnale è chiaro: saturazione. Cambia angolazione: invece di "cosa fa l'AI alle PMI" prova "cosa NON funziona nell'adozione AI nelle PMI" — il formato contro-intuitivo (vedi post "76% non userà AI") genera engagement% più alto.</li>
-    <li><strong>Riprendi la cadenza di giugno (1-2 post/settimana).</strong> Settembre ha avuto un solo post in 24 giorni. Il calo di impressioni dopo agosto è in parte strutturale (fine estate), ma senza pubblicazione il profilo scompare dall'algoritmo. La media ottimale storica del profilo è 1.5 post/settimana.</li>
-  </ol>
-
 </div>
 
-  </div>
-
-</div>
-<footer>Generato il 24/09/2026 — Dati: LinkedIn Analytics export XLSX</footer>
+</div><!-- /main -->
 
 <script>
-const STORICO = [{"data_elaborazione":"2026-06-23","periodo_start":"2026-03-26","periodo_end":"2026-06-23","impressioni_totali":2557,"utenti_raggiunti":695,"follower_totali":435,"nuovi_follower_periodo":54,"tasso_engagement":3.21,"andamento_giornaliero":[{"data":"2026-06-08","impressioni":167,"interazioni":13},{"data":"2026-06-09","impressioni":495,"interazioni":18},{"data":"2026-06-10","impressioni":444,"interazioni":16},{"data":"2026-06-11","impressioni":121,"interazioni":1},{"data":"2026-06-12","impressioni":47,"interazioni":1},{"data":"2026-06-13","impressioni":29,"interazioni":0},{"data":"2026-06-14","impressioni":29,"interazioni":0},{"data":"2026-06-15","impressioni":49,"interazioni":0},{"data":"2026-06-16","impressioni":321,"interazioni":10},{"data":"2026-06-17","impressioni":138,"interazioni":1},{"data":"2026-06-18","impressioni":325,"interazioni":13},{"data":"2026-06-19","impressioni":97,"interazioni":1},{"data":"2026-06-20","impressioni":41,"interazioni":0},{"data":"2026-06-21","impressioni":24,"interazioni":1},{"data":"2026-06-22","impressioni":150,"interazioni":6},{"data":"2026-06-23","impressioni":80,"interazioni":1}],"follower_giornalieri":[{"data":"2026-04-23","nuovi":1},{"data":"2026-04-24","nuovi":1},{"data":"2026-04-27","nuovi":1},{"data":"2026-04-30","nuovi":1},{"data":"2026-05-05","nuovi":4},{"data":"2026-05-06","nuovi":1},{"data":"2026-05-07","nuovi":1},{"data":"2026-05-11","nuovi":2},{"data":"2026-05-12","nuovi":1},{"data":"2026-05-13","nuovi":1},{"data":"2026-05-15","nuovi":1},{"data":"2026-05-16","nuovi":1},{"data":"2026-05-20","nuovi":1},{"data":"2026-05-22","nuovi":2},{"data":"2026-05-25","nuovi":2},{"data":"2026-05-26","nuovi":3},{"data":"2026-05-28","nuovi":2},{"data":"2026-05-29","nuovi":2},{"data":"2026-05-30","nuovi":1},{"data":"2026-06-03","nuovi":3},{"data":"2026-06-07","nuovi":1},{"data":"2026-06-09","nuovi":3},{"data":"2026-06-10","nuovi":1},{"data":"2026-06-11","nuovi":1},{"data":"2026-06-12","nuovi":2},{"data":"2026-06-13","nuovi":1},{"data":"2026-06-15","nuovi":2},{"data":"2026-06-16","nuovi":3},{"data":"2026-06-17","nuovi":3},{"data":"2026-06-18","nuovi":2},{"data":"2026-06-19","nuovi":2},{"data":"2026-06-22","nuovi":1}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","tipo":"A","interazioni":38,"impressioni":1153},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","tipo":"B","interazioni":16,"impressioni":405},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","tipo":"B","interazioni":14,"impressioni":399},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","tipo":"A","interazioni":8,"impressioni":348},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","tipo":"B","interazioni":5,"impressioni":160}],"demografici":{"aziende":[{"nome":"GrandVision Italy","percentuale":2},{"nome":"Gruppo Hera","percentuale":2}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Milano","percentuale":10},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":15},{"nome":"11-50 dipendenti","percentuale":13},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":39},{"nome":"Livello base","percentuale":25},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":3}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":7},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi risorse umane","percentuale":6},{"nome":"Servizi finanziari","percentuale":4},{"nome":"Fabbricazione di macchinari industriali","percentuale":4},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Trasporti, logistica, supply chain","percentuale":2},{"nome":"Sviluppo di software","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2}],"qualifiche":[{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":2},{"nome":"Proprietario","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Responsabile di negozio","percentuale":1}]}},{"data_elaborazione":"2026-07-01","periodo_start":"2026-06-23","periodo_end":"2026-07-01","impressioni_totali":375,"utenti_raggiunti":150,"follower_totali":439,"nuovi_follower_periodo":4,"tasso_engagement":1.33,"andamento_giornaliero":[{"data":"2026-06-23","impressioni":80,"interazioni":1},{"data":"2026-06-24","impressioni":40,"interazioni":0},{"data":"2026-06-25","impressioni":64,"interazioni":2},{"data":"2026-06-26","impressioni":39,"interazioni":0},{"data":"2026-06-27","impressioni":18,"interazioni":0},{"data":"2026-06-28","impressioni":29,"interazioni":1},{"data":"2026-06-29","impressioni":35,"interazioni":0},{"data":"2026-06-30","impressioni":32,"interazioni":0},{"data":"2026-07-01","impressioni":38,"interazioni":1}],"follower_giornalieri":[{"data":"2026-06-23","nuovi":0},{"data":"2026-06-24","nuovi":1},{"data":"2026-06-25","nuovi":1},{"data":"2026-06-26","nuovi":2},{"data":"2026-06-27","nuovi":0},{"data":"2026-06-28","nuovi":0},{"data":"2026-06-29","nuovi":0},{"data":"2026-06-30","nuovi":0},{"data":"2026-07-01","nuovi":0}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","tipo":"B","interazioni":1,"impressioni":131},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","tipo":"A","interazioni":1,"impressioni":114},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","tipo":"A","interazioni":1,"impressioni":58},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","tipo":"A","interazioni":0,"impressioni":22},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","tipo":"B","interazioni":1,"impressioni":21}],"demografici":{"aziende":[{"nome":"GrandVision Italy","percentuale":2},{"nome":"Gruppo Hera","percentuale":2}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Milano","percentuale":10},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":15},{"nome":"11-50 dipendenti","percentuale":13},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":24},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"C-Level","percentuale":3}],"settori":[{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Servizi IT e consulenza IT","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi risorse umane","percentuale":7},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Sviluppo di software","percentuale":2},{"nome":"Servizi benessere e fitness","percentuale":2}],"qualifiche":[{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":2},{"nome":"Proprietario","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Responsabile di negozio","percentuale":1}]}},{"data_elaborazione":"2026-07-20","periodo_start":"2026-07-02","periodo_end":"2026-07-20","impressioni_totali":682,"utenti_raggiunti":155,"follower_totali":444,"nuovi_follower_periodo":5,"tasso_engagement":3.08,"andamento_giornaliero":[{"data":"2026-07-02","impressioni":32,"interazioni":0},{"data":"2026-07-03","impressioni":14,"interazioni":0},{"data":"2026-07-04","impressioni":16,"interazioni":0},{"data":"2026-07-05","impressioni":12,"interazioni":2},{"data":"2026-07-06","impressioni":20,"interazioni":0},{"data":"2026-07-07","impressioni":16,"interazioni":0},{"data":"2026-07-08","impressioni":40,"interazioni":0},{"data":"2026-07-09","impressioni":33,"interazioni":0},{"data":"2026-07-10","impressioni":16,"interazioni":0},{"data":"2026-07-11","impressioni":7,"interazioni":0},{"data":"2026-07-12","impressioni":4,"interazioni":0},{"data":"2026-07-13","impressioni":5,"interazioni":0},{"data":"2026-07-14","impressioni":14,"interazioni":0},{"data":"2026-07-15","impressioni":105,"interazioni":4},{"data":"2026-07-16","impressioni":65,"interazioni":2},{"data":"2026-07-17","impressioni":84,"interazioni":2},{"data":"2026-07-18","impressioni":42,"interazioni":2},{"data":"2026-07-19","impressioni":6,"interazioni":0},{"data":"2026-07-20","impressioni":151,"interazioni":9}],"follower_giornalieri":[{"data":"2026-07-02","nuovi":0},{"data":"2026-07-03","nuovi":0},{"data":"2026-07-04","nuovi":0},{"data":"2026-07-05","nuovi":0},{"data":"2026-07-06","nuovi":0},{"data":"2026-07-07","nuovi":0},{"data":"2026-07-08","nuovi":0},{"data":"2026-07-09","nuovi":2},{"data":"2026-07-10","nuovi":0},{"data":"2026-07-11","nuovi":0},{"data":"2026-07-12","nuovi":0},{"data":"2026-07-13","nuovi":1},{"data":"2026-07-14","nuovi":2},{"data":"2026-07-15","nuovi":0},{"data":"2026-07-16","nuovi":0},{"data":"2026-07-17","nuovi":0},{"data":"2026-07-18","nuovi":0},{"data":"2026-07-19","nuovi":0},{"data":"2026-07-20","nuovi":0}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","tipo":"A","interazioni":4,"impressioni":151},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","tipo":"A","interazioni":4,"impressioni":108},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","tipo":"B","interazioni":0,"impressioni":91},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","tipo":"A","interazioni":0,"impressioni":67},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","tipo":"B","interazioni":4,"impressioni":59},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","tipo":"A","interazioni":0,"impressioni":38},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","tipo":"A","interazioni":4,"impressioni":30},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","tipo":"B","interazioni":0,"impressioni":17}],"demografici":{"aziende":[{"nome":"GrandVision Italy","percentuale":2},{"nome":"Gruppo Hera","percentuale":2}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Ferrara","percentuale":9},{"nome":"Milano","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Bari","percentuale":3},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"5.001-10.000 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":24},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":2}],"settori":[{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Servizi IT e consulenza IT","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi risorse umane","percentuale":7},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Sviluppo di software","percentuale":2}],"qualifiche":[{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Proprietario","percentuale":2},{"nome":"Responsabile di negozio","percentuale":1}]}},{"data_elaborazione":"2026-07-28","periodo_start":"2026-07-21","periodo_end":"2026-07-28","impressioni_totali":451,"utenti_raggiunti":95,"utenti_raggiunti_nota":"Stima proporzionale: l'export copriva l'intero anno (837 utenti raggiunti / 3985 impressioni = 21%), non il solo periodo 21-28/7. Stima = impressioni del periodo x 21%.","follower_totali":448,"nuovi_follower_periodo":4,"tasso_engagement":3.55,"andamento_giornaliero":[{"data":"2026-07-21","impressioni":31,"interazioni":0},{"data":"2026-07-22","impressioni":103,"interazioni":4},{"data":"2026-07-23","impressioni":26,"interazioni":0},{"data":"2026-07-24","impressioni":81,"interazioni":6},{"data":"2026-07-25","impressioni":20,"interazioni":0},{"data":"2026-07-26","impressioni":14,"interazioni":0},{"data":"2026-07-27","impressioni":156,"interazioni":5},{"data":"2026-07-28","impressioni":20,"interazioni":1}],"follower_giornalieri":[{"data":"2026-07-21","nuovi":0},{"data":"2026-07-22","nuovi":0},{"data":"2026-07-23","nuovi":2},{"data":"2026-07-24","nuovi":1},{"data":"2026-07-25","nuovi":0},{"data":"2026-07-26","nuovi":0},{"data":"2026-07-27","nuovi":1},{"data":"2026-07-28","nuovi":0}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","interazioni":3,"impressioni":153},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI e PMI: trasformazione digitale (non documentato nel piano)","interazioni":6,"impressioni":140},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI Strategy per le PMI (non documentato nel piano)","interazioni":4,"impressioni":109},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza Artificiale e PMI: strategia (non documentato nel piano)","interazioni":6,"impressioni":108},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","interazioni":2,"impressioni":21},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","interazioni":0,"impressioni":19},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","interazioni":1,"impressioni":18},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","interazioni":0,"impressioni":7}],"demografici":{"aziende":[{"nome":"GrandVision Italy","percentuale":2},{"nome":"Gruppo Hera","percentuale":2}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Ferrara","percentuale":9},{"nome":"Milano","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":3},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":15},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"5.001-10.000 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":24},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"C-Level","percentuale":2}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":7},{"nome":"Servizi risorse umane","percentuale":7},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Sviluppo di software","percentuale":2}],"qualifiche":[{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Proprietario","percentuale":2},{"nome":"Addetto alla selezione del personale","percentuale":1},{"nome":"Responsabile di negozio","percentuale":1},{"nome":"Account manager","percentuale":1}]},"demografici_contenuti":{"aziende":[{"nome":"Saint-Gobain Italia","percentuale":2},{"nome":"TIM","percentuale":1},{"nome":"One Bill","percentuale":1},{"nome":"CINECA","percentuale":1}],"localita":[{"nome":"Bologna","percentuale":20},{"nome":"Milano","percentuale":18},{"nome":"Ravenna","percentuale":6},{"nome":"Ferrara","percentuale":5},{"nome":"Roma","percentuale":4},{"nome":"Torino","percentuale":4},{"nome":"Bari","percentuale":4},{"nome":"Pescara","percentuale":3},{"nome":"Modena","percentuale":2}],"dimensioni_azienda":[{"nome":"11-50 dipendenti","percentuale":15},{"nome":"51-200 dipendenti","percentuale":14},{"nome":"10.001+ dipendenti","percentuale":14},{"nome":"1.001-5.000 dipendenti","percentuale":14},{"nome":"2-10 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"201-500 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":5}],"anzianita":[{"nome":"Senior","percentuale":33},{"nome":"Livello base","percentuale":29},{"nome":"Amministratore","percentuale":15},{"nome":"Direttore","percentuale":8},{"nome":"C-Level","percentuale":3},{"nome":"Proprietario","percentuale":3}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":6},{"nome":"Telecomunicazioni","percentuale":5},{"nome":"Fabbricazione di macchinari industriali","percentuale":4},{"nome":"Servizi risorse umane","percentuale":4},{"nome":"Vendita al dettaglio","percentuale":4},{"nome":"Edilizia","percentuale":3},{"nome":"Fabbricazione di apparecchi elettrici","percentuale":3},{"nome":"Industria manifatturiera","percentuale":3},{"nome":"Servizi finanziari","percentuale":2}],"qualifiche":[{"nome":"Responsabile vendite","percentuale":3},{"nome":"Project Manager","percentuale":2},{"nome":"Account manager","percentuale":2},{"nome":"Proprietario","percentuale":1},{"nome":"Fondatore","percentuale":1},{"nome":"Co-fondatore","percentuale":1},{"nome":"Software Engineer","percentuale":1},{"nome":"Business Development","percentuale":1},{"nome":"Vendite","percentuale":1}]}},{"data_elaborazione":"2026-08-24","periodo_start":"2026-07-29","periodo_end":"2026-08-24","impressioni_totali":1100,"utenti_raggiunti":211,"utenti_raggiunti_nota":"Stima proporzionale: l'export copriva 29/7/2025-24/8/2026 (984 utenti raggiunti / 5122 impressioni = 19.2%), non il solo periodo 29/7-24/8/2026. Stima = impressioni del periodo x 19.2%.","follower_totali":467,"nuovi_follower_periodo":19,"tasso_engagement":2.91,"andamento_giornaliero":[{"data":"2026-07-29","impressioni":54,"interazioni":0},{"data":"2026-07-30","impressioni":17,"interazioni":0},{"data":"2026-07-31","impressioni":104,"interazioni":3},{"data":"2026-08-01","impressioni":18,"interazioni":0},{"data":"2026-08-02","impressioni":18,"interazioni":0},{"data":"2026-08-03","impressioni":298,"interazioni":11},{"data":"2026-08-04","impressioni":64,"interazioni":1},{"data":"2026-08-05","impressioni":84,"interazioni":5},{"data":"2026-08-06","impressioni":31,"interazioni":5},{"data":"2026-08-07","impressioni":68,"interazioni":1},{"data":"2026-08-08","impressioni":23,"interazioni":1},{"data":"2026-08-09","impressioni":12,"interazioni":0},{"data":"2026-08-10","impressioni":74,"interazioni":3},{"data":"2026-08-11","impressioni":11,"interazioni":0},{"data":"2026-08-12","impressioni":40,"interazioni":0},{"data":"2026-08-13","impressioni":5,"interazioni":0},{"data":"2026-08-14","impressioni":54,"interazioni":2},{"data":"2026-08-15","impressioni":23,"interazioni":0},{"data":"2026-08-16","impressioni":16,"interazioni":0},{"data":"2026-08-17","impressioni":8,"interazioni":0},{"data":"2026-08-18","impressioni":14,"interazioni":0},{"data":"2026-08-19","impressioni":24,"interazioni":0},{"data":"2026-08-20","impressioni":10,"interazioni":0},{"data":"2026-08-21","impressioni":11,"interazioni":0},{"data":"2026-08-22","impressioni":8,"interazioni":0},{"data":"2026-08-23","impressioni":4,"interazioni":0},{"data":"2026-08-24","impressioni":7,"interazioni":0}],"follower_giornalieri":[{"data":"2026-07-29","nuovi":2},{"data":"2026-07-30","nuovi":2},{"data":"2026-07-31","nuovi":0},{"data":"2026-08-01","nuovi":0},{"data":"2026-08-02","nuovi":2},{"data":"2026-08-03","nuovi":1},{"data":"2026-08-04","nuovi":2},{"data":"2026-08-05","nuovi":1},{"data":"2026-08-06","nuovi":0},{"data":"2026-08-07","nuovi":0},{"data":"2026-08-08","nuovi":0},{"data":"2026-08-09","nuovi":0},{"data":"2026-08-10","nuovi":1},{"data":"2026-08-11","nuovi":1},{"data":"2026-08-12","nuovi":0},{"data":"2026-08-13","nuovi":0},{"data":"2026-08-14","nuovi":0},{"data":"2026-08-15","nuovi":0},{"data":"2026-08-16","nuovi":2},{"data":"2026-08-17","nuovi":0},{"data":"2026-08-18","nuovi":1},{"data":"2026-08-19","nuovi":0},{"data":"2026-08-20","nuovi":1},{"data":"2026-08-21","nuovi":3},{"data":"2026-08-22","nuovi":0},{"data":"2026-08-23","nuovi":0},{"data":"2026-08-24","nuovi":0}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","interazioni":40,"impressioni":1374},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","interazioni":15,"impressioni":442},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","interazioni":8,"impressioni":407},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","interazioni":21,"impressioni":530},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","interazioni":6,"impressioni":367},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","interazioni":4,"impressioni":179},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","interazioni":6,"impressioni":136},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","interazioni":9,"impressioni":200},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI Strategy per le PMI (non documentato nel piano)","interazioni":4,"impressioni":129},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza Artificiale e PMI: strategia (non documentato nel piano)","interazioni":6,"impressioni":137},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI e PMI: trasformazione digitale (non documentato nel piano)","interazioni":7,"impressioni":218},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0","data":"2026-07-31","titolo_breve":"Intelligenza Artificiale e PMI: AI Strategy (non documentato nel piano)","interazioni":3,"impressioni":141},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b","data":"2026-08-03","titolo_breve":"AI Strategy e HR: trasformazione digitale (non documentato nel piano)","interazioni":16,"impressioni":399},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL","data":"2026-08-05","titolo_breve":"AI Strategy per le PMI: digital transformation (non documentato nel piano)","interazioni":5,"impressioni":95},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H","data":"2026-08-07","titolo_breve":"AI Strategy e PMI: digital transformation (non documentato nel piano)","interazioni":1,"impressioni":78},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB","data":"2026-08-10","titolo_breve":"AI Strategy, digital transformation e PMI (non documentato nel piano)","interazioni":3,"impressioni":94},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj","data":"2026-08-12","titolo_breve":"AI Strategy nella Pubblica Amministrazione (non documentato nel piano)","interazioni":1,"impressioni":62},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM","data":"2026-08-14","titolo_breve":"AI Strategy in ambito MedTech/Healthcare (non documentato nel piano)","interazioni":1,"impressioni":72}],"demografici":{"aziende":[{"nome":"Gruppo Hera","percentuale":2},{"nome":"GrandVision Italy","percentuale":1}],"localita":[{"nome":"Bologna","percentuale":32},{"nome":"Milano","percentuale":9},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":4},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":23},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":3}],"settori":[{"nome":"Servizi risorse umane","percentuale":8},{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":3},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Sviluppo di software","percentuale":2}],"qualifiche":[{"nome":"Fondatore","percentuale":2},{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Addetto alla selezione del personale","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Proprietario","percentuale":2},{"nome":"Responsabile di negozio","percentuale":1},{"nome":"Account manager","percentuale":1}]},"demografici_contenuti":{"aziende":[{"nome":"Saint-Gobain Italia","percentuale":1},{"nome":"TIM","percentuale":1},{"nome":"Dyson","percentuale":1}],"localita":[{"nome":"Milano","percentuale":19},{"nome":"Bologna","percentuale":18},{"nome":"Torino","percentuale":6},{"nome":"Ravenna","percentuale":5},{"nome":"Ferrara","percentuale":5},{"nome":"Roma","percentuale":4},{"nome":"Bari","percentuale":4},{"nome":"Pescara","percentuale":3},{"nome":"Modena","percentuale":2}],"dimensioni_azienda":[{"nome":"11-50 dipendenti","percentuale":15},{"nome":"51-200 dipendenti","percentuale":15},{"nome":"10.001+ dipendenti","percentuale":14},{"nome":"1.001-5.000 dipendenti","percentuale":13},{"nome":"2-10 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":8},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"5.001-10.000 dipendenti","percentuale":6}],"anzianita":[{"nome":"Senior","percentuale":33},{"nome":"Livello base","percentuale":30},{"nome":"Amministratore","percentuale":15},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":3},{"nome":"CXO","percentuale":2}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":6},{"nome":"Telecomunicazioni","percentuale":5},{"nome":"Fabbricazione di macchinari industriali","percentuale":4},{"nome":"Servizi risorse umane","percentuale":4},{"nome":"Vendita al dettaglio","percentuale":3},{"nome":"Edilizia","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Industria manifatturiera","percentuale":2}],"qualifiche":[{"nome":"Responsabile vendite","percentuale":3},{"nome":"Account manager","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Proprietario","percentuale":1},{"nome":"Fondatore","percentuale":1},{"nome":"Co-fondatore","percentuale":1},{"nome":"Business Development","percentuale":1}]}},{"data_elaborazione":"2026-09-15","periodo_start":"2026-08-25","periodo_end":"2026-09-15","impressioni_totali":340,"utenti_raggiunti":64,"utenti_raggiunti_nota":"Stima proporzionale: l'export copriva 12/8/2025 - 15/9/2026 (1032 utenti raggiunti / 5474 impressioni = 18.9%), non il solo periodo 25/08–15/09. Stima = impressioni del periodo x 18.9%.","follower_totali":473,"nuovi_follower_periodo":6,"tasso_engagement":2.06,"andamento_giornaliero":[{"data":"2026-08-25","impressioni":24,"interazioni":0},{"data":"2026-08-26","impressioni":5,"interazioni":0},{"data":"2026-08-27","impressioni":12,"interazioni":0},{"data":"2026-08-28","impressioni":10,"interazioni":0},{"data":"2026-08-29","impressioni":6,"interazioni":0},{"data":"2026-08-30","impressioni":7,"interazioni":0},{"data":"2026-08-31","impressioni":16,"interazioni":0},{"data":"2026-09-01","impressioni":9,"interazioni":0},{"data":"2026-09-02","impressioni":8,"interazioni":0},{"data":"2026-09-03","impressioni":6,"interazioni":0},{"data":"2026-09-04","impressioni":4,"interazioni":0},{"data":"2026-09-05","impressioni":1,"interazioni":0},{"data":"2026-09-06","impressioni":7,"interazioni":1},{"data":"2026-09-07","impressioni":13,"interazioni":0},{"data":"2026-09-08","impressioni":77,"interazioni":0},{"data":"2026-09-09","impressioni":18,"interazioni":0},{"data":"2026-09-10","impressioni":5,"interazioni":0},{"data":"2026-09-11","impressioni":34,"interazioni":0},{"data":"2026-09-12","impressioni":1,"interazioni":0},{"data":"2026-09-13","impressioni":0,"interazioni":0},{"data":"2026-09-14","impressioni":77,"interazioni":0},{"data":"2026-09-15","impressioni":0,"interazioni":6}],"follower_giornalieri":[{"data":"2026-08-25","nuovi":0},{"data":"2026-08-26","nuovi":2},{"data":"2026-08-27","nuovi":1},{"data":"2026-08-28","nuovi":1},{"data":"2026-08-29","nuovi":0},{"data":"2026-08-30","nuovi":0},{"data":"2026-08-31","nuovi":0},{"data":"2026-09-01","nuovi":1},{"data":"2026-09-02","nuovi":0},{"data":"2026-09-03","nuovi":0},{"data":"2026-09-04","nuovi":0},{"data":"2026-09-05","nuovi":0},{"data":"2026-09-06","nuovi":0},{"data":"2026-09-07","nuovi":1},{"data":"2026-09-08","nuovi":0},{"data":"2026-09-09","nuovi":0},{"data":"2026-09-10","nuovi":0},{"data":"2026-09-11","nuovi":0},{"data":"2026-09-12","nuovi":0},{"data":"2026-09-13","nuovi":0},{"data":"2026-09-14","nuovi":0},{"data":"2026-09-15","nuovi":0}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","interazioni":40,"impressioni":1530},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","interazioni":21,"impressioni":531},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","interazioni":15,"impressioni":444},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b","data":"2026-08-03","titolo_breve":"AI Strategy e HR: trasformazione digitale (non documentato nel piano)","interazioni":16,"impressioni":427},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","interazioni":8,"impressioni":413},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","interazioni":6,"impressioni":371},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI e PMI: trasformazione digitale (non documentato nel piano)","interazioni":7,"impressioni":220},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","interazioni":9,"impressioni":202},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","interazioni":4,"impressioni":181},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0","data":"2026-07-31","titolo_breve":"Intelligenza Artificiale e PMI: AI Strategy (non documentato nel piano)","interazioni":3,"impressioni":147},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza Artificiale e PMI: strategia (non documentato nel piano)","interazioni":6,"impressioni":139},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","interazioni":6,"impressioni":138},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM","data":"2026-08-14","titolo_breve":"AI Strategy in ambito MedTech/Healthcare (non documentato nel piano)","interazioni":2,"impressioni":134},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI Strategy per le PMI (non documentato nel piano)","interazioni":4,"impressioni":131},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj","data":"2026-08-12","titolo_breve":"AI Strategy nella Pubblica Amministrazione (non documentato nel piano)","interazioni":1,"impressioni":110},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB","data":"2026-08-10","titolo_breve":"AI Strategy, digital transformation e PMI (non documentato nel piano)","interazioni":3,"impressioni":104},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL","data":"2026-08-05","titolo_breve":"AI Strategy per le PMI: digital transformation (non documentato nel piano)","interazioni":5,"impressioni":100},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H","data":"2026-08-07","titolo_breve":"AI Strategy e PMI: digital transformation (non documentato nel piano)","interazioni":1,"impressioni":89}],"demografici":{"aziende":[{"nome":"Gruppo Hera","percentuale":2},{"nome":"GrandVision Italy","percentuale":1}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Milano","percentuale":9},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":4},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":2},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":24},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":2}],"qualifiche":[{"nome":"Fondatore","percentuale":2},{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Addetto alla selezione del personale","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Responsabile vendite","percentuale":1},{"nome":"Responsabile risorse umane","percentuale":1},{"nome":"Proprietario","percentuale":1},{"nome":"Responsabile di negozio","percentuale":1}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Servizi risorse umane","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Produzione di macchinari","percentuale":2}]},"demografici_contenuti":{"aziende":[{"nome":"Saint-Gobain Italia","percentuale":1},{"nome":"TIM","percentuale":1},{"nome":"Dyson","percentuale":1},{"nome":"Opera Navarra SpA","percentuale":0},{"nome":"CINECA","percentuale":0},{"nome":"One Team Group","percentuale":0},{"nome":"One Bill","percentuale":0},{"nome":"Applied - innovation makers","percentuale":0},{"nome":"CT PACK","percentuale":0}],"localita":[{"nome":"Milano","percentuale":20},{"nome":"Bologna","percentuale":17},{"nome":"Torino","percentuale":6},{"nome":"Ferrara","percentuale":5},{"nome":"Ravenna","percentuale":4},{"nome":"Bari","percentuale":4},{"nome":"Roma","percentuale":4},{"nome":"Pescara","percentuale":2},{"nome":"Bergamo","percentuale":2}],"dimensioni_azienda":[{"nome":"11-50 dipendenti","percentuale":15},{"nome":"51-200 dipendenti","percentuale":15},{"nome":"10.001+ dipendenti","percentuale":14},{"nome":"1.001-5.000 dipendenti","percentuale":13},{"nome":"2-10 dipendenti","percentuale":8},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":6}],"anzianita":[{"nome":"Senior","percentuale":34},{"nome":"Livello base","percentuale":30},{"nome":"Amministratore","percentuale":14},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":3},{"nome":"CXO","percentuale":3},{"nome":"Vicepresidente","percentuale":0}],"qualifiche":[{"nome":"Responsabile vendite","percentuale":3},{"nome":"Account manager","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":1},{"nome":"Amministratore delegato","percentuale":1},{"nome":"Vendite","percentuale":1},{"nome":"Proprietario","percentuale":1},{"nome":"Software Engineer","percentuale":1},{"nome":"Venditore","percentuale":1}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":6},{"nome":"Telecomunicazioni","percentuale":6},{"nome":"Servizi risorse umane","percentuale":4},{"nome":"Fabbricazione di macchinari industriali","percentuale":4},{"nome":"Vendita al dettaglio","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":3},{"nome":"Fabbricazione di apparecchi elettrici, materiali elettrici e componenti elettronici","percentuale":3},{"nome":"Industria manifatturiera","percentuale":2},{"nome":"Edilizia","percentuale":2}]}},{"data_elaborazione":"2026-09-16","periodo_start":"2025-09-17","periodo_end":"2026-09-16","impressioni_totali":6021,"utenti_raggiunti":1127,"follower_totali":473,"nuovi_follower_periodo":115,"tasso_engagement":2.81,"andamento_giornaliero":[{"data":"2026-06-08","impressioni":167,"interazioni":13},{"data":"2026-06-09","impressioni":496,"interazioni":18},{"data":"2026-06-10","impressioni":444,"interazioni":16},{"data":"2026-06-11","impressioni":121,"interazioni":1},{"data":"2026-06-12","impressioni":47,"interazioni":1},{"data":"2026-06-13","impressioni":29,"interazioni":0},{"data":"2026-06-14","impressioni":29,"interazioni":0},{"data":"2026-06-15","impressioni":48,"interazioni":0},{"data":"2026-06-16","impressioni":324,"interazioni":10},{"data":"2026-06-17","impressioni":137,"interazioni":1},{"data":"2026-06-18","impressioni":325,"interazioni":13},{"data":"2026-06-19","impressioni":97,"interazioni":1},{"data":"2026-06-20","impressioni":41,"interazioni":0},{"data":"2026-06-21","impressioni":24,"interazioni":1},{"data":"2026-06-22","impressioni":150,"interazioni":6},{"data":"2026-06-23","impressioni":80,"interazioni":1},{"data":"2026-06-24","impressioni":40,"interazioni":0},{"data":"2026-06-25","impressioni":64,"interazioni":2},{"data":"2026-06-26","impressioni":39,"interazioni":0},{"data":"2026-06-27","impressioni":18,"interazioni":0},{"data":"2026-06-28","impressioni":29,"interazioni":1},{"data":"2026-06-29","impressioni":35,"interazioni":0},{"data":"2026-06-30","impressioni":32,"interazioni":0},{"data":"2026-07-01","impressioni":38,"interazioni":1},{"data":"2026-07-02","impressioni":32,"interazioni":0},{"data":"2026-07-03","impressioni":14,"interazioni":0},{"data":"2026-07-04","impressioni":16,"interazioni":0},{"data":"2026-07-05","impressioni":12,"interazioni":2},{"data":"2026-07-06","impressioni":20,"interazioni":0},{"data":"2026-07-07","impressioni":16,"interazioni":0},{"data":"2026-07-08","impressioni":40,"interazioni":0},{"data":"2026-07-09","impressioni":33,"interazioni":0},{"data":"2026-07-10","impressioni":16,"interazioni":0},{"data":"2026-07-11","impressioni":7,"interazioni":0},{"data":"2026-07-12","impressioni":4,"interazioni":0},{"data":"2026-07-13","impressioni":5,"interazioni":0},{"data":"2026-07-14","impressioni":14,"interazioni":0},{"data":"2026-07-15","impressioni":105,"interazioni":4},{"data":"2026-07-16","impressioni":65,"interazioni":2},{"data":"2026-07-17","impressioni":84,"interazioni":2},{"data":"2026-07-18","impressioni":42,"interazioni":2},{"data":"2026-07-19","impressioni":6,"interazioni":0},{"data":"2026-07-20","impressioni":151,"interazioni":9},{"data":"2026-07-21","impressioni":31,"interazioni":0},{"data":"2026-07-22","impressioni":103,"interazioni":4},{"data":"2026-07-23","impressioni":26,"interazioni":0},{"data":"2026-07-24","impressioni":81,"interazioni":6},{"data":"2026-07-25","impressioni":20,"interazioni":0},{"data":"2026-07-26","impressioni":14,"interazioni":0},{"data":"2026-07-27","impressioni":156,"interazioni":5},{"data":"2026-07-28","impressioni":59,"interazioni":2},{"data":"2026-07-29","impressioni":54,"interazioni":0},{"data":"2026-07-30","impressioni":17,"interazioni":0},{"data":"2026-07-31","impressioni":104,"interazioni":3},{"data":"2026-08-01","impressioni":18,"interazioni":0},{"data":"2026-08-02","impressioni":18,"interazioni":0},{"data":"2026-08-03","impressioni":298,"interazioni":11},{"data":"2026-08-04","impressioni":64,"interazioni":1},{"data":"2026-08-05","impressioni":84,"interazioni":5},{"data":"2026-08-06","impressioni":31,"interazioni":5},{"data":"2026-08-07","impressioni":68,"interazioni":1},{"data":"2026-08-08","impressioni":23,"interazioni":1},{"data":"2026-08-09","impressioni":12,"interazioni":0},{"data":"2026-08-10","impressioni":74,"interazioni":3},{"data":"2026-08-11","impressioni":11,"interazioni":0},{"data":"2026-08-12","impressioni":40,"interazioni":0},{"data":"2026-08-13","impressioni":5,"interazioni":0},{"data":"2026-08-14","impressioni":54,"interazioni":2},{"data":"2026-08-15","impressioni":23,"interazioni":0},{"data":"2026-08-16","impressioni":16,"interazioni":0},{"data":"2026-08-17","impressioni":8,"interazioni":0},{"data":"2026-08-18","impressioni":14,"interazioni":0},{"data":"2026-08-19","impressioni":24,"interazioni":0},{"data":"2026-08-20","impressioni":10,"interazioni":0},{"data":"2026-08-21","impressioni":11,"interazioni":0},{"data":"2026-08-22","impressioni":8,"interazioni":0},{"data":"2026-08-23","impressioni":4,"interazioni":0},{"data":"2026-08-24","impressioni":15,"interazioni":0},{"data":"2026-08-25","impressioni":24,"interazioni":0},{"data":"2026-08-26","impressioni":5,"interazioni":0},{"data":"2026-08-27","impressioni":12,"interazioni":0},{"data":"2026-08-28","impressioni":10,"interazioni":0},{"data":"2026-08-29","impressioni":6,"interazioni":0},{"data":"2026-08-30","impressioni":7,"interazioni":0},{"data":"2026-08-31","impressioni":16,"interazioni":0},{"data":"2026-09-01","impressioni":9,"interazioni":0},{"data":"2026-09-02","impressioni":8,"interazioni":0},{"data":"2026-09-03","impressioni":6,"interazioni":0},{"data":"2026-09-04","impressioni":4,"interazioni":0},{"data":"2026-09-05","impressioni":1,"interazioni":0},{"data":"2026-09-06","impressioni":7,"interazioni":1},{"data":"2026-09-07","impressioni":13,"interazioni":0},{"data":"2026-09-08","impressioni":77,"interazioni":0},{"data":"2026-09-09","impressioni":18,"interazioni":0},{"data":"2026-09-10","impressioni":5,"interazioni":0},{"data":"2026-09-11","impressioni":34,"interazioni":0},{"data":"2026-09-12","impressioni":1,"interazioni":0},{"data":"2026-09-14","impressioni":81,"interazioni":0},{"data":"2026-09-15","impressioni":488,"interazioni":12},{"data":"2026-09-16","impressioni":55,"interazioni":0}],"follower_giornalieri":[{"data":"2025-09-19","nuovi":2},{"data":"2025-10-01","nuovi":1},{"data":"2025-10-12","nuovi":1},{"data":"2025-11-26","nuovi":1},{"data":"2026-01-14","nuovi":1},{"data":"2026-02-10","nuovi":1},{"data":"2026-02-25","nuovi":2},{"data":"2026-02-26","nuovi":2},{"data":"2026-03-02","nuovi":1},{"data":"2026-03-03","nuovi":1},{"data":"2026-03-12","nuovi":2},{"data":"2026-03-17","nuovi":5},{"data":"2026-03-23","nuovi":1},{"data":"2026-03-25","nuovi":1},{"data":"2026-04-23","nuovi":1},{"data":"2026-04-24","nuovi":1},{"data":"2026-04-27","nuovi":1},{"data":"2026-04-30","nuovi":1},{"data":"2026-05-05","nuovi":4},{"data":"2026-05-06","nuovi":1},{"data":"2026-05-07","nuovi":1},{"data":"2026-05-11","nuovi":2},{"data":"2026-05-12","nuovi":1},{"data":"2026-05-13","nuovi":1},{"data":"2026-05-15","nuovi":1},{"data":"2026-05-16","nuovi":1},{"data":"2026-05-20","nuovi":1},{"data":"2026-05-22","nuovi":2},{"data":"2026-05-25","nuovi":2},{"data":"2026-05-26","nuovi":3},{"data":"2026-05-28","nuovi":2},{"data":"2026-05-29","nuovi":2},{"data":"2026-05-30","nuovi":1},{"data":"2026-06-03","nuovi":3},{"data":"2026-06-07","nuovi":1},{"data":"2026-06-09","nuovi":3},{"data":"2026-06-10","nuovi":1},{"data":"2026-06-11","nuovi":1},{"data":"2026-06-12","nuovi":2},{"data":"2026-06-13","nuovi":1},{"data":"2026-06-15","nuovi":2},{"data":"2026-06-16","nuovi":3},{"data":"2026-06-17","nuovi":3},{"data":"2026-06-18","nuovi":2},{"data":"2026-06-19","nuovi":2},{"data":"2026-06-22","nuovi":1},{"data":"2026-06-24","nuovi":1},{"data":"2026-06-25","nuovi":1},{"data":"2026-06-26","nuovi":2},{"data":"2026-07-09","nuovi":2},{"data":"2026-07-13","nuovi":1},{"data":"2026-07-14","nuovi":2},{"data":"2026-07-23","nuovi":2},{"data":"2026-07-24","nuovi":1},{"data":"2026-07-27","nuovi":1},{"data":"2026-07-28","nuovi":1},{"data":"2026-07-29","nuovi":2},{"data":"2026-07-30","nuovi":2},{"data":"2026-08-02","nuovi":2},{"data":"2026-08-03","nuovi":1},{"data":"2026-08-04","nuovi":2},{"data":"2026-08-05","nuovi":1},{"data":"2026-08-10","nuovi":1},{"data":"2026-08-11","nuovi":1},{"data":"2026-08-16","nuovi":2},{"data":"2026-08-18","nuovi":1},{"data":"2026-08-20","nuovi":1},{"data":"2026-08-21","nuovi":3},{"data":"2026-08-26","nuovi":2},{"data":"2026-08-27","nuovi":1},{"data":"2026-08-28","nuovi":1},{"data":"2026-09-01","nuovi":1},{"data":"2026-09-07","nuovi":1}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","interazioni":40,"impressioni":1532},{"url":"https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv","data":"2026-09-15","titolo_breve":"HR & talent acquisition: AI nella digital transformation","interazioni":12,"impressioni":535},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","interazioni":21,"impressioni":531},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","interazioni":15,"impressioni":444},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b","data":"2026-08-03","titolo_breve":"AI Strategy e HR: trasformazione digitale (non documentato nel piano)","interazioni":16,"impressioni":427},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","interazioni":8,"impressioni":413},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","interazioni":6,"impressioni":371},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI e PMI: trasformazione digitale (non documentato nel piano)","interazioni":7,"impressioni":220},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","interazioni":9,"impressioni":202},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","interazioni":4,"impressioni":181},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0","data":"2026-07-31","titolo_breve":"Intelligenza Artificiale e PMI: AI Strategy (non documentato nel piano)","interazioni":3,"impressioni":147},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM","data":"2026-08-14","titolo_breve":"AI Strategy in ambito MedTech/Healthcare (non documentato nel piano)","interazioni":2,"impressioni":142},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza Artificiale e PMI: strategia (non documentato nel piano)","interazioni":6,"impressioni":139},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","interazioni":6,"impressioni":138},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI Strategy per le PMI (non documentato nel piano)","interazioni":4,"impressioni":131},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj","data":"2026-08-12","titolo_breve":"AI Strategy nella Pubblica Amministrazione (non documentato nel piano)","interazioni":1,"impressioni":112},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB","data":"2026-08-10","titolo_breve":"AI Strategy, digital transformation e PMI (non documentato nel piano)","interazioni":3,"impressioni":104},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL","data":"2026-08-05","titolo_breve":"AI Strategy per le PMI: digital transformation (non documentato nel piano)","interazioni":5,"impressioni":100},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H","data":"2026-08-07","titolo_breve":"AI Strategy e PMI: digital transformation (non documentato nel piano)","interazioni":1,"impressioni":89}],"demografici":{"aziende":[{"nome":"Gruppo Hera","percentuale":2},{"nome":"GrandVision Italy","percentuale":1}],"localita":[{"nome":"Bologna","percentuale":33},{"nome":"Milano","percentuale":9},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":4},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":2},{"nome":"Rimini","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":24},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":2}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Servizi risorse umane","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Produzione di macchinari","percentuale":2}],"qualifiche":[{"nome":"Fondatore","percentuale":2},{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Addetto alla selezione del personale","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Responsabile vendite","percentuale":1},{"nome":"Responsabile risorse umane","percentuale":1},{"nome":"Proprietario","percentuale":1},{"nome":"Responsabile di negozio","percentuale":1}]}},{"data_elaborazione":"2026-09-24","periodo_start":"2025-09-25","periodo_end":"2026-09-24","impressioni_totali":6372,"utenti_raggiunti":1216,"follower_totali":476,"nuovi_follower_periodo":116,"tasso_engagement":2.67,"andamento_giornaliero":[{"data":"2026-06-08","impressioni":167,"interazioni":13},{"data":"2026-06-09","impressioni":495,"interazioni":18},{"data":"2026-06-10","impressioni":444,"interazioni":16},{"data":"2026-06-11","impressioni":121,"interazioni":1},{"data":"2026-06-12","impressioni":47,"interazioni":1},{"data":"2026-06-13","impressioni":29,"interazioni":0},{"data":"2026-06-14","impressioni":29,"interazioni":0},{"data":"2026-06-15","impressioni":49,"interazioni":0},{"data":"2026-06-16","impressioni":321,"interazioni":10},{"data":"2026-06-17","impressioni":138,"interazioni":1},{"data":"2026-06-18","impressioni":325,"interazioni":13},{"data":"2026-06-19","impressioni":97,"interazioni":1},{"data":"2026-06-20","impressioni":41,"interazioni":0},{"data":"2026-06-21","impressioni":24,"interazioni":1},{"data":"2026-06-22","impressioni":150,"interazioni":6},{"data":"2026-06-23","impressioni":80,"interazioni":1},{"data":"2026-06-24","impressioni":40,"interazioni":0},{"data":"2026-06-25","impressioni":64,"interazioni":2},{"data":"2026-06-26","impressioni":39,"interazioni":0},{"data":"2026-06-27","impressioni":18,"interazioni":0},{"data":"2026-06-28","impressioni":29,"interazioni":1},{"data":"2026-06-29","impressioni":35,"interazioni":0},{"data":"2026-06-30","impressioni":32,"interazioni":0},{"data":"2026-07-01","impressioni":38,"interazioni":1},{"data":"2026-07-02","impressioni":32,"interazioni":0},{"data":"2026-07-03","impressioni":14,"interazioni":0},{"data":"2026-07-04","impressioni":16,"interazioni":0},{"data":"2026-07-05","impressioni":12,"interazioni":2},{"data":"2026-07-06","impressioni":20,"interazioni":0},{"data":"2026-07-07","impressioni":16,"interazioni":0},{"data":"2026-07-08","impressioni":40,"interazioni":0},{"data":"2026-07-09","impressioni":33,"interazioni":0},{"data":"2026-07-10","impressioni":16,"interazioni":0},{"data":"2026-07-11","impressioni":7,"interazioni":0},{"data":"2026-07-12","impressioni":4,"interazioni":0},{"data":"2026-07-13","impressioni":5,"interazioni":0},{"data":"2026-07-14","impressioni":14,"interazioni":0},{"data":"2026-07-15","impressioni":105,"interazioni":4},{"data":"2026-07-16","impressioni":65,"interazioni":2},{"data":"2026-07-17","impressioni":84,"interazioni":2},{"data":"2026-07-18","impressioni":42,"interazioni":2},{"data":"2026-07-19","impressioni":6,"interazioni":0},{"data":"2026-07-20","impressioni":151,"interazioni":9},{"data":"2026-07-21","impressioni":31,"interazioni":0},{"data":"2026-07-22","impressioni":103,"interazioni":4},{"data":"2026-07-23","impressioni":26,"interazioni":0},{"data":"2026-07-24","impressioni":81,"interazioni":6},{"data":"2026-07-25","impressioni":20,"interazioni":0},{"data":"2026-07-26","impressioni":14,"interazioni":0},{"data":"2026-07-27","impressioni":156,"interazioni":5},{"data":"2026-07-28","impressioni":59,"interazioni":2},{"data":"2026-07-29","impressioni":54,"interazioni":0},{"data":"2026-07-30","impressioni":17,"interazioni":0},{"data":"2026-07-31","impressioni":104,"interazioni":3},{"data":"2026-08-01","impressioni":18,"interazioni":0},{"data":"2026-08-02","impressioni":18,"interazioni":0},{"data":"2026-08-03","impressioni":298,"interazioni":11},{"data":"2026-08-04","impressioni":64,"interazioni":1},{"data":"2026-08-05","impressioni":84,"interazioni":5},{"data":"2026-08-06","impressioni":31,"interazioni":5},{"data":"2026-08-07","impressioni":68,"interazioni":1},{"data":"2026-08-08","impressioni":23,"interazioni":1},{"data":"2026-08-09","impressioni":12,"interazioni":0},{"data":"2026-08-10","impressioni":74,"interazioni":3},{"data":"2026-08-11","impressioni":11,"interazioni":0},{"data":"2026-08-12","impressioni":40,"interazioni":0},{"data":"2026-08-13","impressioni":5,"interazioni":0},{"data":"2026-08-14","impressioni":54,"interazioni":2},{"data":"2026-08-15","impressioni":23,"interazioni":0},{"data":"2026-08-16","impressioni":16,"interazioni":0},{"data":"2026-08-17","impressioni":8,"interazioni":0},{"data":"2026-08-18","impressioni":14,"interazioni":0},{"data":"2026-08-19","impressioni":24,"interazioni":0},{"data":"2026-08-20","impressioni":10,"interazioni":0},{"data":"2026-08-21","impressioni":11,"interazioni":0},{"data":"2026-08-22","impressioni":8,"interazioni":0},{"data":"2026-08-23","impressioni":4,"interazioni":0},{"data":"2026-08-24","impressioni":15,"interazioni":0},{"data":"2026-08-25","impressioni":24,"interazioni":0},{"data":"2026-08-26","impressioni":5,"interazioni":0},{"data":"2026-08-27","impressioni":12,"interazioni":0},{"data":"2026-08-28","impressioni":10,"interazioni":0},{"data":"2026-08-29","impressioni":6,"interazioni":0},{"data":"2026-08-30","impressioni":7,"interazioni":0},{"data":"2026-08-31","impressioni":16,"interazioni":0},{"data":"2026-09-01","impressioni":9,"interazioni":0},{"data":"2026-09-02","impressioni":8,"interazioni":0},{"data":"2026-09-03","impressioni":6,"interazioni":0},{"data":"2026-09-04","impressioni":4,"interazioni":0},{"data":"2026-09-05","impressioni":1,"interazioni":0},{"data":"2026-09-06","impressioni":7,"interazioni":1},{"data":"2026-09-07","impressioni":13,"interazioni":0},{"data":"2026-09-08","impressioni":77,"interazioni":0},{"data":"2026-09-09","impressioni":18,"interazioni":0},{"data":"2026-09-10","impressioni":5,"interazioni":0},{"data":"2026-09-11","impressioni":34,"interazioni":0},{"data":"2026-09-12","impressioni":1,"interazioni":0},{"data":"2026-09-14","impressioni":81,"interazioni":0},{"data":"2026-09-15","impressioni":488,"interazioni":12},{"data":"2026-09-16","impressioni":133,"interazioni":1},{"data":"2026-09-17","impressioni":66,"interazioni":0},{"data":"2026-09-18","impressioni":53,"interazioni":0},{"data":"2026-09-19","impressioni":18,"interazioni":0},{"data":"2026-09-20","impressioni":39,"interazioni":0},{"data":"2026-09-21","impressioni":35,"interazioni":0},{"data":"2026-09-22","impressioni":28,"interazioni":0},{"data":"2026-09-23","impressioni":19,"interazioni":0},{"data":"2026-09-24","impressioni":17,"interazioni":0}],"follower_giornalieri":[{"data":"2025-10-01","nuovi":1},{"data":"2025-10-12","nuovi":1},{"data":"2025-11-26","nuovi":1},{"data":"2026-01-14","nuovi":1},{"data":"2026-02-10","nuovi":1},{"data":"2026-02-25","nuovi":2},{"data":"2026-02-26","nuovi":2},{"data":"2026-03-02","nuovi":1},{"data":"2026-03-03","nuovi":1},{"data":"2026-03-12","nuovi":2},{"data":"2026-03-17","nuovi":5},{"data":"2026-03-23","nuovi":1},{"data":"2026-03-25","nuovi":1},{"data":"2026-04-23","nuovi":1},{"data":"2026-04-24","nuovi":1},{"data":"2026-04-27","nuovi":1},{"data":"2026-04-30","nuovi":1},{"data":"2026-05-05","nuovi":4},{"data":"2026-05-06","nuovi":1},{"data":"2026-05-07","nuovi":1},{"data":"2026-05-11","nuovi":2},{"data":"2026-05-12","nuovi":1},{"data":"2026-05-13","nuovi":1},{"data":"2026-05-15","nuovi":1},{"data":"2026-05-16","nuovi":1},{"data":"2026-05-20","nuovi":1},{"data":"2026-05-22","nuovi":2},{"data":"2026-05-25","nuovi":2},{"data":"2026-05-26","nuovi":3},{"data":"2026-05-28","nuovi":2},{"data":"2026-05-29","nuovi":2},{"data":"2026-05-30","nuovi":1},{"data":"2026-06-03","nuovi":3},{"data":"2026-06-07","nuovi":1},{"data":"2026-06-09","nuovi":3},{"data":"2026-06-10","nuovi":1},{"data":"2026-06-11","nuovi":1},{"data":"2026-06-12","nuovi":2},{"data":"2026-06-13","nuovi":1},{"data":"2026-06-15","nuovi":2},{"data":"2026-06-16","nuovi":3},{"data":"2026-06-17","nuovi":3},{"data":"2026-06-18","nuovi":2},{"data":"2026-06-19","nuovi":2},{"data":"2026-06-22","nuovi":1},{"data":"2026-06-24","nuovi":1},{"data":"2026-06-25","nuovi":1},{"data":"2026-06-26","nuovi":2},{"data":"2026-07-09","nuovi":2},{"data":"2026-07-13","nuovi":1},{"data":"2026-07-14","nuovi":2},{"data":"2026-07-23","nuovi":2},{"data":"2026-07-24","nuovi":1},{"data":"2026-07-27","nuovi":1},{"data":"2026-07-28","nuovi":1},{"data":"2026-07-29","nuovi":2},{"data":"2026-07-30","nuovi":2},{"data":"2026-08-02","nuovi":2},{"data":"2026-08-03","nuovi":1},{"data":"2026-08-04","nuovi":2},{"data":"2026-08-05","nuovi":1},{"data":"2026-08-10","nuovi":1},{"data":"2026-08-11","nuovi":1},{"data":"2026-08-16","nuovi":2},{"data":"2026-08-18","nuovi":1},{"data":"2026-08-20","nuovi":1},{"data":"2026-08-21","nuovi":3},{"data":"2026-08-26","nuovi":2},{"data":"2026-08-27","nuovi":1},{"data":"2026-08-28","nuovi":1},{"data":"2026-09-01","nuovi":1},{"data":"2026-09-07","nuovi":1},{"data":"2026-09-17","nuovi":1},{"data":"2026-09-24","nuovi":2}],"post":[{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"Profilo ibrido ops+digital","interazioni":40,"impressioni":1547},{"url":"https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv","data":"2026-09-15","titolo_breve":"HR & talent acquisition: AI nella digital transformation","interazioni":13,"impressioni":833},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"Master Digital Restart (TalentGarden)","interazioni":21,"impressioni":532},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Strumenti digitali (n8n/Tableau/AI)","interazioni":15,"impressioni":444},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b","data":"2026-08-03","titolo_breve":"AI Strategy e HR: trasformazione digitale","interazioni":16,"impressioni":427},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"PwC Digital Trends 2026 (89% manager)","interazioni":8,"impressioni":410},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"ML Manutenzione Predittiva","interazioni":6,"impressioni":372},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI e PMI: trasformazione digitale","interazioni":7,"impressioni":220},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"PMI: 76% non useranno AI nei prossimi anni","interazioni":9,"impressioni":202},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"Costo energia industriale Italia vs Europa (+23%)","interazioni":4,"impressioni":181},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM","data":"2026-08-14","titolo_breve":"AI Strategy in ambito MedTech/Healthcare","interazioni":2,"impressioni":177},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0","data":"2026-07-31","titolo_breve":"Intelligenza Artificiale e PMI: AI Strategy","interazioni":3,"impressioni":147},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza Artificiale e PMI: strategia","interazioni":6,"impressioni":139},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"51% aziende italiane AI: profili ibridi richiesti","interazioni":6,"impressioni":138},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI Strategy per le PMI","interazioni":4,"impressioni":131},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj","data":"2026-08-12","titolo_breve":"AI Strategy nella Pubblica Amministrazione","interazioni":1,"impressioni":112},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB","data":"2026-08-10","titolo_breve":"AI Strategy, digital transformation e PMI","interazioni":3,"impressioni":104},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL","data":"2026-08-05","titolo_breve":"AI Strategy per le PMI: digital transformation","interazioni":5,"impressioni":100},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H","data":"2026-08-07","titolo_breve":"AI Strategy e PMI: digital transformation","interazioni":1,"impressioni":93}],"demografici":{"aziende":[{"nome":"Gruppo Hera","percentuale":2},{"nome":"GrandVision Italy","percentuale":1}],"localita":[{"nome":"Bologna","percentuale":32},{"nome":"Milano","percentuale":9},{"nome":"Ferrara","percentuale":9},{"nome":"Ravenna","percentuale":6},{"nome":"Torino","percentuale":4},{"nome":"Bari","percentuale":3},{"nome":"Roma","percentuale":3},{"nome":"Modena","percentuale":3},{"nome":"Rimini","percentuale":2},{"nome":"Firenze","percentuale":2}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":14},{"nome":"51-200 dipendenti","percentuale":12},{"nome":"2-10 dipendenti","percentuale":10},{"nome":"10.001+ dipendenti","percentuale":9},{"nome":"201-500 dipendenti","percentuale":7},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":7}],"anzianita":[{"nome":"Senior","percentuale":40},{"nome":"Livello base","percentuale":23},{"nome":"Amministratore","percentuale":10},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":4},{"nome":"CXO","percentuale":2}],"qualifiche":[{"nome":"Fondatore","percentuale":2},{"nome":"Risorse umane","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Amministratore delegato","percentuale":2},{"nome":"Addetto alla selezione del personale","percentuale":2},{"nome":"Proprietario","percentuale":1},{"nome":"Responsabile vendite","percentuale":1},{"nome":"Responsabile risorse umane","percentuale":1},{"nome":"Responsabile di negozio","percentuale":1}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Servizi risorse umane","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Vendita al dettaglio","percentuale":7},{"nome":"Servizi finanziari","percentuale":3},{"nome":"Servizi pubblicitari","percentuale":3},{"nome":"Fabbricazione di macchinari industriali","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":2},{"nome":"Selezione e ricerca di personale","percentuale":2},{"nome":"Sviluppo di software","percentuale":2}]},"demografici_contenuti":{"aziende":[{"nome":"Dyson","percentuale":1},{"nome":"Saint-Gobain Italia","percentuale":1},{"nome":"TIM","percentuale":1},{"nome":"CINECA","percentuale":0},{"nome":"Opera Navarra SpA","percentuale":0},{"nome":"One Bill","percentuale":0},{"nome":"EY","percentuale":0},{"nome":"One Team Group","percentuale":0},{"nome":"Alfio Bardolla Training Group","percentuale":0}],"localita":[{"nome":"Milano","percentuale":20},{"nome":"Bologna","percentuale":16},{"nome":"Torino","percentuale":6},{"nome":"Bari","percentuale":5},{"nome":"Ravenna","percentuale":4},{"nome":"Ferrara","percentuale":4},{"nome":"Roma","percentuale":4},{"nome":"Pescara","percentuale":3},{"nome":"Modena","percentuale":2}],"dimensioni_azienda":[{"nome":"51-200 dipendenti","percentuale":16},{"nome":"11-50 dipendenti","percentuale":15},{"nome":"1.001-5.000 dipendenti","percentuale":14},{"nome":"10.001+ dipendenti","percentuale":14},{"nome":"2-10 dipendenti","percentuale":8},{"nome":"201-500 dipendenti","percentuale":8},{"nome":"501-1.000 dipendenti","percentuale":7},{"nome":"5.001-10.000 dipendenti","percentuale":5}],"anzianita":[{"nome":"Senior","percentuale":34},{"nome":"Livello base","percentuale":30},{"nome":"Amministratore","percentuale":14},{"nome":"Direttore","percentuale":8},{"nome":"Proprietario","percentuale":3},{"nome":"CXO","percentuale":3},{"nome":"Vicepresidente","percentuale":1}],"qualifiche":[{"nome":"Responsabile vendite","percentuale":2},{"nome":"Account manager","percentuale":2},{"nome":"Project Manager","percentuale":2},{"nome":"Fondatore","percentuale":1},{"nome":"Vendite","percentuale":1},{"nome":"Addetto alla selezione del personale","percentuale":1},{"nome":"Risorse umane","percentuale":1},{"nome":"Amministratore delegato","percentuale":1}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":8},{"nome":"Consulenza e servizi aziendali","percentuale":7},{"nome":"Telecomunicazioni","percentuale":5},{"nome":"Servizi risorse umane","percentuale":5},{"nome":"Fabbricazione di macchinari industriali","percentuale":4},{"nome":"Vendita al dettaglio","percentuale":3},{"nome":"Fabbricazione di apparecchi elettrici, materiali elettrici e componenti elettronici","percentuale":3},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":3},{"nome":"Edilizia","percentuale":2},{"nome":"Industria manifatturiera","percentuale":2}]}}];
+// ============================================================
+// DATI STATICI
+// ============================================================
+const globalSeries = {
+  giorni: [
+    {data:"2026-06-08",impressioni:167,interazioni:13},
+    {data:"2026-06-09",impressioni:495,interazioni:18},
+    {data:"2026-06-10",impressioni:444,interazioni:16},
+    {data:"2026-06-11",impressioni:121,interazioni:1},
+    {data:"2026-06-12",impressioni:47,interazioni:1},
+    {data:"2026-06-13",impressioni:29,interazioni:0},
+    {data:"2026-06-14",impressioni:29,interazioni:0},
+    {data:"2026-06-15",impressioni:49,interazioni:0},
+    {data:"2026-06-16",impressioni:321,interazioni:10},
+    {data:"2026-06-17",impressioni:138,interazioni:1},
+    {data:"2026-06-18",impressioni:325,interazioni:13},
+    {data:"2026-06-19",impressioni:97,interazioni:1},
+    {data:"2026-06-20",impressioni:41,interazioni:0},
+    {data:"2026-06-21",impressioni:24,interazioni:1},
+    {data:"2026-06-22",impressioni:150,interazioni:6},
+    {data:"2026-06-23",impressioni:80,interazioni:1},
+    {data:"2026-06-24",impressioni:40,interazioni:0},
+    {data:"2026-06-25",impressioni:64,interazioni:2},
+    {data:"2026-06-26",impressioni:39,interazioni:0},
+    {data:"2026-06-27",impressioni:18,interazioni:0},
+    {data:"2026-06-28",impressioni:29,interazioni:1},
+    {data:"2026-06-29",impressioni:35,interazioni:0},
+    {data:"2026-06-30",impressioni:32,interazioni:0},
+    {data:"2026-07-01",impressioni:38,interazioni:1},
+    {data:"2026-07-02",impressioni:32,interazioni:0},
+    {data:"2026-07-03",impressioni:14,interazioni:0},
+    {data:"2026-07-04",impressioni:16,interazioni:0},
+    {data:"2026-07-05",impressioni:12,interazioni:2},
+    {data:"2026-07-06",impressioni:20,interazioni:0},
+    {data:"2026-07-07",impressioni:16,interazioni:0},
+    {data:"2026-07-08",impressioni:40,interazioni:0},
+    {data:"2026-07-09",impressioni:33,interazioni:0},
+    {data:"2026-07-10",impressioni:16,interazioni:0},
+    {data:"2026-07-11",impressioni:7,interazioni:0},
+    {data:"2026-07-12",impressioni:4,interazioni:0},
+    {data:"2026-07-13",impressioni:5,interazioni:0},
+    {data:"2026-07-14",impressioni:14,interazioni:0},
+    {data:"2026-07-15",impressioni:105,interazioni:4},
+    {data:"2026-07-16",impressioni:65,interazioni:2},
+    {data:"2026-07-17",impressioni:84,interazioni:2},
+    {data:"2026-07-18",impressioni:42,interazioni:2},
+    {data:"2026-07-19",impressioni:6,interazioni:0},
+    {data:"2026-07-20",impressioni:151,interazioni:9},
+    {data:"2026-07-21",impressioni:31,interazioni:0},
+    {data:"2026-07-22",impressioni:103,interazioni:4},
+    {data:"2026-07-23",impressioni:26,interazioni:0},
+    {data:"2026-07-24",impressioni:81,interazioni:6},
+    {data:"2026-07-25",impressioni:20,interazioni:0},
+    {data:"2026-07-26",impressioni:14,interazioni:0},
+    {data:"2026-07-27",impressioni:156,interazioni:5},
+    {data:"2026-07-28",impressioni:59,interazioni:2},
+    {data:"2026-07-29",impressioni:54,interazioni:0},
+    {data:"2026-07-30",impressioni:17,interazioni:0},
+    {data:"2026-07-31",impressioni:104,interazioni:3},
+    {data:"2026-08-01",impressioni:18,interazioni:0},
+    {data:"2026-08-02",impressioni:18,interazioni:0},
+    {data:"2026-08-03",impressioni:298,interazioni:11},
+    {data:"2026-08-04",impressioni:64,interazioni:1},
+    {data:"2026-08-05",impressioni:84,interazioni:5},
+    {data:"2026-08-06",impressioni:31,interazioni:5},
+    {data:"2026-08-07",impressioni:68,interazioni:1},
+    {data:"2026-08-08",impressioni:23,interazioni:1},
+    {data:"2026-08-09",impressioni:12,interazioni:0},
+    {data:"2026-08-10",impressioni:74,interazioni:3},
+    {data:"2026-08-11",impressioni:11,interazioni:0},
+    {data:"2026-08-12",impressioni:40,interazioni:0},
+    {data:"2026-08-13",impressioni:5,interazioni:0},
+    {data:"2026-08-14",impressioni:54,interazioni:2},
+    {data:"2026-08-15",impressioni:23,interazioni:0},
+    {data:"2026-08-16",impressioni:16,interazioni:0},
+    {data:"2026-08-17",impressioni:8,interazioni:0},
+    {data:"2026-08-18",impressioni:14,interazioni:0},
+    {data:"2026-08-19",impressioni:24,interazioni:0},
+    {data:"2026-08-20",impressioni:10,interazioni:0},
+    {data:"2026-08-21",impressioni:11,interazioni:0},
+    {data:"2026-08-22",impressioni:8,interazioni:0},
+    {data:"2026-08-23",impressioni:4,interazioni:0},
+    {data:"2026-08-24",impressioni:15,interazioni:0},
+    {data:"2026-08-25",impressioni:24,interazioni:0},
+    {data:"2026-08-26",impressioni:5,interazioni:0},
+    {data:"2026-08-27",impressioni:12,interazioni:0},
+    {data:"2026-08-28",impressioni:10,interazioni:0},
+    {data:"2026-08-29",impressioni:6,interazioni:0},
+    {data:"2026-08-30",impressioni:7,interazioni:0},
+    {data:"2026-08-31",impressioni:16,interazioni:0},
+    {data:"2026-09-01",impressioni:9,interazioni:0},
+    {data:"2026-09-02",impressioni:8,interazioni:0},
+    {data:"2026-09-03",impressioni:6,interazioni:0},
+    {data:"2026-09-04",impressioni:4,interazioni:0},
+    {data:"2026-09-05",impressioni:1,interazioni:0},
+    {data:"2026-09-06",impressioni:7,interazioni:1},
+    {data:"2026-09-07",impressioni:13,interazioni:0},
+    {data:"2026-09-08",impressioni:77,interazioni:0},
+    {data:"2026-09-09",impressioni:18,interazioni:0},
+    {data:"2026-09-10",impressioni:5,interazioni:0},
+    {data:"2026-09-11",impressioni:34,interazioni:0},
+    {data:"2026-09-12",impressioni:1,interazioni:0},
+    {data:"2026-09-14",impressioni:81,interazioni:0},
+    {data:"2026-09-15",impressioni:488,interazioni:12},
+    {data:"2026-09-16",impressioni:133,interazioni:1},
+    {data:"2026-09-17",impressioni:66,interazioni:0},
+    {data:"2026-09-18",impressioni:53,interazioni:0},
+    {data:"2026-09-19",impressioni:18,interazioni:0},
+    {data:"2026-09-20",impressioni:39,interazioni:0},
+    {data:"2026-09-21",impressioni:35,interazioni:0},
+    {data:"2026-09-22",impressioni:28,interazioni:0},
+    {data:"2026-09-23",impressioni:19,interazioni:0},
+    {data:"2026-09-24",impressioni:67,interazioni:3},
+    {data:"2026-09-25",impressioni:42,interazioni:1},
+    {data:"2026-09-26",impressioni:79,interazioni:0},
+    {data:"2026-09-27",impressioni:54,interazioni:0},
+    {data:"2026-09-28",impressioni:296,interazioni:6}
+  ]
+};
 
-// Costruisce serie giornaliera globale senza duplicati (dato più recente vince)
-function buildGlobalSeries() {
-  const byDate = {};
-  const follByDate = {};
-  STORICO.forEach(entry => {
-    (entry.andamento_giornaliero || []).forEach(d => {
-      byDate[d.data] = d; // sovrascrive con il più recente (array ordinato per data_elaborazione)
-    });
-    (entry.follower_giornalieri || []).forEach(d => {
-      follByDate[d.data] = d;
-    });
-  });
-  const giorni = Object.values(byDate).sort((a,b) => a.data.localeCompare(b.data));
-  const follower = Object.values(follByDate).sort((a,b) => a.data.localeCompare(b.data));
-  return { giorni, follower };
+const allPosts = [
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", data:"2026-06-08", titolo_breve:"Profilo ibrido ops+digital", interazioni:40, impressioni:1551},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv", data:"2026-09-15", titolo_breve:"HR & talent acquisition: AI nella digital transformation", interazioni:17, impressioni:1094},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", data:"2026-06-18", titolo_breve:"Master Digital Restart (TalentGarden)", interazioni:21, impressioni:532},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", data:"2026-06-10", titolo_breve:"Strumenti digitali (n8n/Tableau/AI)", interazioni:15, impressioni:444},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b", data:"2026-08-03", titolo_breve:"AI Strategy e HR: trasformazione digitale", interazioni:16, impressioni:427},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", data:"2026-06-16", titolo_breve:"PwC Digital Trends 2026 (89% manager)", interazioni:8, impressioni:410},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", data:"2026-06-22", titolo_breve:"ML Manutenzione Predittiva", interazioni:6, impressioni:372},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA", data:"2026-09-28", titolo_breve:"8 tecnici, un CRM che non parlava con il gestionale", interazioni:6, impressioni:249},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1", data:"2026-07-27", titolo_breve:"AI e PMI: trasformazione digitale", interazioni:7, impressioni:220},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc", data:"2026-07-20", titolo_breve:"PMI: 76% non useranno AI nei prossimi anni", interazioni:9, impressioni:202},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM", data:"2026-08-14", titolo_breve:"AI Strategy in ambito MedTech/Healthcare", interazioni:2, impressioni:184},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5", data:"2026-07-15", titolo_breve:"Costo energia industriale Italia vs Europa (+23%)", interazioni:4, impressioni:181},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0", data:"2026-07-31", titolo_breve:"Intelligenza Artificiale e PMI: AI Strategy", interazioni:3, impressioni:147},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi", data:"2026-07-24", titolo_breve:"Intelligenza Artificiale e PMI: strategia", interazioni:6, impressioni:139},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9", data:"2026-07-17", titolo_breve:"51% aziende italiane AI: profili ibridi richiesti", interazioni:6, impressioni:138},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm", data:"2026-07-22", titolo_breve:"AI Strategy per le PMI", interazioni:4, impressioni:131},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj", data:"2026-08-12", titolo_breve:"AI Strategy nella Pubblica Amministrazione", interazioni:1, impressioni:112},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB", data:"2026-08-10", titolo_breve:"AI Strategy, digital transformation e PMI", interazioni:3, impressioni:104},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL", data:"2026-08-05", titolo_breve:"AI Strategy per le PMI: digital transformation", interazioni:5, impressioni:100},
+  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H", data:"2026-08-07", titolo_breve:"AI Strategy e PMI: digital transformation", interazioni:1, impressioni:93}
+];
+
+const allFollower = [
+  {data:"2025-10-01",nuovi:1},{data:"2025-10-12",nuovi:1},{data:"2025-11-26",nuovi:1},
+  {data:"2026-01-14",nuovi:1},{data:"2026-02-10",nuovi:1},{data:"2026-02-25",nuovi:2},
+  {data:"2026-02-26",nuovi:2},{data:"2026-03-02",nuovi:1},{data:"2026-03-03",nuovi:1},
+  {data:"2026-03-12",nuovi:2},{data:"2026-03-17",nuovi:5},{data:"2026-03-23",nuovi:1},
+  {data:"2026-03-25",nuovi:1},{data:"2026-04-23",nuovi:1},{data:"2026-04-24",nuovi:1},
+  {data:"2026-04-27",nuovi:1},{data:"2026-04-30",nuovi:1},{data:"2026-05-05",nuovi:4},
+  {data:"2026-05-06",nuovi:1},{data:"2026-05-07",nuovi:1},{data:"2026-05-11",nuovi:2},
+  {data:"2026-05-12",nuovi:1},{data:"2026-05-13",nuovi:1},{data:"2026-05-15",nuovi:1},
+  {data:"2026-05-16",nuovi:1},{data:"2026-05-20",nuovi:1},{data:"2026-05-22",nuovi:2},
+  {data:"2026-05-25",nuovi:2},{data:"2026-05-26",nuovi:3},{data:"2026-05-28",nuovi:2},
+  {data:"2026-05-29",nuovi:2},{data:"2026-05-30",nuovi:1},{data:"2026-06-03",nuovi:3},
+  {data:"2026-06-07",nuovi:1},{data:"2026-06-09",nuovi:3},{data:"2026-06-10",nuovi:1},
+  {data:"2026-06-11",nuovi:1},{data:"2026-06-12",nuovi:2},{data:"2026-06-13",nuovi:1},
+  {data:"2026-06-15",nuovi:2},{data:"2026-06-16",nuovi:3},{data:"2026-06-17",nuovi:3},
+  {data:"2026-06-18",nuovi:2},{data:"2026-06-19",nuovi:2},{data:"2026-06-22",nuovi:1},
+  {data:"2026-06-24",nuovi:1},{data:"2026-06-25",nuovi:1},{data:"2026-06-26",nuovi:2},
+  {data:"2026-07-09",nuovi:2},{data:"2026-07-13",nuovi:1},{data:"2026-07-14",nuovi:2},
+  {data:"2026-07-23",nuovi:2},{data:"2026-07-24",nuovi:1},{data:"2026-07-27",nuovi:1},
+  {data:"2026-07-28",nuovi:1},{data:"2026-07-29",nuovi:2},{data:"2026-07-30",nuovi:2},
+  {data:"2026-08-02",nuovi:2},{data:"2026-08-03",nuovi:1},{data:"2026-08-04",nuovi:2},
+  {data:"2026-08-05",nuovi:1},{data:"2026-08-10",nuovi:1},{data:"2026-08-11",nuovi:1},
+  {data:"2026-08-16",nuovi:2},{data:"2026-08-18",nuovi:1},{data:"2026-08-20",nuovi:1},
+  {data:"2026-08-21",nuovi:3},{data:"2026-08-26",nuovi:2},{data:"2026-08-27",nuovi:1},
+  {data:"2026-08-28",nuovi:1},{data:"2026-09-01",nuovi:1},{data:"2026-09-07",nuovi:1},
+  {data:"2026-09-17",nuovi:1},{data:"2026-09-24",nuovi:2},{data:"2026-09-26",nuovi:1}
+];
+
+const storicoEntries = [
+  {data_elaborazione:"2026-06-23",periodo_start:"2026-03-26",periodo_end:"2026-06-23",impressioni_totali:2557,utenti_raggiunti:695,follower_totali:435,nuovi_follower_periodo:54,tasso_engagement:3.21},
+  {data_elaborazione:"2026-07-01",periodo_start:"2026-06-23",periodo_end:"2026-07-01",impressioni_totali:375,utenti_raggiunti:150,follower_totali:439,nuovi_follower_periodo:4,tasso_engagement:1.33},
+  {data_elaborazione:"2026-07-20",periodo_start:"2026-07-02",periodo_end:"2026-07-20",impressioni_totali:682,utenti_raggiunti:155,follower_totali:444,nuovi_follower_periodo:5,tasso_engagement:3.08},
+  {data_elaborazione:"2026-07-28",periodo_start:"2026-07-21",periodo_end:"2026-07-28",impressioni_totali:451,utenti_raggiunti:95,follower_totali:448,nuovi_follower_periodo:4,tasso_engagement:3.55},
+  {data_elaborazione:"2026-08-24",periodo_start:"2026-07-29",periodo_end:"2026-08-24",impressioni_totali:1100,utenti_raggiunti:211,follower_totali:467,nuovi_follower_periodo:19,tasso_engagement:2.91},
+  {data_elaborazione:"2026-09-15",periodo_start:"2026-08-25",periodo_end:"2026-09-15",impressioni_totali:340,utenti_raggiunti:64,follower_totali:473,nuovi_follower_periodo:6,tasso_engagement:2.06},
+  {data_elaborazione:"2026-09-16",periodo_start:"2025-09-17",periodo_end:"2026-09-16",impressioni_totali:5891,utenti_raggiunti:1073,follower_totali:473,nuovi_follower_periodo:107,tasso_engagement:2.64},
+  {data_elaborazione:"2026-09-24",periodo_start:"2025-09-25",periodo_end:"2026-09-24",impressioni_totali:6372,utenti_raggiunti:1216,follower_totali:476,nuovi_follower_periodo:116,tasso_engagement:2.67},
+  {data_elaborazione:"2026-09-28",periodo_start:"2026-09-25",periodo_end:"2026-09-28",impressioni_totali:471,utenti_raggiunti:200,follower_totali:476,nuovi_follower_periodo:1,tasso_engagement:1.49}
+];
+
+const demograficiContenuti = {
+  settori: [
+    {nome:"Servizi IT e consulenza IT",percentuale:9},
+    {nome:"Consulenza e servizi aziendali",percentuale:7},
+    {nome:"Telecomunicazioni",percentuale:5},
+    {nome:"Servizi risorse umane",percentuale:5},
+    {nome:"Fabbricazione macchinari industriali",percentuale:3},
+    {nome:"Vendita al dettaglio",percentuale:3},
+    {nome:"Trasporti, logistica, supply chain",percentuale:3},
+    {nome:"Servizi pubblicitari",percentuale:2},
+    {nome:"Industria manifatturiera",percentuale:2}
+  ],
+  localitaAudience: [
+    {nome:"Bologna",percentuale:32},{nome:"Milano",percentuale:9},{nome:"Ferrara",percentuale:9},
+    {nome:"Ravenna",percentuale:6},{nome:"Torino",percentuale:4},{nome:"Bari",percentuale:3},
+    {nome:"Roma",percentuale:3},{nome:"Modena",percentuale:3},{nome:"Rimini",percentuale:2},{nome:"Firenze",percentuale:2}
+  ],
+  localitaContenuti: [
+    {nome:"Milano",percentuale:20},{nome:"Bologna",percentuale:16},{nome:"Torino",percentuale:6},
+    {nome:"Bari",percentuale:6},{nome:"Roma",percentuale:4},{nome:"Ferrara",percentuale:4},
+    {nome:"Ravenna",percentuale:4},{nome:"Pescara",percentuale:3},{nome:"Modena",percentuale:2}
+  ],
+  anzianita: [
+    {nome:"Senior",percentuale:34},{nome:"Livello base",percentuale:30},
+    {nome:"Amministratore",percentuale:14},{nome:"Direttore",percentuale:8},
+    {nome:"Proprietario",percentuale:3},{nome:"CXO",percentuale:3},{nome:"Vicepresidente",percentuale:1}
+  ]
+};
+
+// ============================================================
+// STATO FILTRI
+// ============================================================
+let activeFilter = 'all';
+let searchKeyword = '';
+let chartGiornaliero = null;
+let chartFollower = null;
+
+function parseDate(s) { return new Date(s); }
+
+function fmtDate(s) {
+  const [y,m,d] = s.split('-');
+  return d+'/'+m;
 }
 
-// Raccolta post unici da tutto lo storico (per url, prende il più recente)
-function buildAllPosts() {
-  const byUrl = {};
-  STORICO.forEach(entry => {
-    (entry.post || []).forEach(p => {
-      if (!byUrl[p.url] || entry.data_elaborazione > byUrl[p.url]._entry) {
-        byUrl[p.url] = { ...p, _entry: entry.data_elaborazione };
-      }
-    });
-  });
-  return Object.values(byUrl).sort((a,b) => b.impressioni - a.impressioni);
+function filterGiorni(days) {
+  if (days === 'all') return globalSeries.giorni;
+  const cutoff = new Date('2026-09-28');
+  cutoff.setDate(cutoff.getDate() - days + 1);
+  return globalSeries.giorni.filter(g => parseDate(g.data) >= cutoff);
 }
 
-function dateAddDays(iso, n) {
-  const d = new Date(iso);
-  d.setDate(d.getDate() + n);
-  return d.toISOString().slice(0,10);
+function filterPosts(days, kw) {
+  let posts = [...allPosts];
+  if (days !== 'all') {
+    const cutoff = new Date('2026-09-28');
+    cutoff.setDate(cutoff.getDate() - days + 1);
+    posts = posts.filter(p => parseDate(p.data) >= cutoff);
+  }
+  if (kw) {
+    const q = kw.toLowerCase();
+    posts = posts.filter(p => p.titolo_breve.toLowerCase().includes(q));
+  }
+  return posts;
 }
 
-function today() { return '2026-09-16'; }
-
-function filterDate(iso, days) {
-  if (!days) return true;
-  const cutoff = dateAddDays(today(), -days);
-  return iso >= cutoff;
+function filterFollower(days) {
+  if (days === 'all') return allFollower;
+  const cutoff = new Date('2026-09-28');
+  cutoff.setDate(cutoff.getDate() - days + 1);
+  return allFollower.filter(f => parseDate(f.data) >= cutoff);
 }
 
-function fmtDate(iso) {
-  if (!iso) return '';
-  const [y,m,d] = iso.split('-');
-  return `${d}/${m}/${y}`;
+// ============================================================
+// KPI
+// ============================================================
+function updateKPI(days) {
+  const giorni = filterGiorni(days);
+  const totImp = giorni.reduce((s,g) => s+g.impressioni, 0);
+  const totInt = giorni.reduce((s,g) => s+g.interazioni, 0);
+  const eng = totImp > 0 ? (totInt/totImp*100).toFixed(2) : '0.00';
+  const posts = filterPosts(days, '');
+  document.getElementById('kpiImpressions').textContent = totImp.toLocaleString('it-IT');
+  document.getElementById('kpiPosts').textContent = posts.length;
+  document.getElementById('kpiEngagement').textContent = eng + '%';
+  if (days === 'all') {
+    document.getElementById('kpiReach').textContent = '1.416';
+  } else {
+    const est = Math.round(totImp * 0.21);
+    document.getElementById('kpiReach').textContent = est.toLocaleString('it-IT') + '*';
+  }
 }
 
-function fmtLabel(iso) {
-  if (!iso) return '';
-  const parts = iso.split('-');
-  return parts[2] + '/' + parts[1];
-}
+// ============================================================
+// GRAFICO GIORNALIERO
+// ============================================================
+function buildChartGiornaliero(days) {
+  const giorni = filterGiorni(days);
+  const labels = giorni.map(g => fmtDate(g.data));
+  const imp = giorni.map(g => g.impressioni);
+  const int = giorni.map(g => g.interazioni);
 
-function fmtN(n) {
-  if (n >= 1000) return (n/1000).toFixed(1).replace('.0','') + 'k';
-  return n.toString();
-}
-
-const globalSeries = buildGlobalSeries();
-const allPosts = buildAllPosts();
-
-// Ultimo entry per dati demografici
-const lastEntry = STORICO[STORICO.length - 1];
-
-// Charts
-let chartG = null, chartF = null;
-
-function buildChartGiornaliero(giorni) {
-  const labels = giorni.map(d => fmtLabel(d.data));
-  const imp = giorni.map(d => d.impressioni);
-  const inter = giorni.map(d => d.interazioni);
-
+  if (chartGiornaliero) chartGiornaliero.destroy();
   const ctx = document.getElementById('chartGiornaliero').getContext('2d');
-  if (chartG) chartG.destroy();
-  chartG = new Chart(ctx, {
+  chartGiornaliero = new Chart(ctx, {
     data: {
       labels,
       datasets: [
         {
-          type: 'bar',
-          label: 'Impressioni',
-          data: imp,
-          backgroundColor: 'rgba(79,70,229,0.5)',
-          borderColor: 'rgba(79,70,229,0.8)',
-          borderWidth: 1,
-          yAxisID: 'y1',
-          order: 2
+          type: 'bar', label: 'Impressioni', data: imp,
+          backgroundColor: 'rgba(79,70,229,0.6)', borderColor: '#4f46e5', borderWidth: 0,
+          yAxisID: 'y'
         },
         {
-          type: 'line',
-          label: 'Interazioni',
-          data: inter,
-          borderColor: '#06b6d4',
-          backgroundColor: 'rgba(6,182,212,0.1)',
-          borderWidth: 2,
-          pointRadius: 3,
-          tension: 0.3,
-          yAxisID: 'y2',
-          order: 1
+          type: 'line', label: 'Interazioni', data: int,
+          borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)',
+          borderWidth: 2, pointRadius: 2, tension: 0.3, yAxisID: 'y1', fill: false
         }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { mode: 'index', intersect: false },
-      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 12 } } } },
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } }, tooltip: { mode: 'index', intersect: false } },
       scales: {
-        x: { ticks: { color: '#64748b', maxTicksLimit: 20 }, grid: { color: 'rgba(255,255,255,0.05)' } },
-        y1: { type: 'linear', position: 'left', ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
-        y2: { type: 'linear', position: 'right', ticks: { color: '#06b6d4' }, grid: { drawOnChartArea: false } }
+        x: { ticks: { color: '#64748b', font: { size: 10 }, maxRotation: 45, maxTicksLimit: 20 }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { position: 'left', ticks: { color: '#94a3b8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
+        y1: { position: 'right', ticks: { color: '#06b6d4', font: { size: 11 } }, grid: { display: false } }
       }
     }
   });
 }
 
-function buildChartFollower(follower) {
-  const labels = follower.map(d => fmtLabel(d.data));
-  const nuovi = follower.map(d => d.nuovi);
+// ============================================================
+// POST PRINCIPALI
+// ============================================================
+const LABELS = ['A','B','C','D','E','F','G','H','I','J'];
+function buildPostList(days, kw) {
+  const posts = filterPosts(days, kw).slice(0, 5);
+  const maxImp = posts.length ? posts[0].impressioni : 1;
+  const container = document.getElementById('postList');
+  container.innerHTML = '';
+  if (!posts.length) {
+    container.innerHTML = '<div style="color:var(--text3);padding:16px">Nessun post trovato per i filtri selezionati.</div>';
+    return;
+  }
+  posts.forEach((p, i) => {
+    const pct = Math.round((p.impressioni / maxImp) * 100);
+    const eng = p.impressioni > 0 ? (p.interazioni/p.impressioni*100).toFixed(2) : '0.00';
+    const item = document.createElement('div');
+    item.className = 'post-item';
+    item.innerHTML = `
+      <div class="post-header">
+        <span class="post-label">Post ${LABELS[i]}</span>
+        <span class="post-meta">${fmtDate(p.data)} &nbsp;|&nbsp; <a href="${p.url}" target="_blank" rel="noopener">↗ Link</a></span>
+      </div>
+      <div class="post-title">${p.titolo_breve}</div>
+      <div class="post-bar-wrap"><div class="post-bar" style="width:${pct}%"></div></div>
+      <div class="post-stats">
+        <span>👁 <span style="color:var(--text1);font-weight:600">${p.impressioni.toLocaleString('it-IT')}</span> impressioni</span>
+        <span>💬 <span>${p.interazioni}</span> interazioni</span>
+        <span>📊 <span>${eng}%</span> eng.</span>
+      </div>`;
+    container.appendChild(item);
+  });
+}
+
+// ============================================================
+// GRAFICO FOLLOWER
+// ============================================================
+function buildChartFollower(days) {
+  const foll = filterFollower(days);
+  const labels = foll.map(f => fmtDate(f.data));
+  const vals = foll.map(f => f.nuovi);
+
+  if (chartFollower) chartFollower.destroy();
   const ctx = document.getElementById('chartFollower').getContext('2d');
-  if (chartF) chartF.destroy();
-  chartF = new Chart(ctx, {
+  chartFollower = new Chart(ctx, {
     type: 'bar',
     data: {
       labels,
       datasets: [{
-        label: 'Nuovi follower',
-        data: nuovi,
-        backgroundColor: 'rgba(16,185,129,0.6)',
-        borderColor: '#10b981',
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: '#64748b', maxTicksLimit: 15 }, grid: { color: 'rgba(255,255,255,0.05)' } },
-        y: { ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.05)' } }
-      }
-    }
-  });
-}
-
-function buildChartAnzianita() {
-  const dem = lastEntry.demografici;
-  const labels = dem.anzianita.map(d => d.nome);
-  const data = dem.anzianita.map(d => d.percentuale);
-  const ctx = document.getElementById('chartAnzianita').getContext('2d');
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels,
-      datasets: [{
-        data,
-        backgroundColor: ['#4f46e5','#7c3aed','#06b6d4','#10b981','#f59e0b','#ef4444'],
-        borderColor: '#1e1e3a',
-        borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 11 }, padding: 8 } }
-      }
-    }
-  });
-}
-
-function buildDemBars(items, containerId, colorClass) {
-  const card = document.getElementById(containerId);
-  const max = items[0]?.percentuale || 1;
-  card.innerHTML = '<div class="chart-title">' + (containerId === 'settoriCard' ? 'Settori' : 'Località') + '</div>' +
-    items.slice(0,8).map(item => `
-      <div class="dem-bar-item">
-        <div class="dem-bar-label"><span>${item.nome}</span><span>${item.percentuale}%</span></div>
-        <div class="dem-bar-bg"><div class="dem-bar-fill ${colorClass}" style="width:${(item.percentuale/max*100).toFixed(1)}%"></div></div>
-      </div>
-    `).join('');
-}
-
-function buildStoricoGrid() {
-  const grid = document.getElementById('storicoGrid');
-  grid.innerHTML = STORICO.map(e => `
-    <div class="storico-entry">
-      <div class="periodo">${fmtDate(e.periodo_start)} → ${fmtDate(e.periodo_end)}</div>
-      <div class="imp">${fmtN(e.impressioni_totali)}</div>
-      <div class="sub">imp | ${e.follower_totali} follower | eng ${e.tasso_engagement}%</div>
-    </div>
-  `).join('');
-}
-
-function buildChartStorico() {
-  const ctx = document.getElementById('chartStorico').getContext('2d');
-  // Usa i dati dell'entry annuale per la curva
-  const annuale = STORICO.find(e => e.periodo_start === '2025-09-17' && e.periodo_end === '2026-09-16');
-  if (!annuale) return;
-  const giorni = (annuale.andamento_giornaliero || []);
-  const labels = giorni.map(d => fmtLabel(d.data));
-  const imp = giorni.map(d => d.impressioni);
-
-  // Marcatori post
-  const postDates = new Set((annuale.post || []).map(p => fmtLabel(p.data || '')));
-  const annotations = {};
-
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Impressioni',
-        data: imp,
-        borderColor: '#4f46e5',
-        backgroundColor: 'rgba(79,70,229,0.08)',
-        borderWidth: 2,
-        pointRadius: labels.map(l => postDates.has(l) ? 5 : 0),
-        pointBackgroundColor: '#06b6d4',
-        tension: 0.2,
-        fill: true
+        label: 'Nuovi follower', data: vals,
+        backgroundColor: 'rgba(6,182,212,0.6)', borderColor: '#06b6d4', borderWidth: 0
       }]
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+      plugins: { legend: { display: false }, tooltip: { callbacks: { title: ctx => 'Data: '+ctx[0].label } } },
       scales: {
-        x: { ticks: { color: '#64748b', maxTicksLimit: 20 }, grid: { color: 'rgba(255,255,255,0.05)' } },
-        y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+        x: { ticks: { color: '#64748b', font: { size: 10 }, maxRotation: 45, maxTicksLimit: 16 }, grid: { display: false } },
+        y: { ticks: { color: '#94a3b8', font: { size: 11 }, stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.04)' } }
       }
     }
   });
 }
 
-function updateDashboard(days) {
-  const gFiltrati = globalSeries.giorni.filter(d => filterDate(d.data, days));
-  const fFiltrati = globalSeries.follower.filter(d => filterDate(d.data, days));
-  const postFiltrati = allPosts.filter(p => filterDate(p.data || '', days));
+// ============================================================
+// DEMOGRAFICI
+// ============================================================
+const COLORS_SETTORI = ['#4f46e5','#6366f1','#818cf8','#06b6d4','#0891b2','#10b981','#059669','#f59e0b','#d97706'];
+const COLORS_DONUT = ['#4f46e5','#06b6d4','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899'];
 
-  // KPI
-  const impTot = gFiltrati.reduce((s,d) => s+d.impressioni, 0);
-  const interTot = gFiltrati.reduce((s,d) => s+d.interazioni, 0);
-  const eng = impTot > 0 ? (interTot/impTot*100).toFixed(2) : '0';
+function buildBarH(containerId, items, colors) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const max = items[0] ? items[0].percentuale : 1;
+  container.innerHTML = items.map((it, i) => `
+    <div class="bar-h-row">
+      <div class="bar-h-label" title="${it.nome}">${it.nome}</div>
+      <div class="bar-h-track">
+        <div class="bar-h-fill" style="width:${(it.percentuale/max*100)}%;background:${colors[i % colors.length]}"></div>
+      </div>
+      <div class="bar-h-val">${it.percentuale}%</div>
+    </div>`).join('');
+}
 
-  // Utenti raggiunti: usa l'entry più recente che copre il periodo
-  let utenti = '—';
-  const cutoff = days ? dateAddDays(today(), -days) : '2000-01-01';
-  for (let i = STORICO.length-1; i >= 0; i--) {
-    const e = STORICO[i];
-    if (e.periodo_end >= cutoff || !days) { utenti = e.utenti_raggiunti; break; }
+function buildDonut() {
+  const data = demograficiContenuti.anzianita;
+  const ctx = document.getElementById('chartAnzianita').getContext('2d');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: data.map(d => d.nome),
+      datasets: [{ data: data.map(d => d.percentuale), backgroundColor: COLORS_DONUT, borderWidth: 0, hoverOffset: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '65%',
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' '+ctx.label+': '+ctx.parsed+'%' } } }
+    }
+  });
+  const leg = document.getElementById('anzianitaLegend');
+  leg.innerHTML = data.map((d, i) => `
+    <div class="donut-leg-row">
+      <div class="donut-dot" style="background:${COLORS_DONUT[i]}"></div>
+      <span>${d.nome} <span style="color:var(--text1);font-weight:500">${d.percentuale}%</span></span>
+    </div>`).join('');
+}
+
+// ============================================================
+// STORICO TABLE
+// ============================================================
+function buildStoricoTable() {
+  const tbody = document.getElementById('storicoBody');
+  tbody.innerHTML = [...storicoEntries].reverse().map(e => `
+    <tr>
+      <td class="val">${e.data_elaborazione}</td>
+      <td>${e.periodo_start} → ${e.periodo_end}</td>
+      <td class="val">${e.impressioni_totali.toLocaleString('it-IT')}</td>
+      <td>${e.utenti_raggiunti.toLocaleString('it-IT')}</td>
+      <td class="val">${e.follower_totali}</td>
+      <td>+${e.nuovi_follower_periodo}</td>
+      <td class="val">${e.tasso_engagement}%</td>
+    </tr>`).join('');
+}
+
+// ============================================================
+// GRAFICO STORICO
+// ============================================================
+function buildChartStorico() {
+  const entries = storicoEntries;
+  const labels = entries.map(e => fmtDate(e.data_elaborazione));
+  const imp = entries.map(e => e.impressioni_totali);
+  const foll = entries.map(e => e.follower_totali);
+
+  const ctx = document.getElementById('chartStorico').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Impressioni', data: imp, borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.1)', borderWidth: 2, pointRadius: 4, tension: 0.3, fill: true, yAxisID: 'y' },
+        { label: 'Follower', data: foll, borderColor: '#06b6d4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 4, tension: 0.3, yAxisID: 'y1' }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } }, tooltip: { mode: 'index', intersect: false } },
+      scales: {
+        x: { ticks: { color: '#64748b', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { position: 'left', ticks: { color: '#94a3b8', font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v }, grid: { color: 'rgba(255,255,255,0.06)' } },
+        y1: { position: 'right', ticks: { color: '#06b6d4', font: { size: 11 } }, grid: { display: false } }
+      }
+    }
+  });
+}
+
+// ============================================================
+// GRAFICO CUMULATIVO (non filtrato)
+// ============================================================
+function buildChartCumulativo() {
+  const giorni = globalSeries.giorni;
+
+  function getWeekKey(iso) {
+    const d = new Date(iso);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    const mon = new Date(d);
+    mon.setDate(diff);
+    const dd = String(mon.getDate()).padStart(2,'0');
+    const mm = String(mon.getMonth()+1).padStart(2,'0');
+    return `${dd}/${mm}`;
   }
 
-  document.getElementById('kpiImp').textContent = fmtN(impTot);
-  document.getElementById('kpiImpSub').textContent = impTot.toLocaleString('it-IT');
-  document.getElementById('kpiUtenti').textContent = fmtN(utenti);
-  document.getElementById('kpiFollower').textContent = lastEntry.follower_totali;
-  document.getElementById('kpiPost').textContent = postFiltrati.length;
-  document.getElementById('kpiEng').textContent = eng + '%';
+  const weekMap = {};
+  giorni.forEach(g => {
+    const wk = getWeekKey(g.data);
+    weekMap[wk] = (weekMap[wk] || 0) + g.impressioni;
+  });
 
-  // Header
-  const start = gFiltrati[0]?.data || '—';
-  const end = gFiltrati[gFiltrati.length-1]?.data || '—';
-  document.getElementById('headerSub').textContent = `Periodo: ${fmtDate(start)} → ${fmtDate(end)} | Aggiornato: 16/09/2026`;
+  const weekPostCount = {};
+  allPosts.forEach(p => {
+    if (p.data) {
+      const wk = getWeekKey(p.data);
+      weekPostCount[wk] = (weekPostCount[wk] || 0) + 1;
+    }
+  });
 
-  buildChartGiornaliero(gFiltrati);
-  buildChartFollower(fFiltrati);
-  buildPostList(postFiltrati, '');
+  const weeks = Object.keys(weekMap).sort((a,b) => {
+    const [da,ma] = a.split('/'); const [db,mb] = b.split('/');
+    return (ma+da).localeCompare(mb+db);
+  });
+
+  let cum = 0;
+  const cumValues = weeks.map(w => { cum += weekMap[w]; return cum; });
+
+  const pointRadii = weeks.map(w => weekPostCount[w] ? (weekPostCount[w] > 1 ? 13 : 10) : 0);
+  const pointColors = weeks.map(w => weekPostCount[w] ? '#06b6d4' : '#4f46e5');
+  const pointBorderColors = weeks.map(w => weekPostCount[w] ? '#0e7490' : '#4f46e5');
+
+  const labelPlugin = {
+    id: 'postCountLabels',
+    afterDatasetDraw(chart) {
+      const { ctx } = chart;
+      const ds = chart.getDatasetMeta(0);
+      ds.data.forEach((point, i) => {
+        const count = weekPostCount[weeks[i]];
+        if (!count) return;
+        ctx.save();
+        ctx.font = 'bold 10px Segoe UI, system-ui, sans-serif';
+        ctx.fillStyle = '#0f172a';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(String(count), point.x, point.y);
+        ctx.restore();
+      });
+    }
+  };
+
+  const ctx = document.getElementById('chartCumulativo').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: weeks,
+      datasets: [{
+        label: 'Impressioni cumulative',
+        data: cumValues,
+        borderColor: '#4f46e5',
+        backgroundColor: 'rgba(79,70,229,0.07)',
+        borderWidth: 2,
+        pointRadius: pointRadii,
+        pointHoverRadius: pointRadii.map(r => r ? r + 2 : 0),
+        pointBackgroundColor: pointColors,
+        pointBorderColor: pointBorderColors,
+        pointBorderWidth: 1.5,
+        tension: 0.3,
+        fill: true
+      }]
+    },
+    plugins: [labelPlugin],
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: ctx => 'Settimana del ' + ctx[0].label,
+            label: ctx => ' Cumulativo: ' + ctx.parsed.y.toLocaleString('it-IT') + ' imp',
+            afterLabel: ctx => {
+              const c = weekPostCount[weeks[ctx.dataIndex]];
+              return c ? ` 📌 ${c} post pubblicat${c > 1 ? 'i' : 'o'}` : '';
+            }
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#64748b', font: { size: 11 }, maxRotation: 45, maxTicksLimit: 16 }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: {
+          ticks: { color: '#94a3b8', font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1).replace('.0','') + 'k' : v },
+          grid: { color: 'rgba(255,255,255,0.04)' }
+        }
+      }
+    }
+  });
 }
 
-const LETTERE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-function buildPostList(posts, query) {
-  const top5 = posts.slice(0, query ? 999 : 5);
-  const filtered = query ? top5.filter(p => (p.titolo_breve||'').toLowerCase().includes(query.toLowerCase()) || (p.url||'').toLowerCase().includes(query.toLowerCase())) : top5;
-  const maxImp = filtered[0]?.impressioni || 1;
-  const list = document.getElementById('postList');
-  list.innerHTML = filtered.map((p, i) => {
-    const pct = (p.impressioni / maxImp * 100).toFixed(1);
-    const engPct = p.impressioni > 0 ? (p.interazioni/p.impressioni*100).toFixed(2) : '0';
-    const engClass = engPct >= 4 ? 'eng-high' : engPct >= 2 ? 'eng-mid' : 'eng-low';
-    const titolo = p.titolo_breve || p.url.split('_')[1]?.slice(0,50) || '—';
-    return `
-      <div class="post-item">
-        <div class="post-header">
-          <div class="post-lettera">${LETTERE[i] || i+1}</div>
-          <a class="post-titolo" href="${p.url}" target="_blank">${titolo}</a>
-          <span class="post-data">${fmtDate(p.data)}</span>
-        </div>
-        <div class="post-bar-wrap">
-          <div class="post-bar-bg"><div class="post-bar-fill" style="width:${pct}%"></div></div>
-        </div>
-        <div class="post-stats">
-          <span>👁 ${p.impressioni.toLocaleString('it-IT')} imp</span>
-          <span>💬 ${p.interazioni} inter</span>
-          <span class="${engClass}">Eng ${engPct}%</span>
-        </div>
-      </div>
-    `;
-  }).join('') || '<p style="color:var(--text3);padding:16px">Nessun post trovato.</p>';
+// ============================================================
+// REFRESH COMPLETO (filtrato)
+// ============================================================
+function refresh(days, kw) {
+  updateKPI(days);
+  buildChartGiornaliero(days);
+  buildPostList(days, kw);
+  buildChartFollower(days);
 }
 
-// Init
-document.querySelectorAll('.filter-btn').forEach(btn => {
+// ============================================================
+// EVENTI FILTRI
+// ============================================================
+document.querySelectorAll('.btn-filter').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    const days = parseInt(btn.dataset.days);
-    updateDashboard(days);
+    activeFilter = btn.dataset.days === 'all' ? 'all' : parseInt(btn.dataset.days);
+    refresh(activeFilter, searchKeyword);
   });
 });
 
-document.getElementById('searchBox').addEventListener('input', function() {
-  const activeBtn = document.querySelector('.filter-btn.active');
-  const days = parseInt(activeBtn?.dataset.days || '0');
-  const postFiltrati = allPosts.filter(p => filterDate(p.data || '', days));
-  buildPostList(postFiltrati, this.value);
+document.getElementById('searchBox').addEventListener('input', e => {
+  searchKeyword = e.target.value.trim();
+  buildPostList(activeFilter, searchKeyword);
 });
 
-// Dati statici
-buildChartAnzianita();
-buildDemBars(lastEntry.demografici.settori, 'settoriCard', '');
-buildDemBars(lastEntry.demografici.localita, 'localitaCard', 'green');
-buildStoricoGrid();
-buildChartStorico();
+document.getElementById('resetBtn').addEventListener('click', () => {
+  activeFilter = 'all';
+  searchKeyword = '';
+  document.getElementById('searchBox').value = '';
+  document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+  document.querySelector('.btn-filter[data-days="all"]').classList.add('active');
+  refresh('all', '');
+});
 
-// Aggiornamento iniziale — Tutto
-updateDashboard(0);
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  refresh('all', '');
+  buildBarH('settoriChart', demograficiContenuti.settori, COLORS_SETTORI);
+  buildDonut();
+  buildBarH('localitaChart', demograficiContenuti.localitaAudience, COLORS_SETTORI);
+  buildBarH('localitaContenutiChart', demograficiContenuti.localitaContenuti, COLORS_SETTORI);
+  buildStoricoTable();
+  buildChartStorico();
+  buildChartCumulativo();
+});
 </script>
 </body>
 </html>
