@@ -3,726 +3,483 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinkedIn Analytics</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<title>LinkedIn Analytics — Alessandro Dardi</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
-  --bg: #0f0f1a;
-  --card: #16213e;
-  --card2: #1a2744;
-  --accent: #4f46e5;
-  --accent2: #6366f1;
-  --cyan: #06b6d4;
-  --text1: #e2e8f0;
+  --bg: #0f172a;
+  --bg2: #1e293b;
+  --bg3: #334155;
+  --text1: #f1f5f9;
   --text2: #94a3b8;
-  --text3: #64748b;
-  --border: #1e3a5f;
-  --green: #10b981;
+  --accent: #6366f1;
+  --accent2: #4f46e5;
+  --green: #4ade80;
+  --cyan: #06b6d4;
   --yellow: #f59e0b;
   --red: #ef4444;
+  --radius: 12px;
 }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { background: var(--bg); color: var(--text1); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
-a { color: var(--accent2); text-decoration: none; }
-a:hover { text-decoration: underline; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--text1); font-family:'Segoe UI',system-ui,sans-serif; font-size:15px; line-height:1.6; }
+a { color:var(--cyan); text-decoration:none; }
 
-.header {
-  background: linear-gradient(135deg, #0d1b3e 0%, #1a1a40 100%);
-  border-bottom: 1px solid var(--border);
-  padding: 24px 32px;
+/* FILTRI */
+#filtri-bar {
+  position:sticky; top:0; z-index:100;
+  background:rgba(15,23,42,0.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  padding:12px 20px;
+  display:flex; gap:12px; flex-wrap:wrap; align-items:center;
 }
-.header h1 { font-size: 24px; font-weight: 700; color: #fff; }
-.header .sub { color: var(--text2); margin-top: 4px; font-size: 13px; }
+.filter-btn {
+  background:var(--bg3); border:none; color:var(--text2);
+  padding:6px 14px; border-radius:20px; cursor:pointer; font-size:13px;
+  transition:all .2s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background:var(--accent); color:#fff;
+}
+#search-post {
+  background:var(--bg2); border:1px solid rgba(255,255,255,0.1);
+  color:var(--text1); padding:6px 14px; border-radius:20px;
+  font-size:13px; outline:none; min-width:180px;
+}
+#search-post:focus { border-color:var(--accent); }
 
-.filter-bar {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 32px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* HEADER */
+header {
+  text-align:center; padding:40px 20px 24px;
+  background:linear-gradient(180deg,rgba(99,102,241,.08) 0%,transparent 100%);
 }
-.filter-bar .label { color: var(--text3); font-size: 12px; white-space: nowrap; }
-.btn-filter {
-  background: var(--card2);
-  border: 1px solid var(--border);
-  color: var(--text2);
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: all 0.15s;
-}
-.btn-filter:hover { border-color: var(--accent); color: var(--text1); }
-.btn-filter.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.search-box {
-  background: var(--card2);
-  border: 1px solid var(--border);
-  color: var(--text1);
-  padding: 5px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  outline: none;
-  width: 160px;
-}
-.search-box:focus { border-color: var(--accent); }
-.search-box::placeholder { color: var(--text3); }
-.btn-reset {
-  background: transparent;
-  border: 1px solid var(--text3);
-  color: var(--text3);
-  padding: 5px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-left: 4px;
-}
-.btn-reset:hover { border-color: var(--text2); color: var(--text2); }
+header h1 { font-size:28px; font-weight:700; color:var(--text1); }
+header p { color:var(--text2); font-size:14px; margin-top:6px; }
 
-.main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
-.section { margin-bottom: 32px; }
-.section h2 { font-size: 16px; font-weight: 600; color: var(--text1); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+/* CONTAINER */
+.container { max-width:1200px; margin:0 auto; padding:0 16px 60px; }
 
-.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+/* SEZIONI */
+.section { margin-bottom:40px; }
+.section h2 { font-size:18px; font-weight:600; color:var(--text1); margin-bottom:16px; }
+
+/* KPI */
+.kpi-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:12px; }
 .kpi-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
+  background:var(--bg2); border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--radius); padding:18px 20px;
 }
-.kpi-card .kpi-label { color: var(--text2); font-size: 12px; margin-bottom: 8px; }
-.kpi-card .kpi-value { font-size: 28px; font-weight: 700; color: #fff; }
-.kpi-card .kpi-sub { color: var(--text3); font-size: 11px; margin-top: 4px; }
-.kpi-card.accent { border-left: 3px solid var(--accent); }
-.kpi-card.cyan { border-left: 3px solid var(--cyan); }
-.kpi-card.green { border-left: 3px solid var(--green); }
+.kpi-label { font-size:12px; color:var(--text2); text-transform:uppercase; letter-spacing:.05em; }
+.kpi-value { font-size:28px; font-weight:700; margin-top:4px; }
+.kpi-sub { font-size:12px; color:var(--text2); margin-top:2px; }
 
-.chart-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
+/* CARD generica */
+.card {
+  background:var(--bg2); border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--radius);
 }
-.chart-title { font-size: 13px; color: var(--text2); margin-bottom: 16px; font-weight: 500; }
-.chart-wrap { position: relative; }
 
-.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
-.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; align-items: start; }
+/* CHART */
+.chart-card { padding:20px; }
+.chart-title { font-size:14px; color:var(--text2); margin-bottom:12px; }
+.chart-wrap { position:relative; }
 
-.post-list { display: flex; flex-direction: column; gap: 10px; }
+/* POST */
 .post-item {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px;
+  display:flex; align-items:flex-start; gap:14px;
+  padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.05);
 }
-.post-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-.post-label { font-weight: 600; color: var(--accent2); font-size: 13px; }
-.post-meta { color: var(--text2); font-size: 12px; }
-.post-title { color: var(--text1); font-size: 13px; margin-bottom: 8px; }
-.post-bar-wrap { background: var(--card2); border-radius: 4px; height: 6px; }
-.post-bar { background: var(--accent); border-radius: 4px; height: 6px; transition: width 0.3s; }
-.post-stats { display: flex; gap: 16px; margin-top: 6px; font-size: 11px; color: var(--text3); }
-.post-stats span { color: var(--text2); }
+.post-item:last-child { border-bottom:none; }
+.post-label { font-size:20px; font-weight:700; color:var(--accent); min-width:32px; }
+.post-info { flex:1; min-width:0; }
+.post-title { font-size:14px; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.post-meta { font-size:12px; color:var(--text2); margin-top:2px; }
+.post-bar-wrap { width:100%; height:6px; background:rgba(255,255,255,0.07); border-radius:3px; margin-top:8px; }
+.post-bar { height:6px; border-radius:3px; background:linear-gradient(90deg,var(--accent),var(--cyan)); }
+.post-hidden { display:none; }
 
-.bar-chart-h { display: flex; flex-direction: column; gap: 8px; }
-.bar-h-row { display: flex; align-items: center; gap: 8px; }
-.bar-h-label { font-size: 11px; color: var(--text2); width: 180px; flex-shrink: 0; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bar-h-track { flex: 1; background: var(--card2); border-radius: 4px; height: 16px; position: relative; }
-.bar-h-fill { height: 16px; border-radius: 4px; transition: width 0.4s; }
-.bar-h-val { font-size: 11px; color: var(--text3); min-width: 30px; text-align: right; }
+/* DEMOGRAFICI */
+.demo-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media(max-width:700px) { .demo-grid { grid-template-columns:1fr; } }
+.demo-card { padding:18px 20px; }
+.bar-item { margin-bottom:10px; }
+.bar-label { display:flex; justify-content:space-between; font-size:13px; color:var(--text2); margin-bottom:4px; }
+.bar-track { height:6px; background:rgba(255,255,255,0.07); border-radius:3px; }
+.bar-fill { height:6px; border-radius:3px; }
 
-.storico-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.storico-table th { color: var(--text3); font-weight: 500; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
-.storico-table td { padding: 8px 12px; border-bottom: 1px solid rgba(30,58,95,0.4); color: var(--text2); }
-.storico-table tr:last-child td { border-bottom: none; }
-.storico-table tr:hover td { background: rgba(79,70,229,0.05); }
-.storico-table .val { color: var(--text1); font-weight: 500; }
+/* STORICO TABELLA */
+.storico-table { width:100%; border-collapse:collapse; font-size:13px; }
+.storico-table th { color:var(--text2); text-align:left; padding:8px 12px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.storico-table td { padding:8px 12px; border-bottom:1px solid rgba(255,255,255,0.04); }
+.storico-table tr:last-child td { border-bottom:none; }
 
-.analisi-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 24px;
-}
-.analisi-card h3 { font-size: 14px; font-weight: 600; color: var(--accent2); margin-bottom: 12px; margin-top: 20px; }
-.analisi-card h3:first-child { margin-top: 0; }
-.analisi-card p { color: var(--text2); font-size: 13px; margin-bottom: 8px; line-height: 1.7; }
-.analisi-card ul { color: var(--text2); font-size: 13px; padding-left: 20px; }
-.analisi-card li { margin-bottom: 6px; line-height: 1.7; }
-.analisi-card .highlight { color: var(--text1); font-weight: 500; }
-.analisi-card .tag { background: rgba(79,70,229,0.2); color: var(--accent2); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
-.analisi-card .tag-green { background: rgba(16,185,129,0.2); color: var(--green); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
-.analisi-card .tag-yellow { background: rgba(245,158,11,0.2); color: var(--yellow); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
-.post-analysis-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
-.post-analysis-table th { color: var(--text3); font-weight: 500; padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
-.post-analysis-table td { padding: 6px 10px; border-bottom: 1px solid rgba(30,58,95,0.4); color: var(--text2); }
-.post-analysis-table td:first-child { white-space: nowrap; }
+/* ANALISI */
+#analisi .card { background:var(--bg2); }
 
-.donut-wrap { display: flex; align-items: center; gap: 16px; }
-.donut-legend { flex: 1; display: flex; flex-direction: column; gap: 6px; }
-.donut-leg-row { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text2); }
-.donut-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-
-.azioni-list { counter-reset: azione; }
-.azione-item {
-  display: flex;
-  gap: 12px;
-  padding: 12px;
-  background: var(--card2);
-  border-radius: 8px;
-  margin-bottom: 8px;
-  border-left: 3px solid var(--accent);
-}
-.azione-num { background: var(--accent); color: #fff; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
-.azione-text { color: var(--text2); font-size: 13px; line-height: 1.6; }
-
-@media (max-width: 768px) {
-  .main { padding: 16px; }
-  .header { padding: 16px; }
-  .filter-bar { padding: 10px 16px; }
-  .two-col, .three-col { grid-template-columns: 1fr; }
-  .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .bar-h-label { width: 100px; }
-}
+/* 2-col layout */
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+@media(max-width:700px) { .two-col { grid-template-columns:1fr; } }
+.equal-height { align-items:start; }
 </style>
 </head>
 <body>
 
-<div class="header">
+<!-- FILTRI BAR -->
+<div id="filtri-bar">
+  <button class="filter-btn" onclick="setFilter(7)">7 giorni</button>
+  <button class="filter-btn" onclick="setFilter(14)">14 giorni</button>
+  <button class="filter-btn" onclick="setFilter(28)">28 giorni</button>
+  <button class="filter-btn" onclick="setFilter(90)">90 giorni</button>
+  <button class="filter-btn" onclick="setFilter(365)">365 giorni</button>
+  <button class="filter-btn active" onclick="setFilter(0)">Tutto</button>
+  <input id="search-post" type="text" placeholder="🔍 Cerca post..." oninput="filterPosts(this.value)">
+</div>
+
+<header>
   <h1>LinkedIn Analytics — Alessandro Dardi</h1>
-  <div class="sub">Periodo: 29/09/2025 – 28/09/2026 &nbsp;|&nbsp; Aggiornato: 28/09/2026</div>
-</div>
+  <p>Periodo: 2025-10-03 → 2026-10-02 &nbsp;·&nbsp; Aggiornato il 02/10/2026</p>
+</header>
 
-<div class="filter-bar">
-  <span class="label">Periodo:</span>
-  <button class="btn-filter" data-days="7">7g</button>
-  <button class="btn-filter" data-days="14">14g</button>
-  <button class="btn-filter" data-days="28">28g</button>
-  <button class="btn-filter" data-days="90">90g</button>
-  <button class="btn-filter" data-days="365">365g</button>
-  <button class="btn-filter active" data-days="all">Tutto</button>
-  <span class="label" style="margin-left:8px">Cerca post:</span>
-  <input type="text" class="search-box" id="searchBox" placeholder="es. AI, HR, manutenzione...">
-  <button class="btn-reset" id="resetBtn">✕ Elimina filtri</button>
-</div>
+<div class="container">
 
-<div class="main">
-
-<!-- KPI -->
-<div class="section">
-  <h2>KPI — Riepilogo periodo</h2>
-  <div class="kpi-grid">
-    <div class="kpi-card accent">
-      <div class="kpi-label">👁 Impressioni</div>
-      <div class="kpi-value" id="kpiImpressions">6.893</div>
-      <div class="kpi-sub">Periodo selezionato</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">👤 Utenti raggiunti</div>
-      <div class="kpi-value" id="kpiReach">1.416</div>
-      <div class="kpi-sub">Periodo selezionato</div>
-    </div>
-    <div class="kpi-card cyan">
-      <div class="kpi-label">👥 Follower</div>
-      <div class="kpi-value">476</div>
-      <div class="kpi-sub">Totale al 28/09/2026</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">📝 Post attivi</div>
-      <div class="kpi-value" id="kpiPosts">20</div>
-      <div class="kpi-sub">Con interazioni</div>
-    </div>
-    <div class="kpi-card green">
-      <div class="kpi-label">💬 Engagement</div>
-      <div class="kpi-value" id="kpiEngagement">2.74%</div>
-      <div class="kpi-sub">Int / Impressioni × 100</div>
+  <!-- KPI -->
+  <div class="section" id="kpi-section">
+    <div class="kpi-grid" id="kpi-grid">
+      <!-- popolato da JS -->
     </div>
   </div>
-</div>
 
-<!-- Andamento giornaliero -->
-<div class="section">
-  <h2>Andamento giornaliero</h2>
-  <div class="chart-card">
-    <div class="chart-title">Impressioni (barre) e Interazioni (linea)</div>
-    <div class="chart-wrap" style="height:280px">
-      <canvas id="chartGiornaliero" role="img" aria-label="Andamento giornaliero impressioni e interazioni"></canvas>
+  <!-- ANDAMENTO GIORNALIERO -->
+  <div class="section">
+    <h2>Andamento giornaliero</h2>
+    <div class="card chart-card">
+      <div class="chart-title">Impressioni (barre) + Interazioni (linea)</div>
+      <div class="chart-wrap" style="height:280px">
+        <canvas id="chartGiornaliero" role="img" aria-label="Andamento giornaliero impressioni e interazioni"></canvas>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Post principali -->
-<div class="section">
-  <h2>Post principali</h2>
-  <div class="post-list" id="postList"></div>
-</div>
+  <!-- POST PRINCIPALI -->
+  <div class="section">
+    <h2>Post principali</h2>
+    <div class="card" style="padding:16px 20px" id="post-list">
+      <!-- popolato da JS -->
+    </div>
+  </div>
 
-<!-- Follower + Demografici -->
-<div class="section">
-  <div class="two-col">
+  <!-- FOLLOWER + DEMOGRAFICI -->
+  <div class="section two-col equal-height">
     <div>
       <h2>Follower</h2>
-      <div class="chart-card" style="height:340px">
-        <div class="chart-title">Nuovi follower giornalieri &nbsp;|&nbsp; <span style="color:#fff;font-weight:600">476</span> totali</div>
-        <div class="chart-wrap" style="height:260px">
+      <div class="card chart-card" style="height:360px">
+        <div class="chart-title">Nuovi follower giornalieri &nbsp;·&nbsp; Totale: <strong id="follower-tot">476</strong></div>
+        <div class="chart-wrap" style="height:280px">
           <canvas id="chartFollower" role="img" aria-label="Nuovi follower giornalieri"></canvas>
         </div>
       </div>
     </div>
     <div>
-      <h2>Dati demografici</h2>
-      <div class="chart-card" style="height:340px;overflow-y:auto">
-        <div class="chart-title">Settori principali (contenuti)</div>
-        <div class="bar-chart-h" id="settoriChart" style="margin-bottom:16px"></div>
-        <div class="chart-title" style="margin-top:8px">Anzianità follower</div>
-        <div class="donut-wrap">
-          <div style="width:120px;height:120px;flex-shrink:0">
-            <canvas id="chartAnzianita"></canvas>
-          </div>
-          <div class="donut-legend" id="anzianitaLegend"></div>
+      <h2>Anzianità follower</h2>
+      <div class="card chart-card" style="height:360px;display:flex;flex-direction:column;justify-content:center">
+        <div class="chart-wrap" style="height:260px">
+          <canvas id="chartAnzianita" role="img" aria-label="Anzianità follower"></canvas>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Località -->
-<div class="section">
-  <div class="two-col">
-    <div class="chart-card">
-      <div class="chart-title">Località audience</div>
-      <div class="bar-chart-h" id="localitaChart"></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-title">Località contenuti</div>
-      <div class="bar-chart-h" id="localitaContenutiChart"></div>
+  <!-- SETTORI + LOCALITA -->
+  <div class="section">
+    <h2>Dati demografici</h2>
+    <div class="demo-grid">
+      <div class="card demo-card">
+        <div class="chart-title">Settori principali (audience)</div>
+        <div id="settori-bars"></div>
+      </div>
+      <div class="card demo-card">
+        <div class="chart-title">Località</div>
+        <div id="localita-bars"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Storico elaborazioni -->
-<div class="section">
-  <h2>Storico elaborazioni</h2>
-  <div class="chart-card">
-    <table class="storico-table">
+  <!-- STORICO -->
+  <div class="section">
+    <h2>Storico elaborazioni</h2>
+    <div class="card chart-card">
+      <div class="chart-wrap" style="height:260px">
+        <canvas id="chartStorico" role="img" aria-label="Storico impressioni e follower"></canvas>
+      </div>
+    </div>
+    <div class="card" style="margin-top:12px;overflow-x:auto">
+      <table class="storico-table">
+        <thead>
+          <tr>
+            <th>Elaborazione</th><th>Periodo</th><th>Impressioni</th>
+            <th>Utenti raggiunti</th><th>Follower</th><th>Engagement%</th>
+          </tr>
+        </thead>
+        <tbody id="storico-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- CUMULATIVO -->
+  <div class="section">
+    <h2>Crescita cumulativa impressioni</h2>
+    <div class="card chart-card">
+      <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+        <span>Andamento cumulativo — aggregato per settimana</span>
+        <span style="display:flex;gap:16px;font-size:12px;color:var(--text2);">
+          <span style="display:flex;align-items:center;gap:5px;">
+            <span style="width:18px;height:2px;background:#4f46e5;display:inline-block;border-radius:2px;"></span>
+            Impressioni cumulative
+          </span>
+          <span style="display:flex;align-items:center;gap:5px;">
+            <span style="width:9px;height:9px;border-radius:50%;background:#06b6d4;display:inline-block;"></span>
+            Post pubblicato
+          </span>
+        </span>
+      </div>
+      <div class="chart-wrap" style="height:300px">
+        <canvas id="chartCumulativo" role="img" aria-label="Grafico cumulativo delle impressioni LinkedIn, aggregato per settimana.">Crescita cumulativa impressioni LinkedIn.</canvas>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="section" id="analisi">
+  <h2>Analisi strategica</h2>
+  <div class="card" style="padding:24px 28px;line-height:1.7">
+
+    <h3 style="color:#a5b4fc;margin-bottom:12px">1. Analisi per post (periodo 03/10/2025 – 02/10/2026)</h3>
+
+    <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px">
       <thead>
-        <tr>
-          <th>Data elaborazione</th>
-          <th>Periodo</th>
-          <th>Impressioni</th>
-          <th>Utenti raggiunti</th>
-          <th>Follower</th>
-          <th>Nuovi follower</th>
-          <th>Engagement %</th>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);color:#64748b">
+          <th style="text-align:left;padding:8px 10px">Data</th>
+          <th style="text-align:left;padding:8px 10px">Titolo</th>
+          <th style="text-align:right;padding:8px 10px">Impr.</th>
+          <th style="text-align:right;padding:8px 10px">Inter.</th>
+          <th style="text-align:right;padding:8px 10px">Eng%</th>
+          <th style="text-align:left;padding:8px 10px">Note</th>
         </tr>
       </thead>
-      <tbody id="storicoBody"></tbody>
-    </table>
-  </div>
-</div>
-
-<!-- Grafico storico -->
-<div class="section">
-  <h2>Evoluzione storica — Impressioni e Follower</h2>
-  <div class="chart-card">
-    <div class="chart-title">Andamento nel tempo</div>
-    <div class="chart-wrap" style="height:260px">
-      <canvas id="chartStorico" role="img" aria-label="Evoluzione storica"></canvas>
-    </div>
-  </div>
-</div>
-
-<!-- Crescita cumulativa -->
-<div class="section">
-  <h2>Crescita cumulativa impressioni</h2>
-  <div class="chart-card">
-    <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-      <span>Andamento cumulativo — aggregato per settimana</span>
-      <span style="display:flex;gap:16px;font-size:12px;color:var(--text2);">
-        <span style="display:flex;align-items:center;gap:5px;">
-          <span style="width:18px;height:2px;background:#4f46e5;display:inline-block;border-radius:2px;"></span>
-          Impressioni cumulative
-        </span>
-        <span style="display:flex;align-items:center;gap:5px;">
-          <span style="width:9px;height:9px;border-radius:50%;background:#06b6d4;display:inline-block;"></span>
-          Post pubblicato
-        </span>
-      </span>
-    </div>
-    <div class="chart-wrap" style="height:300px">
-      <canvas id="chartCumulativo" role="img" aria-label="Grafico cumulativo delle impressioni LinkedIn, aggregato per settimana.">Crescita cumulativa impressioni LinkedIn.</canvas>
-    </div>
-  </div>
-</div>
-
-<!-- Analisi strategica -->
-<div class="section">
-  <h2>Analisi strategica</h2>
-  <div class="analisi-card">
-
-    <h3>Analisi dettagliata post del periodo recente (15/09 – 28/09/2026)</h3>
-
-    <p><span class="highlight">Post A — HR &amp; talent acquisition: AI nella digital transformation</span> (15/09/2026, lunedì)<br>
-    1.094 impressioni &nbsp;|&nbsp; 17 interazioni &nbsp;|&nbsp; engagement 1,55% &nbsp;|&nbsp; <span class="tag-green">Migliore engagement recente</span><br>
-    Post pubblicato lunedì mattina su un tema HR esplicito. Il fatto di citare direttamente "talent acquisition" e "AI nella selezione" ha attirato attenzione da HR e recruiter. È il secondo post per impressioni totali dello storico. La copertura è rimasta alta per 48 ore dopo la pubblicazione (133 imp il 16/09, 66 il 17/09), segnale che l'algoritmo lo ha spinto alla rete di secondo grado.</p>
-
-    <p><span class="highlight">Post B — 8 tecnici, un CRM che non parlava con il gestionale</span> (28/09/2026, domenica)<br>
-    249 impressioni &nbsp;|&nbsp; 6 interazioni &nbsp;|&nbsp; engagement 2,41% &nbsp;|&nbsp; <span class="tag-yellow">Primo giorno di vita</span><br>
-    Case study concreto con numeri reali (8 tecnici, problema specifico, integrazione CRM-ERP). Pubblicato domenica sera — avvio lento atteso, ma le 249 impressioni nel solo primo giorno indicano una buona distribuzione iniziale. Il formato narrativo "problema → soluzione → risultato" è quello che ha già funzionato per il post del 08/06 (1.551 imp cumulativi). Da monitorare nei prossimi 3-5 giorni.</p>
-
-    <table class="post-analysis-table">
-      <thead>
-        <tr><th>Data</th><th>Titolo</th><th>Impressioni</th><th>Interazioni</th><th>Eng %</th><th>Note</th></tr>
-      </thead>
       <tbody>
-        <tr><td>15/09/2026</td><td>HR &amp; talent acquisition: AI</td><td class="val">1.094</td><td>17</td><td>1,55%</td><td>Lun mattina — picco rapido</td></tr>
-        <tr><td>28/09/2026</td><td>8 tecnici, CRM vs gestionale</td><td class="val">249</td><td>6</td><td>2,41%</td><td>Dom sera — in crescita</td></tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">08/06</td>
+          <td style="padding:8px 10px">Profilo ibrido ops+digital</td>
+          <td style="padding:8px 10px;text-align:right;color:#4ade80;font-weight:600">1.555</td>
+          <td style="padding:8px 10px;text-align:right">40</td>
+          <td style="padding:8px 10px;text-align:right;color:#4ade80">2,57%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Best post dell'anno per impressioni. Hook autobiografico ("8 anni di ops+digital") — funziona perché si colloca esattamente all'incrocio tra operativo e digitale che i recruiter cercano.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">15/09</td>
+          <td style="padding:8px 10px">AI strategy, talent acquisition e HR</td>
+          <td style="padding:8px 10px;text-align:right;color:#a5b4fc;font-weight:600">1.139</td>
+          <td style="padding:8px 10px;text-align:right">17</td>
+          <td style="padding:8px 10px;text-align:right;color:#a5b4fc">1,49%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Secondo miglior post per impressioni. Targeting diretto su HR+AI: il picco di 488 imp il 15/09 conferma forte risonanza. L'hashtag #hr #talentacquisition ha chiaramente amplificato la distribuzione.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">28/09</td>
+          <td style="padding:8px 10px">8 tecnici, CRM e ops: caso reale</td>
+          <td style="padding:8px 10px;text-align:right;color:#f59e0b;font-weight:600">558</td>
+          <td style="padding:8px 10px;text-align:right">8</td>
+          <td style="padding:8px 10px;text-align:right;color:#f59e0b">1,43%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Caso concreto con numeri specifici (8 tecnici, CRM reale). Pubblicato domenica 28/09, genera 422 imp il giorno stesso — prova che il contenuto narrativo-operativo bypassa il fattore giorno.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">18/06</td>
+          <td style="padding:8px 10px">Master Digital Restart (TalentGarden)</td>
+          <td style="padding:8px 10px;text-align:right">532</td>
+          <td style="padding:8px 10px;text-align:right">21</td>
+          <td style="padding:8px 10px;text-align:right;color:#06b6d4;font-weight:600">3,95%</td>
+          <td style="padding:8px 10px;color:#94a3b8"><strong style="color:#06b6d4">Miglior engagement %</strong> dell'anno. Credenziale verificabile (Intesa Sanpaolo + TalentGarden) con outcome concreto. Genera fiducia sia in HR che nei pari.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">10/06</td>
+          <td style="padding:8px 10px">Strumenti digitali (n8n/Tableau/AI)</td>
+          <td style="padding:8px 10px;text-align:right">444</td>
+          <td style="padding:8px 10px;text-align:right">15</td>
+          <td style="padding:8px 10px;text-align:right">3,38%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Tool stack concreto (n8n, Tableau, AI) con logica "strumento giusto per ogni obiettivo". Risonanza alta tra profili digitali e operations.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">03/08</td>
+          <td style="padding:8px 10px">AI Strategy e HR</td>
+          <td style="padding:8px 10px;text-align:right">429</td>
+          <td style="padding:8px 10px;text-align:right">16</td>
+          <td style="padding:8px 10px;text-align:right">3,73%</td>
+          <td style="padding:8px 10px;color:#94a3b8">298 imp il giorno di pubblicazione (03/08, domenica d'agosto). Engagement 3.73% nonostante il periodo feriale — segnale che il topic AI+HR genera interesse indipendente dal timing.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">16/06</td>
+          <td style="padding:8px 10px">PwC Digital Trends 2026 (89% manager)</td>
+          <td style="padding:8px 10px;text-align:right">410</td>
+          <td style="padding:8px 10px;text-align:right">8</td>
+          <td style="padding:8px 10px;text-align:right">1,95%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Dato esterno commentato (PwC report). Funziona come amplificatore di credibilità ma genera meno interazioni dei post personali.</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.05)">
+          <td style="padding:8px 10px;color:#94a3b8">22/06</td>
+          <td style="padding:8px 10px">ML Manutenzione Predittiva</td>
+          <td style="padding:8px 10px;text-align:right">372</td>
+          <td style="padding:8px 10px;text-align:right">6</td>
+          <td style="padding:8px 10px;text-align:right">1,61%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Contenuto tecnico su ML applicato all'operations. Audience di nicchia ma qualificata.</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;color:#94a3b8">02/10</td>
+          <td style="padding:8px 10px">AI Act, governance e Shadow AI</td>
+          <td style="padding:8px 10px;text-align:right">185</td>
+          <td style="padding:8px 10px;text-align:right">5</td>
+          <td style="padding:8px 10px;text-align:right">2,70%</td>
+          <td style="padding:8px 10px;color:#94a3b8">Dati parziali (giorno stesso di elaborazione: solo 196 imp totale quel giorno). Troppo presto per valutarne il potenziale.</td>
+        </tr>
       </tbody>
     </table>
-
-    <h3>Visibilità HR/Risorse Umane — obiettivo prioritario</h3>
-
-    <p>La quota <span class="highlight">"Risorse umane"</span> nelle qualifiche dell'audience è stabile al <span class="highlight">2%</span> da giugno 2026. Nelle elaborazioni precedenti (giugno, luglio, agosto, settembre) il valore non è mai variato: è un plateau. I motivi sono due:</p>
-    <ul>
-      <li>Il profilo è ancora percepito come prevalentemente "operations/digital", non come candidato da seguire per decisioni HR</li>
-      <li>Solo 2 post su 20 citano esplicitamente HR o talent acquisition: la frequenza è troppo bassa per costruire un'associazione duratura nell'algoritmo</li>
-    </ul>
-    <p>Il post del 15/09 ha dimostrato che parlare direttamente di HR funziona (1.094 imp). La lezione: il contenuto HR non va scritto <em>per</em> HR ma deve contenere le parole chiave che un recruiter usa nel suo feed ("talent acquisition", "selezione", "onboarding", "HR tech").</p>
-
-    <h3>Pattern di giorni e orari di pubblicazione</h3>
-    <ul>
-      <li><span class="highlight">Lunedì:</span> migliore slot confermato. Il post del 15/09 (lunedì) = 1.094 imp picco in 24h. Il post del 03/08 (lunedì) = 298 imp il primo giorno</li>
-      <li><span class="highlight">Domenica sera:</span> avvio lento ma coda lunga. Il post del 08/06 (domenica) ha avuto 167 imp il primo giorno ma è arrivato a 1.551 cumulativi nel tempo</li>
-      <li><span class="highlight">Fascia 8-10 e 20-22:</span> i post con miglior distribuzione nelle prime ore sembrano essere quelli pubblicati nelle fasce lavorative del lunedì o tardo serale</li>
-      <li>Post di giovedì e venerdì (es. luglio-agosto) hanno avuto performance nella media bassa (100-160 imp): da evitare per contenuti ad alto impatto</li>
-    </ul>
-
-    <h3>Contenuto che funziona</h3>
-    <ul>
-      <li><span class="tag-green">Narrativo personale</span>: "ho 8 anni di esperienza..." (1.551 imp), "8 tecnici e un CRM..." (249 imp primo giorno e in crescita). La prima persona con un problema concreto batte qualsiasi statistica esterna</li>
-      <li><span class="tag-green">HR esplicito</span>: il post del 15/09 (1.094 imp) ha citato direttamente talent acquisition — unico post con quella angolazione nel periodo</li>
-      <li><span class="tag">AI applicata</span>: i post su AI Strategy (03/08: 427 imp) superano quelli puramente informativi. Funziona quando c'è una storia reale, non quando è solo divulgazione</li>
-      <li><span style="color:var(--red)">Non funziona:</span> serie di post concettuali su AI+PMI di luglio-agosto (100-140 imp ciascuno). Troppa frequenza su uno stesso tema senza angolo personale satura l'audience</li>
-    </ul>
-
-    <h3>Azioni consigliate</h3>
-    <div class="azioni-list">
-      <div class="azione-item">
-        <div class="azione-num">1</div>
-        <div class="azione-text"><strong>Attiva il post CRM nei commenti.</strong> Il post del 28/09 ha 249 imp nel primo giorno e 2,41% engagement: è sopra la media. Rispondi nei commenti nelle prossime 24 ore per mantenere l'algoritmo attivo — un'interazione extra nelle prime 48h può raddoppiare la copertura.</div>
-      </div>
-      <div class="azione-item">
-        <div class="azione-num">2</div>
-        <div class="azione-text"><strong>Secondo post biografico entro 2 settimane.</strong> Il formato "esperienza diretta + problema + risultato" è quello con il tasso di successo più alto (2 post su 2 hanno superato 1.000 imp cumulativi). Angolazione suggerita: "da responsabile manutenzione a digital transformation: 3 errori che rifarei".</div>
-      </div>
-      <div class="azione-item">
-        <div class="azione-num">3</div>
-        <div class="azione-text"><strong>Pubblica di lunedì mattina (8:00-9:30).</strong> I dati mostrano un picco di distribuzione il lunedì. Sposta le prossime 3 pubblicazioni al lunedì e confronta il dato di impressioni nelle prime 24h con il tuo storico domenicale.</div>
-      </div>
-      <div class="azione-item">
-        <div class="azione-num">4</div>
-        <div class="azione-text"><strong>Prossimo post HR: aggiungi KPI concreti.</strong> La quota "Risorse umane" è ferma al 2% da 4 mesi. Il post del 15/09 ha avuto 17 interazioni ma non ha spostato i demografici. Motivo probabile: manca la prova di impatto (es. "ho ridotto il time-to-hire del 30% integrando AI nel processo di selezione")</div>
-      </div>
-      <div class="azione-item">
-        <div class="azione-num">5</div>
-        <div class="azione-text"><strong>Pausa sulla serie AI+PMI teorica.</strong> Luglio-agosto: 8 post consecutivi su AI e PMI con performance tra 93 e 202 imp. La media è sotto i 150 imp. Un post ogni 3 settimane su quel tema è sufficiente — inserisci varianti su operations, coordinamento team, gestione fornitori per ampliare l'audience.</div>
-      </div>
     </div>
+
+    <p style="color:#94a3b8;font-size:12px;margin-bottom:24px">
+      Post best impressioni: <strong style="color:#4ade80">08/06 — Profilo ibrido ops+digital (1.555 imp)</strong> &nbsp;|&nbsp;
+      Post best engagement %: <strong style="color:#06b6d4">18/06 — Master Digital Restart (3,95%)</strong>
+    </p>
+
+    <h3 style="color:#a5b4fc;margin-bottom:12px">2. Pattern giorni e orari</h3>
+    <p>I post con maggiore impatto sono stati pubblicati nei seguenti momenti:</p>
+    <ul style="color:#cbd5e1;padding-left:20px;margin-bottom:16px">
+      <li><strong>Lunedì–Mercoledì</strong>: giorni con massima trazione (post del 08/06 lun, 15/09 lun, 16/06 mar, 18/06 gio)</li>
+      <li><strong>Domenica sera</strong>: il post del 28/09 e 03/08 (domenica) performano sopra la media — il contenuto operativo-narrativo funziona indipendentemente dal giorno</li>
+      <li><strong>Weekend d'agosto</strong>: engagement relativamente alto nonostante il periodo feriale, suggerisce un'audience di professionisti che legge anche in vacanza</li>
+    </ul>
+    <p style="color:#ef4444">Attenzione: il periodo luglio–agosto 2026 mostra un calo netto di impressioni medie giornaliere (&lt;30 imp/giorno). Probabile combinazione di stagionalità LinkedIn + posting troppo frequente con contenuti generici sull'AI che non si distinguono dal rumore di fondo.</p>
+
+    <h3 style="color:#a5b4fc;margin-bottom:12px;margin-top:24px">3. Contenuto che funziona</h3>
+    <p>Le performance confermano una gerarchia chiara:</p>
+    <ol style="color:#cbd5e1;padding-left:20px;margin-bottom:16px">
+      <li><strong>Esperienze dirette con numeri</strong> (es. "8 anni", "8 tecnici", "CRM"): massimo engagement. L'audience vuole storie operative con impatto misurabile.</li>
+      <li><strong>Credenziali verificabili</strong> (es. Master TalentGarden): credibilità istituzionale che non si può falsificare.</li>
+      <li><strong>AI + HR/operations combinati</strong>: il post del 15/09 conferma che l'incrocio AI–talent acquisition–operations è l'angolazione più risonante.</li>
+      <li><strong>Dati di mercato commentati</strong> (PwC, 51% aziende italiane AI): funzionano ma senza la spinta del vissuto personale restano nella media.</li>
+    </ol>
+    <p style="color:#94a3b8">I post generici su "AI per le PMI" (luglio 2026: almeno 6-7 post simili in 2 settimane) hanno cannibalizato le impression a vicenda. La frequenza alta su un singolo topic satura rapidamente l'audience.</p>
+
+    <h3 style="color:#a5b4fc;margin-bottom:12px;margin-top:24px">4. Visibilità HR — obiettivo prioritario</h3>
+    <div style="background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:16px;margin-bottom:16px">
+      <p style="margin-bottom:8px"><strong>Qualifiche audience (dati demografici correnti):</strong></p>
+      <ul style="color:#cbd5e1;padding-left:20px;margin-bottom:0">
+        <li>Risorse umane: <strong style="color:#a5b4fc">2%</strong></li>
+        <li>Responsabile risorse umane: <strong style="color:#a5b4fc">2%</strong></li>
+        <li>Addetto alla selezione del personale: <strong style="color:#a5b4fc">1%</strong></li>
+      </ul>
+      <p style="margin-top:8px;color:#94a3b8;font-size:13px">Totale HR stimato nell'audience: ~5%. Stabile rispetto alle elaborazioni precedenti (Jun–Sep 2026: sempre 2-2% per "Risorse umane"). Non c'è crescita significativa.</p>
+    </div>
+    <p>Settori audience: <strong>Servizi risorse umane = 8%</strong> (parità con IT). Questo è il segnale più positivo: l'8% del settore HR sui contenuti è un buon punto di partenza, ma va convertito in qualifiche HR specifiche.</p>
+    <p style="color:#f59e0b;margin-top:8px">Il post del 15/09 (AI + talent acquisition) ha probabilmente generato la migliore penetrazione HR di tutto l'anno. Occorre replicare questo formato: problema HR specifico → soluzione AI → impatto misurabile.</p>
+    <p style="color:#94a3b8">Mancano ancora: numeri concreti sul coordinamento team (quante persone, quale impatto), parole chiave recruiter ("gestione fornitori", "riduzione costi operativi X%", "KPI definiti"), e casi dove la tua competenza ha prodotto un risultato su persone/processi.</p>
+
+    <h3 style="color:#a5b4fc;margin-bottom:12px;margin-top:24px">5. Azioni consigliate</h3>
+    <ol style="color:#cbd5e1;padding-left:20px;line-height:2">
+      <li><strong>Riprendi il formato "caso operativo numerico"</strong>: il post "8 tecnici + CRM" (28/09, 558 imp) è il terzo miglior post dell'anno nonostante sia dominicale. Scrivi altri 2-3 casi simili con struttura: contesto → problema tecnico/umano → soluzione → KPI misurato.</li>
+      <li><strong>Crea un post esplicitamente HR-targeted</strong>: "Ho coordinato X persone su [progetto specifico] — ecco come ho gestito la variabile umana nell'integrazione di un CRM." Keywords: coordinamento, team, fornitore, budget, KPI. Il 15/09 ha dimostrato che l'hashtag #hr funziona.</li>
+      <li><strong>Smetti di pubblicare contenuti AI generici</strong>: tra luglio e agosto hai pubblicato 6+ post su "AI per PMI" quasi identici. Impression medie: 100-200. L'audience li salta. Ogni post AI deve avere un angolo specifico con dati tuoi o un caso reale.</li>
+      <li><strong>Sfrutta il lunedì mattina</strong>: il post dell'08/06 (lunedì) ha fatto 167 imp il giorno stesso e 495 il giorno dopo — tipica distribuzione del contenuto professionale letto il martedì dopo il weekend. Testa un post di lunedì 8-9h per 2 settimane consecutive.</li>
+      <li><strong>Pubblica il Master TalentGarden come storia di trasformazione</strong>: il post del 18/06 ha il miglior engagement % (3,95%). Hai ancora materiale non sfruttato da quel percorso: progetti fatti, strumenti appresi, networking. Un seguito con outcomes specifici ("da quel corso ho implementato X con risultato Y") probabilmente replica le performance.</li>
+    </ol>
 
   </div>
 </div>
 
-</div><!-- /main -->
+
+</div><!-- /container -->
 
 <script>
-// ============================================================
-// DATI STATICI
-// ============================================================
+// ─── DATI STATICI ────────────────────────────────────────────────────────────
 const globalSeries = {
-  giorni: [
-    {data:"2026-06-08",impressioni:167,interazioni:13},
-    {data:"2026-06-09",impressioni:495,interazioni:18},
-    {data:"2026-06-10",impressioni:444,interazioni:16},
-    {data:"2026-06-11",impressioni:121,interazioni:1},
-    {data:"2026-06-12",impressioni:47,interazioni:1},
-    {data:"2026-06-13",impressioni:29,interazioni:0},
-    {data:"2026-06-14",impressioni:29,interazioni:0},
-    {data:"2026-06-15",impressioni:49,interazioni:0},
-    {data:"2026-06-16",impressioni:321,interazioni:10},
-    {data:"2026-06-17",impressioni:138,interazioni:1},
-    {data:"2026-06-18",impressioni:325,interazioni:13},
-    {data:"2026-06-19",impressioni:97,interazioni:1},
-    {data:"2026-06-20",impressioni:41,interazioni:0},
-    {data:"2026-06-21",impressioni:24,interazioni:1},
-    {data:"2026-06-22",impressioni:150,interazioni:6},
-    {data:"2026-06-23",impressioni:80,interazioni:1},
-    {data:"2026-06-24",impressioni:40,interazioni:0},
-    {data:"2026-06-25",impressioni:64,interazioni:2},
-    {data:"2026-06-26",impressioni:39,interazioni:0},
-    {data:"2026-06-27",impressioni:18,interazioni:0},
-    {data:"2026-06-28",impressioni:29,interazioni:1},
-    {data:"2026-06-29",impressioni:35,interazioni:0},
-    {data:"2026-06-30",impressioni:32,interazioni:0},
-    {data:"2026-07-01",impressioni:38,interazioni:1},
-    {data:"2026-07-02",impressioni:32,interazioni:0},
-    {data:"2026-07-03",impressioni:14,interazioni:0},
-    {data:"2026-07-04",impressioni:16,interazioni:0},
-    {data:"2026-07-05",impressioni:12,interazioni:2},
-    {data:"2026-07-06",impressioni:20,interazioni:0},
-    {data:"2026-07-07",impressioni:16,interazioni:0},
-    {data:"2026-07-08",impressioni:40,interazioni:0},
-    {data:"2026-07-09",impressioni:33,interazioni:0},
-    {data:"2026-07-10",impressioni:16,interazioni:0},
-    {data:"2026-07-11",impressioni:7,interazioni:0},
-    {data:"2026-07-12",impressioni:4,interazioni:0},
-    {data:"2026-07-13",impressioni:5,interazioni:0},
-    {data:"2026-07-14",impressioni:14,interazioni:0},
-    {data:"2026-07-15",impressioni:105,interazioni:4},
-    {data:"2026-07-16",impressioni:65,interazioni:2},
-    {data:"2026-07-17",impressioni:84,interazioni:2},
-    {data:"2026-07-18",impressioni:42,interazioni:2},
-    {data:"2026-07-19",impressioni:6,interazioni:0},
-    {data:"2026-07-20",impressioni:151,interazioni:9},
-    {data:"2026-07-21",impressioni:31,interazioni:0},
-    {data:"2026-07-22",impressioni:103,interazioni:4},
-    {data:"2026-07-23",impressioni:26,interazioni:0},
-    {data:"2026-07-24",impressioni:81,interazioni:6},
-    {data:"2026-07-25",impressioni:20,interazioni:0},
-    {data:"2026-07-26",impressioni:14,interazioni:0},
-    {data:"2026-07-27",impressioni:156,interazioni:5},
-    {data:"2026-07-28",impressioni:59,interazioni:2},
-    {data:"2026-07-29",impressioni:54,interazioni:0},
-    {data:"2026-07-30",impressioni:17,interazioni:0},
-    {data:"2026-07-31",impressioni:104,interazioni:3},
-    {data:"2026-08-01",impressioni:18,interazioni:0},
-    {data:"2026-08-02",impressioni:18,interazioni:0},
-    {data:"2026-08-03",impressioni:298,interazioni:11},
-    {data:"2026-08-04",impressioni:64,interazioni:1},
-    {data:"2026-08-05",impressioni:84,interazioni:5},
-    {data:"2026-08-06",impressioni:31,interazioni:5},
-    {data:"2026-08-07",impressioni:68,interazioni:1},
-    {data:"2026-08-08",impressioni:23,interazioni:1},
-    {data:"2026-08-09",impressioni:12,interazioni:0},
-    {data:"2026-08-10",impressioni:74,interazioni:3},
-    {data:"2026-08-11",impressioni:11,interazioni:0},
-    {data:"2026-08-12",impressioni:40,interazioni:0},
-    {data:"2026-08-13",impressioni:5,interazioni:0},
-    {data:"2026-08-14",impressioni:54,interazioni:2},
-    {data:"2026-08-15",impressioni:23,interazioni:0},
-    {data:"2026-08-16",impressioni:16,interazioni:0},
-    {data:"2026-08-17",impressioni:8,interazioni:0},
-    {data:"2026-08-18",impressioni:14,interazioni:0},
-    {data:"2026-08-19",impressioni:24,interazioni:0},
-    {data:"2026-08-20",impressioni:10,interazioni:0},
-    {data:"2026-08-21",impressioni:11,interazioni:0},
-    {data:"2026-08-22",impressioni:8,interazioni:0},
-    {data:"2026-08-23",impressioni:4,interazioni:0},
-    {data:"2026-08-24",impressioni:15,interazioni:0},
-    {data:"2026-08-25",impressioni:24,interazioni:0},
-    {data:"2026-08-26",impressioni:5,interazioni:0},
-    {data:"2026-08-27",impressioni:12,interazioni:0},
-    {data:"2026-08-28",impressioni:10,interazioni:0},
-    {data:"2026-08-29",impressioni:6,interazioni:0},
-    {data:"2026-08-30",impressioni:7,interazioni:0},
-    {data:"2026-08-31",impressioni:16,interazioni:0},
-    {data:"2026-09-01",impressioni:9,interazioni:0},
-    {data:"2026-09-02",impressioni:8,interazioni:0},
-    {data:"2026-09-03",impressioni:6,interazioni:0},
-    {data:"2026-09-04",impressioni:4,interazioni:0},
-    {data:"2026-09-05",impressioni:1,interazioni:0},
-    {data:"2026-09-06",impressioni:7,interazioni:1},
-    {data:"2026-09-07",impressioni:13,interazioni:0},
-    {data:"2026-09-08",impressioni:77,interazioni:0},
-    {data:"2026-09-09",impressioni:18,interazioni:0},
-    {data:"2026-09-10",impressioni:5,interazioni:0},
-    {data:"2026-09-11",impressioni:34,interazioni:0},
-    {data:"2026-09-12",impressioni:1,interazioni:0},
-    {data:"2026-09-14",impressioni:81,interazioni:0},
-    {data:"2026-09-15",impressioni:488,interazioni:12},
-    {data:"2026-09-16",impressioni:133,interazioni:1},
-    {data:"2026-09-17",impressioni:66,interazioni:0},
-    {data:"2026-09-18",impressioni:53,interazioni:0},
-    {data:"2026-09-19",impressioni:18,interazioni:0},
-    {data:"2026-09-20",impressioni:39,interazioni:0},
-    {data:"2026-09-21",impressioni:35,interazioni:0},
-    {data:"2026-09-22",impressioni:28,interazioni:0},
-    {data:"2026-09-23",impressioni:19,interazioni:0},
-    {data:"2026-09-24",impressioni:67,interazioni:3},
-    {data:"2026-09-25",impressioni:42,interazioni:1},
-    {data:"2026-09-26",impressioni:79,interazioni:0},
-    {data:"2026-09-27",impressioni:54,interazioni:0},
-    {data:"2026-09-28",impressioni:296,interazioni:6}
-  ]
+  giorni: [{"data": "2026-06-08", "impressioni": 167, "interazioni": 13}, {"data": "2026-06-09", "impressioni": 495, "interazioni": 18}, {"data": "2026-06-10", "impressioni": 444, "interazioni": 16}, {"data": "2026-06-11", "impressioni": 121, "interazioni": 1}, {"data": "2026-06-12", "impressioni": 47, "interazioni": 1}, {"data": "2026-06-13", "impressioni": 29, "interazioni": 0}, {"data": "2026-06-14", "impressioni": 29, "interazioni": 0}, {"data": "2026-06-15", "impressioni": 48, "interazioni": 0}, {"data": "2026-06-16", "impressioni": 321, "interazioni": 10}, {"data": "2026-06-17", "impressioni": 137, "interazioni": 1}, {"data": "2026-06-18", "impressioni": 325, "interazioni": 13}, {"data": "2026-06-19", "impressioni": 97, "interazioni": 1}, {"data": "2026-06-20", "impressioni": 41, "interazioni": 0}, {"data": "2026-06-21", "impressioni": 24, "interazioni": 1}, {"data": "2026-06-22", "impressioni": 150, "interazioni": 6}, {"data": "2026-06-23", "impressioni": 80, "interazioni": 1}, {"data": "2026-06-24", "impressioni": 40, "interazioni": 0}, {"data": "2026-06-25", "impressioni": 64, "interazioni": 2}, {"data": "2026-06-26", "impressioni": 39, "interazioni": 0}, {"data": "2026-06-27", "impressioni": 18, "interazioni": 0}, {"data": "2026-06-28", "impressioni": 29, "interazioni": 1}, {"data": "2026-06-29", "impressioni": 35, "interazioni": 0}, {"data": "2026-06-30", "impressioni": 32, "interazioni": 0}, {"data": "2026-07-01", "impressioni": 38, "interazioni": 1}, {"data": "2026-07-02", "impressioni": 32, "interazioni": 0}, {"data": "2026-07-03", "impressioni": 14, "interazioni": 0}, {"data": "2026-07-04", "impressioni": 16, "interazioni": 0}, {"data": "2026-07-05", "impressioni": 12, "interazioni": 2}, {"data": "2026-07-06", "impressioni": 20, "interazioni": 0}, {"data": "2026-07-07", "impressioni": 16, "interazioni": 0}, {"data": "2026-07-08", "impressioni": 40, "interazioni": 0}, {"data": "2026-07-09", "impressioni": 33, "interazioni": 0}, {"data": "2026-07-10", "impressioni": 16, "interazioni": 0}, {"data": "2026-07-11", "impressioni": 7, "interazioni": 0}, {"data": "2026-07-12", "impressioni": 4, "interazioni": 0}, {"data": "2026-07-13", "impressioni": 5, "interazioni": 0}, {"data": "2026-07-14", "impressioni": 14, "interazioni": 0}, {"data": "2026-07-15", "impressioni": 105, "interazioni": 4}, {"data": "2026-07-16", "impressioni": 65, "interazioni": 2}, {"data": "2026-07-17", "impressioni": 84, "interazioni": 2}, {"data": "2026-07-18", "impressioni": 42, "interazioni": 2}, {"data": "2026-07-19", "impressioni": 6, "interazioni": 0}, {"data": "2026-07-20", "impressioni": 151, "interazioni": 9}, {"data": "2026-07-21", "impressioni": 31, "interazioni": 0}, {"data": "2026-07-22", "impressioni": 103, "interazioni": 4}, {"data": "2026-07-23", "impressioni": 26, "interazioni": 0}, {"data": "2026-07-24", "impressioni": 81, "interazioni": 6}, {"data": "2026-07-25", "impressioni": 20, "interazioni": 0}, {"data": "2026-07-26", "impressioni": 14, "interazioni": 0}, {"data": "2026-07-27", "impressioni": 156, "interazioni": 5}, {"data": "2026-07-28", "impressioni": 59, "interazioni": 2}, {"data": "2026-07-29", "impressioni": 54, "interazioni": 0}, {"data": "2026-07-30", "impressioni": 17, "interazioni": 0}, {"data": "2026-07-31", "impressioni": 104, "interazioni": 3}, {"data": "2026-08-01", "impressioni": 18, "interazioni": 0}, {"data": "2026-08-02", "impressioni": 18, "interazioni": 0}, {"data": "2026-08-03", "impressioni": 298, "interazioni": 11}, {"data": "2026-08-04", "impressioni": 64, "interazioni": 1}, {"data": "2026-08-05", "impressioni": 84, "interazioni": 5}, {"data": "2026-08-06", "impressioni": 31, "interazioni": 5}, {"data": "2026-08-07", "impressioni": 68, "interazioni": 1}, {"data": "2026-08-08", "impressioni": 23, "interazioni": 1}, {"data": "2026-08-09", "impressioni": 12, "interazioni": 0}, {"data": "2026-08-10", "impressioni": 74, "interazioni": 3}, {"data": "2026-08-11", "impressioni": 11, "interazioni": 0}, {"data": "2026-08-12", "impressioni": 40, "interazioni": 0}, {"data": "2026-08-13", "impressioni": 5, "interazioni": 0}, {"data": "2026-08-14", "impressioni": 54, "interazioni": 2}, {"data": "2026-08-15", "impressioni": 23, "interazioni": 0}, {"data": "2026-08-16", "impressioni": 16, "interazioni": 0}, {"data": "2026-08-17", "impressioni": 8, "interazioni": 0}, {"data": "2026-08-18", "impressioni": 14, "interazioni": 0}, {"data": "2026-08-19", "impressioni": 24, "interazioni": 0}, {"data": "2026-08-20", "impressioni": 10, "interazioni": 0}, {"data": "2026-08-21", "impressioni": 11, "interazioni": 0}, {"data": "2026-08-22", "impressioni": 8, "interazioni": 0}, {"data": "2026-08-23", "impressioni": 4, "interazioni": 0}, {"data": "2026-08-24", "impressioni": 15, "interazioni": 0}, {"data": "2026-08-25", "impressioni": 24, "interazioni": 0}, {"data": "2026-08-26", "impressioni": 5, "interazioni": 0}, {"data": "2026-08-27", "impressioni": 12, "interazioni": 0}, {"data": "2026-08-28", "impressioni": 10, "interazioni": 0}, {"data": "2026-08-29", "impressioni": 6, "interazioni": 0}, {"data": "2026-08-30", "impressioni": 7, "interazioni": 0}, {"data": "2026-08-31", "impressioni": 16, "interazioni": 0}, {"data": "2026-09-01", "impressioni": 9, "interazioni": 0}, {"data": "2026-09-02", "impressioni": 8, "interazioni": 0}, {"data": "2026-09-03", "impressioni": 6, "interazioni": 0}, {"data": "2026-09-04", "impressioni": 4, "interazioni": 0}, {"data": "2026-09-05", "impressioni": 1, "interazioni": 0}, {"data": "2026-09-06", "impressioni": 7, "interazioni": 1}, {"data": "2026-09-07", "impressioni": 13, "interazioni": 0}, {"data": "2026-09-08", "impressioni": 77, "interazioni": 0}, {"data": "2026-09-09", "impressioni": 18, "interazioni": 0}, {"data": "2026-09-10", "impressioni": 5, "interazioni": 0}, {"data": "2026-09-11", "impressioni": 34, "interazioni": 0}, {"data": "2026-09-12", "impressioni": 1, "interazioni": 0}, {"data": "2026-09-13", "impressioni": 0, "interazioni": 0}, {"data": "2026-09-14", "impressioni": 81, "interazioni": 0}, {"data": "2026-09-15", "impressioni": 488, "interazioni": 12}, {"data": "2026-09-16", "impressioni": 133, "interazioni": 1}, {"data": "2026-09-17", "impressioni": 66, "interazioni": 0}, {"data": "2026-09-18", "impressioni": 53, "interazioni": 0}, {"data": "2026-09-19", "impressioni": 18, "interazioni": 0}, {"data": "2026-09-20", "impressioni": 39, "interazioni": 0}, {"data": "2026-09-21", "impressioni": 35, "interazioni": 0}, {"data": "2026-09-22", "impressioni": 28, "interazioni": 0}, {"data": "2026-09-23", "impressioni": 19, "interazioni": 0}, {"data": "2026-09-24", "impressioni": 67, "interazioni": 3}, {"data": "2026-09-25", "impressioni": 42, "interazioni": 1}, {"data": "2026-09-26", "impressioni": 79, "interazioni": 0}, {"data": "2026-09-27", "impressioni": 54, "interazioni": 0}, {"data": "2026-09-28", "impressioni": 422, "interazioni": 6}, {"data": "2026-09-29", "impressioni": 139, "interazioni": 2}, {"data": "2026-09-30", "impressioni": 60, "interazioni": 0}, {"data": "2026-10-01", "impressioni": 31, "interazioni": 0}, {"data": "2026-10-02", "impressioni": 196, "interazioni": 5}],
+  follower: [{"data": "2025-09-19", "nuovi": 2}, {"data": "2025-10-01", "nuovi": 1}, {"data": "2025-10-12", "nuovi": 1}, {"data": "2025-11-26", "nuovi": 1}, {"data": "2026-01-14", "nuovi": 1}, {"data": "2026-02-10", "nuovi": 1}, {"data": "2026-02-25", "nuovi": 2}, {"data": "2026-02-26", "nuovi": 2}, {"data": "2026-03-02", "nuovi": 1}, {"data": "2026-03-03", "nuovi": 1}, {"data": "2026-03-12", "nuovi": 2}, {"data": "2026-03-17", "nuovi": 5}, {"data": "2026-03-23", "nuovi": 1}, {"data": "2026-03-25", "nuovi": 1}, {"data": "2026-04-23", "nuovi": 1}, {"data": "2026-04-24", "nuovi": 1}, {"data": "2026-04-27", "nuovi": 1}, {"data": "2026-04-30", "nuovi": 1}, {"data": "2026-05-05", "nuovi": 4}, {"data": "2026-05-06", "nuovi": 1}, {"data": "2026-05-07", "nuovi": 1}, {"data": "2026-05-11", "nuovi": 2}, {"data": "2026-05-12", "nuovi": 1}, {"data": "2026-05-13", "nuovi": 1}, {"data": "2026-05-15", "nuovi": 1}, {"data": "2026-05-16", "nuovi": 1}, {"data": "2026-05-20", "nuovi": 1}, {"data": "2026-05-22", "nuovi": 2}, {"data": "2026-05-25", "nuovi": 2}, {"data": "2026-05-26", "nuovi": 3}, {"data": "2026-05-28", "nuovi": 2}, {"data": "2026-05-29", "nuovi": 2}, {"data": "2026-05-30", "nuovi": 1}, {"data": "2026-06-03", "nuovi": 3}, {"data": "2026-06-07", "nuovi": 1}, {"data": "2026-06-09", "nuovi": 3}, {"data": "2026-06-10", "nuovi": 1}, {"data": "2026-06-11", "nuovi": 1}, {"data": "2026-06-12", "nuovi": 2}, {"data": "2026-06-13", "nuovi": 1}, {"data": "2026-06-15", "nuovi": 2}, {"data": "2026-06-16", "nuovi": 3}, {"data": "2026-06-17", "nuovi": 3}, {"data": "2026-06-18", "nuovi": 2}, {"data": "2026-06-19", "nuovi": 2}, {"data": "2026-06-22", "nuovi": 1}, {"data": "2026-06-23", "nuovi": 0}, {"data": "2026-06-24", "nuovi": 1}, {"data": "2026-06-25", "nuovi": 1}, {"data": "2026-06-26", "nuovi": 2}, {"data": "2026-06-27", "nuovi": 0}, {"data": "2026-06-28", "nuovi": 0}, {"data": "2026-06-29", "nuovi": 0}, {"data": "2026-06-30", "nuovi": 0}, {"data": "2026-07-01", "nuovi": 0}, {"data": "2026-07-02", "nuovi": 0}, {"data": "2026-07-03", "nuovi": 0}, {"data": "2026-07-04", "nuovi": 0}, {"data": "2026-07-05", "nuovi": 0}, {"data": "2026-07-06", "nuovi": 0}, {"data": "2026-07-07", "nuovi": 0}, {"data": "2026-07-08", "nuovi": 0}, {"data": "2026-07-09", "nuovi": 2}, {"data": "2026-07-10", "nuovi": 0}, {"data": "2026-07-11", "nuovi": 0}, {"data": "2026-07-12", "nuovi": 0}, {"data": "2026-07-13", "nuovi": 1}, {"data": "2026-07-14", "nuovi": 2}, {"data": "2026-07-15", "nuovi": 0}, {"data": "2026-07-16", "nuovi": 0}, {"data": "2026-07-17", "nuovi": 0}, {"data": "2026-07-18", "nuovi": 0}, {"data": "2026-07-19", "nuovi": 0}, {"data": "2026-07-20", "nuovi": 0}, {"data": "2026-07-21", "nuovi": 0}, {"data": "2026-07-22", "nuovi": 0}, {"data": "2026-07-23", "nuovi": 2}, {"data": "2026-07-24", "nuovi": 1}, {"data": "2026-07-25", "nuovi": 0}, {"data": "2026-07-26", "nuovi": 0}, {"data": "2026-07-27", "nuovi": 1}, {"data": "2026-07-28", "nuovi": 1}, {"data": "2026-07-29", "nuovi": 2}, {"data": "2026-07-30", "nuovi": 2}, {"data": "2026-07-31", "nuovi": 0}, {"data": "2026-08-01", "nuovi": 0}, {"data": "2026-08-02", "nuovi": 2}, {"data": "2026-08-03", "nuovi": 1}, {"data": "2026-08-04", "nuovi": 2}, {"data": "2026-08-05", "nuovi": 1}, {"data": "2026-08-06", "nuovi": 0}, {"data": "2026-08-07", "nuovi": 0}, {"data": "2026-08-08", "nuovi": 0}, {"data": "2026-08-09", "nuovi": 0}, {"data": "2026-08-10", "nuovi": 1}, {"data": "2026-08-11", "nuovi": 1}, {"data": "2026-08-12", "nuovi": 0}, {"data": "2026-08-13", "nuovi": 0}, {"data": "2026-08-14", "nuovi": 0}, {"data": "2026-08-15", "nuovi": 0}, {"data": "2026-08-16", "nuovi": 2}, {"data": "2026-08-17", "nuovi": 0}, {"data": "2026-08-18", "nuovi": 1}, {"data": "2026-08-19", "nuovi": 0}, {"data": "2026-08-20", "nuovi": 1}, {"data": "2026-08-21", "nuovi": 3}, {"data": "2026-08-22", "nuovi": 0}, {"data": "2026-08-23", "nuovi": 0}, {"data": "2026-08-24", "nuovi": 0}, {"data": "2026-08-25", "nuovi": 0}, {"data": "2026-08-26", "nuovi": 2}, {"data": "2026-08-27", "nuovi": 1}, {"data": "2026-08-28", "nuovi": 1}, {"data": "2026-08-29", "nuovi": 0}, {"data": "2026-08-30", "nuovi": 0}, {"data": "2026-08-31", "nuovi": 0}, {"data": "2026-09-01", "nuovi": 1}, {"data": "2026-09-02", "nuovi": 0}, {"data": "2026-09-03", "nuovi": 0}, {"data": "2026-09-04", "nuovi": 0}, {"data": "2026-09-05", "nuovi": 0}, {"data": "2026-09-06", "nuovi": 0}, {"data": "2026-09-07", "nuovi": 1}, {"data": "2026-09-08", "nuovi": 0}, {"data": "2026-09-09", "nuovi": 0}, {"data": "2026-09-10", "nuovi": 0}, {"data": "2026-09-11", "nuovi": 0}, {"data": "2026-09-12", "nuovi": 0}, {"data": "2026-09-13", "nuovi": 0}, {"data": "2026-09-14", "nuovi": 0}, {"data": "2026-09-15", "nuovi": 0}, {"data": "2026-09-17", "nuovi": 1}, {"data": "2026-09-24", "nuovi": 2}, {"data": "2026-09-26", "nuovi": 1}]
 };
+const allPosts = [{"url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", "data": "2026-06-08", "titolo_breve": "Profilo ibrido ops+digital", "interazioni": 40, "impressioni": 1555}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv", "data": "2026-09-15", "titolo_breve": "AI strategy, talent acquisition e HR", "interazioni": 17, "impressioni": 1139}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA", "data": "2026-09-28", "titolo_breve": "8 tecnici, CRM e ops: caso reale di integrazione", "interazioni": 8, "impressioni": 558}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", "data": "2026-06-18", "titolo_breve": "Master Digital Restart (TalentGarden)", "interazioni": 21, "impressioni": 532}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", "data": "2026-06-10", "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)", "interazioni": 15, "impressioni": 444}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b", "data": "2026-08-03", "titolo_breve": "AI Strategy e HR: trasformazione digitale", "interazioni": 16, "impressioni": 429}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", "data": "2026-06-16", "titolo_breve": "PwC Digital Trends 2026 (89% manager)", "interazioni": 8, "impressioni": 410}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", "data": "2026-06-22", "titolo_breve": "ML Manutenzione Predittiva", "interazioni": 6, "impressioni": 372}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1", "data": "2026-07-27", "titolo_breve": "AI e PMI: trasformazione digitale", "interazioni": 7, "impressioni": 220}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc", "data": "2026-07-20", "titolo_breve": "PMI: 76% non useranno AI nei prossimi anni", "interazioni": 9, "impressioni": 202}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM", "data": "2026-08-14", "titolo_breve": "AI Strategy in ambito MedTech/Healthcare", "interazioni": 2, "impressioni": 186}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7", "data": "2026-10-02", "titolo_breve": "AI Act, governance e Shadow AI", "interazioni": 5, "impressioni": 185}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5", "data": "2026-07-15", "titolo_breve": "Costo energia industriale Italia vs Europa (+23%)", "interazioni": 4, "impressioni": 181}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0", "data": "2026-07-31", "titolo_breve": "AI Strategy e PMI (luglio 31)", "interazioni": 3, "impressioni": 147}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi", "data": "2026-07-24", "titolo_breve": "Intelligenza Artificiale e PMI: strategia", "interazioni": 6, "impressioni": 139}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9", "data": "2026-07-17", "titolo_breve": "51% aziende italiane AI: profili ibridi", "interazioni": 6, "impressioni": 138}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm", "data": "2026-07-22", "titolo_breve": "AI Strategy per le PMI", "interazioni": 4, "impressioni": 131}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj", "data": "2026-08-12", "titolo_breve": "AI Strategy nella Pubblica Amministrazione", "interazioni": 1, "impressioni": 113}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB", "data": "2026-08-10", "titolo_breve": "AI Strategy, digital transformation e PMI", "interazioni": 3, "impressioni": 105}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL", "data": "2026-08-05", "titolo_breve": "AI Strategy PMI: digital transformation", "interazioni": 5, "impressioni": 100}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H", "data": "2026-08-07", "titolo_breve": "AI PMI: trasformazione digitale step 2", "interazioni": 1, "impressioni": 94}];
+const demografici = {"aziende": [{"nome": "Gruppo Hera", "percentuale": 2}, {"nome": "GrandVision Italy", "percentuale": 1}], "localita": [{"nome": "Bologna", "percentuale": 32}, {"nome": "Milano", "percentuale": 9}, {"nome": "Ferrara", "percentuale": 9}, {"nome": "Ravenna", "percentuale": 6}, {"nome": "Torino", "percentuale": 4}, {"nome": "Bari", "percentuale": 3}, {"nome": "Modena", "percentuale": 3}, {"nome": "Roma", "percentuale": 3}, {"nome": "Rimini", "percentuale": 2}, {"nome": "Firenze", "percentuale": 2}], "dimensioni_azienda": [{"nome": "1.001-5.000 dipendenti", "percentuale": 16}, {"nome": "11-50 dipendenti", "percentuale": 14}, {"nome": "51-200 dipendenti", "percentuale": 12}, {"nome": "2-10 dipendenti", "percentuale": 10}, {"nome": "10.001+ dipendenti", "percentuale": 9}, {"nome": "201-500 dipendenti", "percentuale": 7}, {"nome": "501-1.000 dipendenti", "percentuale": 7}, {"nome": "5.001-10.000 dipendenti", "percentuale": 6}], "anzianita": [{"nome": "Senior", "percentuale": 40}, {"nome": "Livello base", "percentuale": 24}, {"nome": "Amministratore", "percentuale": 10}, {"nome": "Direttore", "percentuale": 8}, {"nome": "Proprietario", "percentuale": 4}, {"nome": "CXO", "percentuale": 3}], "settori": [{"nome": "Servizi IT e consulenza IT", "percentuale": 8}, {"nome": "Servizi risorse umane", "percentuale": 8}, {"nome": "Consulenza e servizi aziendali", "percentuale": 7}, {"nome": "Vendita al dettaglio", "percentuale": 7}, {"nome": "Servizi finanziari", "percentuale": 3}, {"nome": "Servizi pubblicitari", "percentuale": 3}, {"nome": "Fabbricazione di macchinari industriali", "percentuale": 3}, {"nome": "Trasporti, logistica, supply chain e stoccaggio", "percentuale": 2}, {"nome": "Selezione e ricerca di personale", "percentuale": 2}, {"nome": "Sviluppo di software", "percentuale": 2}], "qualifiche": [{"nome": "Fondatore", "percentuale": 2}, {"nome": "Risorse umane", "percentuale": 2}, {"nome": "Project Manager", "percentuale": 2}, {"nome": "Amministratore delegato", "percentuale": 2}, {"nome": "Responsabile vendite", "percentuale": 2}, {"nome": "Responsabile risorse umane", "percentuale": 2}, {"nome": "Proprietario", "percentuale": 1}, {"nome": "Addetto alla selezione del personale", "percentuale": 1}, {"nome": "Responsabile di negozio", "percentuale": 1}]};
+const storicoData = [{"data_elaborazione": "2026-06-23", "periodo_start": "2026-03-26", "periodo_end": "2026-06-23", "impressioni_totali": 2557, "utenti_raggiunti": 695, "follower_totali": 435, "nuovi_follower_periodo": 54, "tasso_engagement": 3.21}, {"data_elaborazione": "2026-07-01", "periodo_start": "2026-06-23", "periodo_end": "2026-07-01", "impressioni_totali": 375, "utenti_raggiunti": 150, "follower_totali": 439, "nuovi_follower_periodo": 4, "tasso_engagement": 1.33}, {"data_elaborazione": "2026-07-20", "periodo_start": "2026-07-02", "periodo_end": "2026-07-20", "impressioni_totali": 682, "utenti_raggiunti": 155, "follower_totali": 444, "nuovi_follower_periodo": 5, "tasso_engagement": 3.08}, {"data_elaborazione": "2026-07-28", "periodo_start": "2026-07-21", "periodo_end": "2026-07-28", "impressioni_totali": 451, "utenti_raggiunti": 95, "follower_totali": 448, "nuovi_follower_periodo": 4, "tasso_engagement": 3.55}, {"data_elaborazione": "2026-08-24", "periodo_start": "2026-07-29", "periodo_end": "2026-08-24", "impressioni_totali": 1100, "utenti_raggiunti": 211, "follower_totali": 467, "nuovi_follower_periodo": 19, "tasso_engagement": 2.91}, {"data_elaborazione": "2026-09-15", "periodo_start": "2026-08-25", "periodo_end": "2026-09-15", "impressioni_totali": 340, "utenti_raggiunti": 64, "follower_totali": 473, "nuovi_follower_periodo": 6, "tasso_engagement": 2.06}, {"data_elaborazione": "2026-09-16", "periodo_start": "2025-09-17", "periodo_end": "2026-09-16", "impressioni_totali": 6021, "utenti_raggiunti": 1127, "follower_totali": 473, "nuovi_follower_periodo": 115, "tasso_engagement": 2.81}, {"data_elaborazione": "2026-09-24", "periodo_start": "2025-09-25", "periodo_end": "2026-09-24", "impressioni_totali": 6372, "utenti_raggiunti": 1216, "follower_totali": 476, "nuovi_follower_periodo": 116, "tasso_engagement": 2.67}, {"data_elaborazione": "2026-09-28", "periodo_start": "2026-09-25", "periodo_end": "2026-09-28", "impressioni_totali": 471, "utenti_raggiunti": 200, "follower_totali": 476, "nuovi_follower_periodo": 1, "tasso_engagement": 1.49}, {"data_elaborazione": "2026-10-02", "periodo_start": "2025-10-03", "periodo_end": "2026-10-02", "impressioni_totali": 7443, "utenti_raggiunti": 1560, "follower_totali": 476, "nuovi_follower_periodo": 116, "tasso_engagement": 2.51}];
 
-const allPosts = [
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", data:"2026-06-08", titolo_breve:"Profilo ibrido ops+digital", interazioni:40, impressioni:1551},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv", data:"2026-09-15", titolo_breve:"HR & talent acquisition: AI nella digital transformation", interazioni:17, impressioni:1094},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", data:"2026-06-18", titolo_breve:"Master Digital Restart (TalentGarden)", interazioni:21, impressioni:532},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", data:"2026-06-10", titolo_breve:"Strumenti digitali (n8n/Tableau/AI)", interazioni:15, impressioni:444},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b", data:"2026-08-03", titolo_breve:"AI Strategy e HR: trasformazione digitale", interazioni:16, impressioni:427},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", data:"2026-06-16", titolo_breve:"PwC Digital Trends 2026 (89% manager)", interazioni:8, impressioni:410},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", data:"2026-06-22", titolo_breve:"ML Manutenzione Predittiva", interazioni:6, impressioni:372},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA", data:"2026-09-28", titolo_breve:"8 tecnici, un CRM che non parlava con il gestionale", interazioni:6, impressioni:249},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1", data:"2026-07-27", titolo_breve:"AI e PMI: trasformazione digitale", interazioni:7, impressioni:220},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc", data:"2026-07-20", titolo_breve:"PMI: 76% non useranno AI nei prossimi anni", interazioni:9, impressioni:202},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM", data:"2026-08-14", titolo_breve:"AI Strategy in ambito MedTech/Healthcare", interazioni:2, impressioni:184},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5", data:"2026-07-15", titolo_breve:"Costo energia industriale Italia vs Europa (+23%)", interazioni:4, impressioni:181},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0", data:"2026-07-31", titolo_breve:"Intelligenza Artificiale e PMI: AI Strategy", interazioni:3, impressioni:147},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi", data:"2026-07-24", titolo_breve:"Intelligenza Artificiale e PMI: strategia", interazioni:6, impressioni:139},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9", data:"2026-07-17", titolo_breve:"51% aziende italiane AI: profili ibridi richiesti", interazioni:6, impressioni:138},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm", data:"2026-07-22", titolo_breve:"AI Strategy per le PMI", interazioni:4, impressioni:131},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj", data:"2026-08-12", titolo_breve:"AI Strategy nella Pubblica Amministrazione", interazioni:1, impressioni:112},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB", data:"2026-08-10", titolo_breve:"AI Strategy, digital transformation e PMI", interazioni:3, impressioni:104},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL", data:"2026-08-05", titolo_breve:"AI Strategy per le PMI: digital transformation", interazioni:5, impressioni:100},
-  {url:"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H", data:"2026-08-07", titolo_breve:"AI Strategy e PMI: digital transformation", interazioni:1, impressioni:93}
-];
+// ─── FILTRI ──────────────────────────────────────────────────────────────────
+let currentDays = 0;
+let chartGiornaliero = null, chartFollower = null;
 
-const allFollower = [
-  {data:"2025-10-01",nuovi:1},{data:"2025-10-12",nuovi:1},{data:"2025-11-26",nuovi:1},
-  {data:"2026-01-14",nuovi:1},{data:"2026-02-10",nuovi:1},{data:"2026-02-25",nuovi:2},
-  {data:"2026-02-26",nuovi:2},{data:"2026-03-02",nuovi:1},{data:"2026-03-03",nuovi:1},
-  {data:"2026-03-12",nuovi:2},{data:"2026-03-17",nuovi:5},{data:"2026-03-23",nuovi:1},
-  {data:"2026-03-25",nuovi:1},{data:"2026-04-23",nuovi:1},{data:"2026-04-24",nuovi:1},
-  {data:"2026-04-27",nuovi:1},{data:"2026-04-30",nuovi:1},{data:"2026-05-05",nuovi:4},
-  {data:"2026-05-06",nuovi:1},{data:"2026-05-07",nuovi:1},{data:"2026-05-11",nuovi:2},
-  {data:"2026-05-12",nuovi:1},{data:"2026-05-13",nuovi:1},{data:"2026-05-15",nuovi:1},
-  {data:"2026-05-16",nuovi:1},{data:"2026-05-20",nuovi:1},{data:"2026-05-22",nuovi:2},
-  {data:"2026-05-25",nuovi:2},{data:"2026-05-26",nuovi:3},{data:"2026-05-28",nuovi:2},
-  {data:"2026-05-29",nuovi:2},{data:"2026-05-30",nuovi:1},{data:"2026-06-03",nuovi:3},
-  {data:"2026-06-07",nuovi:1},{data:"2026-06-09",nuovi:3},{data:"2026-06-10",nuovi:1},
-  {data:"2026-06-11",nuovi:1},{data:"2026-06-12",nuovi:2},{data:"2026-06-13",nuovi:1},
-  {data:"2026-06-15",nuovi:2},{data:"2026-06-16",nuovi:3},{data:"2026-06-17",nuovi:3},
-  {data:"2026-06-18",nuovi:2},{data:"2026-06-19",nuovi:2},{data:"2026-06-22",nuovi:1},
-  {data:"2026-06-24",nuovi:1},{data:"2026-06-25",nuovi:1},{data:"2026-06-26",nuovi:2},
-  {data:"2026-07-09",nuovi:2},{data:"2026-07-13",nuovi:1},{data:"2026-07-14",nuovi:2},
-  {data:"2026-07-23",nuovi:2},{data:"2026-07-24",nuovi:1},{data:"2026-07-27",nuovi:1},
-  {data:"2026-07-28",nuovi:1},{data:"2026-07-29",nuovi:2},{data:"2026-07-30",nuovi:2},
-  {data:"2026-08-02",nuovi:2},{data:"2026-08-03",nuovi:1},{data:"2026-08-04",nuovi:2},
-  {data:"2026-08-05",nuovi:1},{data:"2026-08-10",nuovi:1},{data:"2026-08-11",nuovi:1},
-  {data:"2026-08-16",nuovi:2},{data:"2026-08-18",nuovi:1},{data:"2026-08-20",nuovi:1},
-  {data:"2026-08-21",nuovi:3},{data:"2026-08-26",nuovi:2},{data:"2026-08-27",nuovi:1},
-  {data:"2026-08-28",nuovi:1},{data:"2026-09-01",nuovi:1},{data:"2026-09-07",nuovi:1},
-  {data:"2026-09-17",nuovi:1},{data:"2026-09-24",nuovi:2},{data:"2026-09-26",nuovi:1}
-];
+function setFilter(days) {
+  currentDays = days;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  buildKPI();
+  buildChartGiornaliero();
+  buildChartFollower();
+  buildPostList();
+}
 
-const storicoEntries = [
-  {data_elaborazione:"2026-06-23",periodo_start:"2026-03-26",periodo_end:"2026-06-23",impressioni_totali:2557,utenti_raggiunti:695,follower_totali:435,nuovi_follower_periodo:54,tasso_engagement:3.21},
-  {data_elaborazione:"2026-07-01",periodo_start:"2026-06-23",periodo_end:"2026-07-01",impressioni_totali:375,utenti_raggiunti:150,follower_totali:439,nuovi_follower_periodo:4,tasso_engagement:1.33},
-  {data_elaborazione:"2026-07-20",periodo_start:"2026-07-02",periodo_end:"2026-07-20",impressioni_totali:682,utenti_raggiunti:155,follower_totali:444,nuovi_follower_periodo:5,tasso_engagement:3.08},
-  {data_elaborazione:"2026-07-28",periodo_start:"2026-07-21",periodo_end:"2026-07-28",impressioni_totali:451,utenti_raggiunti:95,follower_totali:448,nuovi_follower_periodo:4,tasso_engagement:3.55},
-  {data_elaborazione:"2026-08-24",periodo_start:"2026-07-29",periodo_end:"2026-08-24",impressioni_totali:1100,utenti_raggiunti:211,follower_totali:467,nuovi_follower_periodo:19,tasso_engagement:2.91},
-  {data_elaborazione:"2026-09-15",periodo_start:"2026-08-25",periodo_end:"2026-09-15",impressioni_totali:340,utenti_raggiunti:64,follower_totali:473,nuovi_follower_periodo:6,tasso_engagement:2.06},
-  {data_elaborazione:"2026-09-16",periodo_start:"2025-09-17",periodo_end:"2026-09-16",impressioni_totali:5891,utenti_raggiunti:1073,follower_totali:473,nuovi_follower_periodo:107,tasso_engagement:2.64},
-  {data_elaborazione:"2026-09-24",periodo_start:"2025-09-25",periodo_end:"2026-09-24",impressioni_totali:6372,utenti_raggiunti:1216,follower_totali:476,nuovi_follower_periodo:116,tasso_engagement:2.67},
-  {data_elaborazione:"2026-09-28",periodo_start:"2026-09-25",periodo_end:"2026-09-28",impressioni_totali:471,utenti_raggiunti:200,follower_totali:476,nuovi_follower_periodo:1,tasso_engagement:1.49}
-];
+function getFilteredGiorni() {
+  if (!currentDays) return globalSeries.giorni;
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - currentDays);
+  return globalSeries.giorni.filter(g => new Date(g.data) >= cutoff);
+}
 
-const demograficiContenuti = {
-  settori: [
-    {nome:"Servizi IT e consulenza IT",percentuale:9},
-    {nome:"Consulenza e servizi aziendali",percentuale:7},
-    {nome:"Telecomunicazioni",percentuale:5},
-    {nome:"Servizi risorse umane",percentuale:5},
-    {nome:"Fabbricazione macchinari industriali",percentuale:3},
-    {nome:"Vendita al dettaglio",percentuale:3},
-    {nome:"Trasporti, logistica, supply chain",percentuale:3},
-    {nome:"Servizi pubblicitari",percentuale:2},
-    {nome:"Industria manifatturiera",percentuale:2}
-  ],
-  localitaAudience: [
-    {nome:"Bologna",percentuale:32},{nome:"Milano",percentuale:9},{nome:"Ferrara",percentuale:9},
-    {nome:"Ravenna",percentuale:6},{nome:"Torino",percentuale:4},{nome:"Bari",percentuale:3},
-    {nome:"Roma",percentuale:3},{nome:"Modena",percentuale:3},{nome:"Rimini",percentuale:2},{nome:"Firenze",percentuale:2}
-  ],
-  localitaContenuti: [
-    {nome:"Milano",percentuale:20},{nome:"Bologna",percentuale:16},{nome:"Torino",percentuale:6},
-    {nome:"Bari",percentuale:6},{nome:"Roma",percentuale:4},{nome:"Ferrara",percentuale:4},
-    {nome:"Ravenna",percentuale:4},{nome:"Pescara",percentuale:3},{nome:"Modena",percentuale:2}
-  ],
-  anzianita: [
-    {nome:"Senior",percentuale:34},{nome:"Livello base",percentuale:30},
-    {nome:"Amministratore",percentuale:14},{nome:"Direttore",percentuale:8},
-    {nome:"Proprietario",percentuale:3},{nome:"CXO",percentuale:3},{nome:"Vicepresidente",percentuale:1}
-  ]
-};
+function getFilteredFollower() {
+  if (!currentDays) return globalSeries.follower;
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - currentDays);
+  return globalSeries.follower.filter(g => new Date(g.data) >= cutoff);
+}
 
-// ============================================================
-// STATO FILTRI
-// ============================================================
-let activeFilter = 'all';
-let searchKeyword = '';
-let chartGiornaliero = null;
-let chartFollower = null;
+function getFilteredPosts() {
+  if (!currentDays) return allPosts;
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - currentDays);
+  return allPosts.filter(p => p.data && new Date(p.data) >= cutoff);
+}
 
-function parseDate(s) { return new Date(s); }
+// ─── KPI ─────────────────────────────────────────────────────────────────────
+function buildKPI() {
+  const giorni = getFilteredGiorni();
+  const posts = getFilteredPosts();
+  const totImp = giorni.reduce((s,g) => s+g.impressioni, 0);
+  const totInt = giorni.reduce((s,g) => s+g.interazioni, 0);
+  const eng = totImp ? (totInt/totImp*100).toFixed(2) : 0;
+  const followerTot = 476;
+  const postAttivi = posts.filter(p => p.interazioni > 0).length;
 
-function fmtDate(s) {
-  const [y,m,d] = s.split('-');
+  const kpis = [
+    { label:'Impressioni', value: totImp.toLocaleString('it-IT'), color:'#a5b4fc', sub:'nel periodo' },
+    { label:'Utenti raggiunti', value: 1560.toLocaleString('it-IT'), color:'#67e8f9', sub:'periodo completo' },
+    { label:'Follower totali', value: followerTot, color:'#86efac', sub:'al 02/10/2026' },
+    { label:'Post con interazioni', value: postAttivi, color:'#fcd34d', sub:'post attivi' },
+    { label:'Engagement', value: eng + '%', color:'#f9a8d4', sub:'interazioni/impressioni' },
+  ];
+  const grid = document.getElementById('kpi-grid');
+  grid.innerHTML = kpis.map(k => `
+    <div class="kpi-card">
+      <div class="kpi-label">${k.label}</div>
+      <div class="kpi-value" style="color:${k.color}">${k.value}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>
+  `).join('');
+}
+
+// ─── GRAFICO GIORNALIERO ─────────────────────────────────────────────────────
+function fmtDate(iso) {
+  const [y,m,d] = iso.split('-');
   return d+'/'+m;
 }
 
-function filterGiorni(days) {
-  if (days === 'all') return globalSeries.giorni;
-  const cutoff = new Date('2026-09-28');
-  cutoff.setDate(cutoff.getDate() - days + 1);
-  return globalSeries.giorni.filter(g => parseDate(g.data) >= cutoff);
-}
-
-function filterPosts(days, kw) {
-  let posts = [...allPosts];
-  if (days !== 'all') {
-    const cutoff = new Date('2026-09-28');
-    cutoff.setDate(cutoff.getDate() - days + 1);
-    posts = posts.filter(p => parseDate(p.data) >= cutoff);
-  }
-  if (kw) {
-    const q = kw.toLowerCase();
-    posts = posts.filter(p => p.titolo_breve.toLowerCase().includes(q));
-  }
-  return posts;
-}
-
-function filterFollower(days) {
-  if (days === 'all') return allFollower;
-  const cutoff = new Date('2026-09-28');
-  cutoff.setDate(cutoff.getDate() - days + 1);
-  return allFollower.filter(f => parseDate(f.data) >= cutoff);
-}
-
-// ============================================================
-// KPI
-// ============================================================
-function updateKPI(days) {
-  const giorni = filterGiorni(days);
-  const totImp = giorni.reduce((s,g) => s+g.impressioni, 0);
-  const totInt = giorni.reduce((s,g) => s+g.interazioni, 0);
-  const eng = totImp > 0 ? (totInt/totImp*100).toFixed(2) : '0.00';
-  const posts = filterPosts(days, '');
-  document.getElementById('kpiImpressions').textContent = totImp.toLocaleString('it-IT');
-  document.getElementById('kpiPosts').textContent = posts.length;
-  document.getElementById('kpiEngagement').textContent = eng + '%';
-  if (days === 'all') {
-    document.getElementById('kpiReach').textContent = '1.416';
-  } else {
-    const est = Math.round(totImp * 0.21);
-    document.getElementById('kpiReach').textContent = est.toLocaleString('it-IT') + '*';
-  }
-}
-
-// ============================================================
-// GRAFICO GIORNALIERO
-// ============================================================
-function buildChartGiornaliero(days) {
-  const giorni = filterGiorni(days);
+function buildChartGiornaliero() {
+  const giorni = getFilteredGiorni().filter(g => g.impressioni > 0 || g.interazioni > 0);
   const labels = giorni.map(g => fmtDate(g.data));
   const imp = giorni.map(g => g.impressioni);
-  const int = giorni.map(g => g.interazioni);
+  const int_ = giorni.map(g => g.interazioni);
 
   if (chartGiornaliero) chartGiornaliero.destroy();
   const ctx = document.getElementById('chartGiornaliero').getContext('2d');
@@ -730,187 +487,150 @@ function buildChartGiornaliero(days) {
     data: {
       labels,
       datasets: [
-        {
-          type: 'bar', label: 'Impressioni', data: imp,
-          backgroundColor: 'rgba(79,70,229,0.6)', borderColor: '#4f46e5', borderWidth: 0,
-          yAxisID: 'y'
-        },
-        {
-          type: 'line', label: 'Interazioni', data: int,
-          borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)',
-          borderWidth: 2, pointRadius: 2, tension: 0.3, yAxisID: 'y1', fill: false
-        }
+        { type:'bar', label:'Impressioni', data:imp, backgroundColor:'rgba(99,102,241,0.6)', yAxisID:'y' },
+        { type:'line', label:'Interazioni', data:int_, borderColor:'#06b6d4', backgroundColor:'rgba(6,182,212,0.1)',
+           borderWidth:2, pointRadius:3, pointHoverRadius:5, yAxisID:'y1', tension:0.3, fill:true }
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } }, tooltip: { mode: 'index', intersect: false } },
+      responsive:true, maintainAspectRatio:false,
+      interaction: { mode:'index', intersect:false },
+      plugins: { legend:{ labels:{ color:'#94a3b8', font:{ size:12 } } } },
       scales: {
-        x: { ticks: { color: '#64748b', font: { size: 10 }, maxRotation: 45, maxTicksLimit: 20 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: { position: 'left', ticks: { color: '#94a3b8', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.06)' } },
-        y1: { position: 'right', ticks: { color: '#06b6d4', font: { size: 11 } }, grid: { display: false } }
+        x: { ticks:{ color:'#64748b', font:{ size:10 }, maxRotation:45, maxTicksLimit:20 }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y: { position:'left', ticks:{ color:'#94a3b8', font:{ size:11 } }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y1: { position:'right', ticks:{ color:'#06b6d4', font:{ size:11 } }, grid:{ display:false } }
       }
     }
   });
 }
 
-// ============================================================
-// POST PRINCIPALI
-// ============================================================
-const LABELS = ['A','B','C','D','E','F','G','H','I','J'];
-function buildPostList(days, kw) {
-  const posts = filterPosts(days, kw).slice(0, 5);
-  const maxImp = posts.length ? posts[0].impressioni : 1;
-  const container = document.getElementById('postList');
-  container.innerHTML = '';
-  if (!posts.length) {
-    container.innerHTML = '<div style="color:var(--text3);padding:16px">Nessun post trovato per i filtri selezionati.</div>';
-    return;
-  }
-  posts.forEach((p, i) => {
-    const pct = Math.round((p.impressioni / maxImp) * 100);
-    const eng = p.impressioni > 0 ? (p.interazioni/p.impressioni*100).toFixed(2) : '0.00';
-    const item = document.createElement('div');
-    item.className = 'post-item';
-    item.innerHTML = `
-      <div class="post-header">
-        <span class="post-label">Post ${LABELS[i]}</span>
-        <span class="post-meta">${fmtDate(p.data)} &nbsp;|&nbsp; <a href="${p.url}" target="_blank" rel="noopener">↗ Link</a></span>
+// ─── POST LIST ───────────────────────────────────────────────────────────────
+function buildPostList(query) {
+  const posts = getFilteredPosts().slice(0,15);
+  const q = (query||'').toLowerCase();
+  const maxImp = Math.max(...posts.map(p=>p.impressioni||0), 1);
+  const labels = 'ABCDEFGHIJKLMNOP'.split('');
+  const container = document.getElementById('post-list');
+  container.innerHTML = posts.map((p,i) => {
+    const hidden = q && !((p.titolo_breve||'').toLowerCase().includes(q)) ? 'post-hidden' : '';
+    const pct = Math.round((p.impressioni||0)/maxImp*100);
+    const date_fmt = p.data ? fmtDate(p.data) : '';
+    return `<div class="post-item ${hidden}">
+      <div class="post-label">${labels[i]||i+1}</div>
+      <div class="post-info">
+        <div class="post-title"><a href="${p.url}" target="_blank">${p.titolo_breve||'Post '+i}</a></div>
+        <div class="post-meta">${date_fmt} &nbsp;·&nbsp; ${(p.impressioni||0).toLocaleString('it-IT')} imp &nbsp;·&nbsp; ${p.interazioni||0} interaz.</div>
+        <div class="post-bar-wrap"><div class="post-bar" style="width:${pct}%"></div></div>
       </div>
-      <div class="post-title">${p.titolo_breve}</div>
-      <div class="post-bar-wrap"><div class="post-bar" style="width:${pct}%"></div></div>
-      <div class="post-stats">
-        <span>👁 <span style="color:var(--text1);font-weight:600">${p.impressioni.toLocaleString('it-IT')}</span> impressioni</span>
-        <span>💬 <span>${p.interazioni}</span> interazioni</span>
-        <span>📊 <span>${eng}%</span> eng.</span>
-      </div>`;
-    container.appendChild(item);
-  });
+    </div>`;
+  }).join('');
 }
 
-// ============================================================
-// GRAFICO FOLLOWER
-// ============================================================
-function buildChartFollower(days) {
-  const foll = filterFollower(days);
-  const labels = foll.map(f => fmtDate(f.data));
-  const vals = foll.map(f => f.nuovi);
+function filterPosts(q) { buildPostList(q); }
+
+// ─── FOLLOWER ────────────────────────────────────────────────────────────────
+function buildChartFollower() {
+  const foll = getFilteredFollower().filter(g => g.nuovi > 0);
+  const labels = foll.map(g => fmtDate(g.data));
+  const vals = foll.map(g => g.nuovi);
 
   if (chartFollower) chartFollower.destroy();
   const ctx = document.getElementById('chartFollower').getContext('2d');
   chartFollower = new Chart(ctx, {
-    type: 'bar',
+    type:'bar',
+    data: { labels, datasets: [{ label:'Nuovi follower', data:vals, backgroundColor:'rgba(74,222,128,0.6)', borderColor:'#4ade80', borderWidth:1 }] },
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ display:false } },
+      scales: {
+        x: { ticks:{ color:'#64748b', font:{ size:10 }, maxRotation:45, maxTicksLimit:16 }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y: { ticks:{ color:'#94a3b8', font:{ size:11 }, stepSize:1 }, grid:{ color:'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+// ─── ANZIANITÀ (donut) ───────────────────────────────────────────────────────
+function buildChartAnzianita() {
+  const anz = demografici.anzianita || [];
+  const ctx = document.getElementById('chartAnzianita').getContext('2d');
+  new Chart(ctx, {
+    type:'doughnut',
     data: {
-      labels,
-      datasets: [{
-        label: 'Nuovi follower', data: vals,
-        backgroundColor: 'rgba(6,182,212,0.6)', borderColor: '#06b6d4', borderWidth: 0
+      labels: anz.map(a => a.nome),
+      datasets: [{ data: anz.map(a => a.percentuale),
+        backgroundColor: ['#6366f1','#22d3ee','#4ade80','#f59e0b','#f472b6','#a78bfa'],
+        borderColor:'transparent', borderWidth:2
       }]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { title: ctx => 'Data: '+ctx[0].label } } },
-      scales: {
-        x: { ticks: { color: '#64748b', font: { size: 10 }, maxRotation: 45, maxTicksLimit: 16 }, grid: { display: false } },
-        y: { ticks: { color: '#94a3b8', font: { size: 11 }, stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      responsive:true, maintainAspectRatio:false,
+      plugins: {
+        legend: { position:'right', labels:{ color:'#94a3b8', font:{ size:12 }, padding:12 } },
+        tooltip: { callbacks: { label: c => ' '+c.label+': '+c.raw+'%' } }
       }
     }
   });
 }
 
-// ============================================================
-// DEMOGRAFICI
-// ============================================================
-const COLORS_SETTORI = ['#4f46e5','#6366f1','#818cf8','#06b6d4','#0891b2','#10b981','#059669','#f59e0b','#d97706'];
-const COLORS_DONUT = ['#4f46e5','#06b6d4','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899'];
-
-function buildBarH(containerId, items, colors) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const max = items[0] ? items[0].percentuale : 1;
-  container.innerHTML = items.map((it, i) => `
-    <div class="bar-h-row">
-      <div class="bar-h-label" title="${it.nome}">${it.nome}</div>
-      <div class="bar-h-track">
-        <div class="bar-h-fill" style="width:${(it.percentuale/max*100)}%;background:${colors[i % colors.length]}"></div>
-      </div>
-      <div class="bar-h-val">${it.percentuale}%</div>
-    </div>`).join('');
+// ─── BARRE DEMO ──────────────────────────────────────────────────────────────
+function buildBars(containerId, items, color) {
+  const maxPct = Math.max(...items.map(i => i.percentuale), 1);
+  document.getElementById(containerId).innerHTML = items.map(item => `
+    <div class="bar-item">
+      <div class="bar-label"><span>${item.nome}</span><span>${item.percentuale}%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(item.percentuale/maxPct*100)}%;background:${color};"></div></div>
+    </div>
+  `).join('');
 }
 
-function buildDonut() {
-  const data = demograficiContenuti.anzianita;
-  const ctx = document.getElementById('chartAnzianita').getContext('2d');
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: data.map(d => d.nome),
-      datasets: [{ data: data.map(d => d.percentuale), backgroundColor: COLORS_DONUT, borderWidth: 0, hoverOffset: 4 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false, cutout: '65%',
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' '+ctx.label+': '+ctx.parsed+'%' } } }
-    }
-  });
-  const leg = document.getElementById('anzianitaLegend');
-  leg.innerHTML = data.map((d, i) => `
-    <div class="donut-leg-row">
-      <div class="donut-dot" style="background:${COLORS_DONUT[i]}"></div>
-      <span>${d.nome} <span style="color:var(--text1);font-weight:500">${d.percentuale}%</span></span>
-    </div>`).join('');
-}
-
-// ============================================================
-// STORICO TABLE
-// ============================================================
+// ─── STORICO TABELLA ─────────────────────────────────────────────────────────
 function buildStoricoTable() {
-  const tbody = document.getElementById('storicoBody');
-  tbody.innerHTML = [...storicoEntries].reverse().map(e => `
+  const tbody = document.getElementById('storico-tbody');
+  tbody.innerHTML = storicoData.slice().reverse().map(e => `
     <tr>
-      <td class="val">${e.data_elaborazione}</td>
+      <td>${e.data_elaborazione}</td>
       <td>${e.periodo_start} → ${e.periodo_end}</td>
-      <td class="val">${e.impressioni_totali.toLocaleString('it-IT')}</td>
-      <td>${e.utenti_raggiunti.toLocaleString('it-IT')}</td>
-      <td class="val">${e.follower_totali}</td>
-      <td>+${e.nuovi_follower_periodo}</td>
-      <td class="val">${e.tasso_engagement}%</td>
-    </tr>`).join('');
+      <td>${(e.impressioni_totali||0).toLocaleString('it-IT')}</td>
+      <td>${(e.utenti_raggiunti||0).toLocaleString('it-IT')}</td>
+      <td>${e.follower_totali||0}</td>
+      <td>${e.tasso_engagement||0}%</td>
+    </tr>
+  `).join('');
 }
 
-// ============================================================
-// GRAFICO STORICO
-// ============================================================
+// ─── GRAFICO STORICO ─────────────────────────────────────────────────────────
 function buildChartStorico() {
-  const entries = storicoEntries;
-  const labels = entries.map(e => fmtDate(e.data_elaborazione));
-  const imp = entries.map(e => e.impressioni_totali);
-  const foll = entries.map(e => e.follower_totali);
+  const labels = storicoData.map(e => e.data_elaborazione.slice(5).replace('-','/'));
+  const impData = storicoData.map(e => e.impressioni_totali||0);
+  const follData = storicoData.map(e => e.follower_totali||0);
 
   const ctx = document.getElementById('chartStorico').getContext('2d');
   new Chart(ctx, {
-    type: 'line',
     data: {
       labels,
       datasets: [
-        { label: 'Impressioni', data: imp, borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.1)', borderWidth: 2, pointRadius: 4, tension: 0.3, fill: true, yAxisID: 'y' },
-        { label: 'Follower', data: foll, borderColor: '#06b6d4', backgroundColor: 'transparent', borderWidth: 2, pointRadius: 4, tension: 0.3, yAxisID: 'y1' }
+        { type:'bar', label:'Impressioni periodo', data:impData,
+           backgroundColor:'rgba(99,102,241,0.5)', yAxisID:'y' },
+        { type:'line', label:'Follower totali', data:follData,
+           borderColor:'#4ade80', backgroundColor:'rgba(74,222,128,0.1)',
+           borderWidth:2, pointRadius:4, yAxisID:'y1', tension:0.3, fill:false }
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } }, tooltip: { mode: 'index', intersect: false } },
+      responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{ labels:{ color:'#94a3b8', font:{ size:12 } } } },
       scales: {
-        x: { ticks: { color: '#64748b', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: { position: 'left', ticks: { color: '#94a3b8', font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v }, grid: { color: 'rgba(255,255,255,0.06)' } },
-        y1: { position: 'right', ticks: { color: '#06b6d4', font: { size: 11 } }, grid: { display: false } }
+        x: { ticks:{ color:'#64748b', font:{ size:11 } }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y: { position:'left', ticks:{ color:'#94a3b8' }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y1: { position:'right', ticks:{ color:'#4ade80' }, grid:{ display:false } }
       }
     }
   });
 }
 
-// ============================================================
-// GRAFICO CUMULATIVO (non filtrato)
-// ============================================================
+// ─── GRAFICO CUMULATIVO ──────────────────────────────────────────────────────
 function buildChartCumulativo() {
   const giorni = globalSeries.giorni;
 
@@ -922,20 +642,20 @@ function buildChartCumulativo() {
     mon.setDate(diff);
     const dd = String(mon.getDate()).padStart(2,'0');
     const mm = String(mon.getMonth()+1).padStart(2,'0');
-    return `${dd}/${mm}`;
+    return dd+'/'+mm;
   }
 
   const weekMap = {};
   giorni.forEach(g => {
     const wk = getWeekKey(g.data);
-    weekMap[wk] = (weekMap[wk] || 0) + g.impressioni;
+    weekMap[wk] = (weekMap[wk]||0) + g.impressioni;
   });
 
   const weekPostCount = {};
   allPosts.forEach(p => {
     if (p.data) {
       const wk = getWeekKey(p.data);
-      weekPostCount[wk] = (weekPostCount[wk] || 0) + 1;
+      weekPostCount[wk] = (weekPostCount[wk]||0) + 1;
     }
   });
 
@@ -946,21 +666,20 @@ function buildChartCumulativo() {
 
   let cum = 0;
   const cumValues = weeks.map(w => { cum += weekMap[w]; return cum; });
-
-  const pointRadii = weeks.map(w => weekPostCount[w] ? (weekPostCount[w] > 1 ? 13 : 10) : 0);
+  const pointRadii = weeks.map(w => weekPostCount[w] ? (weekPostCount[w]>1?13:10) : 0);
   const pointColors = weeks.map(w => weekPostCount[w] ? '#06b6d4' : '#4f46e5');
   const pointBorderColors = weeks.map(w => weekPostCount[w] ? '#0e7490' : '#4f46e5');
 
   const labelPlugin = {
-    id: 'postCountLabels',
+    id:'postCountLabels',
     afterDatasetDraw(chart) {
-      const { ctx } = chart;
+      const {ctx} = chart;
       const ds = chart.getDatasetMeta(0);
       ds.data.forEach((point, i) => {
         const count = weekPostCount[weeks[i]];
         if (!count) return;
         ctx.save();
-        ctx.font = 'bold 10px Segoe UI, system-ui, sans-serif';
+        ctx.font = 'bold 10px Segoe UI,system-ui,sans-serif';
         ctx.fillStyle = '#0f172a';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
@@ -972,100 +691,59 @@ function buildChartCumulativo() {
 
   const ctx = document.getElementById('chartCumulativo').getContext('2d');
   new Chart(ctx, {
-    type: 'line',
+    type:'line',
     data: {
       labels: weeks,
       datasets: [{
-        label: 'Impressioni cumulative',
+        label:'Impressioni cumulative',
         data: cumValues,
-        borderColor: '#4f46e5',
-        backgroundColor: 'rgba(79,70,229,0.07)',
-        borderWidth: 2,
+        borderColor:'#4f46e5',
+        backgroundColor:'rgba(79,70,229,0.07)',
+        borderWidth:2,
         pointRadius: pointRadii,
-        pointHoverRadius: pointRadii.map(r => r ? r + 2 : 0),
+        pointHoverRadius: pointRadii.map(r => r?r+2:0),
         pointBackgroundColor: pointColors,
         pointBorderColor: pointBorderColors,
-        pointBorderWidth: 1.5,
-        tension: 0.3,
-        fill: true
+        pointBorderWidth:1.5,
+        tension:0.3,
+        fill:true
       }]
     },
-    plugins: [labelPlugin],
+    plugins:[labelPlugin],
     options: {
-      responsive: true, maintainAspectRatio: false,
+      responsive:true, maintainAspectRatio:false,
       plugins: {
-        legend: { display: false },
+        legend: { display:false },
         tooltip: {
           callbacks: {
-            title: ctx => 'Settimana del ' + ctx[0].label,
-            label: ctx => ' Cumulativo: ' + ctx.parsed.y.toLocaleString('it-IT') + ' imp',
+            title: ctx => 'Settimana del '+ctx[0].label,
+            label: ctx => ' Cumulativo: '+ctx.parsed.y.toLocaleString('it-IT')+' imp',
             afterLabel: ctx => {
               const c = weekPostCount[weeks[ctx.dataIndex]];
-              return c ? ` 📌 ${c} post pubblicat${c > 1 ? 'i' : 'o'}` : '';
+              return c ? ` 📌 ${c} post pubblicat${c>1?'i':'o'}` : '';
             }
           }
         }
       },
       scales: {
-        x: { ticks: { color: '#64748b', font: { size: 11 }, maxRotation: 45, maxTicksLimit: 16 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: {
-          ticks: { color: '#94a3b8', font: { size: 11 }, callback: v => v >= 1000 ? (v/1000).toFixed(1).replace('.0','') + 'k' : v },
-          grid: { color: 'rgba(255,255,255,0.04)' }
-        }
+        x: { ticks:{ color:'#64748b', font:{ size:11 }, maxRotation:45, maxTicksLimit:16 }, grid:{ color:'rgba(255,255,255,0.04)' } },
+        y: { ticks:{ color:'#94a3b8', font:{ size:11 }, callback: v => v>=1000?(v/1000).toFixed(1).replace('.0','')+' k':v }, grid:{ color:'rgba(255,255,255,0.04)' } }
       }
     }
   });
 }
 
-// ============================================================
-// REFRESH COMPLETO (filtrato)
-// ============================================================
-function refresh(days, kw) {
-  updateKPI(days);
-  buildChartGiornaliero(days);
-  buildPostList(days, kw);
-  buildChartFollower(days);
-}
-
-// ============================================================
-// EVENTI FILTRI
-// ============================================================
-document.querySelectorAll('.btn-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.days === 'all' ? 'all' : parseInt(btn.dataset.days);
-    refresh(activeFilter, searchKeyword);
-  });
-});
-
-document.getElementById('searchBox').addEventListener('input', e => {
-  searchKeyword = e.target.value.trim();
-  buildPostList(activeFilter, searchKeyword);
-});
-
-document.getElementById('resetBtn').addEventListener('click', () => {
-  activeFilter = 'all';
-  searchKeyword = '';
-  document.getElementById('searchBox').value = '';
-  document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
-  document.querySelector('.btn-filter[data-days="all"]').classList.add('active');
-  refresh('all', '');
-});
-
-// ============================================================
-// INIT
-// ============================================================
-document.addEventListener('DOMContentLoaded', () => {
-  refresh('all', '');
-  buildBarH('settoriChart', demograficiContenuti.settori, COLORS_SETTORI);
-  buildDonut();
-  buildBarH('localitaChart', demograficiContenuti.localitaAudience, COLORS_SETTORI);
-  buildBarH('localitaContenutiChart', demograficiContenuti.localitaContenuti, COLORS_SETTORI);
-  buildStoricoTable();
-  buildChartStorico();
-  buildChartCumulativo();
-});
+// ─── INIT ────────────────────────────────────────────────────────────────────
+buildKPI();
+buildChartGiornaliero();
+buildChartFollower();
+buildChartAnzianita();
+buildPostList();
+buildBars('settori-bars', demografici.settori||[], '#6366f1');
+buildBars('localita-bars', demografici.localita||[], '#22d3ee');
+buildStoricoTable();
+buildChartStorico();
+buildChartCumulativo();
 </script>
 </body>
 </html>
