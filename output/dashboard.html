@@ -802,7 +802,7 @@ function updateKPI(days) {
   const kpiEl = document.getElementById('kpi-grid');
   kpiEl.innerHTML = `
     <div class="kpi-card"><div class="kpi-label">Impressioni</div><div class="kpi-value" style="color:#6366f1">${totImp.toLocaleString('it-IT')}</div><div class="kpi-sub">nel periodo</div></div>
-    <div class="kpi-card"><div class="kpi-label">Utenti raggiunti</div><div class="kpi-value" style="color:#06b6d4">${filtroGiorni===0?metaDati.utenti_raggiunti.toLocaleString('it-IT'):'—'}</div><div class="kpi-sub">utenti unici</div></div>
+    <div class="kpi-card"><div class="kpi-label">Utenti raggiunti</div><div class="kpi-value" style="color:#06b6d4">${metaDati.utenti_raggiunti.toLocaleString('it-IT')}</div><div class="kpi-sub">${filtroGiorni===0?'utenti unici':'periodo completo'}</div></div>
     <div class="kpi-card"><div class="kpi-label">Follower totali</div><div class="kpi-value" style="color:#4ade80">${metaDati.follower_totali}</div><div class="kpi-sub">al 08/10/2026</div></div>
     <div class="kpi-card"><div class="kpi-label">Post attivi</div><div class="kpi-value" style="color:#f59e0b">${postsInRange.length}</div><div class="kpi-sub">nel periodo</div></div>
     <div class="kpi-card"><div class="kpi-label">Engagement</div><div class="kpi-value" style="color:#a5b4fc">${eng}%</div><div class="kpi-sub">inter / impressioni</div></div>
