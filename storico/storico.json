@@ -1785,7 +1785,7 @@
     {
       "data": "2026-07-31",
       "impressioni": 104,
-      "interazioni": 3,
+      "interazioni": 2,
       "nuovi_follower": 0
     },
     {
@@ -2198,323 +2198,411 @@
     },
     {
       "data": "2026-10-08",
-      "impressioni": 2,
+      "impressioni": 22,
+      "interazioni": 0,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-09",
+      "impressioni": 18,
+      "interazioni": 0,
+      "nuovi_follower": 1
+    },
+    {
+      "data": "2026-10-10",
+      "impressioni": 19,
+      "interazioni": 0,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-11",
+      "impressioni": 13,
+      "interazioni": 0,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-12",
+      "impressioni": 140,
+      "interazioni": 1,
+      "nuovi_follower": 1
+    },
+    {
+      "data": "2026-10-13",
+      "impressioni": 87,
+      "interazioni": 2,
+      "nuovi_follower": 4
+    },
+    {
+      "data": "2026-10-14",
+      "impressioni": 91,
+      "interazioni": 1,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-15",
+      "impressioni": 31,
+      "interazioni": 1,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-16",
+      "impressioni": 13,
       "interazioni": 0,
       "nuovi_follower": 0
     }
   ],
   "posts": [
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
-      "data": "2026-06-08",
-      "titolo_breve": "Profilo ibrido ops+digital",
-      "interazioni": 40,
-      "impressioni": 1563
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
-      "data": "2026-06-10",
-      "titolo_breve": "Strumenti digitali (n8n/Tableau/AI)",
-      "interazioni": 15,
-      "impressioni": 444
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
-      "data": "2026-06-16",
-      "titolo_breve": "PwC Digital Trends 2026 (89% manager)",
-      "interazioni": 8,
-      "impressioni": 413
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
-      "data": "2026-06-18",
-      "titolo_breve": "Master Digital Restart (TalentGarden)",
-      "interazioni": 21,
-      "impressioni": 532
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
-      "data": "2026-06-22",
-      "titolo_breve": "ML Manutenzione Predittiva",
-      "interazioni": 6,
-      "impressioni": 375
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
-      "data": "2026-07-15",
-      "titolo_breve": "Costo energia industriale Italia vs Europa (+23%)",
-      "interazioni": 4,
-      "impressioni": 181
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
-      "data": "2026-07-17",
-      "titolo_breve": "51% aziende italiane AI: profili ibridi",
-      "interazioni": 6,
-      "impressioni": 138
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
-      "data": "2026-07-20",
-      "titolo_breve": "PMI: 76% non useranno AI nei prossimi anni",
-      "interazioni": 9,
-      "impressioni": 202
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
-      "data": "2026-07-22",
-      "titolo_breve": "AI Strategy per le PMI",
-      "interazioni": 4,
-      "impressioni": 131
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
-      "data": "2026-07-24",
-      "titolo_breve": "Intelligenza Artificiale e PMI: strategia",
-      "interazioni": 6,
-      "impressioni": 139
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
-      "data": "2026-07-27",
-      "titolo_breve": "AI e PMI: trasformazione digitale",
-      "interazioni": 7,
-      "impressioni": 220
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
-      "data": "2026-07-31",
-      "titolo_breve": "AI Strategy e PMI (luglio 31)",
-      "interazioni": 3,
-      "impressioni": 147
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
-      "data": "2026-08-03",
-      "titolo_breve": "AI Strategy e HR: trasformazione digitale",
-      "interazioni": 16,
-      "impressioni": 430
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
-      "data": "2026-08-05",
-      "titolo_breve": "AI Strategy PMI: digital transformation",
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN",
+      "data": "2026-10-12",
+      "titolo_breve": "Operations PMI digital transformation",
       "interazioni": 5,
-      "impressioni": 101
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
-      "data": "2026-08-07",
-      "titolo_breve": "AI PMI: trasformazione digitale step 2",
-      "interazioni": 1,
-      "impressioni": 95
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
-      "data": "2026-08-10",
-      "titolo_breve": "AI Strategy, digital transformation e PMI",
-      "interazioni": 3,
-      "impressioni": 106
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
-      "data": "2026-08-12",
-      "titolo_breve": "AI Strategy nella Pubblica Amministrazione",
-      "interazioni": 1,
-      "impressioni": 114
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
-      "data": "2026-08-14",
-      "titolo_breve": "AI Strategy in ambito MedTech/Healthcare",
-      "interazioni": 2,
-      "impressioni": 189
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv",
-      "data": "2026-09-15",
-      "titolo_breve": "AI strategy, talent acquisition e HR",
-      "interazioni": 17,
-      "impressioni": 1160
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA",
-      "data": "2026-09-28",
-      "titolo_breve": "8 tecnici, CRM e ops: caso reale di integrazione",
-      "interazioni": 8,
-      "impressioni": 593
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7",
-      "data": "2026-10-02",
-      "titolo_breve": "AI Act, governance e Shadow AI",
-      "interazioni": 5,
-      "impressioni": 441
+      "impressioni": 266
     },
     {
       "url": "https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU",
       "data": "2026-10-05",
-      "titolo_breve": "People Operations e HR Tech nelle PMI",
+      "titolo_breve": "People operations HR tech PMI",
       "interazioni": 2,
-      "impressioni": 219
+      "impressioni": 280
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7",
+      "data": "2026-10-02",
+      "titolo_breve": "AI Act AI governance Shadow AI",
+      "interazioni": 5,
+      "impressioni": 469
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA",
+      "data": "2026-09-28",
+      "titolo_breve": "8 tecnici un CRM che non parlava con il magazzino",
+      "interazioni": 8,
+      "impressioni": 614
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv",
+      "data": "2026-09-15",
+      "titolo_breve": "HR talent acquisition digital transformation",
+      "interazioni": 17,
+      "impressioni": 1178
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
+      "data": "2026-08-14",
+      "titolo_breve": "AI strategy MedTech healthcare",
+      "interazioni": 2,
+      "impressioni": 191
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
+      "data": "2026-08-12",
+      "titolo_breve": "AI strategy pubblica amministrazione digital transformation",
+      "interazioni": 1,
+      "impressioni": 116
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
+      "data": "2026-08-10",
+      "titolo_breve": "AI strategy digital transformation PMI (10 ago)",
+      "interazioni": 3,
+      "impressioni": 108
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
+      "data": "2026-08-07",
+      "titolo_breve": "AI strategy PMI digital transformation (7 ago)",
+      "interazioni": 1,
+      "impressioni": 97
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
+      "data": "2026-08-05",
+      "titolo_breve": "AI strategy PMI digital transformation (lug)",
+      "interazioni": 5,
+      "impressioni": 104
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
+      "data": "2026-08-03",
+      "titolo_breve": "AI strategy digital transformation HR",
+      "interazioni": 16,
+      "impressioni": 432
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
+      "data": "2026-07-31",
+      "titolo_breve": "Intelligenza artificiale PMI AI strategy (31 lug)",
+      "interazioni": 2,
+      "impressioni": 148
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
+      "data": "2026-07-27",
+      "titolo_breve": "AI PMI digital transformation",
+      "interazioni": 7,
+      "impressioni": 221
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
+      "data": "2026-07-24",
+      "titolo_breve": "Intelligenza artificiale PMI AI strategy",
+      "interazioni": 6,
+      "impressioni": 140
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
+      "data": "2026-07-22",
+      "titolo_breve": "AI strategy PMI digital transformation (22 lug)",
+      "interazioni": 4,
+      "impressioni": 132
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
+      "data": "2026-07-20",
+      "titolo_breve": "Intelligenza artificiale PMI industria 4.0",
+      "interazioni": 9,
+      "impressioni": 203
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
+      "data": "2026-07-17",
+      "titolo_breve": "AI strategy CAIO PMI",
+      "interazioni": 6,
+      "impressioni": 139
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
+      "data": "2026-07-15",
+      "titolo_breve": "AI strategy digital transformation operations management",
+      "interazioni": 4,
+      "impressioni": 182
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
+      "data": "2026-06-22",
+      "titolo_breve": "Operations management machine learning manutenzione",
+      "interazioni": 6,
+      "impressioni": 376
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
+      "data": "2026-06-18",
+      "titolo_breve": "TalentGarden DigitalRestart Intesa Sanpaolo",
+      "interazioni": 21,
+      "impressioni": 534
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
+      "data": "2026-06-16",
+      "titolo_breve": "Digital transformation operations management",
+      "interazioni": 8,
+      "impressioni": 415
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
+      "data": "2026-06-10",
+      "titolo_breve": "Ogni obiettivo ha lo strumento giusto",
+      "interazioni": 15,
+      "impressioni": 445
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+      "data": "2026-06-08",
+      "titolo_breve": "8 anni in operations industriale — presentazione profilo",
+      "interazioni": 40,
+      "impressioni": 1571
     }
   ],
   "meta": {
-    "ultima_elaborazione": "2026-10-08",
-    "periodo_start": "2025-10-09",
-    "periodo_end": "2026-10-08",
-    "impressioni_totali": 7996,
-    "utenti_raggiunti": 1660,
-    "follower_totali": 478,
-    "nuovi_follower_periodo": 118,
-    "tasso_engagement": 2.36,
+    "ultima_elaborazione": "2026-10-16",
+    "periodo_start": "2025-10-17",
+    "periodo_end": "2026-10-16",
+    "impressioni_totali": 8428,
+    "utenti_raggiunti": 1705,
+    "follower_totali": 483,
+    "nuovi_follower_periodo": 123,
+    "tasso_engagement": 2.29,
     "demografici": {
       "localita": [
         {
-          "valore": "Bologna",
+          "nome": "Bologna",
           "percentuale": "32%"
         },
         {
-          "valore": "Milano",
+          "nome": "Milano",
+          "percentuale": "10%"
+        },
+        {
+          "nome": "Ferrara",
           "percentuale": "9%"
         },
         {
-          "valore": "Ferrara",
-          "percentuale": "9%"
-        },
-        {
-          "valore": "Ravenna",
+          "nome": "Ravenna",
           "percentuale": "6%"
         },
         {
-          "valore": "Torino",
+          "nome": "Torino",
           "percentuale": "4%"
         },
         {
-          "valore": "Bari",
+          "nome": "Bari",
           "percentuale": "3%"
         },
         {
-          "valore": "Modena",
+          "nome": "Modena",
           "percentuale": "3%"
         },
         {
-          "valore": "Roma",
+          "nome": "Roma",
           "percentuale": "3%"
         },
         {
-          "valore": "Rimini",
+          "nome": "Rimini",
           "percentuale": "2%"
         },
         {
-          "valore": "Firenze",
+          "nome": "Firenze",
           "percentuale": "2%"
         }
       ],
       "settori": [
         {
-          "valore": "Servizi IT e consulenza IT",
+          "nome": "Servizi IT e consulenza IT",
           "percentuale": "8%"
         },
         {
-          "valore": "Servizi risorse umane",
+          "nome": "Servizi risorse umane",
           "percentuale": "8%"
         },
         {
-          "valore": "Consulenza e servizi aziendali",
+          "nome": "Consulenza e servizi aziendali",
           "percentuale": "7%"
         },
         {
-          "valore": "Vendita al dettaglio",
+          "nome": "Vendita al dettaglio",
           "percentuale": "7%"
         },
         {
-          "valore": "Servizi finanziari",
+          "nome": "Servizi finanziari",
           "percentuale": "3%"
         },
         {
-          "valore": "Servizi pubblicitari",
+          "nome": "Servizi pubblicitari",
           "percentuale": "3%"
         },
         {
-          "valore": "Fabbricazione di macchinari industriali",
+          "nome": "Fabbricazione di macchinari industriali",
           "percentuale": "3%"
         },
         {
-          "valore": "Trasporti, logistica, supply chain e stoccaggio",
+          "nome": "Trasporti, logistica, supply chain e stoccaggio",
           "percentuale": "2%"
         },
         {
-          "valore": "Selezione e ricerca di personale",
+          "nome": "Selezione e ricerca di personale",
           "percentuale": "2%"
         },
         {
-          "valore": "Sviluppo di software",
+          "nome": "Sviluppo di software",
           "percentuale": "2%"
         }
       ],
       "anzianita": [
         {
-          "valore": "Senior",
+          "nome": "Senior",
           "percentuale": "40%"
         },
         {
-          "valore": "Livello base",
-          "percentuale": "24%"
+          "nome": "Livello base",
+          "percentuale": "23%"
         },
         {
-          "valore": "Amministratore",
+          "nome": "Amministratore",
           "percentuale": "11%"
         },
         {
-          "valore": "Direttore",
+          "nome": "Direttore",
           "percentuale": "8%"
         },
         {
-          "valore": "Proprietario",
+          "nome": "Proprietario",
           "percentuale": "4%"
         },
         {
-          "valore": "CXO",
+          "nome": "CXO",
           "percentuale": "3%"
         }
       ],
-      "dimensioni_azienda": [],
+      "dimensioni_azienda": [
+        {
+          "nome": "1.001-5.000 dipendenti",
+          "percentuale": "15%"
+        },
+        {
+          "nome": "11-50 dipendenti",
+          "percentuale": "14%"
+        },
+        {
+          "nome": "51-200 dipendenti",
+          "percentuale": "12%"
+        },
+        {
+          "nome": "2-10 dipendenti",
+          "percentuale": "11%"
+        },
+        {
+          "nome": "10.001+ dipendenti",
+          "percentuale": "9%"
+        },
+        {
+          "nome": "201-500 dipendenti",
+          "percentuale": "8%"
+        },
+        {
+          "nome": "501-1.000 dipendenti",
+          "percentuale": "7%"
+        },
+        {
+          "nome": "5.001-10.000 dipendenti",
+          "percentuale": "7%"
+        }
+      ],
       "qualifica": [
         {
-          "valore": "Fondatore",
+          "nome": "Fondatore",
           "percentuale": "2%"
         },
         {
-          "valore": "Risorse umane",
+          "nome": "Risorse umane",
           "percentuale": "2%"
         },
         {
-          "valore": "Project Manager",
+          "nome": "Project Manager",
           "percentuale": "2%"
         },
         {
-          "valore": "Amministratore delegato",
+          "nome": "Amministratore delegato",
           "percentuale": "2%"
         },
         {
-          "valore": "Responsabile vendite",
+          "nome": "Responsabile vendite",
           "percentuale": "2%"
         },
         {
-          "valore": "Responsabile risorse umane",
-          "percentuale": "2%"
-        },
-        {
-          "valore": "Proprietario",
+          "nome": "Proprietario",
           "percentuale": "1%"
         },
         {
-          "valore": "Addetto alla selezione del personale",
+          "nome": "Responsabile risorse umane",
           "percentuale": "1%"
         },
         {
-          "valore": "Responsabile di negozio",
+          "nome": "Addetto alla selezione del personale",
+          "percentuale": "1%"
+        },
+        {
+          "nome": "Responsabile di negozio",
           "percentuale": "1%"
         }
       ]
