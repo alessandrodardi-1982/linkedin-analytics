@@ -153,8 +153,8 @@ a:hover { text-decoration: underline; }
 <body>
 
 <div class="header">
-  <h1>LinkedIn Analytics — Alessandro Dardi</h1>
-  <div class="subtitle">Periodo: 17/10/25 → 16/10/26 &nbsp;·&nbsp; Aggiornato il 16/10/2026</div>
+  <h1>LinkedIn Analytics &mdash; Alessandro Dardi</h1>
+  <div class="subtitle">Periodo: 21/10/25 &rarr; 20/10/26 &nbsp;&middot;&nbsp; Aggiornato il 20/10/2026</div>
 </div>
 
 <div class="filter-bar">
@@ -177,31 +177,31 @@ a:hover { text-decoration: underline; }
 
   <!-- KPI -->
   <div class="section">
-    <h2>KPI — Riepilogo</h2>
+    <h2>KPI &mdash; Riepilogo</h2>
     <div class="kpi-grid">
       <div class="kpi-card accent">
         <div class="kpi-label">Impressioni totali</div>
-        <div class="kpi-value" id="kpiImp">—</div>
+        <div class="kpi-value" id="kpiImp">&mdash;</div>
         <div class="kpi-sub" id="kpiImpSub"></div>
       </div>
       <div class="kpi-card yellow">
         <div class="kpi-label">Utenti raggiunti</div>
-        <div class="kpi-value" id="kpiUtenti">—</div>
+        <div class="kpi-value" id="kpiUtenti">&mdash;</div>
         <div class="kpi-sub"></div>
       </div>
       <div class="kpi-card green">
         <div class="kpi-label">Follower totali</div>
-        <div class="kpi-value" id="kpiFollower">—</div>
+        <div class="kpi-value" id="kpiFollower">&mdash;</div>
         <div class="kpi-sub" id="kpiFollowerSub"></div>
       </div>
       <div class="kpi-card cyan">
         <div class="kpi-label">Post attivi</div>
-        <div class="kpi-value" id="kpiPost">—</div>
+        <div class="kpi-value" id="kpiPost">&mdash;</div>
         <div class="kpi-sub" id="kpiPostSub"></div>
       </div>
       <div class="kpi-card orange">
         <div class="kpi-label">Tasso engagement</div>
-        <div class="kpi-value" id="kpiEng">—</div>
+        <div class="kpi-value" id="kpiEng">&mdash;</div>
         <div class="kpi-sub">interazioni / impressioni</div>
       </div>
     </div>
@@ -215,7 +215,7 @@ a:hover { text-decoration: underline; }
       <div class="chart-wrap">
         <canvas id="chartGiornaliero"></canvas>
       </div>
-      <div id="chartNoteGap" class="chart-note" style="display:none">⚠ Alcuni giorni non hanno dati disponibili nell'export LinkedIn</div>
+      <div id="chartNoteGap" class="chart-note" style="display:none">&#9888; Alcuni giorni non hanno dati disponibili nell'export LinkedIn</div>
     </div>
   </div>
 
@@ -246,13 +246,13 @@ a:hover { text-decoration: underline; }
         <div id="settoriDemo"></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">Località</div>
+        <div class="chart-title">Localit&agrave;</div>
         <div id="localitaDemo"></div>
       </div>
     </div>
     <div style="margin-top:16px">
       <div class="chart-card">
-        <div class="chart-title">Anzianità follower</div>
+        <div class="chart-title">Anzianit&agrave; follower</div>
         <div class="donut-wrap">
           <div class="donut-canvas-wrap">
             <canvas id="chartAnzianita"></canvas>
@@ -267,10 +267,10 @@ a:hover { text-decoration: underline; }
   <div class="section">
     <h2>Storico elaborazioni</h2>
     <div class="storico-meta">
-      <div class="meta-item"><div class="v" id="smGiorni">—</div><div class="l">Giorni in storico</div></div>
-      <div class="meta-item"><div class="v" id="smPost">—</div><div class="l">Post tracciati</div></div>
-      <div class="meta-item"><div class="v" id="smFollower">—</div><div class="l">Follower attuali</div></div>
-      <div class="meta-item"><div class="v" id="smImp">—</div><div class="l">Imp. totali periodo</div></div>
+      <div class="meta-item"><div class="v" id="smGiorni">&mdash;</div><div class="l">Giorni in storico</div></div>
+      <div class="meta-item"><div class="v" id="smPost">&mdash;</div><div class="l">Post tracciati</div></div>
+      <div class="meta-item"><div class="v" id="smFollower">&mdash;</div><div class="l">Follower attuali</div></div>
+      <div class="meta-item"><div class="v" id="smImp">&mdash;</div><div class="l">Imp. totali periodo</div></div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Impressioni nel tempo (storico completo)</div>
@@ -285,7 +285,7 @@ a:hover { text-decoration: underline; }
     <h2>Crescita cumulativa impressioni</h2>
     <div class="chart-card">
       <div class="chart-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-        <span>Andamento cumulativo — aggregato per settimana</span>
+        <span>Andamento cumulativo &mdash; aggregato per settimana</span>
         <span style="display:flex;gap:16px;font-size:12px;color:var(--text2);">
           <span style="display:flex;align-items:center;gap:5px;">
             <span style="width:18px;height:2px;background:#4f46e5;display:inline-block;border-radius:2px;"></span>
@@ -305,185 +305,173 @@ a:hover { text-decoration: underline; }
 
   <!-- Analisi strategica -->
   <div class="section">
-    <h2>Analisi strategica — Dati reali per singolo post</h2>
+    <h2>Analisi strategica &mdash; Dati reali per singolo post</h2>
     <div class="chart-card" style="padding:20px;">
-      
+
 <div class="analysis-section">
   <h3>1. Analisi dettagliata per post</h3>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
-      <a href="https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5" target="_blank" class="post-link">8 anni di esperienza in operations industriale</a>
-      <span class="post-date-badge">08/06/2026 — Lunedì</span>
+      <a href="https://www.linkedin.com/posts/alessandro-dardi_opentowork-jobsearch-operations-share-7517643039624994816-CrY7" target="_blank" class="post-link">#OpenToWork &mdash; Operations &amp; Digital Transformation</a>
+      <span class="post-date-badge">19/10/2026 &mdash; Luned&igrave;</span>
     </div>
     <div class="post-kpis">
-      <span>1.571 impressioni</span><span>40 interazioni</span><span class="eng-high">2,55% eng</span>
+      <span>341 impressioni</span><span>23 interazioni</span><span class="eng-high">6,74% eng</span>
     </div>
-    <p>Il post con il maggiore raggiungimento dell'intero anno. Contenuto autobiografico con dati concreti (8 anni, operations industriale) e call-to-action verso HR. Performa perché aggrega esperienze reali, numeri specifici e un angolo di visibilità professionale diretto. È il post di "ingresso" nel canale LinkedIn — questo tipo di contenuto di presentazione tende a generare curiosità e visite al profilo.</p>
+    <p>Il post pi&ugrave; recente e quello con il tasso di engagement pi&ugrave; alto di tutto l'anno (6,74%). Un annuncio di disponibilit&agrave; lavorativa (#opentowork) con hashtag #operations e #jobsearch. Performa in modo anomalo sull'engagement perch&eacute; questo tipo di post genera reazioni di supporto (like, commenti incoraggianti) da parte della rete. Le impressioni sono nella media bassa, ma l'engagement altissimo segnala forte attivazione della rete. Pubblicato di luned&igrave; — coerente con il pattern del canale.</p>
+  </div>
+
+  <div class="post-analysis-card">
+    <div class="post-analysis-header">
+      <a href="https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5" target="_blank" class="post-link">8 anni di esperienza in operations industriale</a>
+      <span class="post-date-badge">08/06/2026 &mdash; Luned&igrave;</span>
+    </div>
+    <div class="post-kpis">
+      <span>1.570 impressioni</span><span>40 interazioni</span><span class="eng-high">2,55% eng</span>
+    </div>
+    <p>Il post con il maggiore raggiungimento dell'intero anno. Contenuto autobiografico con dati concreti (8 anni, operations industriale) e call-to-action verso HR. Performa perch&eacute; aggrega esperienze reali, numeri specifici e un angolo di visibilit&agrave; professionale diretto. &Egrave; il post di "ingresso" nel canale LinkedIn &mdash; questo tipo di contenuto di presentazione tende a generare curiosit&agrave; e visite al profilo.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv" target="_blank" class="post-link">HR talent acquisition digital transformation</a>
-      <span class="post-date-badge">15/09/2026 — Martedì</span>
+      <span class="post-date-badge">15/09/2026 &mdash; Marted&igrave;</span>
     </div>
     <div class="post-kpis">
-      <span>1.178 impressioni</span><span>17 interazioni</span><span class="eng-mid">1,44% eng</span>
+      <span>1.185 impressioni</span><span>17 interazioni</span><span class="eng-mid">1,44% eng</span>
     </div>
-    <p>Secondo post per impressioni nell'anno. Direttamente rivolto all'HR con hashtag espliciti. Suggerisce che il contenuto che nomina direttamente il target (HR, talent acquisition) ottiene distribuzione selettiva ma di qualità. Il tasso di engagement è inferiore al primo post nonostante le impression simili, probabilmente per minore componente personale/narrativa.</p>
+    <p>Secondo post per impressioni nell'anno. Direttamente rivolto all'HR con hashtag espliciti. Suggerisce che il contenuto che nomina direttamente il target (HR, talent acquisition) ottiene distribuzione selettiva ma di qualit&agrave;. Il tasso di engagement &egrave; inferiore al primo post nonostante le impression simili, probabilmente per minore componente personale/narrativa.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA" target="_blank" class="post-link">8 tecnici, un CRM che non parlava con il magazzino</a>
-      <span class="post-date-badge">28/09/2026 — Domenica</span>
+      <span class="post-date-badge">28/09/2026 &mdash; Domenica</span>
     </div>
     <div class="post-kpis">
-      <span>614 impressioni</span><span>8 interazioni</span><span class="eng-mid">1,30% eng</span>
+      <span>624 impressioni</span><span>8 interazioni</span><span class="eng-mid">1,28% eng</span>
     </div>
-    <p>Case study narrativo su un progetto reale: integrazione CRM-magazzino con team di 8 tecnici. Il titolo è concreto e specifico ("8 tecnici", "CRM che non parlava") e crea curiosità. Funziona perché racconta un problema operativo con dettaglio umano — esattamente il formato che intercetta HR e decision maker in cerca di professionisti operations capaci di gestire persone e sistemi.</p>
+    <p>Case study narrativo su un progetto reale: integrazione CRM-magazzino con team di 8 tecnici. Il titolo &egrave; concreto e specifico ("8 tecnici", "CRM che non parlava") e crea curiosit&agrave;. Funziona perch&eacute; racconta un problema operativo con dettaglio umano &mdash; esattamente il formato che intercetta HR e decision maker in cerca di professionisti operations capaci di gestire persone e sistemi.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk" target="_blank" class="post-link">TalentGarden DigitalRestart Intesa Sanpaolo</a>
-      <span class="post-date-badge">18/06/2026 — Giovedì</span>
+      <span class="post-date-badge">18/06/2026 &mdash; Gioved&igrave;</span>
     </div>
     <div class="post-kpis">
       <span>534 impressioni</span><span>21 interazioni</span><span class="eng-high">3,93% eng</span>
     </div>
-    <p>Contenuto collegato a un'esperienza formativa (TalentGarden, DigitalRestart con Intesa Sanpaolo). Terzo engagement più alto dell'anno e quarto per impressioni. L'associazione a brand noti (Intesa Sanpaolo) amplifica la distribuzione organica. Il formato "ho partecipato a X e ho imparato Y" genera buona interazione perché è verificabile e credenziale.</p>
+    <p>Contenuto collegato a un'esperienza formativa (TalentGarden, DigitalRestart con Intesa Sanpaolo). Alto engagement. L'associazione a brand noti (Intesa Sanpaolo) amplifica la distribuzione organica. Il formato "ho partecipato a X e ho imparato Y" genera buona interazione perch&eacute; &egrave; verificabile e credenziale.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7" target="_blank" class="post-link">AI Act, AI governance, Shadow AI</a>
-      <span class="post-date-badge">02/10/2026 — Venerdì</span>
+      <span class="post-date-badge">02/10/2026 &mdash; Venerd&igrave;</span>
     </div>
     <div class="post-kpis">
-      <span>469 impressioni</span><span>5 interazioni</span><span class="eng-low">1,07% eng</span>
+      <span>481 impressioni</span><span>5 interazioni</span><span class="eng-low">1,04% eng</span>
     </div>
-    <p>Contenuto su AI governance e Shadow AI. Buone impressioni ma basso engagement: è probabile che sia un post informativo/commentato senza forte call-to-action o angolazione personale. Il tema AI Act è di attualità ma generico — funziona per impressioni ma non crea conversazione se non è collegato a un'esperienza diretta.</p>
+    <p>Contenuto su AI governance e Shadow AI. Buone impressioni ma basso engagement: &egrave; probabile che sia un post informativo/commentato senza forte call-to-action o angolazione personale. Il tema AI Act &egrave; di attualit&agrave; ma generico &mdash; funziona per impressioni ma non crea conversazione se non &egrave; collegato a un'esperienza diretta.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH" target="_blank" class="post-link">Ogni obiettivo ha lo strumento giusto</a>
-      <span class="post-date-badge">10/06/2026 — Mercoledì</span>
+      <span class="post-date-badge">10/06/2026 &mdash; Mercoled&igrave;</span>
     </div>
     <div class="post-kpis">
       <span>445 impressioni</span><span>15 interazioni</span><span class="eng-high">3,37% eng</span>
     </div>
-    <p>Post con buon equilibrio impressioni/engagement. Il titolo funziona come massima operativa — conciso, evocativo, applicabile a più contesti. Il formato "principio applicato a un caso reale" genera coinvolgimento perché spinge al commento. Pubblicato a due giorni dal post più performante dell'anno.</p>
+    <p>Post con buon equilibrio impressioni/engagement. Il titolo funziona come massima operativa &mdash; conciso, evocativo, applicabile a pi&ugrave; contesti. Il formato "principio applicato a un caso reale" genera coinvolgimento perch&eacute; spinge al commento.</p>
   </div>
 
   <div class="post-analysis-card">
     <div class="post-analysis-header">
       <a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b" target="_blank" class="post-link">AI strategy, digital transformation, HR</a>
-      <span class="post-date-badge">03/08/2026 — Lunedì</span>
+      <span class="post-date-badge">03/08/2026 &mdash; Luned&igrave;</span>
     </div>
     <div class="post-kpis">
       <span>432 impressioni</span><span>16 interazioni</span><span class="eng-high">3,70% eng</span>
     </div>
-    <p>Miglior performance nel mese di agosto. Triplice focus (AI, digital transformation, HR) con buon engagement. Tra i mesi estivi è l'unico post che torna sopra 400 impressioni — suggerisce che l'aggregazione di competenze distintive (AI + HR + Operations) risuona bene con il pubblico anche in bassa stagione.</p>
+    <p>Miglior performance nel mese di agosto. Triplice focus (AI, digital transformation, HR) con buon engagement. Tra i mesi estivi &egrave; l'unico post che torna sopra 400 impressioni &mdash; suggerisce che l'aggregazione di competenze distintive (AI + HR + Operations) risuona bene con il pubblico anche in bassa stagione.</p>
   </div>
 
   <h3 style="margin-top:32px">2. Schema comparativo</h3>
-  <div class="table-wrap">
-  <table class="analytics-table">
+  <div class="table-wrap" id="analisiTableWrap">
+  <table class="analytics-table" id="analisiTable">
     <thead>
       <tr><th>Data</th><th>Giorno</th><th>Titolo</th><th>Impressioni</th><th>Interazioni</th><th>Eng %</th></tr>
     </thead>
-    <tbody>
-      <tr><td>08/06</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5" target="_blank">8 anni in operations</a></td><td>1.571 ⭐</td><td>40 ⭐</td><td>2,55%</td></tr>
-      <tr><td>15/09</td><td>Mar</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv" target="_blank">HR talent acquisition</a></td><td>1.178</td><td>17</td><td>1,44%</td></tr>
-      <tr><td>28/09</td><td>Dom</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA" target="_blank">8 tecnici CRM magazzino</a></td><td>614</td><td>8</td><td>1,30%</td></tr>
-      <tr><td>18/06</td><td>Gio</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk" target="_blank">TalentGarden Intesa Sanpaolo</a></td><td>534</td><td>21</td><td class="eng-best">3,93% 🎯</td></tr>
-      <tr><td>02/10</td><td>Ven</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7" target="_blank">AI Act governance Shadow AI</a></td><td>469</td><td>5</td><td>1,07%</td></tr>
-      <tr><td>10/06</td><td>Mer</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH" target="_blank">Ogni obiettivo ha lo strumento giusto</a></td><td>445</td><td>15</td><td>3,37%</td></tr>
-      <tr><td>03/08</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b" target="_blank">AI strategy digital transformation HR</a></td><td>432</td><td>16</td><td>3,70%</td></tr>
-      <tr><td>16/06</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX" target="_blank">Digital transformation operations mgmt</a></td><td>415</td><td>8</td><td>1,93%</td></tr>
-      <tr><td>22/06</td><td>Dom</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF" target="_blank">Ops management ML manutenzione</a></td><td>376</td><td>6</td><td>1,60%</td></tr>
-      <tr><td>05/10</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU" target="_blank">People operations HR tech PMI</a></td><td>280</td><td>2</td><td>0,71%</td></tr>
-      <tr><td>12/10</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN" target="_blank">Operations PMI digital transformation</a></td><td>266</td><td>5</td><td>1,88%</td></tr>
-      <tr><td>27/07</td><td>Dom</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1" target="_blank">AI PMI digital transformation</a></td><td>221</td><td>7</td><td>3,17%</td></tr>
-      <tr><td>20/07</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc" target="_blank">IA PMI industria 4.0</a></td><td>203</td><td>9</td><td class="eng-best">4,43% 🎯</td></tr>
-      <tr><td>14/08</td><td>Ven</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM" target="_blank">AI strategy MedTech healthcare</a></td><td>191</td><td>2</td><td>1,05%</td></tr>
-      <tr><td>15/07</td><td>Mer</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5" target="_blank">AI strategy digital ops management</a></td><td>182</td><td>4</td><td>2,20%</td></tr>
-      <tr><td>31/07</td><td>Ven</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0" target="_blank">IA PMI AI strategy (lug)</a></td><td>148</td><td>2</td><td>1,35%</td></tr>
-      <tr><td>24/07</td><td>Ven</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi" target="_blank">IA PMI AI strategy (gen)</a></td><td>140</td><td>6</td><td class="eng-best">4,29% 🎯</td></tr>
-      <tr><td>17/07</td><td>Gio</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9" target="_blank">AI strategy CAIO PMI</a></td><td>139</td><td>6</td><td class="eng-best">4,32% 🎯</td></tr>
-      <tr><td>22/07</td><td>Mer</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm" target="_blank">AI strategy PMI digital (lug)</a></td><td>132</td><td>4</td><td>3,03%</td></tr>
-      <tr><td>12/08</td><td>Mer</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj" target="_blank">AI strategy PA digital transformation</a></td><td>116</td><td>1</td><td>0,86%</td></tr>
-      <tr><td>10/08</td><td>Lun</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB" target="_blank">AI strategy digital PMI (ago)</a></td><td>108</td><td>3</td><td>2,78%</td></tr>
-      <tr><td>05/08</td><td>Mer</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL" target="_blank">AI strategy PMI digital (5 ago)</a></td><td>104</td><td>5</td><td class="eng-best">4,81% 🎯</td></tr>
-      <tr><td>07/08</td><td>Gio</td><td><a href="https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H" target="_blank">AI strategy PMI digital (7 ago)</a></td><td>97</td><td>1</td><td>1,03%</td></tr>
+    <tbody id="analisiTableBody">
     </tbody>
   </table>
   </div>
-  <div class="analysis-note">
-    <strong>Post con più impressioni:</strong> 08/06 — "8 anni in operations" (1.571 imp). <br>
-    <strong>Post con engagement più alto:</strong> 05/08 — "AI strategy PMI digital" (4,81%). Nota: spesso il post con più impressioni non ha il miglior engagement — il contenuto autobiografico attira click ma meno commenti rispetto ai post tematici brevi.<br>
-    <strong>Post anomali:</strong> "People operations HR tech PMI" (05/10) ha solo 2 interazioni su 280 impressioni (0,71%) — il titolo probabilmente non ha catturato l'attenzione nonostante la visibilità; "AI Act governance Shadow AI" (02/10) ha 1,07% nonostante il tema rilevante — troppo informativo, nessun aggancio personale.
+  <div class="analysis-note" id="analisiNote">
+    <strong>Post con pi&ugrave; impressioni:</strong> 08/06 &mdash; "8 anni in operations" (1.570 imp).<br>
+    <strong>Post con engagement pi&ugrave; alto:</strong> 19/10 &mdash; #OpenToWork (6,74%). Nota: il post #opentowork &egrave; anomalo &mdash; genera reazioni di supporto dalla rete ma impressioni contenute. Escludendolo, il miglior eng puro su contenuto tematico &egrave; 05/08 (4,81%).<br>
+    <strong>Post anomali:</strong> "People operations HR tech PMI" (05/10) ha solo 2 interazioni su 294 impressioni (0,68%) &mdash; il titolo puramente tecnico non ha catturato l'attenzione nonostante la visibilit&agrave;; "AI Act governance Shadow AI" (02/10) ha 1,04% nonostante il tema rilevante &mdash; troppo informativo, nessun aggancio personale.
   </div>
 
   <h3>3. Pattern giorni di pubblicazione</h3>
   <div class="pattern-grid">
     <div class="pattern-item">
-      <div class="day-badge">Lunedì</div>
-      <div class="day-stat">8 post</div>
-      <div class="day-perf">Media: 364 imp</div>
-      <div class="day-note">Giorno più usato. Performance eccellente (08/06→1571, 15/09→1178 sono Lun/Mar). Lunedì conferma di essere il giorno di punta.</div>
+      <div class="day-badge">Luned&igrave;</div>
+      <div class="day-stat">9 post</div>
+      <div class="day-perf">Media: ~352 imp</div>
+      <div class="day-note">Giorno pi&ugrave; usato. Performance eccellente. Include i picchi di giugno e il recente #opentowork (19/10). Luned&igrave; conferma di essere il giorno di punta.</div>
     </div>
     <div class="pattern-item">
       <div class="day-badge">Domenica</div>
       <div class="day-stat">3 post</div>
-      <div class="day-perf">Media: 854 imp</div>
-      <div class="day-note">Media più alta in assoluto trainata dall'08/06 (1571). Post inaspettatamente forti — la domenica sera LinkedIn è meno affollato e il post dura di più.</div>
+      <div class="day-perf">Media: ~857 imp</div>
+      <div class="day-note">Media pi&ugrave; alta in assoluto trainata dall'08/06 (1.570) e dal CRM (624). La domenica sera LinkedIn &egrave; meno affollato e il post dura di pi&ugrave;.</div>
     </div>
     <div class="pattern-item">
-      <div class="day-badge">Venerdì</div>
+      <div class="day-badge">Venerd&igrave;</div>
       <div class="day-stat">4 post</div>
-      <div class="day-perf">Media: 322 imp</div>
-      <div class="day-note">Prestazioni buone, incluso il post AI Act (469 imp). Può funzionare per contenuti riflessivi/ricapitulativi della settimana.</div>
+      <div class="day-perf">Media: ~322 imp</div>
+      <div class="day-note">Prestazioni buone, incluso il post AI Act (481 imp). Pu&ograve; funzionare per contenuti riflessivi/ricapitulativi della settimana.</div>
     </div>
     <div class="pattern-item">
-      <div class="day-badge">Mercoledì</div>
+      <div class="day-badge">Mercoled&igrave;</div>
       <div class="day-stat">4 post</div>
-      <div class="day-perf">Media: 246 imp</div>
+      <div class="day-perf">Media: ~245 imp</div>
       <div class="day-note">Risultati inferiori alla media, soprattutto nei post puramente AI/PMI senza aggancio personale.</div>
     </div>
     <div class="pattern-item">
-      <div class="day-badge">Giovedì</div>
+      <div class="day-badge">Gioved&igrave;</div>
       <div class="day-stat">3 post</div>
-      <div class="day-perf">Media: 257 imp</div>
-      <div class="day-note">Risultato eterogeneo: TalentGarden (534 imp) vs post AI puro (97-139 imp).</div>
+      <div class="day-perf">Media: ~257 imp</div>
+      <div class="day-note">Risultato eterogeneo: TalentGarden (534 imp) vs post AI puro (97&ndash;139 imp).</div>
     </div>
     <div class="pattern-item">
-      <div class="day-badge">Martedì</div>
-      <div class="day-stat">1 post</div>
-      <div class="day-perf">445 imp</div>
-      <div class="day-note">Un solo punto dati. Risultato buono ma non sufficiente per trarre conclusioni.</div>
+      <div class="day-badge">Marted&igrave;</div>
+      <div class="day-stat">2 post</div>
+      <div class="day-perf">Media: ~763 imp</div>
+      <div class="day-note">Trainato dal post HR/talent acquisition (1.185 imp, 15/09). Campione piccolo ma promettente per contenuti HR espliciti.</div>
     </div>
   </div>
 
   <h3>4. Contenuto che funziona</h3>
   <div class="content-analysis">
     <div class="content-block highlight-block">
-      <strong>🥇 Contenuto personale/autobiografico con dati concreti</strong><br>
-      Il post di presentazione del profilo (8 anni, operations industriale) domina con 1571 impressioni. Pattern chiaro: quando il contenuto include numeri reali + esperienza vissuta in prima persona, le impression decollano. Non è un caso isolato — il post CRM (614 imp) replica lo stesso schema narrativo.
+      <strong>&#127947; Contenuto personale/autobiografico con dati concreti</strong><br>
+      Il post di presentazione del profilo (8 anni, operations industriale) domina con 1.570 impressioni. Il post CRM (624 imp) replica lo stesso schema narrativo. Il pi&ugrave; recente post #opentowork (19/10) conferma che i contenuti in prima persona generano la pi&ugrave; alta reazione della rete, anche con impressioni contenute.
     </div>
     <div class="content-block">
-      <strong>📌 HR + digital transformation = distribuzione selettiva</strong><br>
-      I post espliciti verso HR (15/09 con hashtag #hr #talentacquisition) ottengono ottima visibilità ma engagement inferiore al previsto. Suggerisce che il pubblico HR visualizza ma non commenta contenuti troppo "positioning" — meglio inserire la componente HR dentro un caso pratico.
+      <strong>&#128204; HR + digital transformation = distribuzione selettiva</strong><br>
+      I post espliciti verso HR (15/09 con hashtag #hr #talentacquisition) ottengono ottima visibilit&agrave; ma engagement inferiore al previsto. Suggerisce che il pubblico HR visualizza ma non commenta contenuti troppo "positioning" &mdash; meglio inserire la componente HR dentro un caso pratico.
     </div>
     <div class="content-block">
-      <strong>📊 Correlazione follower: i post personali/case study convertono</strong><br>
-      I picchi di nuovi follower (giugno: 45 nuovi, in corrispondenza dei post più forti) confermano che i contenuti narrativi con dati reali generano conversione follower. I post puramente tematici su AI/PMI senza aggancio personale non convertono (luglio-agosto: +27 follower su 11 post AI).
+      <strong>&#128202; Correlazione follower: i post personali/case study convertono</strong><br>
+      I picchi di nuovi follower (giugno: +45 nuovi, in corrispondenza dei post pi&ugrave; forti) confermano che i contenuti narrativi con dati reali generano conversione follower. I post puramente tematici su AI/PMI senza aggancio personale non convertono (luglio&ndash;agosto: +27 follower su 11 post AI).
     </div>
   </div>
 
-  <h3>5. Visibilità verso HR — obiettivo prioritario</h3>
+  <h3>5. Visibilit&agrave; verso HR &mdash; obiettivo prioritario</h3>
   <div class="hr-section">
     <div class="hr-current">
       <strong>Percentuale attuale HR nelle qualifiche (audience):</strong><br>
@@ -491,23 +479,22 @@ a:hover { text-decoration: underline; }
       <strong>Totale stima HR audience: ~4%</strong>
     </div>
     <div class="hr-trend">
-      <strong>Trend storico:</strong> Non disponibili dati precedenti per confronto diretto. Questa è la prima elaborazione con dati demografici completi di audience (precedenti elaborazioni includevano solo contenuti).
+      <strong>Trend storico:</strong> Stabile al ~4% nelle ultime due elaborazioni. Il post #opentowork del 19/10 ha potenzialmente attirato attenzione di HR/recruiter, ma l'impatto demografico sar&agrave; visibile nella prossima estrazione. Il post HR explicit del 15/09 (1.185 imp, top 2 dell'anno) non ha spostato la quota HR &mdash; segnale che la visibilit&agrave; c'&egrave; ma la ritenzione nel segmento &egrave; ancora bassa.
     </div>
     <div class="hr-assessment">
-      <strong>Valutazione post recenti per attrattività HR:</strong>
+      <strong>Valutazione post recenti per attrattivit&agrave; HR:</strong>
       <ul>
-        <li><strong>"8 tecnici, un CRM che non parlava col magazzino"</strong> (614 imp) — ottimo per HR: mostra coordinamento di team, problem solving su sistemi complessi, gestione operativa. Esattamente ciò che cerca un recruiter operations/digital.</li>
-        <li><strong>"HR talent acquisition digital transformation"</strong> (1178 imp) — visibile agli HR ma forse percepito come contenuto "per HR" anziché "di chi vuole lavorare con HR".</li>
-        <li><strong>"People operations HR tech PMI"</strong> (280 imp, 0,71% eng) — basso engagement nonostante il tema diretto. Il titolo non ha funzionato: troppo generico, nessun numero, nessun hook.</li>
+        <li><strong>"#OpenToWork operations"</strong> (19/10, 341 imp, 23 int) &mdash; direttamente ricercato dai recruiter. Il 6,74% di engagement &egrave; un segnale forte che la rete HR ha risposto. Monitorare se genera contatti diretti.</li>
+        <li><strong>"Operations PMI digital transformation"</strong> (12/10, 318 imp) &mdash; non ottimale per HR: il titolo &egrave; generico e non mostra risultati misurabili o gestione di team. Manca: numero di persone gestite, budget, KPI di risultato.</li>
+        <li><strong>"8 tecnici CRM magazzino"</strong> (28/09, 624 imp) &mdash; ottimo per HR: mostra coordinamento team, problem solving su sistemi complessi. Questo formato va replicato.</li>
       </ul>
-      <strong>Elementi mancanti per attrarre HR:</strong> negli ultimi post AI/PMI mancano: numeri concreti di impatto sul team, riferimenti espliciti a "budget gestito", "persone coordinate", "KPI raggiunti". Un recruiter cerca questi segnali.
     </div>
     <div class="hr-suggestions">
-      <strong>3 angolazioni per il prossimo post pensato per HR:</strong>
+      <strong>Suggerimenti per i prossimi post (target HR/recruiter):</strong>
       <ol>
-        <li><strong>"Ho coordinato X persone su un progetto di digitalizzazione da Y€ — ecco cosa ho imparato sulla gestione del cambiamento"</strong> — combina numeri concreti, leadership e digital transformation. Perfetto per un recruiter operations/change management.</li>
-        <li><strong>"Il recruiter mi ha chiesto: come misuri il successo di un'implementazione? Risposta: 3 KPI che uso sempre in operations"</strong> — aggancia direttamente il pubblico HR, crea dialogo, genera commenti.</li>
-        <li><strong>"Da 0 a 483 follower in 10 mesi pubblicando 23 post: quello che ho capito su come costruire visibilità professionale nel settore operations"</strong> — meta-contenuto su LinkedIn stesso, molto condiviso, intercetta HR e hiring manager curiosi del percorso professionale.</li>
+        <li><strong>Aggiorna sul #opentowork:</strong> Un follow-up a 10 giorni dal post del 19/10 con "cosa sto cercando esattamente" &mdash; operations manager, digital transformation, PMI &mdash; con numeri (anni di esperienza, team gestiti, budget coordinato). Il pubblico che ha reagito al primo post &egrave; gi&agrave; caldo.</li>
+        <li><strong>Case study con KPI quantificati:</strong> "Ho ridotto i tempi di X del Y% coordinando Z persone" &mdash; il formato narrativo con risultato numerico &egrave; ci&ograve; che i recruiter copianonel CV matching. Specificit&agrave; batte genericismo.</li>
+        <li><strong>Risposta a un trend HR attuale:</strong> commenta una notizia sul mercato del lavoro operations/digital (carenza di figure ibride, AI nei processi operations) con la tua esperienza diretta. Hashtag: #operations #hr #digitaltransformation #opentowork.</li>
       </ol>
     </div>
   </div>
@@ -516,23 +503,23 @@ a:hover { text-decoration: underline; }
   <div class="actions-list">
     <div class="action-item">
       <span class="action-num">1</span>
-      <div><strong>Replica il formato "case study con numeri":</strong> il post "8 tecnici, un CRM" (614 imp) e "8 anni di esperienza" (1571 imp) dimostrano che un numero nel titolo + problema reale + risoluzione concreta supera qualsiasi contenuto teorico su AI o digital transformation. Prossimo post: scegli un progetto reale, metti un numero nel titolo.</div>
+      <div><strong>Capitalizza sull'onda #opentowork:</strong> il post del 19/10 ha il pi&ugrave; alto engagement dell'anno (6,74%). Pubblica entro 5&ndash;7 giorni un follow-up con dettagli concreti su ci&ograve; che cerchi &mdash; titolo, settore, tipo di azienda, disponibilit&agrave; &mdash; pi&ugrave; uno o due risultati misurabili raggiunti. Finch&eacute; il primo post &egrave; caldo, la visibilit&agrave; del secondo &egrave; amplificata.</div>
     </div>
     <div class="action-item">
       <span class="action-num">2</span>
-      <div><strong>Pubblica il lunedì o la domenica:</strong> i dati mostrano che lunedì ha 8 post e media 364 imp; domenica solo 3 post ma media 854 imp. La domenica sera è statisticamente il tuo momento migliore — il post resta visibile tutta la settimana senza essere sepolto dal traffico del mattino del lunedì.</div>
+      <div><strong>Replica il formato case study:</strong> "8 tecnici + CRM magazzino" (624 imp) e "8 anni di operations" (1.570 imp) hanno entrambi un numero specifico nel titolo. Il prossimo post operativo dovrebbe aprire con un numero: "4 mesi, 3 fornitori, 1 sistema integrato". Titolo quantificato = click rate pi&ugrave; alto.</div>
     </div>
     <div class="action-item">
       <span class="action-num">3</span>
-      <div><strong>Smetti di pubblicare post AI generici senza aggancio personale:</strong> luglio-agosto 2026 ha prodotto 11 post su AI/PMI con una media di 148 impressioni. Nessuno di questi ha un caso concreto tuo. Ogni post su AI deve iniziare con "nel mio lavoro ho..." — non con "l'AI è importante perché...".</div>
+      <div><strong>Domenica e luned&igrave; restano i giorni migliori:</strong> media domenica ~857 imp (3 post), media luned&igrave; ~352 imp (9 post). I prossimi post importanti &mdash; quelli in formato case study o autobiografico &mdash; vanno pubblicati domenica sera o luned&igrave; mattina.</div>
     </div>
     <div class="action-item">
       <span class="action-num">4</span>
-      <div><strong>Metti dati HR nei post operations:</strong> il post "People operations HR tech PMI" (05/10) ha ottenuto solo 0,71% di engagement su 280 impressioni — il titolo non funziona. Il prossimo post HR-oriented deve avere: numero di persone gestite, budget approssimativo, o KPI specifico di risultato. Gli HR cercano pattern quantificabili.</div>
+      <div><strong>Evita i post AI puramente informativi:</strong> su 11 post AI/PMI da luglio ad agosto, la media &egrave; stata 155 imp con 3,5 interazioni. Il tema AI funziona solo quando &egrave; collegato a un'esperienza diretta o a un risultato concreto. Non commentare notizie AI senza aggancio personale.</div>
     </div>
     <div class="action-item">
       <span class="action-num">5</span>
-      <div><strong>Mantieni il ritmo 2-3 post/settimana ma con pausa agosto:</strong> i dati confermano il calo estivo (agosto = 11 post, media 148 imp vs giugno = 8 post, media 531 imp). Considera di sospendere o ridurre fortemente la pubblicazione a luglio-agosto e concentrare energie su settembre-ottobre quando il pubblico è più attivo e il ROI per post è 3-4x superiore.</div>
+      <div><strong>Metti sempre un numero nel titolo dei post HR-oriented:</strong> "People operations HR tech PMI" (05/10) ha ottenuto 0,68% di engagement su 294 impressioni &mdash; il peggior ratio del periodo. Il titolo era generico. Il prossimo post HR deve aprire con: quante persone, quale ruolo, quale risultato. Esempio: "Ho gestito la transizione digitale di 12 persone: cosa ho imparato."</div>
     </div>
   </div>
 </div>
@@ -545,10 +532,10 @@ a:hover { text-decoration: underline; }
 <script>
 // === DATI EMBEDDED ===
 const globalSeries = {
-  giorni: [{"data": "2025-09-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2025-10-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2025-10-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2025-10-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-10-31", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2025-11-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-11-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2025-12-31", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-01-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-01-31", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-02-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-02-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-02-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-02-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-03-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-03-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-03-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 5}, {"data": "2026-03-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-03-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-03-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-03-31", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-04-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-04-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-04-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-04-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 4}, {"data": "2026-05-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-08", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-09", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-10", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-11", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-05-12", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-14", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-15", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-16", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-17", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-18", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-19", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-20", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-21", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-22", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-05-23", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-24", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-25", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-05-26", "impressioni": 0, "interazioni": 0, "nuovi_follower": 3}, {"data": "2026-05-27", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-05-28", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-05-29", "impressioni": 0, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-05-30", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-05-31", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-01", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-02", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-03", "impressioni": 0, "interazioni": 0, "nuovi_follower": 3}, {"data": "2026-06-04", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-05", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-06", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-07", "impressioni": 0, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-06-08", "impressioni": 167, "interazioni": 13, "nuovi_follower": 0}, {"data": "2026-06-09", "impressioni": 496, "interazioni": 18, "nuovi_follower": 3}, {"data": "2026-06-10", "impressioni": 444, "interazioni": 16, "nuovi_follower": 1}, {"data": "2026-06-11", "impressioni": 121, "interazioni": 1, "nuovi_follower": 1}, {"data": "2026-06-12", "impressioni": 47, "interazioni": 1, "nuovi_follower": 2}, {"data": "2026-06-13", "impressioni": 29, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-06-14", "impressioni": 29, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-15", "impressioni": 48, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-06-16", "impressioni": 324, "interazioni": 10, "nuovi_follower": 3}, {"data": "2026-06-17", "impressioni": 137, "interazioni": 1, "nuovi_follower": 3}, {"data": "2026-06-18", "impressioni": 325, "interazioni": 13, "nuovi_follower": 2}, {"data": "2026-06-19", "impressioni": 97, "interazioni": 1, "nuovi_follower": 2}, {"data": "2026-06-20", "impressioni": 41, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-21", "impressioni": 24, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-06-22", "impressioni": 150, "interazioni": 6, "nuovi_follower": 1}, {"data": "2026-06-23", "impressioni": 80, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-06-24", "impressioni": 40, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-06-25", "impressioni": 64, "interazioni": 2, "nuovi_follower": 1}, {"data": "2026-06-26", "impressioni": 39, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-06-27", "impressioni": 18, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-28", "impressioni": 29, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-06-29", "impressioni": 35, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-06-30", "impressioni": 32, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-01", "impressioni": 38, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-07-02", "impressioni": 32, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-03", "impressioni": 14, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-04", "impressioni": 16, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-05", "impressioni": 12, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-07-06", "impressioni": 20, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-07", "impressioni": 16, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-08", "impressioni": 40, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-09", "impressioni": 33, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-07-10", "impressioni": 16, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-11", "impressioni": 7, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-12", "impressioni": 4, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-13", "impressioni": 5, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-07-14", "impressioni": 14, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-07-15", "impressioni": 105, "interazioni": 4, "nuovi_follower": 0}, {"data": "2026-07-16", "impressioni": 65, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-07-17", "impressioni": 84, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-07-18", "impressioni": 42, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-07-19", "impressioni": 6, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-20", "impressioni": 151, "interazioni": 9, "nuovi_follower": 0}, {"data": "2026-07-21", "impressioni": 31, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-22", "impressioni": 103, "interazioni": 4, "nuovi_follower": 0}, {"data": "2026-07-23", "impressioni": 26, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-07-24", "impressioni": 81, "interazioni": 6, "nuovi_follower": 1}, {"data": "2026-07-25", "impressioni": 20, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-26", "impressioni": 14, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-07-27", "impressioni": 156, "interazioni": 5, "nuovi_follower": 1}, {"data": "2026-07-28", "impressioni": 59, "interazioni": 2, "nuovi_follower": 1}, {"data": "2026-07-29", "impressioni": 54, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-07-30", "impressioni": 17, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-07-31", "impressioni": 104, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-08-01", "impressioni": 18, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-02", "impressioni": 18, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-08-03", "impressioni": 298, "interazioni": 11, "nuovi_follower": 1}, {"data": "2026-08-04", "impressioni": 64, "interazioni": 1, "nuovi_follower": 2}, {"data": "2026-08-05", "impressioni": 84, "interazioni": 5, "nuovi_follower": 1}, {"data": "2026-08-06", "impressioni": 31, "interazioni": 5, "nuovi_follower": 0}, {"data": "2026-08-07", "impressioni": 68, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-08-08", "impressioni": 23, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-08-09", "impressioni": 12, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-10", "impressioni": 74, "interazioni": 3, "nuovi_follower": 1}, {"data": "2026-08-11", "impressioni": 11, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-08-12", "impressioni": 40, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-13", "impressioni": 5, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-14", "impressioni": 54, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-08-15", "impressioni": 23, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-16", "impressioni": 16, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-08-17", "impressioni": 8, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-18", "impressioni": 14, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-08-19", "impressioni": 24, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-20", "impressioni": 10, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-08-21", "impressioni": 11, "interazioni": 0, "nuovi_follower": 3}, {"data": "2026-08-22", "impressioni": 8, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-23", "impressioni": 4, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-24", "impressioni": 15, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-25", "impressioni": 24, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-26", "impressioni": 5, "interazioni": 0, "nuovi_follower": 2}, {"data": "2026-08-27", "impressioni": 12, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-08-28", "impressioni": 10, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-08-29", "impressioni": 6, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-30", "impressioni": 7, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-08-31", "impressioni": 16, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-01", "impressioni": 9, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-09-02", "impressioni": 8, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-03", "impressioni": 6, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-04", "impressioni": 4, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-05", "impressioni": 1, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-06", "impressioni": 7, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-09-07", "impressioni": 13, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-09-08", "impressioni": 77, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-09", "impressioni": 18, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-10", "impressioni": 5, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-11", "impressioni": 34, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-12", "impressioni": 1, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-13", "impressioni": 0, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-14", "impressioni": 81, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-15", "impressioni": 488, "interazioni": 12, "nuovi_follower": 0}, {"data": "2026-09-16", "impressioni": 133, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-09-17", "impressioni": 66, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-09-18", "impressioni": 53, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-19", "impressioni": 18, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-20", "impressioni": 39, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-21", "impressioni": 35, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-22", "impressioni": 28, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-23", "impressioni": 19, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-24", "impressioni": 67, "interazioni": 3, "nuovi_follower": 2}, {"data": "2026-09-25", "impressioni": 42, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-09-26", "impressioni": 79, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-09-27", "impressioni": 54, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-09-28", "impressioni": 423, "interazioni": 6, "nuovi_follower": 0}, {"data": "2026-09-29", "impressioni": 139, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-09-30", "impressioni": 60, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-01", "impressioni": 31, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-02", "impressioni": 262, "interazioni": 5, "nuovi_follower": 0}, {"data": "2026-10-03", "impressioni": 95, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-10-04", "impressioni": 49, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-05", "impressioni": 187, "interazioni": 2, "nuovi_follower": 0}, {"data": "2026-10-06", "impressioni": 79, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-07", "impressioni": 70, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-10-08", "impressioni": 22, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-09", "impressioni": 18, "interazioni": 0, "nuovi_follower": 1}, {"data": "2026-10-10", "impressioni": 19, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-11", "impressioni": 13, "interazioni": 0, "nuovi_follower": 0}, {"data": "2026-10-12", "impressioni": 140, "interazioni": 1, "nuovi_follower": 1}, {"data": "2026-10-13", "impressioni": 87, "interazioni": 2, "nuovi_follower": 4}, {"data": "2026-10-14", "impressioni": 91, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-10-15", "impressioni": 31, "interazioni": 1, "nuovi_follower": 0}, {"data": "2026-10-16", "impressioni": 13, "interazioni": 0, "nuovi_follower": 0}],
-  meta: {"ultima_elaborazione": "2026-10-16", "periodo_start": "2025-10-17", "periodo_end": "2026-10-16", "impressioni_totali": 8428, "utenti_raggiunti": 1705, "follower_totali": 483, "nuovi_follower_periodo": 123, "tasso_engagement": 2.29, "demografici": {"localita": [{"nome": "Bologna", "percentuale": "32%"}, {"nome": "Milano", "percentuale": "10%"}, {"nome": "Ferrara", "percentuale": "9%"}, {"nome": "Ravenna", "percentuale": "6%"}, {"nome": "Torino", "percentuale": "4%"}, {"nome": "Bari", "percentuale": "3%"}, {"nome": "Modena", "percentuale": "3%"}, {"nome": "Roma", "percentuale": "3%"}, {"nome": "Rimini", "percentuale": "2%"}, {"nome": "Firenze", "percentuale": "2%"}], "settori": [{"nome": "Servizi IT e consulenza IT", "percentuale": "8%"}, {"nome": "Servizi risorse umane", "percentuale": "8%"}, {"nome": "Consulenza e servizi aziendali", "percentuale": "7%"}, {"nome": "Vendita al dettaglio", "percentuale": "7%"}, {"nome": "Servizi finanziari", "percentuale": "3%"}, {"nome": "Servizi pubblicitari", "percentuale": "3%"}, {"nome": "Fabbricazione di macchinari industriali", "percentuale": "3%"}, {"nome": "Trasporti, logistica, supply chain e stoccaggio", "percentuale": "2%"}, {"nome": "Selezione e ricerca di personale", "percentuale": "2%"}, {"nome": "Sviluppo di software", "percentuale": "2%"}], "anzianita": [{"nome": "Senior", "percentuale": "40%"}, {"nome": "Livello base", "percentuale": "23%"}, {"nome": "Amministratore", "percentuale": "11%"}, {"nome": "Direttore", "percentuale": "8%"}, {"nome": "Proprietario", "percentuale": "4%"}, {"nome": "CXO", "percentuale": "3%"}], "dimensioni_azienda": [{"nome": "1.001-5.000 dipendenti", "percentuale": "15%"}, {"nome": "11-50 dipendenti", "percentuale": "14%"}, {"nome": "51-200 dipendenti", "percentuale": "12%"}, {"nome": "2-10 dipendenti", "percentuale": "11%"}, {"nome": "10.001+ dipendenti", "percentuale": "9%"}, {"nome": "201-500 dipendenti", "percentuale": "8%"}, {"nome": "501-1.000 dipendenti", "percentuale": "7%"}, {"nome": "5.001-10.000 dipendenti", "percentuale": "7%"}], "qualifica": [{"nome": "Fondatore", "percentuale": "2%"}, {"nome": "Risorse umane", "percentuale": "2%"}, {"nome": "Project Manager", "percentuale": "2%"}, {"nome": "Amministratore delegato", "percentuale": "2%"}, {"nome": "Responsabile vendite", "percentuale": "2%"}, {"nome": "Proprietario", "percentuale": "1%"}, {"nome": "Responsabile risorse umane", "percentuale": "1%"}, {"nome": "Addetto alla selezione del personale", "percentuale": "1%"}, {"nome": "Responsabile di negozio", "percentuale": "1%"}]}}
+  giorni: [{"data":"2025-09-19","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2025-10-01","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2025-10-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-12","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2025-10-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-25","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-26","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-30","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-10-31","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-12","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-25","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-26","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2025-11-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-11-30","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-12","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-25","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-26","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-30","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2025-12-31","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-12","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-14","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-01-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-25","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-26","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-30","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-01-31","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-10","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-02-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-12","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-25","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-02-26","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-02-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-02-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-02","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-03-03","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-03-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-12","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-03-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-17","impressioni":0,"interazioni":0,"nuovi_follower":5},{"data":"2026-03-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-23","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-03-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-25","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-03-26","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-30","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-03-31","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-07","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-11","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-12","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-15","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-16","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-20","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-22","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-23","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-04-24","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-04-25","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-26","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-27","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-04-28","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-29","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-04-30","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-03","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-05","impressioni":0,"interazioni":0,"nuovi_follower":4},{"data":"2026-05-06","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-07","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-08","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-09","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-10","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-11","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-05-12","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-13","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-14","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-15","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-16","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-17","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-18","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-19","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-20","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-21","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-22","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-05-23","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-24","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-25","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-05-26","impressioni":0,"interazioni":0,"nuovi_follower":3},{"data":"2026-05-27","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-05-28","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-05-29","impressioni":0,"interazioni":0,"nuovi_follower":2},{"data":"2026-05-30","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-05-31","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-01","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-02","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-03","impressioni":0,"interazioni":0,"nuovi_follower":3},{"data":"2026-06-04","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-05","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-06","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-07","impressioni":0,"interazioni":0,"nuovi_follower":1},{"data":"2026-06-08","impressioni":167,"interazioni":13,"nuovi_follower":0},{"data":"2026-06-09","impressioni":495,"interazioni":18,"nuovi_follower":3},{"data":"2026-06-10","impressioni":444,"interazioni":16,"nuovi_follower":1},{"data":"2026-06-11","impressioni":121,"interazioni":1,"nuovi_follower":1},{"data":"2026-06-12","impressioni":47,"interazioni":1,"nuovi_follower":2},{"data":"2026-06-13","impressioni":29,"interazioni":0,"nuovi_follower":1},{"data":"2026-06-14","impressioni":29,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-15","impressioni":48,"interazioni":0,"nuovi_follower":2},{"data":"2026-06-16","impressioni":321,"interazioni":10,"nuovi_follower":3},{"data":"2026-06-17","impressioni":137,"interazioni":1,"nuovi_follower":3},{"data":"2026-06-18","impressioni":325,"interazioni":13,"nuovi_follower":2},{"data":"2026-06-19","impressioni":97,"interazioni":1,"nuovi_follower":2},{"data":"2026-06-20","impressioni":41,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-21","impressioni":24,"interazioni":1,"nuovi_follower":0},{"data":"2026-06-22","impressioni":150,"interazioni":6,"nuovi_follower":1},{"data":"2026-06-23","impressioni":80,"interazioni":1,"nuovi_follower":0},{"data":"2026-06-24","impressioni":40,"interazioni":0,"nuovi_follower":1},{"data":"2026-06-25","impressioni":64,"interazioni":2,"nuovi_follower":1},{"data":"2026-06-26","impressioni":39,"interazioni":0,"nuovi_follower":2},{"data":"2026-06-27","impressioni":18,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-28","impressioni":29,"interazioni":1,"nuovi_follower":0},{"data":"2026-06-29","impressioni":35,"interazioni":0,"nuovi_follower":0},{"data":"2026-06-30","impressioni":32,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-01","impressioni":38,"interazioni":1,"nuovi_follower":0},{"data":"2026-07-02","impressioni":32,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-03","impressioni":14,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-04","impressioni":16,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-05","impressioni":12,"interazioni":2,"nuovi_follower":0},{"data":"2026-07-06","impressioni":20,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-07","impressioni":16,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-08","impressioni":40,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-09","impressioni":33,"interazioni":0,"nuovi_follower":2},{"data":"2026-07-10","impressioni":16,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-11","impressioni":7,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-12","impressioni":4,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-13","impressioni":5,"interazioni":0,"nuovi_follower":1},{"data":"2026-07-14","impressioni":14,"interazioni":0,"nuovi_follower":2},{"data":"2026-07-15","impressioni":105,"interazioni":4,"nuovi_follower":0},{"data":"2026-07-16","impressioni":65,"interazioni":2,"nuovi_follower":0},{"data":"2026-07-17","impressioni":84,"interazioni":2,"nuovi_follower":0},{"data":"2026-07-18","impressioni":42,"interazioni":2,"nuovi_follower":0},{"data":"2026-07-19","impressioni":6,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-20","impressioni":151,"interazioni":9,"nuovi_follower":0},{"data":"2026-07-21","impressioni":31,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-22","impressioni":103,"interazioni":4,"nuovi_follower":0},{"data":"2026-07-23","impressioni":26,"interazioni":0,"nuovi_follower":2},{"data":"2026-07-24","impressioni":81,"interazioni":6,"nuovi_follower":1},{"data":"2026-07-25","impressioni":20,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-26","impressioni":14,"interazioni":0,"nuovi_follower":0},{"data":"2026-07-27","impressioni":156,"interazioni":5,"nuovi_follower":1},{"data":"2026-07-28","impressioni":59,"interazioni":2,"nuovi_follower":1},{"data":"2026-07-29","impressioni":54,"interazioni":0,"nuovi_follower":2},{"data":"2026-07-30","impressioni":17,"interazioni":0,"nuovi_follower":2},{"data":"2026-07-31","impressioni":104,"interazioni":2,"nuovi_follower":0},{"data":"2026-08-01","impressioni":18,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-02","impressioni":18,"interazioni":0,"nuovi_follower":2},{"data":"2026-08-03","impressioni":298,"interazioni":11,"nuovi_follower":1},{"data":"2026-08-04","impressioni":64,"interazioni":1,"nuovi_follower":2},{"data":"2026-08-05","impressioni":84,"interazioni":5,"nuovi_follower":1},{"data":"2026-08-06","impressioni":31,"interazioni":5,"nuovi_follower":0},{"data":"2026-08-07","impressioni":68,"interazioni":1,"nuovi_follower":0},{"data":"2026-08-08","impressioni":23,"interazioni":1,"nuovi_follower":0},{"data":"2026-08-09","impressioni":12,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-10","impressioni":74,"interazioni":3,"nuovi_follower":1},{"data":"2026-08-11","impressioni":11,"interazioni":0,"nuovi_follower":1},{"data":"2026-08-12","impressioni":40,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-13","impressioni":5,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-14","impressioni":54,"interazioni":2,"nuovi_follower":0},{"data":"2026-08-15","impressioni":23,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-16","impressioni":16,"interazioni":0,"nuovi_follower":2},{"data":"2026-08-17","impressioni":8,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-18","impressioni":14,"interazioni":0,"nuovi_follower":1},{"data":"2026-08-19","impressioni":24,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-20","impressioni":10,"interazioni":0,"nuovi_follower":1},{"data":"2026-08-21","impressioni":11,"interazioni":0,"nuovi_follower":3},{"data":"2026-08-22","impressioni":8,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-23","impressioni":4,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-24","impressioni":15,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-25","impressioni":24,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-26","impressioni":5,"interazioni":0,"nuovi_follower":2},{"data":"2026-08-27","impressioni":12,"interazioni":0,"nuovi_follower":1},{"data":"2026-08-28","impressioni":10,"interazioni":0,"nuovi_follower":1},{"data":"2026-08-29","impressioni":6,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-30","impressioni":7,"interazioni":0,"nuovi_follower":0},{"data":"2026-08-31","impressioni":16,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-01","impressioni":9,"interazioni":0,"nuovi_follower":1},{"data":"2026-09-02","impressioni":8,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-03","impressioni":6,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-04","impressioni":4,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-05","impressioni":1,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-06","impressioni":7,"interazioni":1,"nuovi_follower":0},{"data":"2026-09-07","impressioni":13,"interazioni":0,"nuovi_follower":1},{"data":"2026-09-08","impressioni":77,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-09","impressioni":18,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-10","impressioni":5,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-11","impressioni":34,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-12","impressioni":1,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-13","impressioni":0,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-14","impressioni":81,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-15","impressioni":488,"interazioni":12,"nuovi_follower":0},{"data":"2026-09-16","impressioni":133,"interazioni":1,"nuovi_follower":0},{"data":"2026-09-17","impressioni":66,"interazioni":0,"nuovi_follower":1},{"data":"2026-09-18","impressioni":53,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-19","impressioni":18,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-20","impressioni":39,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-21","impressioni":35,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-22","impressioni":28,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-23","impressioni":19,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-24","impressioni":67,"interazioni":3,"nuovi_follower":2},{"data":"2026-09-25","impressioni":42,"interazioni":1,"nuovi_follower":0},{"data":"2026-09-26","impressioni":79,"interazioni":0,"nuovi_follower":1},{"data":"2026-09-27","impressioni":54,"interazioni":0,"nuovi_follower":0},{"data":"2026-09-28","impressioni":422,"interazioni":6,"nuovi_follower":0},{"data":"2026-09-29","impressioni":139,"interazioni":2,"nuovi_follower":0},{"data":"2026-09-30","impressioni":60,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-01","impressioni":31,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-02","impressioni":262,"interazioni":5,"nuovi_follower":0},{"data":"2026-10-03","impressioni":95,"interazioni":0,"nuovi_follower":1},{"data":"2026-10-04","impressioni":49,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-05","impressioni":187,"interazioni":2,"nuovi_follower":0},{"data":"2026-10-06","impressioni":79,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-07","impressioni":70,"interazioni":0,"nuovi_follower":1},{"data":"2026-10-08","impressioni":22,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-09","impressioni":18,"interazioni":0,"nuovi_follower":1},{"data":"2026-10-10","impressioni":19,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-11","impressioni":13,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-12","impressioni":140,"interazioni":1,"nuovi_follower":1},{"data":"2026-10-13","impressioni":87,"interazioni":2,"nuovi_follower":4},{"data":"2026-10-14","impressioni":91,"interazioni":1,"nuovi_follower":0},{"data":"2026-10-15","impressioni":31,"interazioni":1,"nuovi_follower":0},{"data":"2026-10-16","impressioni":47,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-17","impressioni":23,"interazioni":0,"nuovi_follower":0},{"data":"2026-10-18","impressioni":18,"interazioni":0,"nuovi_follower":1},{"data":"2026-10-19","impressioni":278,"interazioni":17,"nuovi_follower":0},{"data":"2026-10-20","impressioni":89,"interazioni":6,"nuovi_follower":1}],
+  meta: {"ultima_elaborazione":"2026-10-20","periodo_start":"2025-10-21","periodo_end":"2026-10-20","impressioni_totali":8865,"utenti_raggiunti":1755,"follower_totali":485,"nuovi_follower_periodo":125,"tasso_engagement":2.44,"demografici":{"localita":[{"nome":"Bologna","percentuale":"32%"},{"nome":"Milano","percentuale":"10%"},{"nome":"Ferrara","percentuale":"9%"},{"nome":"Ravenna","percentuale":"6%"},{"nome":"Torino","percentuale":"4%"},{"nome":"Bari","percentuale":"3%"},{"nome":"Modena","percentuale":"3%"},{"nome":"Roma","percentuale":"3%"},{"nome":"Rimini","percentuale":"2%"},{"nome":"Firenze","percentuale":"2%"}],"settori":[{"nome":"Servizi IT e consulenza IT","percentuale":"8%"},{"nome":"Servizi risorse umane","percentuale":"8%"},{"nome":"Consulenza e servizi aziendali","percentuale":"7%"},{"nome":"Vendita al dettaglio","percentuale":"7%"},{"nome":"Servizi finanziari","percentuale":"3%"},{"nome":"Servizi pubblicitari","percentuale":"3%"},{"nome":"Fabbricazione di macchinari industriali","percentuale":"3%"},{"nome":"Trasporti, logistica, supply chain e stoccaggio","percentuale":"2%"},{"nome":"Selezione e ricerca di personale","percentuale":"2%"},{"nome":"Sviluppo di software","percentuale":"2%"}],"anzianita":[{"nome":"Senior","percentuale":"40%"},{"nome":"Livello base","percentuale":"23%"},{"nome":"Amministratore","percentuale":"11%"},{"nome":"Direttore","percentuale":"8%"},{"nome":"Proprietario","percentuale":"4%"},{"nome":"CXO","percentuale":"3%"}],"dimensioni_azienda":[{"nome":"1.001-5.000 dipendenti","percentuale":"15%"},{"nome":"11-50 dipendenti","percentuale":"15%"},{"nome":"51-200 dipendenti","percentuale":"12%"},{"nome":"2-10 dipendenti","percentuale":"11%"},{"nome":"10.001+ dipendenti","percentuale":"9%"},{"nome":"201-500 dipendenti","percentuale":"7%"},{"nome":"501-1.000 dipendenti","percentuale":"7%"},{"nome":"5.001-10.000 dipendenti","percentuale":"7%"}],"qualifica":[{"nome":"Fondatore","percentuale":"2%"},{"nome":"Risorse umane","percentuale":"2%"},{"nome":"Project Manager","percentuale":"2%"},{"nome":"Amministratore delegato","percentuale":"2%"},{"nome":"Responsabile vendite","percentuale":"2%"},{"nome":"Proprietario","percentuale":"1%"},{"nome":"Responsabile risorse umane","percentuale":"1%"},{"nome":"Addetto alla selezione del personale","percentuale":"1%"},{"nome":"Responsabile di negozio","percentuale":"1%"}]}}
 };
-const allPosts = [{"url": "https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN", "data": "2026-10-12", "titolo_breve": "Operations PMI digital transformation", "interazioni": 5, "impressioni": 266}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU", "data": "2026-10-05", "titolo_breve": "People operations HR tech PMI", "interazioni": 2, "impressioni": 280}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7", "data": "2026-10-02", "titolo_breve": "AI Act AI governance Shadow AI", "interazioni": 5, "impressioni": 469}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA", "data": "2026-09-28", "titolo_breve": "8 tecnici un CRM che non parlava con il magazzino", "interazioni": 8, "impressioni": 614}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv", "data": "2026-09-15", "titolo_breve": "HR talent acquisition digital transformation", "interazioni": 17, "impressioni": 1178}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM", "data": "2026-08-14", "titolo_breve": "AI strategy MedTech healthcare", "interazioni": 2, "impressioni": 191}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj", "data": "2026-08-12", "titolo_breve": "AI strategy pubblica amministrazione digital transformation", "interazioni": 1, "impressioni": 116}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB", "data": "2026-08-10", "titolo_breve": "AI strategy digital transformation PMI (10 ago)", "interazioni": 3, "impressioni": 108}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H", "data": "2026-08-07", "titolo_breve": "AI strategy PMI digital transformation (7 ago)", "interazioni": 1, "impressioni": 97}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL", "data": "2026-08-05", "titolo_breve": "AI strategy PMI digital transformation (lug)", "interazioni": 5, "impressioni": 104}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b", "data": "2026-08-03", "titolo_breve": "AI strategy digital transformation HR", "interazioni": 16, "impressioni": 432}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0", "data": "2026-07-31", "titolo_breve": "Intelligenza artificiale PMI AI strategy (31 lug)", "interazioni": 2, "impressioni": 148}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1", "data": "2026-07-27", "titolo_breve": "AI PMI digital transformation", "interazioni": 7, "impressioni": 221}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi", "data": "2026-07-24", "titolo_breve": "Intelligenza artificiale PMI AI strategy", "interazioni": 6, "impressioni": 140}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm", "data": "2026-07-22", "titolo_breve": "AI strategy PMI digital transformation (22 lug)", "interazioni": 4, "impressioni": 132}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc", "data": "2026-07-20", "titolo_breve": "Intelligenza artificiale PMI industria 4.0", "interazioni": 9, "impressioni": 203}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9", "data": "2026-07-17", "titolo_breve": "AI strategy CAIO PMI", "interazioni": 6, "impressioni": 139}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5", "data": "2026-07-15", "titolo_breve": "AI strategy digital transformation operations management", "interazioni": 4, "impressioni": 182}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF", "data": "2026-06-22", "titolo_breve": "Operations management machine learning manutenzione", "interazioni": 6, "impressioni": 376}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk", "data": "2026-06-18", "titolo_breve": "TalentGarden DigitalRestart Intesa Sanpaolo", "interazioni": 21, "impressioni": 534}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX", "data": "2026-06-16", "titolo_breve": "Digital transformation operations management", "interazioni": 8, "impressioni": 415}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH", "data": "2026-06-10", "titolo_breve": "Ogni obiettivo ha lo strumento giusto", "interazioni": 15, "impressioni": 445}, {"url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5", "data": "2026-06-08", "titolo_breve": "8 anni in operations industriale — presentazione profilo", "interazioni": 40, "impressioni": 1571}];
+const allPosts = [{"url":"https://www.linkedin.com/posts/alessandro-dardi_share-6245667907804631040-x4Yh","data":"2017-03-09","titolo_breve":"alessandro dardi_share 6245667907804631040 x4Yh","interazioni":0,"impressioni":6},{"url":"https://www.linkedin.com/posts/alessandro-dardi_share-6258340805023395840-3f7T","data":"2017-04-13","titolo_breve":"alessandro dardi_share 6258340805023395840 3f7T","interazioni":0,"impressioni":8},{"url":"https://www.linkedin.com/posts/alessandro-dardi_share-6258723625474494464-hHyn","data":"2017-04-14","titolo_breve":"alessandro dardi_share 6258723625474494464 hHyn","interazioni":0,"impressioni":8},{"url":"https://www.linkedin.com/posts/alessandro-dardi_share-6266652039401476096-1l_X","data":"2017-05-06","titolo_breve":"alessandro dardi_share 6266652039401476096 1l_X","interazioni":0,"impressioni":38},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5","data":"2026-06-08","titolo_breve":"8 anni in operations industriale — presentazione profilo","interazioni":40,"impressioni":1570},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH","data":"2026-06-10","titolo_breve":"Ogni obiettivo ha lo strumento giusto","interazioni":15,"impressioni":445},{"url":"https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX","data":"2026-06-16","titolo_breve":"Digital transformation operations management","interazioni":8,"impressioni":412},{"url":"https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk","data":"2026-06-18","titolo_breve":"TalentGarden DigitalRestart Intesa Sanpaolo","interazioni":21,"impressioni":534},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF","data":"2026-06-22","titolo_breve":"Operations management machine learning manutenzione","interazioni":6,"impressioni":376},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5","data":"2026-07-15","titolo_breve":"AI strategy digital transformation operations management","interazioni":4,"impressioni":182},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9","data":"2026-07-17","titolo_breve":"AI strategy CAIO PMI","interazioni":6,"impressioni":139},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc","data":"2026-07-20","titolo_breve":"Intelligenza artificiale PMI industria 4.0","interazioni":9,"impressioni":203},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm","data":"2026-07-22","titolo_breve":"AI strategy PMI digital transformation (22 lug)","interazioni":4,"impressioni":132},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi","data":"2026-07-24","titolo_breve":"Intelligenza artificiale PMI AI strategy","interazioni":6,"impressioni":140},{"url":"https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1","data":"2026-07-27","titolo_breve":"AI PMI digital transformation","interazioni":7,"impressioni":221},{"url":"https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0","data":"2026-07-31","titolo_breve":"Intelligenza artificiale PMI AI strategy (31 lug)","interazioni":2,"impressioni":148},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b","data":"2026-08-03","titolo_breve":"AI strategy digital transformation HR","interazioni":16,"impressioni":432},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL","data":"2026-08-05","titolo_breve":"AI strategy PMI digital transformation (lug)","interazioni":5,"impressioni":104},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H","data":"2026-08-07","titolo_breve":"AI strategy PMI digital transformation (7 ago)","interazioni":1,"impressioni":98},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB","data":"2026-08-10","titolo_breve":"AI strategy digital transformation PMI (10 ago)","interazioni":3,"impressioni":108},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj","data":"2026-08-12","titolo_breve":"AI strategy pubblica amministrazione digital transformation","interazioni":1,"impressioni":117},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM","data":"2026-08-14","titolo_breve":"AI strategy MedTech healthcare","interazioni":2,"impressioni":194},{"url":"https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv","data":"2026-09-15","titolo_breve":"HR talent acquisition digital transformation","interazioni":17,"impressioni":1185},{"url":"https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA","data":"2026-09-28","titolo_breve":"8 tecnici un CRM che non parlava con il magazzino","interazioni":8,"impressioni":624},{"url":"https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7","data":"2026-10-02","titolo_breve":"AI Act AI governance Shadow AI","interazioni":5,"impressioni":481},{"url":"https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU","data":"2026-10-05","titolo_breve":"People operations HR tech PMI","interazioni":2,"impressioni":294},{"url":"https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN","data":"2026-10-12","titolo_breve":"Operations PMI digital transformation","interazioni":5,"impressioni":318},{"url":"https://www.linkedin.com/posts/alessandro-dardi_opentowork-jobsearch-operations-share-7517643039624994816-CrY7","data":"2026-10-19","titolo_breve":"alessandro dardi_opentowork jobsearch operations","interazioni":23,"impressioni":341}];
 
 function buildAllPosts() {
   return allPosts.filter(p => p.impressioni > 0 || p.interazioni > 0);
@@ -567,15 +554,12 @@ function fmtDateShort(iso) {
   return `${d}/${m}/${y.slice(2)}`;
 }
 
-// Colori donut anzianità
 const DONUT_COLORS = ['#4f46e5','#06b6d4','#10b981','#f59e0b','#f97316','#ef4444','#8b5cf6','#ec4899'];
 
-// Stato corrente
 let currentDays = 0;
 let currentSearch = '';
 let chartGiornaliero = null, chartFollower = null, chartStorico = null, chartAnzianita = null;
 
-// Filtra giorni per periodo
 function filterGiorni(days) {
   const all = globalSeries.giorni;
   if (!days) return all;
@@ -585,7 +569,6 @@ function filterGiorni(days) {
   return all.filter(g => g.data >= cutStr);
 }
 
-// Filtra post per periodo + ricerca
 function filterPosts(days, search) {
   let posts = buildAllPosts();
   if (days) {
@@ -601,7 +584,6 @@ function filterPosts(days, search) {
   return posts.sort((a,b) => b.impressioni - a.impressioni);
 }
 
-// Aggiorna KPI
 function updateKPI(giorni, posts) {
   const totImp = giorni.reduce((s,g) => s + g.impressioni, 0);
   const totInt = giorni.reduce((s,g) => s + g.interazioni, 0);
@@ -618,11 +600,8 @@ function updateKPI(giorni, posts) {
   document.getElementById('kpiEng').textContent = eng + '%';
 }
 
-// Grafico giornaliero
 function updateChartGiornaliero(giorni) {
   const withData = giorni.filter(g => g.impressioni > 0 || g.interazioni > 0);
-
-  // Controlla buchi temporali
   let hasBuchi = false;
   const sorted = [...giorni].sort((a,b) => a.data.localeCompare(b.data));
   for (let i = 1; i < sorted.length; i++) {
@@ -631,14 +610,11 @@ function updateChartGiornaliero(giorni) {
     const diffDays = (curr - prev) / 86400000;
     if (diffDays > 1) { hasBuchi = true; break; }
   }
-
   const display = withData.length > 0 ? withData : giorni.slice(-30);
   const labels = display.map(g => fmtDate(g.data));
   const imp = display.map(g => g.impressioni);
   const inter = display.map(g => g.interazioni);
-
   document.getElementById('chartNoteGap').style.display = hasBuchi ? 'block' : 'none';
-
   const ctx = document.getElementById('chartGiornaliero').getContext('2d');
   if (chartGiornaliero) chartGiornaliero.destroy();
   chartGiornaliero = new Chart(ctx, {
@@ -646,232 +622,190 @@ function updateChartGiornaliero(giorni) {
     data: {
       labels,
       datasets: [
-        {
-          label: 'Impressioni',
-          data: imp,
-          backgroundColor: 'rgba(79,70,229,0.6)',
-          borderColor: '#4f46e5',
-          borderWidth: 1,
-          borderRadius: 2,
-          yAxisID: 'y'
-        },
-        {
-          label: 'Interazioni',
-          data: inter,
-          type: 'line',
-          borderColor: '#06b6d4',
-          backgroundColor: 'rgba(6,182,212,0.1)',
-          borderWidth: 2,
-          pointRadius: 3,
-          pointBackgroundColor: '#06b6d4',
-          tension: 0.3,
-          yAxisID: 'y1'
-        }
+        { label: 'Impressioni', data: imp, backgroundColor: 'rgba(79,70,229,0.6)', borderColor: '#4f46e5', borderWidth: 1, borderRadius: 2, yAxisID: 'y' },
+        { label: 'Interazioni', data: inter, type: 'line', borderColor: '#06b6d4', backgroundColor: 'rgba(6,182,212,0.1)', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#06b6d4', tension: 0.3, yAxisID: 'y1' }
       ]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: { labels: { color: '#94a3b8', font: { size: 11 } } },
-        tooltip: { padding: 10 }
-      },
+      plugins: { legend: { labels: { color: '#94a3b8', font: { size: 11 } } }, tooltip: { padding: 10 } },
       scales: {
         x: { ticks: { color: '#64748b', maxTicksLimit: 20, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' }, beginAtZero: true },
-        y1: { position: 'right', ticks: { color: '#64748b', font: { size: 10 } }, grid: { display: false }, beginAtZero: true }
+        y: { position: 'left', ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y1: { position: 'right', ticks: { color: '#06b6d4', font: { size: 10 } }, grid: { drawOnChartArea: false } }
       }
     }
   });
 }
 
-// Post principali
 function updatePostList(posts) {
-  const container = document.getElementById('postList');
+  const list = document.getElementById('postList');
   const noData = document.getElementById('postNoData');
-  const top5 = posts.slice(0, 5);
-  if (top5.length === 0) {
-    container.style.display = 'none';
+  const top5 = posts.slice(0,5);
+  if (!top5.length) {
+    list.innerHTML = '';
     noData.style.display = 'block';
     return;
   }
-  container.style.display = 'flex';
   noData.style.display = 'none';
   const maxImp = top5[0].impressioni || 1;
-  const letters = 'ABCDEFGHIJ';
-  container.innerHTML = top5.map((p, i) => {
-    const pct = (p.impressioni / maxImp * 100).toFixed(1);
-    const dateDisp = fmtDate(p.data);
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  list.innerHTML = top5.map((p, i) => {
+    const pct = Math.round(p.impressioni / maxImp * 100);
+    const eng = p.impressioni > 0 ? (p.interazioni / p.impressioni * 100).toFixed(2) : '0.00';
     return `<div class="post-item">
       <div class="post-item-header">
         <div class="post-num">${letters[i]}</div>
         <div class="post-title"><a href="${p.url}" target="_blank">${p.titolo_breve}</a></div>
-        <div class="post-date">${dateDisp}</div>
+        <div class="post-date">${fmtDate(p.data)}</div>
       </div>
       <div class="post-bar-wrap"><div class="post-bar" style="width:${pct}%"></div></div>
-      <div class="post-stats">
-        <span>👁 ${fmtNum(p.impressioni)} imp</span>
-        <span>👆 ${p.interazioni} int</span>
-        <span>📊 ${p.impressioni > 0 ? (p.interazioni/p.impressioni*100).toFixed(2) : '0.00'}% eng</span>
-      </div>
+      <div class="post-stats"><span>&#128064; ${fmtNum(p.impressioni)} imp</span><span>&#10084; ${p.interazioni} int</span><span>${eng}% eng</span></div>
     </div>`;
   }).join('');
 }
 
-// Grafico follower
 function updateChartFollower(giorni) {
-  const withFollower = giorni.filter(g => g.nuovi_follower > 0);
-  const labels = withFollower.map(g => fmtDate(g.data));
-  const vals = withFollower.map(g => g.nuovi_follower);
+  const withData = giorni.filter(g => g.nuovi_follower > 0);
+  const labels = withData.map(g => fmtDate(g.data));
+  const nf = withData.map(g => g.nuovi_follower);
   const ctx = document.getElementById('chartFollower').getContext('2d');
   if (chartFollower) chartFollower.destroy();
   chartFollower = new Chart(ctx, {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Nuovi follower',
-        data: vals,
-        backgroundColor: 'rgba(16,185,129,0.6)',
-        borderColor: '#10b981',
-        borderWidth: 1,
-        borderRadius: 3
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { padding: 10 }
-      },
-      scales: {
-        x: { ticks: { color: '#64748b', maxTicksLimit: 20, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
-        y: { ticks: { color: '#64748b', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' }, beginAtZero: true, stepSize: 1 }
-      }
-    }
-  });
-}
-
-// Demografici barre
-function buildDemoBars(items, containerId, color) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = items.map(item => {
-    const pct = parseFloat(item.percentuale) || 0;
-    return `<div class="demo-bar-item">
-      <div class="demo-bar-label"><span>${item.nome}</span><span>${item.percentuale}</span></div>
-      <div class="demo-bar-bg"><div class="demo-bar-fill" style="width:${Math.min(pct * 3, 100)}%;background:${color};"></div></div>
-    </div>`;
-  }).join('');
-}
-
-// Donut anzianità
-function buildDonut(items) {
-  const vals = items.map(it => parseInt(it.percentuale) || 0);
-  const labels = items.map(it => it.nome);
-  const ctx = document.getElementById('chartAnzianita').getContext('2d');
-  if (chartAnzianita) chartAnzianita.destroy();
-  chartAnzianita = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels,
-      datasets: [{ data: vals, backgroundColor: DONUT_COLORS, borderColor: '#1e2a45', borderWidth: 2 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: true,
-      plugins: { legend: { display: false } },
-      cutout: '60%'
-    }
-  });
-  const legend = document.getElementById('anzianitaLegend');
-  legend.innerHTML = items.map((it, i) => `
-    <div class="donut-legend-item">
-      <div class="donut-legend-dot" style="background:${DONUT_COLORS[i]};"></div>
-      <span>${it.nome} — ${it.percentuale}</span>
-    </div>`).join('');
-}
-
-// Storico meta
-function buildStoricoMeta() {
-  document.getElementById('smGiorni').textContent = globalSeries.giorni.length;
-  document.getElementById('smPost').textContent = allPosts.length;
-  document.getElementById('smFollower').textContent = fmtNum(globalSeries.meta.follower_totali);
-  document.getElementById('smImp').textContent = fmtNum(globalSeries.meta.impressioni_totali);
-}
-
-// Grafico storico
-function buildChartStorico() {
-  const giorni = globalSeries.giorni.filter(g => g.impressioni > 0);
-  const labels = giorni.map(g => fmtDate(g.data));
-  const imp = giorni.map(g => g.impressioni);
-  const ctx = document.getElementById('chartStorico').getContext('2d');
-  new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Impressioni',
-        data: imp,
-        borderColor: '#4f46e5',
-        backgroundColor: 'rgba(79,70,229,0.08)',
-        fill: true,
-        tension: 0.3,
-        pointRadius: 0,
-        borderWidth: 2
-      }]
-    },
+    data: { labels, datasets: [{ label: 'Nuovi follower', data: nf, backgroundColor: 'rgba(16,185,129,0.6)', borderColor: '#10b981', borderWidth: 1, borderRadius: 2 }] },
     options: {
       responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        x: { ticks: { color: '#64748b', maxTicksLimit: 16, font: { size: 10 } }, grid: { display: false } },
-        y: { ticks: { color: '#64748b', font: { size: 10 }, callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v }, grid: { color: 'rgba(255,255,255,0.04)' }, beginAtZero: true }
+        x: { ticks: { color: '#64748b', maxTicksLimit: 20, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#64748b', font: { size: 10 }, stepSize: 1 }, grid: { color: 'rgba(255,255,255,0.04)' } }
       }
     }
   });
 }
 
-// Render completo
-function render(days, search) {
+function renderDemoBars(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el || !items) return;
+  const maxPct = parseInt(items[0].percentuale) || 1;
+  el.innerHTML = items.map(item => {
+    const pct = parseInt(item.percentuale) || 0;
+    const w = Math.round(pct / maxPct * 100);
+    return `<div class="demo-bar-item">
+      <div class="demo-bar-label"><span>${item.nome}</span><span>${item.percentuale}</span></div>
+      <div class="demo-bar-bg"><div class="demo-bar-fill" style="width:${w}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderAnzianitaDonut(items) {
+  const labels = items.map(i => i.nome);
+  const data = items.map(i => parseInt(i.percentuale) || 0);
+  const ctx = document.getElementById('chartAnzianita').getContext('2d');
+  if (chartAnzianita) chartAnzianita.destroy();
+  chartAnzianita = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels, datasets: [{ data, backgroundColor: DONUT_COLORS.slice(0,labels.length), borderColor: '#1e2a45', borderWidth: 2 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw}%` } } }
+    }
+  });
+  const legend = document.getElementById('anzianitaLegend');
+  legend.innerHTML = labels.map((l, i) => `<div class="donut-legend-item"><div class="donut-legend-dot" style="background:${DONUT_COLORS[i]}"></div><span>${l}: ${items[i].percentuale}</span></div>`).join('');
+}
+
+function updateChartStorico(giorni) {
+  const withData = [...giorni].filter(g => g.impressioni > 0).sort((a,b) => a.data.localeCompare(b.data));
+  const labels = withData.map(g => fmtDate(g.data));
+  const imp = withData.map(g => g.impressioni);
+  const ctx = document.getElementById('chartStorico').getContext('2d');
+  if (chartStorico) chartStorico.destroy();
+  chartStorico = new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Impressioni', data: imp, borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.08)', fill: true, tension: 0.3, pointRadius: 0, pointHoverRadius: 3, borderWidth: 2 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: '#64748b', maxTicksLimit: 18, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#64748b', font: { size: 10 }, callback: v => v >= 1000 ? (v/1000).toFixed(1)+'k' : v }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+function renderAnalisiTable(posts) {
+  const tbody = document.getElementById('analisiTableBody');
+  if (!tbody) return;
+  const giorni = ['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
+  const sorted = [...posts].sort((a,b) => b.impressioni - a.impressioni);
+  tbody.innerHTML = sorted.map(p => {
+    const d = new Date(p.data);
+    const eng = p.impressioni > 0 ? (p.interazioni / p.impressioni * 100).toFixed(2) : '0.00';
+    const engClass = parseFloat(eng) >= 3 ? 'eng-best' : '';
+    const star = parseFloat(eng) >= 3 ? ' &#127919;' : '';
+    return `<tr>
+      <td>${fmtDate(p.data)}</td>
+      <td>${giorni[d.getDay()]}</td>
+      <td><a href="${p.url}" target="_blank">${p.titolo_breve}</a></td>
+      <td>${fmtNum(p.impressioni)}</td>
+      <td>${p.interazioni}</td>
+      <td class="${engClass}">${eng}%${star}</td>
+    </tr>`;
+  }).join('');
+}
+
+function updateStorico() {
+  const all = globalSeries.giorni;
+  const allP = buildAllPosts();
+  document.getElementById('smGiorni').textContent = all.length;
+  document.getElementById('smPost').textContent = allP.length;
+  document.getElementById('smFollower').textContent = fmtNum(globalSeries.meta.follower_totali);
+  document.getElementById('smImp').textContent = fmtNum(globalSeries.meta.impressioni_totali);
+  updateChartStorico(all);
+}
+
+function applyFilters() {
+  const days = currentDays;
+  const search = currentSearch;
   const giorni = filterGiorni(days);
   const posts = filterPosts(days, search);
   updateKPI(giorni, posts);
   updateChartGiornaliero(giorni);
   updatePostList(posts);
   updateChartFollower(giorni);
+  renderAnalisiTable(posts);
 }
 
 // Init
-function init() {
-  // Demografici (statici)
-  const demo = globalSeries.meta.demografici;
-  buildDemoBars(demo.settori, 'settoriDemo', '#4f46e5');
-  buildDemoBars(demo.localita, 'localitaDemo', '#06b6d4');
-  buildDonut(demo.anzianita);
-  buildStoricoMeta();
-  buildChartStorico();
-  buildChartCumulativo();
-  render(0, '');
-}
-
-// Event listeners
-document.getElementById('filterBtns').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentDays = parseInt(btn.dataset.days);
-  render(currentDays, currentSearch);
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentDays = parseInt(btn.dataset.days) || 0;
+    applyFilters();
+  });
 });
-
 document.getElementById('searchInput').addEventListener('input', e => {
   currentSearch = e.target.value.trim();
-  render(currentDays, currentSearch);
+  applyFilters();
 });
 
-window.addEventListener('DOMContentLoaded', init);
+// Demografici (statici)
+const demo = globalSeries.meta.demografici;
+renderDemoBars('settoriDemo', demo.settori);
+renderDemoBars('localitaDemo', demo.localita);
+renderAnzianitaDonut(demo.anzianita);
+
+updateStorico();
+applyFilters();
 </script>
 <script src="chart-cumulativo.js"></script>
+<script>
+if (typeof buildChartCumulativo === 'function') buildChartCumulativo();
+</script>
 </body>
 </html>

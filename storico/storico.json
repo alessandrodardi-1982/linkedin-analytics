@@ -1472,7 +1472,7 @@
     },
     {
       "data": "2026-06-09",
-      "impressioni": 496,
+      "impressioni": 495,
       "interazioni": 18,
       "nuovi_follower": 3
     },
@@ -1514,7 +1514,7 @@
     },
     {
       "data": "2026-06-16",
-      "impressioni": 324,
+      "impressioni": 321,
       "interazioni": 10,
       "nuovi_follower": 3
     },
@@ -2138,7 +2138,7 @@
     },
     {
       "data": "2026-09-28",
-      "impressioni": 423,
+      "impressioni": 422,
       "interazioni": 6,
       "nuovi_follower": 0
     },
@@ -2246,158 +2246,70 @@
     },
     {
       "data": "2026-10-16",
-      "impressioni": 13,
+      "impressioni": 47,
       "interazioni": 0,
       "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-17",
+      "impressioni": 23,
+      "interazioni": 0,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-18",
+      "impressioni": 18,
+      "interazioni": 0,
+      "nuovi_follower": 1
+    },
+    {
+      "data": "2026-10-19",
+      "impressioni": 278,
+      "interazioni": 17,
+      "nuovi_follower": 0
+    },
+    {
+      "data": "2026-10-20",
+      "impressioni": 89,
+      "interazioni": 6,
+      "nuovi_follower": 1
     }
   ],
   "posts": [
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN",
-      "data": "2026-10-12",
-      "titolo_breve": "Operations PMI digital transformation",
-      "interazioni": 5,
-      "impressioni": 266
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_share-6245667907804631040-x4Yh",
+      "data": "2017-03-09",
+      "titolo_breve": "alessandro dardi_share 6245667907804631040 x4Yh",
+      "interazioni": 0,
+      "impressioni": 6
     },
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU",
-      "data": "2026-10-05",
-      "titolo_breve": "People operations HR tech PMI",
-      "interazioni": 2,
-      "impressioni": 280
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_share-6258340805023395840-3f7T",
+      "data": "2017-04-13",
+      "titolo_breve": "alessandro dardi_share 6258340805023395840 3f7T",
+      "interazioni": 0,
+      "impressioni": 8
     },
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7",
-      "data": "2026-10-02",
-      "titolo_breve": "AI Act AI governance Shadow AI",
-      "interazioni": 5,
-      "impressioni": 469
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_share-6258723625474494464-hHyn",
+      "data": "2017-04-14",
+      "titolo_breve": "alessandro dardi_share 6258723625474494464 hHyn",
+      "interazioni": 0,
+      "impressioni": 8
     },
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA",
-      "data": "2026-09-28",
-      "titolo_breve": "8 tecnici un CRM che non parlava con il magazzino",
-      "interazioni": 8,
-      "impressioni": 614
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_share-6266652039401476096-1l_X",
+      "data": "2017-05-06",
+      "titolo_breve": "alessandro dardi_share 6266652039401476096 1l_X",
+      "interazioni": 0,
+      "impressioni": 38
     },
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv",
-      "data": "2026-09-15",
-      "titolo_breve": "HR talent acquisition digital transformation",
-      "interazioni": 17,
-      "impressioni": 1178
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
-      "data": "2026-08-14",
-      "titolo_breve": "AI strategy MedTech healthcare",
-      "interazioni": 2,
-      "impressioni": 191
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
-      "data": "2026-08-12",
-      "titolo_breve": "AI strategy pubblica amministrazione digital transformation",
-      "interazioni": 1,
-      "impressioni": 116
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
-      "data": "2026-08-10",
-      "titolo_breve": "AI strategy digital transformation PMI (10 ago)",
-      "interazioni": 3,
-      "impressioni": 108
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
-      "data": "2026-08-07",
-      "titolo_breve": "AI strategy PMI digital transformation (7 ago)",
-      "interazioni": 1,
-      "impressioni": 97
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
-      "data": "2026-08-05",
-      "titolo_breve": "AI strategy PMI digital transformation (lug)",
-      "interazioni": 5,
-      "impressioni": 104
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
-      "data": "2026-08-03",
-      "titolo_breve": "AI strategy digital transformation HR",
-      "interazioni": 16,
-      "impressioni": 432
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
-      "data": "2026-07-31",
-      "titolo_breve": "Intelligenza artificiale PMI AI strategy (31 lug)",
-      "interazioni": 2,
-      "impressioni": 148
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
-      "data": "2026-07-27",
-      "titolo_breve": "AI PMI digital transformation",
-      "interazioni": 7,
-      "impressioni": 221
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
-      "data": "2026-07-24",
-      "titolo_breve": "Intelligenza artificiale PMI AI strategy",
-      "interazioni": 6,
-      "impressioni": 140
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
-      "data": "2026-07-22",
-      "titolo_breve": "AI strategy PMI digital transformation (22 lug)",
-      "interazioni": 4,
-      "impressioni": 132
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
-      "data": "2026-07-20",
-      "titolo_breve": "Intelligenza artificiale PMI industria 4.0",
-      "interazioni": 9,
-      "impressioni": 203
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
-      "data": "2026-07-17",
-      "titolo_breve": "AI strategy CAIO PMI",
-      "interazioni": 6,
-      "impressioni": 139
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
-      "data": "2026-07-15",
-      "titolo_breve": "AI strategy digital transformation operations management",
-      "interazioni": 4,
-      "impressioni": 182
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
-      "data": "2026-06-22",
-      "titolo_breve": "Operations management machine learning manutenzione",
-      "interazioni": 6,
-      "impressioni": 376
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
-      "data": "2026-06-18",
-      "titolo_breve": "TalentGarden DigitalRestart Intesa Sanpaolo",
-      "interazioni": 21,
-      "impressioni": 534
-    },
-    {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
-      "data": "2026-06-16",
-      "titolo_breve": "Digital transformation operations management",
-      "interazioni": 8,
-      "impressioni": 415
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
+      "data": "2026-06-08",
+      "titolo_breve": "8 anni in operations industriale — presentazione profilo",
+      "interazioni": 40,
+      "impressioni": 1570
     },
     {
       "url": "https://www.linkedin.com/posts/alessandro-dardi_ogni-obiettivo-ha-lo-strumento-giusto-per-share-7470473146450477057-LpgH",
@@ -2407,22 +2319,169 @@
       "impressioni": 445
     },
     {
-      "url": "https://www.linkedin.com/posts/alessandro-dardi_ho-8-anni-di-esperienza-in-operations-industriale-share-7469841042624700416-Ztw5",
-      "data": "2026-06-08",
-      "titolo_breve": "8 anni in operations industriale — presentazione profilo",
-      "interazioni": 40,
-      "impressioni": 1571
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_digitaltransformation-operationsmanagement-share-7472569608831692801-LwmX",
+      "data": "2026-06-16",
+      "titolo_breve": "Digital transformation operations management",
+      "interazioni": 8,
+      "impressioni": 412
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_talentgarden-digitalrestart-intesasanpaolo-share-7473327867024658432-T2Uk",
+      "data": "2026-06-18",
+      "titolo_breve": "TalentGarden DigitalRestart Intesa Sanpaolo",
+      "interazioni": 21,
+      "impressioni": 534
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_operationsmanagement-machinelearning-manutenzione-share-7474746565287657473-WjXF",
+      "data": "2026-06-22",
+      "titolo_breve": "Operations management machine learning manutenzione",
+      "interazioni": 6,
+      "impressioni": 376
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-operationsmanagement-share-7482731847932674048-psC5",
+      "data": "2026-07-15",
+      "titolo_breve": "AI strategy digital transformation operations management",
+      "interazioni": 4,
+      "impressioni": 182
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-caio-pmi-share-7483460722065199104-GeV9",
+      "data": "2026-07-17",
+      "titolo_breve": "AI strategy CAIO PMI",
+      "interazioni": 6,
+      "impressioni": 139
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-industria40-share-7483460066046754816-hYbc",
+      "data": "2026-07-20",
+      "titolo_breve": "Intelligenza artificiale PMI industria 4.0",
+      "interazioni": 9,
+      "impressioni": 203
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7483454214912933888-jxXm",
+      "data": "2026-07-22",
+      "titolo_breve": "AI strategy PMI digital transformation (22 lug)",
+      "interazioni": 4,
+      "impressioni": 132
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7483530600767819776-TBBi",
+      "data": "2026-07-24",
+      "titolo_breve": "Intelligenza artificiale PMI AI strategy",
+      "interazioni": 6,
+      "impressioni": 140
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_ai-pmi-digitaltransformation-share-7483537337382043648-PQU1",
+      "data": "2026-07-27",
+      "titolo_breve": "AI PMI digital transformation",
+      "interazioni": 7,
+      "impressioni": 221
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_intelligenzaartificiale-pmi-aistrategy-share-7488262610765922305--5I0",
+      "data": "2026-07-31",
+      "titolo_breve": "Intelligenza artificiale PMI AI strategy (31 lug)",
+      "interazioni": 2,
+      "impressioni": 148
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-hr-share-7487854869165416450-Mw5b",
+      "data": "2026-08-03",
+      "titolo_breve": "AI strategy digital transformation HR",
+      "interazioni": 16,
+      "impressioni": 432
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486038183928066048-1ERL",
+      "data": "2026-08-05",
+      "titolo_breve": "AI strategy PMI digital transformation (lug)",
+      "interazioni": 5,
+      "impressioni": 104
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pmi-digitaltransformation-share-7486041107999604736-A21H",
+      "data": "2026-08-07",
+      "titolo_breve": "AI strategy PMI digital transformation (7 ago)",
+      "interazioni": 1,
+      "impressioni": 98
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-digitaltransformation-pmi-share-7486023167279259649-KuWB",
+      "data": "2026-08-10",
+      "titolo_breve": "AI strategy digital transformation PMI (10 ago)",
+      "interazioni": 3,
+      "impressioni": 108
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-pubblicaamministrazione-digitaltransformation-share-7488603416458371074-HIcj",
+      "data": "2026-08-12",
+      "titolo_breve": "AI strategy pubblica amministrazione digital transformation",
+      "interazioni": 1,
+      "impressioni": 117
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aistrategy-medtech-healthcare-share-7488606160975982592-CPWM",
+      "data": "2026-08-14",
+      "titolo_breve": "AI strategy MedTech healthcare",
+      "interazioni": 2,
+      "impressioni": 194
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_hr-talentacquisition-digitaltransformation-share-7505519666631442432-Z2Mv",
+      "data": "2026-09-15",
+      "titolo_breve": "HR talent acquisition digital transformation",
+      "interazioni": 17,
+      "impressioni": 1185
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_8-tecnici-un-crm-che-non-parlava-con-il-share-7510238019338280960-2KAA",
+      "data": "2026-09-28",
+      "titolo_breve": "8 tecnici un CRM che non parlava con il magazzino",
+      "interazioni": 8,
+      "impressioni": 624
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_aiact-aigovernance-shadowai-share-7511432697936986112-cGm7",
+      "data": "2026-10-02",
+      "titolo_breve": "AI Act AI governance Shadow AI",
+      "interazioni": 5,
+      "impressioni": 481
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_peopleoperations-hrtech-pmi-share-7512823533610115072-frsU",
+      "data": "2026-10-05",
+      "titolo_breve": "People operations HR tech PMI",
+      "interazioni": 2,
+      "impressioni": 294
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_operations-pmi-digitaltransformation-share-7515352671638216705-obCN",
+      "data": "2026-10-12",
+      "titolo_breve": "Operations PMI digital transformation",
+      "interazioni": 5,
+      "impressioni": 318
+    },
+    {
+      "url": "https://www.linkedin.com/posts/alessandro-dardi_opentowork-jobsearch-operations-share-7517643039624994816-CrY7",
+      "data": "2026-10-19",
+      "titolo_breve": "alessandro dardi_opentowork jobsearch operations",
+      "interazioni": 23,
+      "impressioni": 341
     }
   ],
   "meta": {
-    "ultima_elaborazione": "2026-10-16",
-    "periodo_start": "2025-10-17",
-    "periodo_end": "2026-10-16",
-    "impressioni_totali": 8428,
-    "utenti_raggiunti": 1705,
-    "follower_totali": 483,
-    "nuovi_follower_periodo": 123,
-    "tasso_engagement": 2.29,
+    "ultima_elaborazione": "2026-10-20",
+    "periodo_start": "2025-10-21",
+    "periodo_end": "2026-10-20",
+    "impressioni_totali": 8865,
+    "utenti_raggiunti": 1755,
+    "follower_totali": 485,
+    "nuovi_follower_periodo": 125,
+    "tasso_engagement": 2.44,
     "demografici": {
       "localita": [
         {
@@ -2541,7 +2600,7 @@
         },
         {
           "nome": "11-50 dipendenti",
-          "percentuale": "14%"
+          "percentuale": "15%"
         },
         {
           "nome": "51-200 dipendenti",
@@ -2557,7 +2616,7 @@
         },
         {
           "nome": "201-500 dipendenti",
-          "percentuale": "8%"
+          "percentuale": "7%"
         },
         {
           "nome": "501-1.000 dipendenti",
